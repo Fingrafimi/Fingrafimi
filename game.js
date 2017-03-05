@@ -15,6 +15,7 @@ var textX = 450;
 var textY = 50;
 var cursor = "|";
 var correctInput = "";
+var incorrectInput = "";
 
 // Load the resources needed
 function preload () 
@@ -22,6 +23,9 @@ function preload ()
 	// Background images
 	game.load.image('homePage', 'Assets/homePage.bmp');
 	game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
+
+    // Audio files
+    game.load.audio('wrongSound', 'Assets/wrongSound.mp3');
 
 	// Assignments buttons
 	game.load.image('fj', 'Assets/fj.png');
@@ -95,29 +99,58 @@ function keyPress(char)
 		alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
 		return;
 	}
+
+    var wrongSound = game.add.audio('wrongSound');
+    if(incorrectInput != "")
+    {
+        if(char == incorrectInput.charAt(0))
+        {
+            correctInput = correctInput + incorrectInput.charAt(0);
+            incorrectInput = incorrectInput.substr(1);
+        }
+        else
+        {
+            wrongSound.play();
+        }
+    }
+    else
+    {
+        if(char == text.charAt(0))
+        {
+            correctInput = correctInput + text.charAt(0);
+        }
+        else
+        {
+            incorrectInput = incorrectInput + text.charAt(0);
+            wrongSound.play();
+        }
+        text = text.substr(1);
+    }
+
     // Clear the textArea
     textArea.cls();
 
-    // Add the letter to string of correct letters
-    correctInput = correctInput + text.charAt(0);
-
-    // Remove the letter from the assignment text
-    text = text.substr(1);
-
     // Define variables for length of the text area content
     var correctLength = textArea.context.measureText(correctInput).width;
-    var cursorLength = textArea.context.measureText(cursor).width;
-    
+    var cursorLength = textArea.context.measureText(cursor).width-5;
+    var incorrectLength;
+
     // Display correct text
+    textArea.context.fillStyle = '#00ff00';
     textArea.context.fillText(correctInput, textX, textY);
 
     // Set the style for cursor and display it
     textArea.context.fillStyle = '#000000';
     textArea.context.fillText(cursor, textX + correctLength, textY);
 
+    // Set the style for incorrect text and display it
+    textArea.context.fillStyle = '#ffa500';
+    textArea.context.font = '90px Arial';
+    textArea.context.fillText(incorrectInput, textX + correctLength + cursorLength, textY);
+    incorrectLength = textArea.context.measureText(incorrectInput).width;
+
     // Set the style for the assignment text and display it
     textArea.context.fillStyle = '#ffffff';
-    textArea.context.fillText(text, textX + cursorLength + correctLength, textY);
-
-
+    textArea.context.font = '64px Arial';
+    textArea.context.fillText(text, textX + incorrectLength + cursorLength + correctLength, textY);
 }
