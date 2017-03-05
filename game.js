@@ -6,7 +6,10 @@ var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, c
 // load the resources needed
 function preload () 
 {
+	// Background images
 	game.load.image('homePage', 'Assets/homePage.bmp');
+
+	// Assignments buttons
 	game.load.image('fj', 'Assets/fj.png');
 
 }
@@ -29,5 +32,7 @@ function loadHomePage()
 	// add offset of 4px to remove black frame
     homePage.width = width + 4;
     homePage.height = height + 4;
+
+    var btn_fj = game.add.button(45, 35, 'fj');
 
 }
