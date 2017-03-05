@@ -90,7 +90,12 @@ function Assignment()
 
 function keyPress(char) 
 {
-    //  Clear the textArea
+	if(text == "")
+	{
+		alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
+		return;
+	}
+    // Clear the textArea
     textArea.cls();
 
     // Add the letter to string of correct letters
