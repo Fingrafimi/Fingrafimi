@@ -95,14 +95,15 @@ function keyPress(char)
 		alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
 		return;
 	}
+
+    if(char == text.charAt(0))
+    {
+        correctInput = correctInput + text.charAt(0);
+        text = text.substr(1);
+    }
+
     // Clear the textArea
     textArea.cls();
-
-    // Add the letter to string of correct letters
-    correctInput = correctInput + text.charAt(0);
-
-    // Remove the letter from the assignment text
-    text = text.substr(1);
 
     // Define variables for length of the text area content
     var correctLength = textArea.context.measureText(correctInput).width;
