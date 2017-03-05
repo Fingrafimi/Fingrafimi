@@ -8,6 +8,7 @@ function preload ()
 {
 	// Background images
 	game.load.image('homePage', 'Assets/homePage.bmp');
+	game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
 
 	// Assignments buttons
 	game.load.image('fj', 'Assets/fj.png');
@@ -33,6 +34,17 @@ function loadHomePage()
     homePage.width = width + 4;
     homePage.height = height + 4;
 
-    var btn_fj = game.add.button(45, 35, 'fj');
+    var btnFj = game.add.button(45, 35, 'fj');
+    btnFj.events.onInputDown.add(Assignment);
+
+}
+
+function Assignment() 
+{
+	// remove the background from the homepage
+   	game.world.removeAll();
+
+    background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
+    background.anchor.setTo(0.5, 0.5);
 
 }
