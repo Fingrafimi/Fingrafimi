@@ -7,6 +7,7 @@ var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, c
 function preload () 
 {
 	game.load.image('homePage', 'Assets/homePage.bmp');
+	game.load.image('fj', 'Assets/fj.png');
 
 }
 
