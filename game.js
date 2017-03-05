@@ -17,6 +17,23 @@ var cursor = "|";
 var correctInput = "";
 var incorrectInput = "";
 
+//Exercises stored in an array
+var exercises = 
+[
+    'jjj fff ffff jjj fffff',
+    'ddddd kkk kkkk dd dd',
+    'lllll l lllll sssss ss',
+    'aa ææ ææ aaaa aa ææ',
+    'af af af fæ fæ fæ fa fa fa æf æf',
+    'Test6',
+    'Test7',
+    'Test8',
+    'Test9',
+    'Test10',
+    'Test11',
+    'Test12'
+];
+
 // Load the resources needed
 function preload () 
 {
@@ -46,43 +63,43 @@ function loadHomePage()
     homePage.height = height + 4;
 
     var btnFj = game.add.button(45, 35, 'fj');
-    btnFj.events.onInputDown.add(Assignment);
+    btnFj.events.onInputDown.add(Assignment, {exercise: 1});
 
     var btnDk = game.add.button(45, 75, 'dk');
-    btnDk.events.onInputDown.add(Assignment);
+    btnDk.events.onInputDown.add(Assignment, {exercise: 2});
 
     var btnSl = game.add.button(45, 115, 'sl');
-    btnSl.events.onInputDown.add(Assignment);
+    btnSl.events.onInputDown.add(Assignment, {exercise: 3});
 
     var btnAae = game.add.button(45, 155, 'aae');
-    btnAae.events.onInputDown.add(Assignment);
+    btnAae.events.onInputDown.add(Assignment, {exercise: 4});
 
     var btnHome1 = game.add.button(45, 195, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(Assignment);
+    btnHome1.events.onInputDown.add(Assignment, {exercise: 5});
 
     var btnHome2 = game.add.button(35, 245, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(Assignment);
+    btnHome2.events.onInputDown.add(Assignment, {exercise: 6});
 
     var btnEh = game.add.button(45, 305, 'eh');
-    btnEh.events.onInputDown.add(Assignment);
+    btnEh.events.onInputDown.add(Assignment, {exercise: 7});
 
     var btnIg = game.add.button(45, 345, 'ig');
-    btnIg.events.onInputDown.add(Assignment);
+    btnIg.events.onInputDown.add(Assignment, {exercise: 8});
 
     var btnBn = game.add.button(45, 385, 'bn');
-    btnBn.events.onInputDown.add(Assignment);
+    btnBn.events.onInputDown.add(Assignment, {exercise: 9});
 
     var btnRo = game.add.button(45, 425, 'ro');
-    btnRo.events.onInputDown.add(Assignment);
+    btnRo.events.onInputDown.add(Assignment, {exercise: 10});
 
     var btnBrodd = game.add.button(45, 465, 'broddstafir');
-    btnBrodd.events.onInputDown.add(Assignment);
+    btnBrodd.events.onInputDown.add(Assignment, {exercise: 11});
 
     var btnHastafir = game.add.button(45, 520, 'hastafir');
-    btnHastafir.events.onInputDown.add(Assignment);
+    btnHastafir.events.onInputDown.add(Assignment, {exercise: 12});
 }
 
-function Assignment() 
+function Assignment(exerciseNr) 
 {
 	// Empty the canvas
    	game.world.removeAll();
@@ -93,6 +110,9 @@ function Assignment()
 
     // Create the textArea
     textArea = game.make.bitmapData(game.world.width, textAreaY);
+
+    //Set text for the assignment
+    text = exercises[this.exercise - 1];
     
     // Add style to the textArea
     textArea.context.font = '64px Arial';
@@ -120,12 +140,6 @@ function Assignment()
 
 function keyPress(char) 
 {
-	if(text == "")
-	{
-		alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
-		return;
-	}
-
     var wrongSound = game.add.audio('wrongSound');
     if(incorrectInput != "")
     {
@@ -179,6 +193,12 @@ function keyPress(char)
     textArea.context.fillStyle = '#ffffff';
     textArea.context.font = '64px Arial';
     textArea.context.fillText(text, textX + incorrectLength + cursorLength + correctLength, textY);
+
+    if(text == "")
+    {
+        alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
+        return;
+    }
 }
 
 function preloadHomePageFiles()
@@ -200,4 +220,9 @@ function preloadHomePageFiles()
     game.load.image('ro', 'Assets/ro.png');
     game.load.image('broddstafir', 'Assets/broddstafir.png');
     game.load.image('hastafir', 'Assets/hastafir.png');
+}
+
+function getExercise()
+{
+
 }
