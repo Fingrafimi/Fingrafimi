@@ -14,6 +14,7 @@ var text = "carlos carlos";
 var textX = 450;
 var textY = 50;
 var cursor = "|";
+var correctInput = "";
 
 // Load the resources needed
 function preload () 
@@ -91,6 +92,27 @@ function keyPress(char)
 {
     //  Clear the textArea
     textArea.cls();
+
+    // Add the letter to string of correct letters
+    correctInput = correctInput + text.charAt(0);
+
+    // Remove the letter from the assignment text
+    text = text.substr(1);
+
+    // Define variables for length of the text area content
+    var correctLength = textArea.context.measureText(correctInput).width;
+    var cursorLength = textArea.context.measureText(cursor).width;
+    
+    // Display correct text
+    textArea.context.fillText(correctInput, textX, textY);
+
+    // Set the style for cursor and display it
+    textArea.context.fillStyle = '#000000';
+    textArea.context.fillText(cursor, textX + correctLength, textY);
+
+    // Set the style for the assignment text and display it
+    textArea.context.fillStyle = '#ffffff';
+    textArea.context.fillText(text, textX + cursorLength + correctLength, textY);
 
 
 }
