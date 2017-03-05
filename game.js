@@ -136,6 +136,7 @@ function keyPress(char)
     var incorrectLength;
 
     // Display correct text
+    textArea.context.fillStyle = '#00ff00';
     textArea.context.fillText(correctInput, textX, textY);
 
     // Set the style for cursor and display it
@@ -152,6 +153,4 @@ function keyPress(char)
     textArea.context.fillStyle = '#ffffff';
     textArea.context.font = '64px Arial';
     textArea.context.fillText(text, textX + incorrectLength + cursorLength + correctLength, textY);
-
-
 }
