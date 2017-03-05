@@ -48,6 +48,38 @@ function loadHomePage()
     var btnFj = game.add.button(45, 35, 'fj');
     btnFj.events.onInputDown.add(Assignment);
 
+    var btnDk = game.add.button(45, 75, 'dk');
+    btnDk.events.onInputDown.add(Assignment);
+
+    var btnSl = game.add.button(45, 115, 'sl');
+    btnSl.events.onInputDown.add(Assignment);
+
+    var btnAae = game.add.button(45, 155, 'aae');
+    btnAae.events.onInputDown.add(Assignment);
+
+    var btnHome1 = game.add.button(45, 195, 'heimalyklar1');
+    btnHome1.events.onInputDown.add(Assignment);
+
+    var btnHome2 = game.add.button(35, 245, 'heimalyklar2');
+    btnHome2.events.onInputDown.add(Assignment);
+
+    var btnEh = game.add.button(45, 305, 'eh');
+    btnEh.events.onInputDown.add(Assignment);
+
+    var btnIg = game.add.button(45, 345, 'ig');
+    btnIg.events.onInputDown.add(Assignment);
+
+    var btnBn = game.add.button(45, 385, 'bn');
+    btnBn.events.onInputDown.add(Assignment);
+
+    var btnRo = game.add.button(45, 425, 'ro');
+    btnRo.events.onInputDown.add(Assignment);
+
+    var btnBrodd = game.add.button(45, 465, 'broddstafir');
+    btnBrodd.events.onInputDown.add(Assignment);
+
+    var btnHastafir = game.add.button(45, 520, 'hastafir');
+    btnHastafir.events.onInputDown.add(Assignment);
 }
 
 function Assignment() 
