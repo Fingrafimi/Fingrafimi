@@ -15,6 +15,7 @@ var textX = 450;
 var textY = 50;
 var cursor = "|";
 var correctInput = "";
+var incorrectInput = "";
 
 // Load the resources needed
 function preload () 
@@ -100,15 +101,30 @@ function keyPress(char)
 	}
 
     var wrongSound = game.add.audio('wrongSound');
-
-    if(char == text.charAt(0))
+    if(incorrectInput != "")
     {
-        correctInput = correctInput + text.charAt(0);
-        text = text.substr(1);
+        if(char == incorrectInput.charAt(0))
+        {
+            correctInput = correctInput + incorrectInput.charAt(0);
+            incorrectInput = incorrectInput.substr(1);
+        }
+        else
+        {
+            wrongSound.play();
+        }
     }
     else
     {
-        wrongSound.play();
+        if(char == text.charAt(0))
+        {
+            correctInput = correctInput + text.charAt(0);
+        }
+        else
+        {
+            incorrectInput = incorrectInput + text.charAt(0);
+            wrongSound.play();
+        }
+        text = text.substr(1);
     }
 
     // Clear the textArea
@@ -117,7 +133,8 @@ function keyPress(char)
     // Define variables for length of the text area content
     var correctLength = textArea.context.measureText(correctInput).width;
     var cursorLength = textArea.context.measureText(cursor).width-5;
-    
+    var incorrectLength;
+
     // Display correct text
     textArea.context.fillText(correctInput, textX, textY);
 
@@ -125,9 +142,16 @@ function keyPress(char)
     textArea.context.fillStyle = '#000000';
     textArea.context.fillText(cursor, textX + correctLength, textY);
 
+    // Set the style for incorrect text and display it
+    textArea.context.fillStyle = '#ffa500';
+    textArea.context.font = '90px Arial';
+    textArea.context.fillText(incorrectInput, textX + correctLength + cursorLength, textY);
+    incorrectLength = textArea.context.measureText(incorrectInput).width;
+
     // Set the style for the assignment text and display it
     textArea.context.fillStyle = '#ffffff';
-    textArea.context.fillText(text, textX + cursorLength + correctLength, textY);
+    textArea.context.font = '64px Arial';
+    textArea.context.fillText(text, textX + incorrectLength + cursorLength + correctLength, textY);
 
 
 }
