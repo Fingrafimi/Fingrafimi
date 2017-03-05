@@ -23,6 +23,9 @@ function preload ()
 	game.load.image('homePage', 'Assets/homePage.bmp');
 	game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
 
+    // Audio files
+    game.load.audio('wrongSound', 'Assets/wrongSound.mp3');
+
 	// Assignments buttons
 	game.load.image('fj', 'Assets/fj.png');
 
@@ -96,10 +99,16 @@ function keyPress(char)
 		return;
 	}
 
+    var wrongSound = game.add.audio('wrongSound');
+
     if(char == text.charAt(0))
     {
         correctInput = correctInput + text.charAt(0);
         text = text.substr(1);
+    }
+    else
+    {
+        wrongSound.play();
     }
 
     // Clear the textArea
@@ -107,7 +116,7 @@ function keyPress(char)
 
     // Define variables for length of the text area content
     var correctLength = textArea.context.measureText(correctInput).width;
-    var cursorLength = textArea.context.measureText(cursor).width;
+    var cursorLength = textArea.context.measureText(cursor).width-5;
     
     // Display correct text
     textArea.context.fillText(correctInput, textX, textY);
