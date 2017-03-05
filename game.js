@@ -66,6 +66,9 @@ function Assignment()
     textArea.context.font = '64px Arial';
     textArea.context.fillStyle = '#ffffff';
 
+    // Calculate position to center text
+    textX = (textAreaX - textArea.context.measureText(text).width)/2;
+
     // Display the text
     textArea.context.fillText(text, textX, textY);
     textArea.addToWorld();
