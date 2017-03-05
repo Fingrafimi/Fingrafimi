@@ -13,6 +13,7 @@ var textAreaY = 65;
 var text = "carlos carlos";
 var textX = 450;
 var textY = 50;
+var cursor = "|";
 
 // Load the resources needed
 function preload () 
@@ -64,13 +65,32 @@ function Assignment()
     
     // Add style to the textArea
     textArea.context.font = '64px Arial';
-    textArea.context.fillStyle = '#ffffff';
+
+    // Set the color for cursor
+    textArea.context.fillStyle = '#000000';
 
     // Calculate position to center text
     textX = (textAreaX - textArea.context.measureText(text).width)/2;
+    
+    // Display the cursor
+    textArea.context.fillText(cursor, textX, textY);
+
+    // Set color for the assignment text
+    textArea.context.fillStyle = '#ffffff';
 
     // Display the text
-    textArea.context.fillText(text, textX, textY);
+    textArea.context.fillText(text, textX + textArea.context.measureText(cursor).width-5, textY);
     textArea.addToWorld();
+
+    // When key is pressed the function keyPress is called
+    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+
+}
+
+function keyPress(char) 
+{
+    //  Clear the textArea
+    textArea.cls();
+
 
 }
