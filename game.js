@@ -20,16 +20,10 @@ var incorrectInput = "";
 // Load the resources needed
 function preload () 
 {
-	// Background images
-	game.load.image('homePage', 'Assets/homePage.bmp');
-	game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
-
+    preloadHomePageFiles();
+	
     // Audio files
     game.load.audio('wrongSound', 'Assets/wrongSound.mp3');
-
-	// Assignments buttons
-	game.load.image('fj', 'Assets/fj.png');
-
 }
 
 function create () 
@@ -153,4 +147,25 @@ function keyPress(char)
     textArea.context.fillStyle = '#ffffff';
     textArea.context.font = '64px Arial';
     textArea.context.fillText(text, textX + incorrectLength + cursorLength + correctLength, textY);
+}
+
+function preloadHomePageFiles()
+{
+    // Background images
+    game.load.image('homePage', 'Assets/homePage.bmp');
+    game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
+
+    // Assignments buttons
+    game.load.image('fj', 'Assets/fj.png');
+    game.load.image('dk', 'Assets/dk.png');
+    game.load.image('sl', 'Assets/sl.png');
+    game.load.image('aae', 'Assets/aae.png');
+    game.load.image('heimalyklar1', 'Assets/heimalyklar1.png');
+    game.load.image('heimalyklar2', 'Assets/heimalyklar2.png');
+    game.load.image('eh', 'Assets/eh.png');
+    game.load.image('ig', 'Assets/ig.png');
+    game.load.image('bn', 'Assets/bn.png');
+    game.load.image('ro', 'Assets/ro.png');
+    game.load.image('broddstafir', 'Assets/broddstafir.png');
+    game.load.image('hastafir', 'Assets/hastafir.png');
 }
