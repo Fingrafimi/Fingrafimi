@@ -10,26 +10,24 @@ var textAreaX = 900;
 var textAreaY = 65;
 
 // Variables for the assignments text
-var text = "carlos carlos";
+var style = { font: '64px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
+
+var text = "";
+
 var textX = 450;
 var textY = 50;
-var cursor = "|";
-var correctInput = "";
-var incorrectInput = "";
+
+var corrCount = 0;
+var incorrPos = -1;
+var textPos = 0;
 
 // Load the resources needed
 function preload () 
 {
-	// Background images
-	game.load.image('homePage', 'Assets/homePage.bmp');
-	game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
-
+    preloadHomePageFiles();
+	
     // Audio files
     game.load.audio('wrongSound', 'Assets/wrongSound.mp3');
-
-	// Assignments buttons
-	game.load.image('fj', 'Assets/fj.png');
-
 }
 
 function create () 
@@ -52,11 +50,43 @@ function loadHomePage()
     homePage.height = height + 4;
 
     var btnFj = game.add.button(45, 35, 'fj');
-    btnFj.events.onInputDown.add(Assignment);
+    btnFj.events.onInputDown.add(Assignment, fj);
 
+    var btnDk = game.add.button(45, 75, 'dk');
+    btnDk.events.onInputDown.add(Assignment, dk);
+
+    var btnSl = game.add.button(45, 115, 'sl');
+    btnSl.events.onInputDown.add(Assignment, sl);
+
+    var btnAae = game.add.button(45, 155, 'aae');
+    btnAae.events.onInputDown.add(Assignment, aae);
+
+    var btnHome1 = game.add.button(45, 195, 'heimalyklar1');
+    btnHome1.events.onInputDown.add(Assignment, heimalyklar1);
+
+    var btnHome2 = game.add.button(35, 245, 'heimalyklar2');
+    btnHome2.events.onInputDown.add(Assignment, heimalyklar2);
+
+    var btnEh = game.add.button(45, 305, 'eh');
+    btnEh.events.onInputDown.add(Assignment, eh);
+
+    var btnIg = game.add.button(45, 345, 'ig');
+    btnIg.events.onInputDown.add(Assignment, ig);
+
+    var btnBn = game.add.button(45, 385, 'bn');
+    btnBn.events.onInputDown.add(Assignment, bn);
+
+    var btnRo = game.add.button(45, 425, 'ro');
+    btnRo.events.onInputDown.add(Assignment, ro);
+
+    var btnBrodd = game.add.button(45, 465, 'broddstafir');
+    btnBrodd.events.onInputDown.add(Assignment, broddstafir);
+
+    var btnHastafir = game.add.button(45, 520, 'hastafir');
+    btnHastafir.events.onInputDown.add(Assignment, hastafir);
 }
 
-function Assignment() 
+function Assignment(exerciseNr) 
 {
 	// Empty the canvas
    	game.world.removeAll();
@@ -66,26 +96,9 @@ function Assignment()
     background.anchor.setTo(0.5, 0.5);
 
     // Create the textArea
-    textArea = game.make.bitmapData(game.world.width, textAreaY);
-    
-    // Add style to the textArea
-    textArea.context.font = '64px Arial';
-
-    // Set the color for cursor
-    textArea.context.fillStyle = '#000000';
-
-    // Calculate position to center text
-    textX = (textAreaX - textArea.context.measureText(text).width)/2;
-    
-    // Display the cursor
-    textArea.context.fillText(cursor, textX, textY);
-
-    // Set color for the assignment text
-    textArea.context.fillStyle = '#ffffff';
-
-    // Display the text
-    textArea.context.fillText(text, textX + textArea.context.measureText(cursor).width-5, textY);
-    textArea.addToWorld();
+    text = this[0];
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
+    textArea.anchor.set(0.5);
 
     // When key is pressed the function keyPress is called
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
@@ -94,19 +107,14 @@ function Assignment()
 
 function keyPress(char) 
 {
-	if(text == "")
-	{
-		alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
-		return;
-	}
-
     var wrongSound = game.add.audio('wrongSound');
-    if(incorrectInput != "")
+
+    if(incorrPos != -1)
     {
-        if(char == incorrectInput.charAt(0))
+        if(char == text.charAt(incorrPos))
         {
-            correctInput = correctInput + incorrectInput.charAt(0);
-            incorrectInput = incorrectInput.substr(1);
+            incorrPos = -1;
+            corrCount = corrCount + 1;
         }
         else
         {
@@ -115,42 +123,56 @@ function keyPress(char)
     }
     else
     {
-        if(char == text.charAt(0))
+        if(char == text.charAt(textPos))
         {
-            correctInput = correctInput + text.charAt(0);
+            corrCount = corrCount + 1;
         }
         else
         {
-            incorrectInput = incorrectInput + text.charAt(0);
+            incorrPos = textPos;
             wrongSound.play();
+
         }
-        text = text.substr(1);
+        textPos = textPos + 1;
     }
-
     // Clear the textArea
-    textArea.cls();
+    textArea.destroy();
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
+    textArea.anchor.set(0.5);
 
-    // Define variables for length of the text area content
-    var correctLength = textArea.context.measureText(correctInput).width;
-    var cursorLength = textArea.context.measureText(cursor).width-5;
-    var incorrectLength;
+    textArea.addColor('#00ff00',0);
+    if(incorrPos != -1)
+    {
+        textArea.addColor('#ffa500',incorrPos);
+    }
+    
+    textArea.addColor('#ffffff', textPos);
 
-    // Display correct text
-    textArea.context.fillStyle = '#00ff00';
-    textArea.context.fillText(correctInput, textX, textY);
-
-    // Set the style for cursor and display it
-    textArea.context.fillStyle = '#000000';
-    textArea.context.fillText(cursor, textX + correctLength, textY);
-
-    // Set the style for incorrect text and display it
-    textArea.context.fillStyle = '#ffa500';
-    textArea.context.font = '90px Arial';
-    textArea.context.fillText(incorrectInput, textX + correctLength + cursorLength, textY);
-    incorrectLength = textArea.context.measureText(incorrectInput).width;
-
-    // Set the style for the assignment text and display it
-    textArea.context.fillStyle = '#ffffff';
-    textArea.context.font = '64px Arial';
-    textArea.context.fillText(text, textX + incorrectLength + cursorLength + correctLength, textY);
+    if(textPos >= text.length && incorrPos == -1)
+    {
+        alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
+        return;
+    }
 }
+
+function preloadHomePageFiles()
+{
+    // Background images
+    game.load.image('homePage', 'Assets/homePage.bmp');
+    game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
+
+    // Assignments buttons
+    game.load.image('fj', 'Assets/fj.png');
+    game.load.image('dk', 'Assets/dk.png');
+    game.load.image('sl', 'Assets/sl.png');
+    game.load.image('aae', 'Assets/aae.png');
+    game.load.image('heimalyklar1', 'Assets/heimalyklar1.png');
+    game.load.image('heimalyklar2', 'Assets/heimalyklar2.png');
+    game.load.image('eh', 'Assets/eh.png');
+    game.load.image('ig', 'Assets/ig.png');
+    game.load.image('bn', 'Assets/bn.png');
+    game.load.image('ro', 'Assets/ro.png');
+    game.load.image('broddstafir', 'Assets/broddstafir.png');
+    game.load.image('hastafir', 'Assets/hastafir.png');
+}
+
