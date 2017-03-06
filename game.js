@@ -10,12 +10,16 @@ var textAreaX = 900;
 var textAreaY = 65;
 
 // Variables for the assignments text
-var text = "carlos carlos";
+var style = { font: '64px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
+
+var text = "";
+
 var textX = 450;
 var textY = 50;
-var cursor = "|";
-var correctInput = "";
-var incorrectInput = "";
+
+var corrCount = 0;
+var incorrPos = -1;
+var textPos = 0;
 
 // Load the resources needed
 function preload () 
@@ -92,29 +96,9 @@ function Assignment(exerciseNr)
     background.anchor.setTo(0.5, 0.5);
 
     // Create the textArea
-    textArea = game.make.bitmapData(game.world.width, textAreaY);
-
-    //Set text for the assignment
     text = this[0];
-    
-    // Add style to the textArea
-    textArea.context.font = '48px Arial';
-
-    // Set the color for cursor
-    textArea.context.fillStyle = '#000000';
-
-    // Calculate position to center text
-    textX = (textAreaX - textArea.context.measureText(text).width)/2;
-    
-    // Display the cursor
-    textArea.context.fillText(cursor, textX, textY);
-
-    // Set color for the assignment text
-    textArea.context.fillStyle = '#ffffff';
-
-    // Display the text
-    textArea.context.fillText(text, textX + textArea.context.measureText(cursor).width-5, textY);
-    textArea.addToWorld();
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
+    textArea.anchor.set(0.5);
 
     // When key is pressed the function keyPress is called
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
@@ -124,12 +108,13 @@ function Assignment(exerciseNr)
 function keyPress(char) 
 {
     var wrongSound = game.add.audio('wrongSound');
-    if(incorrectInput != "")
+
+    if(incorrPos != -1)
     {
-        if(char == incorrectInput.charAt(0))
+        if(char == text.charAt(incorrPos))
         {
-            correctInput = correctInput + incorrectInput.charAt(0);
-            incorrectInput = incorrectInput.substr(1);
+            incorrPos = -1;
+            corrCount = corrCount + 1;
         }
         else
         {
@@ -138,46 +123,32 @@ function keyPress(char)
     }
     else
     {
-        if(char == text.charAt(0))
+        if(char == text.charAt(textPos))
         {
-            correctInput = correctInput + text.charAt(0);
+            corrCount = corrCount + 1;
         }
         else
         {
-            incorrectInput = incorrectInput + text.charAt(0);
+            incorrPos = textPos;
             wrongSound.play();
+
         }
-        text = text.substr(1);
+        textPos = textPos + 1;
     }
-
     // Clear the textArea
-    textArea.cls();
+    textArea.destroy();
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
+    textArea.anchor.set(0.5);
 
-    // Define variables for length of the text area content
-    var correctLength = textArea.context.measureText(correctInput).width;
-    var cursorLength = textArea.context.measureText(cursor).width-5;
-    var incorrectLength;
+    textArea.addColor('#00ff00',0);
+    if(incorrPos != -1)
+    {
+        textArea.addColor('#ffa500',incorrPos);
+    }
+    
+    textArea.addColor('#ffffff', textPos);
 
-    // Display correct text
-    textArea.context.fillStyle = '#00ff00';
-    textArea.context.fillText(correctInput, textX, textY);
-
-    // Set the style for cursor and display it
-    textArea.context.fillStyle = '#000000';
-    textArea.context.fillText(cursor, textX + correctLength, textY);
-
-    // Set the style for incorrect text and display it
-    textArea.context.fillStyle = '#ffa500';
-    textArea.context.font = '72px Arial';
-    textArea.context.fillText(incorrectInput, textX + correctLength + cursorLength, textY);
-    incorrectLength = textArea.context.measureText(incorrectInput).width;
-
-    // Set the style for the assignment text and display it
-    textArea.context.fillStyle = '#ffffff';
-    textArea.context.font = '48px Arial';
-    textArea.context.fillText(text, textX + incorrectLength + cursorLength + correctLength, textY);
-
-    if(text == "" && incorrectInput == "")
+    if(textPos >= text.length && incorrPos == -1)
     {
         alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
         return;
