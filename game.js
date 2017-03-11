@@ -21,17 +21,52 @@ var corrCount = 0;
 var incorrPos = -1;
 var textPos = 0;
 
+// Buttons
+var exitBtn;
+var muteBtn;
+
+// Variables for into sound
+var intro;
+var firstLoad = true;
+
 // Load the resources needed
 function preload () 
 {
-    preloadHomePageFiles();
+    // Background images
+    game.load.image('homePage', 'Assets/homePage.png');
+    game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
+
+    // Small icons
+    game.load.spritesheet('exit', 'Assets/x.png', 42, 42); 
+    game.load.spritesheet('sound', 'Assets/sound.png', 100, 96); 
+
+    // Assignments buttons
+    game.load.image('fj', 'Assets/fj.png');
+    game.load.image('dk', 'Assets/dk.png');
+    game.load.image('sl', 'Assets/sl.png');
+    game.load.image('aae', 'Assets/aae.png');
+    game.load.image('heimalyklar1', 'Assets/heimalyklar1.png');
+    game.load.image('heimalyklar2', 'Assets/heimalyklar2.png');
+    game.load.image('eh', 'Assets/eh.png');
+    game.load.image('ig', 'Assets/ig.png');
+    game.load.image('bn', 'Assets/bn.png');
+    game.load.image('ro', 'Assets/ro.png');
+    game.load.image('broddstafir', 'Assets/broddstafir.png');
+    game.load.image('hastafir', 'Assets/hastafir.png');
 	
     // Audio files
     game.load.audio('wrongSound', 'Assets/wrongSound.mp3');
+    game.load.audio('intro', 'Assets/Inngangur.mp3');
 }
 
 function create () 
 {
+    intro = game.add.audio('intro');
+    if(firstLoad)
+    {
+        intro.play();
+        firstLoad = false;
+    }
 	loadHomePage();
 }
 
@@ -84,12 +119,15 @@ function loadHomePage()
 
     var btnHastafir = game.add.button(45, 520, 'hastafir');
     btnHastafir.events.onInputDown.add(Assignment, hastafir);
+
+    addMuteButton();
 }
 
 function Assignment(exerciseNr) 
 {
 	// Empty the canvas
    	game.world.removeAll();
+    intro.destroy();
 
    	// Load new background
     background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
@@ -102,6 +140,13 @@ function Assignment(exerciseNr)
 
     // When key is pressed the function keyPress is called
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
+    
+    exitBtn = game.add.button(850, 15, 'exit');
+    exitBtn.events.onInputOver.add(overExit);
+    exitBtn.events.onInputOut.add(outExit);
+    exitBtn.events.onInputDown.add(loadHomePage);
+
+    addMuteButton();
 
 }
 
@@ -155,24 +200,43 @@ function keyPress(char)
     }
 }
 
-function preloadHomePageFiles()
+function overExit()
 {
-    // Background images
-    game.load.image('homePage', 'Assets/homePage.bmp');
-    game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
+    exitBtn.frame = 1;
+}
 
-    // Assignments buttons
-    game.load.image('fj', 'Assets/fj.png');
-    game.load.image('dk', 'Assets/dk.png');
-    game.load.image('sl', 'Assets/sl.png');
-    game.load.image('aae', 'Assets/aae.png');
-    game.load.image('heimalyklar1', 'Assets/heimalyklar1.png');
-    game.load.image('heimalyklar2', 'Assets/heimalyklar2.png');
-    game.load.image('eh', 'Assets/eh.png');
-    game.load.image('ig', 'Assets/ig.png');
-    game.load.image('bn', 'Assets/bn.png');
-    game.load.image('ro', 'Assets/ro.png');
-    game.load.image('broddstafir', 'Assets/broddstafir.png');
-    game.load.image('hastafir', 'Assets/hastafir.png');
+function outExit()
+{
+    exitBtn.frame = 0;
+}
+
+function muteSound()
+{
+    if(game.sound.mute)
+    {
+        game.sound.mute = false;
+        muteBtn.frame = 0;
+    }
+    else
+    {
+        game.sound.mute = true;
+        muteBtn.frame = 1;
+    }
+}
+
+function addMuteButton()
+{
+    muteBtn = game.add.button(815, 20, 'sound');
+    muteBtn.scale.setTo(0.35);
+    muteBtn.events.onInputDown.add(muteSound);
+
+    if(game.sound.mute)
+    {
+        muteBtn.frame = 1;
+    }
+    else
+    {
+        muteBtn.frame = 0;
+    }
 }
 
