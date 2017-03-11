@@ -21,7 +21,9 @@ var corrCount = 0;
 var incorrPos = -1;
 var textPos = 0;
 
+// Buttons
 var exitBtn;
+var muteBtn;
 
 // Load the resources needed
 function preload () 
@@ -86,6 +88,8 @@ function loadHomePage()
 
     var btnHastafir = game.add.button(30, 520, 'hastafir');
     btnHastafir.events.onInputDown.add(Assignment, hastafir);
+
+    addMuteButton();
 }
 
 function Assignment(exerciseNr) 
@@ -105,24 +109,17 @@ function Assignment(exerciseNr)
     // When key is pressed the function keyPress is called
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
     
-    exitBtn = game.add.button(825, 25, 'exit');
+    exitBtn = game.add.button(830, 20, 'exit');
     exitBtn.events.onInputOver.add(overExit);
     exitBtn.events.onInputOut.add(outExit);
     exitBtn.events.onInputDown.add(loadHomePage);
 
+    addMuteButton();
+
 
 
 }
 
-function overExit()
-{
-    exitBtn.frame = 1;
-}
-
-function outExit()
-{
-    exitBtn.frame = 0;
-}
 
 function keyPress(char) 
 {
@@ -174,6 +171,50 @@ function keyPress(char)
     }
 }
 
+function overExit()
+{
+    exitBtn.frame = 1;
+}
+
+function outExit()
+{
+    exitBtn.frame = 0;
+}
+
+function muteSound()
+{
+    if(game.sound.mute)
+    {
+        game.sound.mute = false;
+        muteBtn.frame = 0;
+    }
+    else
+    {
+        game.sound.mute = true;
+        muteBtn.frame = 1;
+    }
+}
+
+function addMuteButton()
+{
+    muteBtn = game.add.button(800, 25, 'sound');
+    muteBtn.scale.setTo(0.4);
+    muteBtn.events.onInputDown.add(muteSound);
+
+    if(game.sound.mute)
+    {
+        muteBtn.frame = 1;
+    }
+    else
+    {
+        muteBtn.frame = 0;
+    }
+
+}
+
+
+
+
 function preloadHomePageFiles()
 {
     // Background images
@@ -183,8 +224,6 @@ function preloadHomePageFiles()
     // Small icons
     game.load.spritesheet('exit', 'Assets/x.png', 42, 42); 
     game.load.spritesheet('sound', 'Assets/sound.png', 100, 96); 
-
-
 
     // Assignments buttons
     game.load.image('fj', 'Assets/fj.png');
