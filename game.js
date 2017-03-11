@@ -21,8 +21,6 @@ var corrCount = 0;
 var incorrPos = -1;
 var textPos = 0;
 
-var exitBtn;
-
 // Load the resources needed
 function preload () 
 {
@@ -48,43 +46,43 @@ function loadHomePage()
 	var homePage = game.add.image(game.world.centerX, game.world.centerY, 'homePage');
 	homePage.anchor.setTo(0.5, 0.5);
 	// Add offset of 4px to remove black frame
-    homePage.width = width;
-    homePage.height = height;
+    homePage.width = width + 4;
+    homePage.height = height + 4;
 
-    var btnFj = game.add.button(30, 35, 'fj');
+    var btnFj = game.add.button(45, 35, 'fj');
     btnFj.events.onInputDown.add(Assignment, fj);
 
-    var btnDk = game.add.button(30, 75, 'dk');
+    var btnDk = game.add.button(45, 75, 'dk');
     btnDk.events.onInputDown.add(Assignment, dk);
 
-    var btnSl = game.add.button(30, 115, 'sl');
+    var btnSl = game.add.button(45, 115, 'sl');
     btnSl.events.onInputDown.add(Assignment, sl);
 
-    var btnAae = game.add.button(30, 155, 'aae');
+    var btnAae = game.add.button(45, 155, 'aae');
     btnAae.events.onInputDown.add(Assignment, aae);
 
-    var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
+    var btnHome1 = game.add.button(45, 195, 'heimalyklar1');
     btnHome1.events.onInputDown.add(Assignment, heimalyklar1);
 
-    var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
+    var btnHome2 = game.add.button(35, 245, 'heimalyklar2');
     btnHome2.events.onInputDown.add(Assignment, heimalyklar2);
 
-    var btnEh = game.add.button(30, 305, 'eh');
+    var btnEh = game.add.button(45, 305, 'eh');
     btnEh.events.onInputDown.add(Assignment, eh);
 
-    var btnIg = game.add.button(30, 345, 'ig');
+    var btnIg = game.add.button(45, 345, 'ig');
     btnIg.events.onInputDown.add(Assignment, ig);
 
-    var btnBn = game.add.button(30, 385, 'bn');
+    var btnBn = game.add.button(45, 385, 'bn');
     btnBn.events.onInputDown.add(Assignment, bn);
 
-    var btnRo = game.add.button(30, 425, 'ro');
+    var btnRo = game.add.button(45, 425, 'ro');
     btnRo.events.onInputDown.add(Assignment, ro);
 
-    var btnBrodd = game.add.button(30, 465, 'broddstafir');
+    var btnBrodd = game.add.button(45, 465, 'broddstafir');
     btnBrodd.events.onInputDown.add(Assignment, broddstafir);
 
-    var btnHastafir = game.add.button(30, 520, 'hastafir');
+    var btnHastafir = game.add.button(45, 520, 'hastafir');
     btnHastafir.events.onInputDown.add(Assignment, hastafir);
 }
 
@@ -104,24 +102,7 @@ function Assignment(exerciseNr)
 
     // When key is pressed the function keyPress is called
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
-    
-    exitBtn = game.add.button(825, 25, 'exit');
-    exitBtn.events.onInputOver.add(overExit);
-    exitBtn.events.onInputOut.add(outExit);
-    exitBtn.events.onInputDown.add(loadHomePage);
 
-
-
-}
-
-function overExit()
-{
-    exitBtn.frame = 1;
-}
-
-function outExit()
-{
-    exitBtn.frame = 0;
 }
 
 function keyPress(char) 
@@ -177,14 +158,8 @@ function keyPress(char)
 function preloadHomePageFiles()
 {
     // Background images
-    game.load.image('homePage', 'Assets/homePage.png');
+    game.load.image('homePage', 'Assets/homePage.bmp');
     game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
-
-    // Small icons
-    game.load.spritesheet('exit', 'Assets/x.png', 42, 42); 
-    game.load.spritesheet('sound', 'Assets/sound.png', 100, 96); 
-
-
 
     // Assignments buttons
     game.load.image('fj', 'Assets/fj.png');
