@@ -21,6 +21,8 @@ var corrCount = 0;
 var incorrPos = -1;
 var textPos = 0;
 
+var exitBtn;
+
 // Load the resources needed
 function preload () 
 {
@@ -102,9 +104,24 @@ function Assignment(exerciseNr)
 
     // When key is pressed the function keyPress is called
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
-    var exitBtn = game.add.button(825, 12.5, 'exit', loadHomePage, this, 2, 1, 0);
+    
+    exitBtn = game.add.button(825, 25, 'exit');
+    exitBtn.events.onInputOver.add(overExit);
+    exitBtn.events.onInputOut.add(outExit);
+    exitBtn.events.onInputDown.add(loadHomePage);
 
 
+
+}
+
+function overExit()
+{
+    exitBtn.frame = 1;
+}
+
+function outExit()
+{
+    exitBtn.frame = 0;
 }
 
 function keyPress(char) 
@@ -164,7 +181,11 @@ function preloadHomePageFiles()
     game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
 
     // Small icons
-    game.load.image('exit','Assets/x.png');
+    //game.load.image('exit','Assets/x.png');
+    game.load.spritesheet('exit', 'Assets/x.png', 42, 42); 
+    game.load.spritesheet('sound', 'Assets/sound.png', 100, 96); 
+
+
 
     // Assignments buttons
     game.load.image('fj', 'Assets/fj.png');
