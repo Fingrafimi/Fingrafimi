@@ -181,7 +181,6 @@ function preloadHomePageFiles()
     game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
 
     // Small icons
-    //game.load.image('exit','Assets/x.png');
     game.load.spritesheet('exit', 'Assets/x.png', 42, 42); 
     game.load.spritesheet('sound', 'Assets/sound.png', 100, 96); 
 
