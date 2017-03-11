@@ -25,17 +25,48 @@ var textPos = 0;
 var exitBtn;
 var muteBtn;
 
+// Variables for into sound
+var intro;
+var firstLoad = true;
+
 // Load the resources needed
 function preload () 
 {
-    preloadHomePageFiles();
+    // Background images
+    game.load.image('homePage', 'Assets/homePage.png');
+    game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
+
+    // Small icons
+    game.load.spritesheet('exit', 'Assets/x.png', 42, 42); 
+    game.load.spritesheet('sound', 'Assets/sound.png', 100, 96); 
+
+    // Assignments buttons
+    game.load.image('fj', 'Assets/fj.png');
+    game.load.image('dk', 'Assets/dk.png');
+    game.load.image('sl', 'Assets/sl.png');
+    game.load.image('aae', 'Assets/aae.png');
+    game.load.image('heimalyklar1', 'Assets/heimalyklar1.png');
+    game.load.image('heimalyklar2', 'Assets/heimalyklar2.png');
+    game.load.image('eh', 'Assets/eh.png');
+    game.load.image('ig', 'Assets/ig.png');
+    game.load.image('bn', 'Assets/bn.png');
+    game.load.image('ro', 'Assets/ro.png');
+    game.load.image('broddstafir', 'Assets/broddstafir.png');
+    game.load.image('hastafir', 'Assets/hastafir.png');
 	
     // Audio files
     game.load.audio('wrongSound', 'Assets/wrongSound.mp3');
+    game.load.audio('intro', 'Assets/Inngangur.mp3');
 }
 
 function create () 
 {
+    intro = game.add.audio('intro');
+    if(firstLoad)
+    {
+        intro.play();
+        firstLoad = false;
+    }
 	loadHomePage();
 }
 
@@ -96,6 +127,7 @@ function Assignment(exerciseNr)
 {
 	// Empty the canvas
    	game.world.removeAll();
+    intro.destroy();
 
    	// Load new background
     background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
@@ -209,33 +241,5 @@ function addMuteButton()
     {
         muteBtn.frame = 0;
     }
-}
-
-
-
-
-function preloadHomePageFiles()
-{
-    // Background images
-    game.load.image('homePage', 'Assets/homePage.png');
-    game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
-
-    // Small icons
-    game.load.spritesheet('exit', 'Assets/x.png', 42, 42); 
-    game.load.spritesheet('sound', 'Assets/sound.png', 100, 96); 
-
-    // Assignments buttons
-    game.load.image('fj', 'Assets/fj.png');
-    game.load.image('dk', 'Assets/dk.png');
-    game.load.image('sl', 'Assets/sl.png');
-    game.load.image('aae', 'Assets/aae.png');
-    game.load.image('heimalyklar1', 'Assets/heimalyklar1.png');
-    game.load.image('heimalyklar2', 'Assets/heimalyklar2.png');
-    game.load.image('eh', 'Assets/eh.png');
-    game.load.image('ig', 'Assets/ig.png');
-    game.load.image('bn', 'Assets/bn.png');
-    game.load.image('ro', 'Assets/ro.png');
-    game.load.image('broddstafir', 'Assets/broddstafir.png');
-    game.load.image('hastafir', 'Assets/hastafir.png');
 }
 
