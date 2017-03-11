@@ -25,6 +25,10 @@ var textPos = 0;
 var exitBtn;
 var muteBtn;
 
+// Variables for into sound
+var intro;
+var firstLoad = true;
+
 // Load the resources needed
 function preload () 
 {
@@ -57,6 +61,12 @@ function preload ()
 
 function create () 
 {
+    intro = game.add.audio('intro');
+    if(firstLoad)
+    {
+        intro.play();
+        firstLoad = false;
+    }
 	loadHomePage();
 }
 
