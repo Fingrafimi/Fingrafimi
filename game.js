@@ -127,6 +127,7 @@ function Assignment(exerciseNr)
 {
 	// Empty the canvas
    	game.world.removeAll();
+    intro.destroy();
 
    	// Load new background
     background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
