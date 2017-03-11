@@ -109,7 +109,7 @@ function Assignment(exerciseNr)
     // When key is pressed the function keyPress is called
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
     
-    exitBtn = game.add.button(830, 20, 'exit');
+    exitBtn = game.add.button(850, 15, 'exit');
     exitBtn.events.onInputOver.add(overExit);
     exitBtn.events.onInputOut.add(outExit);
     exitBtn.events.onInputDown.add(loadHomePage);
@@ -197,8 +197,8 @@ function muteSound()
 
 function addMuteButton()
 {
-    muteBtn = game.add.button(800, 25, 'sound');
-    muteBtn.scale.setTo(0.4);
+    muteBtn = game.add.button(815, 20, 'sound');
+    muteBtn.scale.setTo(0.35);
     muteBtn.events.onInputDown.add(muteSound);
 
     if(game.sound.mute)
@@ -209,7 +209,6 @@ function addMuteButton()
     {
         muteBtn.frame = 0;
     }
-
 }
 
 
