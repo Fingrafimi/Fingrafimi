@@ -88,7 +88,7 @@ function loadHomePage()
     homePage.height = height;
 
     var btnFj = game.add.button(30, 35, 'fj');
-    btnFj.events.onInputDown.add(Assignment, fj);
+    btnFj.events.onInputDown.add(Assignment, {exercise: fj});
 
     var btnDk = game.add.button(30, 75, 'dk');
     btnDk.events.onInputDown.add(Assignment, dk);
@@ -132,12 +132,18 @@ function Assignment(exerciseNr)
    	game.world.removeAll();
     intro.destroy();
 
+    if(!this.exerciseNr)
+    {
+        this.exerciseNr = 0;
+    }
+  
+
    	// Load new background
     background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
     background.anchor.setTo(0.5, 0.5);
 
     // Create the textArea
-    text = this[0];
+    text = this.exercise[this.exerciseNr];
     textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
     textArea.anchor.set(0.5);
 
@@ -248,7 +254,12 @@ function addMuteButton()
 function addMouse()
 {
     var mus1 = game.add.button(125, 475, 'mus');
+    mus1.events.onInputDown.add(Assignment, {exerciseNr:0, exercise: fj});
+
     var mus2 = game.add.button(250, 500, 'mus');
+    mus2.events.onInputDown.add(Assignment, {exerciseNr:1, exercise: fj});
+
     var mus3 = game.add.button(375, 475, 'mus');
+    mus3.events.onInputDown.add(Assignment, {exerciseNr:2, exercise: fj});
 }
 
