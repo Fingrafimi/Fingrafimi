@@ -59,8 +59,11 @@ function preload ()
     game.load.audio('intro', 'Assets/Inngangur.mp3');
 
     // Images for Assigments
-    game.load.spritesheet('mus', 'Assets/stakir_heimalyklar/mus.png', 110, 70); 
-    game.load.spritesheet('robot', 'Assets/stakir_heimalyklar/robot.png', 105, 127); 
+    game.load.spritesheet('mus', 'Assets/assignments/mus.png', 110, 70); 
+    game.load.spritesheet('robot', 'Assets/assignments/robot.png', 105, 127); 
+    game.load.spritesheet('heyBaggi', 'Assets/assignments/hey.png', 122, 95); 
+    game.load.spritesheet('blom', 'Assets/assignments/blom.png', 73, 95); 
+    game.load.spritesheet('mus2', 'Assets/assignments/mus2.png', 91, 84); 
 }
 
 function create () 
@@ -160,19 +163,20 @@ function Assignment(exerciseNr)
     addMuteButton();
     if(this.exercise == fj || this.exercise == dk || this.exercise == sl || this.exercise == aae)
     {
-        addMouse(this.exercise, 25, 0, 3);
+        addAssignmentImages('mus',this.exercise, 25, 475, 0, 3);
         if(this.exercise == sl  )
         {
-            addRobot(this.exercise, 500, 3, 4);
+            // add 4 robots in postition (500,450) with start index 3.
+            addAssignmentImages('robot',this.exercise, 500, 450, 3, 4);
         }
         else if(this.exercise == aae)
         {
-            addRobot(this.exercise, 350, 3, 3);
-            addMouse(this.exercise, 600, 6, 3);
+            addAssignmentImages('robot',this.exercise, 350, 450, 3, 3);
+            addAssignmentImages('mus',this.exercise, 600, 475, 6, 3);
         }
         else
         {
-            addRobot(this.exercise, 500, 3, 3);
+            addAssignmentImages('robot',this.exercise, 500, 450, 3, 3);
         }
     }
 
@@ -268,12 +272,12 @@ function addMuteButton()
     }
 }
 
-function addMouse(exerc, pos, startNr, count)
+function addMouse(exerc, pos, startIndex, count)
 {
      for(i = 0; i < count; i++)
     {
         var mus = game.add.button(pos, 475, 'mus');
-        mus.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
+        mus.events.onInputDown.add(Assignment, {exerciseNr: startIndex + i, exercise: exerc});
         pos = pos + 100;
     }
 }
@@ -285,6 +289,17 @@ function addRobot(exerc, pos, startNr, count)
         var robot = game.add.button(pos, 450, 'robot');
         robot.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
         pos = pos + 100;
+    }
+}
+
+
+function addAssignmentImages(image, exerc, x, y, startNr, count)
+{
+    for(i = 0; i < count; i++)
+    {
+        var img = game.add.button(x, y, image);
+        img.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
+        x = x + 100;
     }
 }
 
