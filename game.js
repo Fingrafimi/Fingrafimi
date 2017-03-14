@@ -60,6 +60,7 @@ function preload ()
 
     // Images for Assigments
     game.load.spritesheet('mus', 'Assets/stakir_heimalyklar/mus.png', 110, 70); 
+    game.load.spritesheet('robot', 'Assets/stakir_heimalyklar/robot.png', 105, 127); 
 }
 
 function create () 
@@ -91,37 +92,37 @@ function loadHomePage()
     btnFj.events.onInputDown.add(Assignment, {exercise: fj});
 
     var btnDk = game.add.button(30, 75, 'dk');
-    btnDk.events.onInputDown.add(Assignment, dk);
+    btnDk.events.onInputDown.add(Assignment, {exercise: dk});
 
     var btnSl = game.add.button(30, 115, 'sl');
-    btnSl.events.onInputDown.add(Assignment, sl);
+    btnSl.events.onInputDown.add(Assignment, {exercise: sl});
 
     var btnAae = game.add.button(30, 155, 'aae');
-    btnAae.events.onInputDown.add(Assignment, aae);
+    btnAae.events.onInputDown.add(Assignment, {exercise: aae});
 
     var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(Assignment, heimalyklar1);
+    btnHome1.events.onInputDown.add(Assignment, {exercise: heimalyklar1});
 
     var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(Assignment, heimalyklar2);
+    btnHome2.events.onInputDown.add(Assignment, {exercise: heimalyklar2});
 
     var btnEh = game.add.button(30, 305, 'eh');
-    btnEh.events.onInputDown.add(Assignment, eh);
+    btnEh.events.onInputDown.add(Assignment, {exercise: eh});
 
     var btnIg = game.add.button(30, 345, 'ig');
-    btnIg.events.onInputDown.add(Assignment, ig);
+    btnIg.events.onInputDown.add(Assignment, {exercise: ig});
 
     var btnBn = game.add.button(30, 385, 'bn');
-    btnBn.events.onInputDown.add(Assignment, bn);
+    btnBn.events.onInputDown.add(Assignment, {exercise: bn});
 
     var btnRo = game.add.button(30, 425, 'ro');
-    btnRo.events.onInputDown.add(Assignment, ro);
+    btnRo.events.onInputDown.add(Assignment, {exercise: ro});
 
     var btnBrodd = game.add.button(30, 465, 'broddstafir');
-    btnBrodd.events.onInputDown.add(Assignment, broddstafir);
+    btnBrodd.events.onInputDown.add(Assignment, {exercise: broddstafir});
 
     var btnHastafir = game.add.button(30, 520, 'hastafir');
-    btnHastafir.events.onInputDown.add(Assignment, hastafir);
+    btnHastafir.events.onInputDown.add(Assignment, {exercise: hastafir});
 
     addMuteButton();
 }
@@ -157,7 +158,11 @@ function Assignment(exerciseNr)
 
 
     addMuteButton();
-    addMouse();
+    if(this.exercise == fj || this.exercise == dk || this.exercise == sl || this.exercise == aae)
+    {
+        addMouse(this.exercise, 125, 0);
+        addRobot(this.exercise, 500, 3);
+    }
 
 }
 
@@ -251,15 +256,27 @@ function addMuteButton()
     }
 }
 
-function addMouse()
+function addMouse(exerc, pos, startNr)
 {
-    var mus1 = game.add.button(125, 475, 'mus');
-    mus1.events.onInputDown.add(Assignment, {exerciseNr:0, exercise: fj});
+    var mus1 = game.add.button(pos, 475, 'mus');
+    mus1.events.onInputDown.add(Assignment, {exerciseNr: startNr, exercise: exerc});
 
-    var mus2 = game.add.button(250, 500, 'mus');
-    mus2.events.onInputDown.add(Assignment, {exerciseNr:1, exercise: fj});
+    var mus2 = game.add.button(pos + 125, 500, 'mus');
+    mus2.events.onInputDown.add(Assignment, {exerciseNr: startNr + 1, exercise: exerc});
 
-    var mus3 = game.add.button(375, 475, 'mus');
-    mus3.events.onInputDown.add(Assignment, {exerciseNr:2, exercise: fj});
+    var mus3 = game.add.button(pos + 250, 475, 'mus');
+    mus3.events.onInputDown.add(Assignment, {exerciseNr: startNr + 2, exercise: exerc});
+}
+
+function addRobot(exerc, pos, startNr)
+{
+    var robot1 = game.add.button(pos, 450, 'robot');
+    robot1.events.onInputDown.add(Assignment, {exerciseNr: startNr, exercise: exerc});
+
+    var robot2 = game.add.button(pos + 125, 450, 'robot');
+    robot2.events.onInputDown.add(Assignment, {exerciseNr: startNr + 1, exercise: exerc});
+
+    var robot3 = game.add.button(pos + 250, 450, 'robot');
+    robot3.events.onInputDown.add(Assignment, {exerciseNr: startNr + 2, exercise: exerc});
 }
 
