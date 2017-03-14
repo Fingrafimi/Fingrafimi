@@ -160,8 +160,8 @@ function Assignment(exerciseNr)
     addMuteButton();
     if(this.exercise == fj || this.exercise == dk || this.exercise == sl || this.exercise == aae)
     {
-        addMouse(this.exercise, 125, 0);
-        addRobot(this.exercise, 500, 3);
+        addMouse(this.exercise, 125, 0, 3);
+        addRobot(this.exercise, 500, 3, 3);
     }
 
 }
@@ -256,27 +256,25 @@ function addMuteButton()
     }
 }
 
-function addMouse(exerc, pos, startNr)
+function addMouse(exerc, pos, startNr, count)
 {
-    var mus1 = game.add.button(pos, 475, 'mus');
-    mus1.events.onInputDown.add(Assignment, {exerciseNr: startNr, exercise: exerc});
-
-    var mus2 = game.add.button(pos + 125, 500, 'mus');
-    mus2.events.onInputDown.add(Assignment, {exerciseNr: startNr + 1, exercise: exerc});
-
-    var mus3 = game.add.button(pos + 250, 475, 'mus');
-    mus3.events.onInputDown.add(Assignment, {exerciseNr: startNr + 2, exercise: exerc});
+     for(i = 0; i < count; i++)
+    {
+        var mus = game.add.button(pos, 475, 'mus');
+        mus.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
+        pos = pos + 125;
+    }
 }
 
-function addRobot(exerc, pos, startNr)
+function addRobot(exerc, pos, startNr, count)
 {
-    var robot1 = game.add.button(pos, 450, 'robot');
-    robot1.events.onInputDown.add(Assignment, {exerciseNr: startNr, exercise: exerc});
 
-    var robot2 = game.add.button(pos + 125, 450, 'robot');
-    robot2.events.onInputDown.add(Assignment, {exerciseNr: startNr + 1, exercise: exerc});
+    for(i = 0; i < count; i++)
+    {
+        var robot = game.add.button(pos, 450, 'robot');
+        robot.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
+        pos = pos + 125;
+    }
 
-    var robot3 = game.add.button(pos + 250, 450, 'robot');
-    robot3.events.onInputDown.add(Assignment, {exerciseNr: startNr + 2, exercise: exerc});
 }
 
