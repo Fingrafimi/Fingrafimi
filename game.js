@@ -57,6 +57,9 @@ function preload ()
     // Audio files
     game.load.audio('wrongSound', 'Assets/wrongSound.mp3');
     game.load.audio('intro', 'Assets/Inngangur.mp3');
+
+    // Images for Assigments
+    game.load.spritesheet('mus', 'Assets/stakir_heimalyklar/mus.png', 110, 70); 
 }
 
 function create () 
@@ -146,7 +149,9 @@ function Assignment(exerciseNr)
     exitBtn.events.onInputOut.add(outExit);
     exitBtn.events.onInputDown.add(loadHomePage);
 
+
     addMuteButton();
+    addMouse();
 
 }
 
@@ -238,5 +243,12 @@ function addMuteButton()
     {
         muteBtn.frame = 0;
     }
+}
+
+function addMouse()
+{
+    var mus1 = game.add.button(125, 475, 'mus');
+    var mus2 = game.add.button(250, 500, 'mus');
+    var mus3 = game.add.button(375, 475, 'mus');
 }
 
