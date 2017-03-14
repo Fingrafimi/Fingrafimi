@@ -160,8 +160,20 @@ function Assignment(exerciseNr)
     addMuteButton();
     if(this.exercise == fj || this.exercise == dk || this.exercise == sl || this.exercise == aae)
     {
-        addMouse(this.exercise, 125, 0, 3);
-        addRobot(this.exercise, 500, 3, 3);
+        addMouse(this.exercise, 25, 0, 3);
+        if(this.exercise == sl  )
+        {
+            addRobot(this.exercise, 500, 3, 4);
+        }
+        else if(this.exercise == aae)
+        {
+            addRobot(this.exercise, 350, 3, 3);
+            addMouse(this.exercise, 600, 6, 3);
+        }
+        else
+        {
+            addRobot(this.exercise, 500, 3, 3);
+        }
     }
 
 }
@@ -262,19 +274,17 @@ function addMouse(exerc, pos, startNr, count)
     {
         var mus = game.add.button(pos, 475, 'mus');
         mus.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
-        pos = pos + 125;
+        pos = pos + 100;
     }
 }
 
 function addRobot(exerc, pos, startNr, count)
 {
-
     for(i = 0; i < count; i++)
     {
         var robot = game.add.button(pos, 450, 'robot');
         robot.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
-        pos = pos + 125;
+        pos = pos + 100;
     }
-
 }
 
