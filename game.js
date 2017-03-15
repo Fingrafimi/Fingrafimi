@@ -33,37 +33,37 @@ var firstLoad = true;
 function preload () 
 {
     // Background images
-    game.load.image('homePage', 'Assets/homePage.png');
-    game.load.image('homeKeysBackground','Assets/homeKeysBackground.png');
+    game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
+    game.load.image('homeKeysBackground','Assets/Images/Backgrounds/homeKeysBackground.png');
 
     // Small icons
-    game.load.spritesheet('exit', 'Assets/x.png', 42, 42); 
-    game.load.spritesheet('sound', 'Assets/sound.png', 100, 96); 
+    game.load.spritesheet('exit', 'Assets/Images/Buttons/Global/x.png', 42, 42); 
+    game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 100, 96); 
 
     // Assignments buttons
-    game.load.image('fj', 'Assets/fj.png');
-    game.load.image('dk', 'Assets/dk.png');
-    game.load.image('sl', 'Assets/sl.png');
-    game.load.image('aae', 'Assets/aae.png');
-    game.load.image('heimalyklar1', 'Assets/heimalyklar1.png');
-    game.load.image('heimalyklar2', 'Assets/heimalyklar2.png');
-    game.load.image('eh', 'Assets/eh.png');
-    game.load.image('ig', 'Assets/ig.png');
-    game.load.image('bn', 'Assets/bn.png');
-    game.load.image('ro', 'Assets/ro.png');
-    game.load.image('broddstafir', 'Assets/broddstafir.png');
-    game.load.image('hastafir', 'Assets/hastafir.png');
+    game.load.image('fj', 'Assets/Images/Buttons/Homescreen/fj.png');
+    game.load.image('dk', 'Assets/Images/Buttons/Homescreen/dk.png');
+    game.load.image('sl', 'Assets/Images/Buttons/Homescreen/sl.png');
+    game.load.image('aae', 'Assets/Images/Buttons/Homescreen/aae.png');
+    game.load.image('heimalyklar1', 'Assets/Images/Buttons/Homescreen/heimalyklar1.png');
+    game.load.image('heimalyklar2', 'Assets/Images/Buttons/Homescreen/heimalyklar2.png');
+    game.load.image('eh', 'Assets/Images/Buttons/Homescreen/eh.png');
+    game.load.image('ig', 'Assets/Images/Buttons/Homescreen/ig.png');
+    game.load.image('bn', 'Assets/Images/Buttons/Homescreen/bn.png');
+    game.load.image('ro', 'Assets/Images/Buttons/Homescreen/ro.png');
+    game.load.image('broddstafir', 'Assets/Images/Buttons/Homescreen/broddstafir.png');
+    game.load.image('hastafir', 'Assets/Images/Buttons/Homescreen/hastafir.png');
 	
     // Audio files
-    game.load.audio('wrongSound', 'Assets/wrongSound.mp3');
-    game.load.audio('intro', 'Assets/Inngangur.mp3');
+    game.load.audio('wrongSound', 'Assets/Sounds/wrongSound.mp3');
+    game.load.audio('intro', 'Assets/Sounds/Inngangur.mp3');
 
     // Images for Assigments
-    game.load.spritesheet('mus', 'Assets/assignments/mus.png', 110, 70); 
-    game.load.spritesheet('robot', 'Assets/assignments/robot.png', 105, 127); 
-    game.load.spritesheet('heyBaggi', 'Assets/assignments/hey.png', 122, 95); 
-    game.load.spritesheet('blom', 'Assets/assignments/blom.png', 73, 95); 
-    game.load.spritesheet('mus2', 'Assets/assignments/mus2.png', 91, 84); 
+    game.load.spritesheet('mus', 'Assets/Images/Buttons/Assignments/mus.png', 110, 70); 
+    game.load.spritesheet('robot', 'Assets/Images/Buttons/Assignments/robot.png', 105, 127); 
+    game.load.spritesheet('heyBaggi', 'Assets/Images/Buttons/Assignments/hey.png', 122, 95); 
+    game.load.spritesheet('blom', 'Assets/Images/Buttons/Assignments/blom.png', 73, 95); 
+    game.load.spritesheet('mus2', 'Assets/Images/Buttons/Assignments/mus2.png', 91, 84); 
 }
 
 function create () 
