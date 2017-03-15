@@ -163,21 +163,29 @@ function Assignment(exerciseNr)
     addMuteButton();
     if(this.exercise == fj || this.exercise == dk || this.exercise == sl || this.exercise == aae)
     {
-        addAssignmentImages('mus',this.exercise, 25, 475, 0, 3);
+        addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100);
         if(this.exercise == sl  )
         {
             // add 4 robots in postition (500,450) with start index 3.
-            addAssignmentImages('robot',this.exercise, 500, 450, 3, 4);
+            addAssignmentImages('robot',this.exercise, 500, 450, 3, 4, 100);
         }
         else if(this.exercise == aae)
         {
-            addAssignmentImages('robot',this.exercise, 350, 450, 3, 3);
-            addAssignmentImages('mus',this.exercise, 600, 475, 6, 3);
+            addAssignmentImages('robot',this.exercise, 350, 450, 3, 3, 100);
+            addAssignmentImages('mus',this.exercise, 600, 475, 6, 3, 100);
         }
         else
         {
-            addAssignmentImages('robot',this.exercise, 500, 450, 3, 3);
+            addAssignmentImages('robot',this.exercise, 500, 450, 3, 3, 100);
         }
+    }
+
+    if(this.exercise == heimalyklar1 || this.exercise == heimalyklar2 )
+    {
+        addAssignmentImages('heyBaggi',this.exercise, 25, 475, 0, 4, 100);
+        addAssignmentImages('blom',this.exercise, 430, 475, 4, 4, 60);
+        addAssignmentImages('mus2',this.exercise, 650, 475, 8, 3, 75);
+
     }
 
 }
@@ -293,13 +301,15 @@ function addRobot(exerc, pos, startNr, count)
 }
 
 
-function addAssignmentImages(image, exerc, x, y, startNr, count)
+function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset)
 {
+    var yOffset = -1;
     for(i = 0; i < count; i++)
     {
-        var img = game.add.button(x, y, image);
+        var img = game.add.button(x, y + yOffset*25, image);
         img.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
-        x = x + 100;
+        x = x + xOffset;
+        yOffset = yOffset * (-1);
     }
 }
 
