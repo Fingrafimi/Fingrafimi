@@ -208,7 +208,7 @@ function Assignment2(exerciseNr)
 
     // Create the textArea
     text = this.exercise[this.exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
     textArea.anchor.set(0.5);
 
     // When key is pressed the function keyPress is called
