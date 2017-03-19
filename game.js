@@ -142,10 +142,10 @@ function loadHomePage()
     btnHome2.events.onInputDown.add(Assignment2, {exercise: heimalyklar2});
 
     var btnEh = game.add.button(30, 305, 'eh');
-    btnEh.events.onInputDown.add(Assignment, {exercise: eh}); //3
+    btnEh.events.onInputDown.add(Assignment3, {exercise: eh}); //3
 
     var btnIg = game.add.button(30, 345, 'ig');
-    btnIg.events.onInputDown.add(Assignment, {exercise: ig}); // 3
+    btnIg.events.onInputDown.add(Assignment3, {exercise: ig}); // 3
 
     var btnBn = game.add.button(30, 385, 'bn');
     btnBn.events.onInputDown.add(Assignment4, {exercise: bn}); // 4
@@ -240,6 +240,40 @@ function Assignment2(exerciseNr)
 
 }
 
+function Assignment3(exerciseNr) 
+{
+    // Empty the canvas
+    game.world.removeAll();
+    intro.destroy();
+
+    if(!this.exerciseNr)
+    {
+        this.exerciseNr = 0;
+    }
+
+    // Load new background
+    background = game.add.image(game.world.centerX, game.world.centerY, 'ocean');
+    background.anchor.setTo(0.5, 0.5);
+
+    // Create the textArea
+    text = this.exercise[this.exerciseNr];
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
+    textArea.anchor.set(0.5);
+
+    // When key is pressed the function keyPress is called
+    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+
+    addExitButton();
+    addMuteButton();
+
+    addAssignmentImages('shell', this.exercise, 25, 500, 0, 3, 60, Assignment3);
+    addAssignmentImages('starfish', this.exercise, 205, 500, 3, 3, 60, Assignment3);
+    addAssignmentImages('shrimp', this.exercise, 385, 500, 6, 3, 60, Assignment3);
+    addAssignmentImages('jellyfish', this.exercise, 565, 500, 9, 3, 60, Assignment3);
+    addAssignmentImages('seahorse', this.exercise, 750, 500, 12, 3, 50, Assignment3);
+}
+
+
 function Assignment4(exerciseNr) 
 {
     // Empty the canvas
@@ -273,42 +307,6 @@ function Assignment4(exerciseNr)
     addAssignmentImages('nota', this.exercise, 750, 500, 12, 3, 50, Assignment4);
 
 }
-
-function Assignment4(exerciseNr) 
-{
-    // Empty the canvas
-    game.world.removeAll();
-    intro.destroy();
-
-    if(!this.exerciseNr)
-    {
-        this.exerciseNr = 0;
-    }
-
-    // Load new background
-    background = game.add.image(game.world.centerX, game.world.centerY, 'blueBackground2');
-    game.add.image(0, 103,'box');
-    background.anchor.setTo(0.5, 0.5);
-
-    // Create the textArea
-    text = this.exercise[this.exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
-    textArea.anchor.set(0.5);
-
-    // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, keyPress);
-
-    addExitButton();
-    addMuteButton();
-
-    addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 3, 60, Assignment5);
-    addAssignmentImages('fotbolti', this.exercise, 205, 475, 3, 3, 60, Assignment5);
-    addAssignmentImages('korfubolti', this.exercise, 385, 475, 6, 3, 60, Assignment5);
-    addAssignmentImages('rubbybolti', this.exercise, 565, 475, 9, 3, 60, Assignment5);
-    addAssignmentImages('tennisbolti', this.exercise, 750, 475, 12, 3, 60, Assignment5);
-
-}
-
 
 function Assignment5(exerciseNr) 
 {

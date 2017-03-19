@@ -88,6 +88,7 @@ eh =
 'hæl hæl hæl efa efa efa sel',
 'hala hala hala fela fela fela',
 'lesa lesa seka seka seka hef',
+'haka haka dela dela dela hef',
 'halda halda halda elska elska',
 ];
 
