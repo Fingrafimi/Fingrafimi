@@ -32,15 +32,22 @@ var firstLoad = true;
 // Load the resources needed
 function preload()
 {
-    // Background images
+    // ================ Background images ================ 
     game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
+    game.load.image('blueBackground', 'Assets/Images/Backgrounds/blueBackground.png');
+    // For first 4 assignments - function Assignment1
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
+    // For assignment heimalyklar - function Assignment2
+    game.load.image('farm', 'Assets/Images/Backgrounds/sveit.png');
+    game.load.image('clouds', 'Assets/Images/Backgrounds/sky.png');
+    
 
-    // Small icons
+
+    // ================ Small icons ================ 
     game.load.spritesheet('exit', 'Assets/Images/Buttons/Global/x.png', 42, 42);
     game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 100, 96);
 
-    // Assignments buttons
+    // ================ Assignments buttons ================ 
     game.load.image('fj', 'Assets/Images/Buttons/Homescreen/fj.png');
     game.load.image('dk', 'Assets/Images/Buttons/Homescreen/dk.png');
     game.load.image('sl', 'Assets/Images/Buttons/Homescreen/sl.png');
@@ -194,7 +201,9 @@ function Assignment2(exerciseNr)
   
 
     // Load new background
-    background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
+    background = game.add.image(game.world.centerX, 204, 'blueBackground');
+    game.add.image(0, 10,'clouds');
+    game.add.image(0, 0,'farm');
     background.anchor.setTo(0.5, 0.5);
 
     // Create the textArea
