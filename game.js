@@ -99,22 +99,22 @@ function loadHomePage()
     homePage.height = height;
 
     var btnFj = game.add.button(30, 35, 'fj');
-    btnFj.events.onInputDown.add(Assignment, {exercise: fj});
+    btnFj.events.onInputDown.add(Assignment1, {exercise: fj});
 
     var btnDk = game.add.button(30, 75, 'dk');
-    btnDk.events.onInputDown.add(Assignment, {exercise: dk});
+    btnDk.events.onInputDown.add(Assignment1, {exercise: dk});
 
     var btnSl = game.add.button(30, 115, 'sl');
-    btnSl.events.onInputDown.add(Assignment, {exercise: sl});
+    btnSl.events.onInputDown.add(Assignment1, {exercise: sl});
 
     var btnAae = game.add.button(30, 155, 'aae');
-    btnAae.events.onInputDown.add(Assignment, {exercise: aae});
+    btnAae.events.onInputDown.add(Assignment1, {exercise: aae});
 
     var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(Assignment, {exercise: heimalyklar1});
+    btnHome1.events.onInputDown.add(Assignment2, {exercise: heimalyklar1});
 
     var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(Assignment, {exercise: heimalyklar2});
+    btnHome2.events.onInputDown.add(Assignment2, {exercise: heimalyklar2});
 
     var btnEh = game.add.button(30, 305, 'eh');
     btnEh.events.onInputDown.add(Assignment, {exercise: eh});
@@ -179,6 +179,41 @@ function Assignment1(exerciseNr)
     {
         addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100);
     }
+}
+
+function Assignment2(exerciseNr) 
+{
+    // Empty the canvas
+    game.world.removeAll();
+    intro.destroy();
+
+    if(!this.exerciseNr)
+    {
+        this.exerciseNr = 0;
+    }
+  
+
+    // Load new background
+    background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
+    background.anchor.setTo(0.5, 0.5);
+
+    // Create the textArea
+    text = this.exercise[this.exerciseNr];
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
+    textArea.anchor.set(0.5);
+
+    // When key is pressed the function keyPress is called
+    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+    
+    
+
+    addExitButton();
+    addMuteButton();
+
+    addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100);
+    addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60);
+    addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75);
+
 }
 
 
