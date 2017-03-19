@@ -82,6 +82,12 @@ function preload()
     game.load.spritesheet('korfubolti', 'Assets/Images/Buttons/Assignments/korfubolti.png', 60, 61);
     game.load.spritesheet('rubbybolti', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 78, 53);
     game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 28, 28);
+
+    game.load.spritesheet('gitar', 'Assets/Images/Buttons/Assignments/gitar.png', 69, 99);
+    game.load.spritesheet('tromma', 'Assets/Images/Buttons/Assignments/tromma.png', 47, 44);
+    game.load.spritesheet('nota', 'Assets/Images/Buttons/Assignments/korfubolti.png', 54, 42);
+    game.load.spritesheet('piano', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 101, 48);
+    game.load.spritesheet('saxafonn', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 48, 87);
 }
 
 function create() 
