@@ -34,12 +34,16 @@ function preload()
 {
     // ================ Background images ================ 
     game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
-    game.load.image('blueBackground', 'Assets/Images/Backgrounds/blueBackground.png');
     // For first 4 assignments - function Assignment1
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
     // For assignment heimalyklar - function Assignment2
+    game.load.image('blueBackground', 'Assets/Images/Backgrounds/blueBackground.png');
     game.load.image('farm', 'Assets/Images/Backgrounds/sveit.png');
     game.load.image('clouds', 'Assets/Images/Backgrounds/sky.png');
+    // For assignment broddstafir - function Assignment5
+    game.load.image('blueBackground2', 'Assets/Images/Backgrounds/blueBackground2.png');
+    game.load.image('box', 'Assets/Images/Backgrounds/box.png');
+
     
 
 
@@ -124,19 +128,19 @@ function loadHomePage()
     btnHome2.events.onInputDown.add(Assignment2, {exercise: heimalyklar2});
 
     var btnEh = game.add.button(30, 305, 'eh');
-    btnEh.events.onInputDown.add(Assignment, {exercise: eh});
+    btnEh.events.onInputDown.add(Assignment, {exercise: eh}); //3
 
     var btnIg = game.add.button(30, 345, 'ig');
-    btnIg.events.onInputDown.add(Assignment, {exercise: ig});
+    btnIg.events.onInputDown.add(Assignment, {exercise: ig}); // 3
 
     var btnBn = game.add.button(30, 385, 'bn');
-    btnBn.events.onInputDown.add(Assignment, {exercise: bn});
+    btnBn.events.onInputDown.add(Assignment, {exercise: bn}); // 4
 
-    var btnRo = game.add.button(30, 425, 'ro');
-    btnRo.events.onInputDown.add(Assignment, {exercise: ro});
+    var btnRo = game.add.button(30, 425, 'ro'); 
+    btnRo.events.onInputDown.add(Assignment, {exercise: ro}); // 4
 
     var btnBrodd = game.add.button(30, 465, 'broddstafir');
-    btnBrodd.events.onInputDown.add(Assignment, {exercise: broddstafir});
+    btnBrodd.events.onInputDown.add(Assignment5, {exercise: broddstafir}); 
 
     var btnHastafir = game.add.button(30, 520, 'hastafir');
     btnHastafir.events.onInputDown.add(Assignment, {exercise: hastafir});
@@ -198,7 +202,6 @@ function Assignment2(exerciseNr)
     {
         this.exerciseNr = 0;
     }
-  
 
     // Load new background
     background = game.add.image(game.world.centerX, 204, 'blueBackground');
@@ -213,8 +216,6 @@ function Assignment2(exerciseNr)
 
     // When key is pressed the function keyPress is called
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
-    
-    
 
     addExitButton();
     addMuteButton();
@@ -222,6 +223,41 @@ function Assignment2(exerciseNr)
     addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100);
     addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60);
     addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75);
+
+}
+
+function Assignment5(exerciseNr) 
+{
+    // Empty the canvas
+    game.world.removeAll();
+    intro.destroy();
+
+    if(!this.exerciseNr)
+    {
+        this.exerciseNr = 0;
+    }
+
+    // Load new background
+    background = game.add.image(game.world.centerX, game.world.centerY, 'blueBackground2');
+    game.add.image(0, 103,'box');
+    background.anchor.setTo(0.5, 0.5);
+
+    // Create the textArea
+    text = this.exercise[this.exerciseNr];
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
+    textArea.anchor.set(0.5);
+
+    // When key is pressed the function keyPress is called
+    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+
+    addExitButton();
+    addMuteButton();
+/*
+    addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 4, 100);
+    addAssignmentImages('fotbolti', this.exercise, 430, 475, 4, 4, 60);
+    addAssignmentImages('korfubolti', this.exercise, 650, 475, 8, 3, 75);
+    addAssignmentImages('rubbybolti', this.exercise, 650, 475, 8, 3, 75);
+    addAssignmentImages('tennisbolti', this.exercise, 650, 475, 8, 3, 75);*/
 
 }
 
@@ -278,15 +314,6 @@ function Assignment(exerciseNr)
         addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60);
         addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75);
     }
-    else if(this.exercise === broddstafir)
-    {
-        addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 4, 100);
-        addAssignmentImages('fotbolti', this.exercise, 430, 475, 4, 4, 60);
-        addAssignmentImages('korfubolti', this.exercise, 650, 475, 8, 3, 75);
-        addAssignmentImages('rubbybolti', this.exercise, 650, 475, 8, 3, 75);
-        addAssignmentImages('tennisbolti', this.exercise, 650, 475, 8, 3, 75);
-    }
-
 }
 
 function keyPress(char) 
