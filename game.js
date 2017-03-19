@@ -65,6 +65,12 @@ function preload()
     game.load.spritesheet('blom', 'Assets/Images/Buttons/Assignments/blom.png', 73, 95);
     game.load.spritesheet('mus2', 'Assets/Images/Buttons/Assignments/mus2.png', 91, 84);
     game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 57, 65);
+
+    game.load.spritesheet('blakbolti', 'Assets/Images/Buttons/Assignments/blakbolti.png', 61, 65);
+    game.load.spritesheet('fotbolti', 'Assets/Images/Buttons/Assignments/fotbolti.png', 61, 61);
+    game.load.spritesheet('korfubolti', 'Assets/Images/Buttons/Assignments/korfubolti.png', 60, 61);
+    game.load.spritesheet('rubbybolti', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 78, 53);
+    game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 28, 28);
 }
 
 function create() 
