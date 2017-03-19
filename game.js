@@ -175,20 +175,20 @@ function Assignment1(exerciseNr)
     addExitButton();
     addMuteButton();
 
-    addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100);
+    addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100, Assignment1);
     if(this.exercise === sl  )
     {
         // add 4 robots in postition (500,450) with start index 3.
-        addAssignmentImages('robot', this.exercise, 500, 450, 3, 4, 100);
+        addAssignmentImages('robot', this.exercise, 500, 450, 3, 4, 100, Assignment1);
     }
     else if(this.exercise === aae)
     {
-        addAssignmentImages('robot', this.exercise, 350, 450, 3, 3, 100);
-        addAssignmentImages('mus', this.exercise, 600, 475, 6, 3, 100);
+        addAssignmentImages('robot', this.exercise, 350, 450, 3, 3, 100, Assignment1);
+        addAssignmentImages('mus', this.exercise, 600, 475, 6, 3, 100, Assignment1);
     }
     else
     {
-        addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100);
+        addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100, Assignment1);
     }
 }
 
@@ -220,9 +220,9 @@ function Assignment2(exerciseNr)
     addExitButton();
     addMuteButton();
 
-    addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100);
-    addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60);
-    addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75);
+    addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100, Assignment2);
+    addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60, Assignment2);
+    addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75, Assignment2);
 
 }
 
@@ -252,12 +252,12 @@ function Assignment5(exerciseNr)
 
     addExitButton();
     addMuteButton();
-/*
-    addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 4, 100);
-    addAssignmentImages('fotbolti', this.exercise, 430, 475, 4, 4, 60);
-    addAssignmentImages('korfubolti', this.exercise, 650, 475, 8, 3, 75);
-    addAssignmentImages('rubbybolti', this.exercise, 650, 475, 8, 3, 75);
-    addAssignmentImages('tennisbolti', this.exercise, 650, 475, 8, 3, 75);*/
+
+    addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 3, 60, Assignment5);
+    addAssignmentImages('fotbolti', this.exercise, 205, 475, 3, 3, 60, Assignment5);
+    addAssignmentImages('korfubolti', this.exercise, 385, 475, 6, 3, 60, Assignment5);
+    addAssignmentImages('rubbybolti', this.exercise, 565, 475, 9, 3, 60, Assignment5);
+    addAssignmentImages('tennisbolti', this.exercise, 750, 475, 12, 3, 60, Assignment5);
 
 }
 
@@ -441,14 +441,14 @@ function addRobot(exerc, pos, startNr, count)
 }
 
 
-function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset)
+function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset,func)
 {
     var yOffset = -1;
     for(i = 0; i < count; i++)
     {
         var img = game.add.button(x, y + yOffset * 25, image);
         img.scale.setTo(0.8);
-        img.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
+        img.events.onInputDown.add(func, {exerciseNr: startNr + i, exercise: exerc});
         x = x + xOffset;
         yOffset = yOffset * (-1);
     }
