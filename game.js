@@ -137,7 +137,7 @@ function loadHomePage()
     addMuteButton();
 }
 
-function Assignment(exerciseNr) 
+function Assignment1(exerciseNr) 
 {
 	// Empty the canvas
    	game.world.removeAll();
@@ -161,22 +161,64 @@ function Assignment(exerciseNr)
     // When key is pressed the function keyPress is called
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
     
-    exitBtn = game.add.button(850, 15, 'exit');
-    exitBtn.events.onInputOver.add(overExit);
-    exitBtn.events.onInputOut.add(outExit);
-    exitBtn.events.onInputDown.add(loadHomePage);
-
-
+    addExitButton();
     addMuteButton();
-    if(this.exercise == fj || this.exercise == dk || this.exercise == sl || this.exercise == aae)
+
+    addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100);
+    if(this.exercise === sl  )
+    {
+        // add 4 robots in postition (500,450) with start index 3.
+        addAssignmentImages('robot', this.exercise, 500, 450, 3, 4, 100);
+    }
+    else if(this.exercise === aae)
+    {
+        addAssignmentImages('robot', this.exercise, 350, 450, 3, 3, 100);
+        addAssignmentImages('mus', this.exercise, 600, 475, 6, 3, 100);
+    }
+    else
+    {
+        addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100);
+    }
+}
+
+
+function Assignment(exerciseNr) 
+{
+    // Empty the canvas
+    game.world.removeAll();
+    intro.destroy();
+
+    if(!this.exerciseNr)
+    {
+        this.exerciseNr = 0;
+    }
+  
+
+    // Load new background
+    background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
+    background.anchor.setTo(0.5, 0.5);
+
+    // Create the textArea
+    text = this.exercise[this.exerciseNr];
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
+    textArea.anchor.set(0.5);
+
+    // When key is pressed the function keyPress is called
+    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+    
+    
+
+    addExitButton();
+    addMuteButton();
+    if(this.exercise === fj || this.exercise === dk || this.exercise === sl || this.exercise === aae)
     {
         addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100);
-        if(this.exercise == sl  )
+        if(this.exercise === sl  )
         {
             // add 4 robots in postition (500,450) with start index 3.
             addAssignmentImages('robot', this.exercise, 500, 450, 3, 4, 100);
         }
-        else if(this.exercise == aae)
+        else if(this.exercise === aae)
         {
             addAssignmentImages('robot', this.exercise, 350, 450, 3, 3, 100);
             addAssignmentImages('mus', this.exercise, 600, 475, 6, 3, 100);
@@ -186,12 +228,19 @@ function Assignment(exerciseNr)
             addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100);
         }
     }
-
-    if(this.exercise == heimalyklar1 || this.exercise == heimalyklar2 )
+    else if(this.exercise === heimalyklar1 || this.exercise === heimalyklar2 )
     {
         addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100);
         addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60);
         addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75);
+    }
+    else if(this.exercise === broddstafir)
+    {
+        addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 4, 100);
+        addAssignmentImages('fotbolti', this.exercise, 430, 475, 4, 4, 60);
+        addAssignmentImages('korfubolti', this.exercise, 650, 475, 8, 3, 75);
+        addAssignmentImages('rubbybolti', this.exercise, 650, 475, 8, 3, 75);
+        addAssignmentImages('tennisbolti', this.exercise, 650, 475, 8, 3, 75);
     }
 
 }
@@ -202,7 +251,7 @@ function keyPress(char)
 
     if(incorrPos != -1)
     {
-        if(char == text.charAt(incorrPos))
+        if(char === text.charAt(incorrPos))
         {
             incorrPos = -1;
             corrCount = corrCount + 1;
@@ -214,7 +263,7 @@ function keyPress(char)
     }
     else
     {
-        if(char == text.charAt(textPos))
+        if(char === text.charAt(textPos))
         {
             corrCount = corrCount + 1;
         }
@@ -239,7 +288,7 @@ function keyPress(char)
     
     textArea.addColor('#ffffff', textPos);
 
-    if(textPos >= text.length && incorrPos == -1)
+    if(textPos >= text.length && incorrPos === -1)
     {
         alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
 
@@ -290,6 +339,14 @@ function addMuteButton()
     {
         muteBtn.frame = 0;
     }
+}
+
+function addExitButton()
+{
+    exitBtn = game.add.button(850, 15, 'exit');
+    exitBtn.events.onInputOver.add(overExit);
+    exitBtn.events.onInputOut.add(outExit);
+    exitBtn.events.onInputDown.add(loadHomePage);
 }
 
 function addMouse(exerc, pos, startIndex, count)
