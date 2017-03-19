@@ -6,7 +6,7 @@ fj =
 'ff jj ff jj ff jj ff jj ff jj ff jj',
 'fj fj fj fj fj fj fj fj fj fj fj fj',
 'jf jf jf jf jf jf jf jf jf jf jf jf'
-]
+];
 
 dk =
 [
@@ -16,7 +16,7 @@ dk =
 'kkjdkdd kdjfdkdk',
 'f fkddj d k d kfkfk',
 'kddddfdk kf dj dfkdkd'
-]
+];
 
 sl =
 [
@@ -27,7 +27,7 @@ sl =
 'fd fd fd fd fd df df df df',
 'fs fs fs fs fs jl jl jl jl jl',
 'sf sf sf sf sf lj lj lj lj lj'
-]
+];
 
 aae =
 [
@@ -40,7 +40,7 @@ aae =
 'asdf jklæ asdf jklæ asdf',
 'afa safa afa safa afa saf',
 'sala sala kafa kafa læsa'
-]
+];
 
 heimalyklar1 =
 [
@@ -55,7 +55,7 @@ heimalyklar1 =
 'æja æja æja kaf kaf kaf æsa æsa',
 'asa asa asa fas fas fas æla æla',
 'das das das aka aka aka kæl kæl',
-]
+];
 
 heimalyklar2 =
 [
@@ -71,7 +71,7 @@ heimalyklar2 =
 'afla afla afla flak flak flak dæla dæla',
 'klak klak klak sækja sækja sækja fall',
 'fdsa jklæ fdsa jklæ asdf ælkj asdf'
-]
+];
 
 eh =
 [
@@ -89,7 +89,7 @@ eh =
 'hala hala hala fela fela fela',
 'lesa lesa seka seka seka hef',
 'halda halda halda elska elska',
-]
+];
 
 ig =
 [
@@ -108,7 +108,7 @@ ig =
 'heil heil heil degi degi degi kili',
 'lægi lægi lægi hali hali gæli gæli',
 'gefi gefi gefi hiki hiki lagi lagi'
-]
+];
 
 bn =
 [
@@ -127,7 +127,7 @@ bn =
 'bæna bæna bæna nesi nesi nesi',
 'hani hani hæna bisa bisa',
 'blek blek blek næga næga baga',
-]
+];
 
 ro =
 [
@@ -146,7 +146,7 @@ ro =
 'bros bros orga orga lofa lofa',
 'erja erja sorg sorg gera gera',
 'borg borg eril erill erill kork kork'
-]
+];
 
 broddstafir = 
 [
@@ -165,7 +165,7 @@ broddstafir =
 'á ég ís og sófa',
 'karsi áéeé salar skálar',
 'refskák árás sakka sálar'
-]
+];
 
 hastafir =
 [
@@ -184,4 +184,4 @@ hastafir =
 'Jens og Elín Sigga og Silja',
 'Ekki í dag Bara í dag',
 'Ís og sósa'
-]
+];
