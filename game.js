@@ -10,7 +10,7 @@ var textAreaX = 900;
 var textAreaY = 65;
 
 // Variables for the assignments text
-var style = { font: '64px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
+var style = { font: '44px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
 
 var text = "";
 
@@ -30,15 +30,15 @@ var intro;
 var firstLoad = true;
 
 // Load the resources needed
-function preload () 
+function preload()
 {
     // Background images
     game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
-    game.load.image('homeKeysBackground','Assets/Images/Backgrounds/homeKeysBackground.png');
+    game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
 
     // Small icons
-    game.load.spritesheet('exit', 'Assets/Images/Buttons/Global/x.png', 42, 42); 
-    game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 100, 96); 
+    game.load.spritesheet('exit', 'Assets/Images/Buttons/Global/x.png', 42, 42);
+    game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 100, 96);
 
     // Assignments buttons
     game.load.image('fj', 'Assets/Images/Buttons/Homescreen/fj.png');
@@ -53,20 +53,21 @@ function preload ()
     game.load.image('ro', 'Assets/Images/Buttons/Homescreen/ro.png');
     game.load.image('broddstafir', 'Assets/Images/Buttons/Homescreen/broddstafir.png');
     game.load.image('hastafir', 'Assets/Images/Buttons/Homescreen/hastafir.png');
-	
+
     // Audio files
     game.load.audio('wrongSound', 'Assets/Sounds/wrongSound.mp3');
     game.load.audio('intro', 'Assets/Sounds/Inngangur.mp3');
 
     // Images for Assigments
-    game.load.spritesheet('mus', 'Assets/Images/Buttons/Assignments/mus.png', 110, 70); 
-    game.load.spritesheet('robot', 'Assets/Images/Buttons/Assignments/robot.png', 105, 127); 
-    game.load.spritesheet('heyBaggi', 'Assets/Images/Buttons/Assignments/hey.png', 122, 95); 
-    game.load.spritesheet('blom', 'Assets/Images/Buttons/Assignments/blom.png', 73, 95); 
-    game.load.spritesheet('mus2', 'Assets/Images/Buttons/Assignments/mus2.png', 91, 84); 
+    game.load.spritesheet('mus', 'Assets/Images/Buttons/Assignments/mus.png', 110, 70);
+    game.load.spritesheet('robot', 'Assets/Images/Buttons/Assignments/robot.png', 105, 127);
+    game.load.spritesheet('heyBaggi', 'Assets/Images/Buttons/Assignments/hey.png', 122, 95);
+    game.load.spritesheet('blom', 'Assets/Images/Buttons/Assignments/blom.png', 73, 95);
+    game.load.spritesheet('mus2', 'Assets/Images/Buttons/Assignments/mus2.png', 91, 84);
+    game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 57, 65);
 }
 
-function create () 
+function create() 
 {
     intro = game.add.audio('intro');
     if(firstLoad)
@@ -74,12 +75,12 @@ function create ()
         intro.play();
         firstLoad = false;
     }
-	loadHomePage();
+    loadHomePage();
 }
 
 function update()
 {
-
+    console.log('Update');
 }
 
 // Load the home page
@@ -148,7 +149,7 @@ function Assignment(exerciseNr)
 
     // Create the textArea
     text = this.exercise[this.exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
     textArea.anchor.set(0.5);
 
     // When key is pressed the function keyPress is called
@@ -167,25 +168,24 @@ function Assignment(exerciseNr)
         if(this.exercise == sl  )
         {
             // add 4 robots in postition (500,450) with start index 3.
-            addAssignmentImages('robot',this.exercise, 500, 450, 3, 4, 100);
+            addAssignmentImages('robot', this.exercise, 500, 450, 3, 4, 100);
         }
         else if(this.exercise == aae)
         {
-            addAssignmentImages('robot',this.exercise, 350, 450, 3, 3, 100);
-            addAssignmentImages('mus',this.exercise, 600, 475, 6, 3, 100);
+            addAssignmentImages('robot', this.exercise, 350, 450, 3, 3, 100);
+            addAssignmentImages('mus', this.exercise, 600, 475, 6, 3, 100);
         }
         else
         {
-            addAssignmentImages('robot',this.exercise, 500, 450, 3, 3, 100);
+            addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100);
         }
     }
 
     if(this.exercise == heimalyklar1 || this.exercise == heimalyklar2 )
     {
-        addAssignmentImages('heyBaggi',this.exercise, 25, 475, 0, 4, 100);
-        addAssignmentImages('blom',this.exercise, 430, 475, 4, 4, 60);
-        addAssignmentImages('mus2',this.exercise, 650, 475, 8, 3, 75);
-
+        addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100);
+        addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60);
+        addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75);
     }
 
 }
@@ -236,6 +236,12 @@ function keyPress(char)
     if(textPos >= text.length && incorrPos == -1)
     {
         alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
+
+        text = "";
+        corrCount = 0;
+        incorrPos = -1;
+        textPos = 0;
+
         return;
     }
 }
@@ -306,10 +312,10 @@ function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset)
     var yOffset = -1;
     for(i = 0; i < count; i++)
     {
-        var img = game.add.button(x, y + yOffset*25, image);
+        var img = game.add.button(x, y + yOffset * 25, image);
+        img.scale.setTo(0.8);
         img.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
         x = x + xOffset;
         yOffset = yOffset * (-1);
     }
 }
-
