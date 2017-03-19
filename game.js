@@ -90,6 +90,12 @@ function preload()
     game.load.spritesheet('nota', 'Assets/Images/Buttons/Assignments/nota.png', 54, 42);
     game.load.spritesheet('piano', 'Assets/Images/Buttons/Assignments/piano.png', 101, 48);
     game.load.spritesheet('saxafonn', 'Assets/Images/Buttons/Assignments/saxafonn.png', 48, 87);
+
+    game.load.spritesheet('jellyfish', 'Assets/Images/Buttons/Assignments/jellyfish.png', 60, 68);
+    game.load.spritesheet('starfish', 'Assets/Images/Buttons/Assignments/starfish.png', 77, 74);
+    game.load.spritesheet('shrimp', 'Assets/Images/Buttons/Assignments/shrimp.png', 77, 76);
+    game.load.spritesheet('seahorse', 'Assets/Images/Buttons/Assignments/seahorse.png', 54, 109);
+    game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 67, 65);
 }
 
 function create() 
@@ -265,6 +271,41 @@ function Assignment4(exerciseNr)
     addAssignmentImages('piano', this.exercise, 385, 500, 6, 3, 60, Assignment4);
     addAssignmentImages('gitar', this.exercise, 565, 500, 9, 3, 60, Assignment4);
     addAssignmentImages('nota', this.exercise, 750, 500, 12, 3, 50, Assignment4);
+
+}
+
+function Assignment4(exerciseNr) 
+{
+    // Empty the canvas
+    game.world.removeAll();
+    intro.destroy();
+
+    if(!this.exerciseNr)
+    {
+        this.exerciseNr = 0;
+    }
+
+    // Load new background
+    background = game.add.image(game.world.centerX, game.world.centerY, 'blueBackground2');
+    game.add.image(0, 103,'box');
+    background.anchor.setTo(0.5, 0.5);
+
+    // Create the textArea
+    text = this.exercise[this.exerciseNr];
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
+    textArea.anchor.set(0.5);
+
+    // When key is pressed the function keyPress is called
+    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+
+    addExitButton();
+    addMuteButton();
+
+    addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 3, 60, Assignment5);
+    addAssignmentImages('fotbolti', this.exercise, 205, 475, 3, 3, 60, Assignment5);
+    addAssignmentImages('korfubolti', this.exercise, 385, 475, 6, 3, 60, Assignment5);
+    addAssignmentImages('rubbybolti', this.exercise, 565, 475, 9, 3, 60, Assignment5);
+    addAssignmentImages('tennisbolti', this.exercise, 750, 475, 12, 3, 60, Assignment5);
 
 }
 
