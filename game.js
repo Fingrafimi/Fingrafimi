@@ -34,15 +34,17 @@ function preload()
 {
     // ================ Background images ================ 
     game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
-    // For first 4 assignments - function Assignment1
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
-    // For assignment heimalyklar - function Assignment2
     game.load.image('blueBackground', 'Assets/Images/Backgrounds/blueBackground.png');
     game.load.image('farm', 'Assets/Images/Backgrounds/sveit.png');
     game.load.image('clouds', 'Assets/Images/Backgrounds/sky.png');
-    // For assignment broddstafir - function Assignment5
     game.load.image('blueBackground2', 'Assets/Images/Backgrounds/blueBackground2.png');
     game.load.image('box', 'Assets/Images/Backgrounds/box.png');
+
+    game.load.image('stage', 'Assets/Images/Backgrounds/svid.png');
+    game.load.image('ocean', 'Assets/Images/Backgrounds/sandur.png');
+
+
 
     
 
@@ -84,10 +86,10 @@ function preload()
     game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 28, 28);
 
     game.load.spritesheet('gitar', 'Assets/Images/Buttons/Assignments/gitar.png', 69, 99);
-    game.load.spritesheet('tromma', 'Assets/Images/Buttons/Assignments/tromma.png', 47, 44);
-    game.load.spritesheet('nota', 'Assets/Images/Buttons/Assignments/korfubolti.png', 54, 42);
-    game.load.spritesheet('piano', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 101, 48);
-    game.load.spritesheet('saxafonn', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 48, 87);
+    game.load.spritesheet('tromma', 'Assets/Images/Buttons/Assignments/trommur.png', 47, 44);
+    game.load.spritesheet('nota', 'Assets/Images/Buttons/Assignments/nota.png', 54, 42);
+    game.load.spritesheet('piano', 'Assets/Images/Buttons/Assignments/piano.png', 101, 48);
+    game.load.spritesheet('saxafonn', 'Assets/Images/Buttons/Assignments/saxafonn.png', 48, 87);
 }
 
 function create() 
@@ -140,10 +142,10 @@ function loadHomePage()
     btnIg.events.onInputDown.add(Assignment, {exercise: ig}); // 3
 
     var btnBn = game.add.button(30, 385, 'bn');
-    btnBn.events.onInputDown.add(Assignment, {exercise: bn}); // 4
+    btnBn.events.onInputDown.add(Assignment4, {exercise: bn}); // 4
 
     var btnRo = game.add.button(30, 425, 'ro'); 
-    btnRo.events.onInputDown.add(Assignment, {exercise: ro}); // 4
+    btnRo.events.onInputDown.add(Assignment4, {exercise: ro}); // 4
 
     var btnBrodd = game.add.button(30, 465, 'broddstafir');
     btnBrodd.events.onInputDown.add(Assignment5, {exercise: broddstafir}); 
@@ -231,6 +233,41 @@ function Assignment2(exerciseNr)
     addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75, Assignment2);
 
 }
+
+function Assignment4(exerciseNr) 
+{
+    // Empty the canvas
+    game.world.removeAll();
+    intro.destroy();
+
+    if(!this.exerciseNr)
+    {
+        this.exerciseNr = 0;
+    }
+
+    // Load new background
+    background = game.add.image(game.world.centerX, game.world.centerY, 'stage');
+    background.anchor.setTo(0.5, 0.5);
+
+    // Create the textArea
+    text = this.exercise[this.exerciseNr];
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
+    textArea.anchor.set(0.5);
+
+    // When key is pressed the function keyPress is called
+    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+
+    addExitButton();
+    addMuteButton();
+
+    addAssignmentImages('saxafonn', this.exercise, 25, 500, 0, 3, 60, Assignment4);
+    addAssignmentImages('tromma', this.exercise, 205, 500, 3, 3, 60, Assignment4);
+    addAssignmentImages('piano', this.exercise, 385, 500, 6, 3, 60, Assignment4);
+    addAssignmentImages('gitar', this.exercise, 565, 500, 9, 3, 60, Assignment4);
+    addAssignmentImages('nota', this.exercise, 750, 500, 12, 3, 50, Assignment4);
+
+}
+
 
 function Assignment5(exerciseNr) 
 {
