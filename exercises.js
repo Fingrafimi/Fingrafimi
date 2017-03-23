@@ -1,3 +1,5 @@
+  // jshint elision: true
+
 fj = 
 [
 'jjj fff ffff jjj fffff',
@@ -184,4 +186,36 @@ hastafir =
 'Jens og Elín Sigga og Silja',
 'Ekki í dag Bara í dag',
 'Ís og sósa'
+];
+
+exerciseBtnArray =
+[
+    [,,,,,],
+    [,,,,,],
+    [,,,,,,],
+    [,,,,,,,,],
+    [,,,,,,,,,,],
+    [,,,,,,,,,,,],
+    [,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,]
+];
+
+exercisesFinished =
+[
+    [false,false,false,false,false,false],
+    [false,false,false,false,false,false],
+    [false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
 ];
