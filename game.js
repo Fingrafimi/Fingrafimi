@@ -8,6 +8,7 @@ var textArea;
 // Define the size of the area
 var textAreaX = 900;
 var textAreaY = 65;
+var inExercise = false;
 
 // Variables for the assignments text
 var style = { font: '44px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
@@ -29,6 +30,9 @@ var muteBtn;
 var intro;
 var firstLoad = true;
 
+var fKey;
+var currentExecBtn = [0, 0];
+
 // Load the resources needed
 function preload()
 {
@@ -36,9 +40,24 @@ function preload()
     game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
 
+    
+    //Images
+    game.load.image('keyboard', 'Assets/Images/Keyboard/lyklabord-4/lyklabord/grind-small.png');
+    /*game.load.spritesheet('qwerty', 'Assets/Images/Keyboard/qwerty.png', 492, 50);
+    game.load.spritesheet('asdfgh', 'Assets/Images/Keyboard/asdfgh - Copy.png', 439, 47);
+    game.load.spritesheet('spaceBar', 'Assets/Images/Keyboard/spaceBar.png', 420, 70);*/
+    
+    
+
+    //Images for keyboard 
+    //game.load.image('keyboardLayout', 'Assets/Images/Keyboard/lyklabord-3/lyklabord/grind.png');
+    game.load.spritesheet('asdf', 'Assets/Images/Keyboard/newKeyboard/asdf-sprite.png', 43, 45);
+    //game.load.image('a-g2', 'Assets/Images/Keyboard/lyklabord-4/lyklabord/a - sprite.png');
+
+
     // Small icons
     game.load.spritesheet('exit', 'Assets/Images/Buttons/Global/x.png', 42, 42);
-    game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 100, 96);
+    game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 99, 95);
 
     // Assignments buttons
     game.load.image('fj', 'Assets/Images/Buttons/Homescreen/fj.png');
@@ -72,7 +91,7 @@ function create()
     intro = game.add.audio('intro');
     if(firstLoad)
     {
-        intro.play();
+        //intro.play();
         firstLoad = false;
     }
     loadHomePage();
@@ -80,12 +99,14 @@ function create()
 
 function update()
 {
-    console.log('Update');
+    //console.log('Update');
 }
 
 // Load the home page
 function loadHomePage() 
 {
+    inExercise = false;
+
     var homePage = game.add.image(game.world.centerX, game.world.centerY, 'homePage');
     homePage.anchor.setTo(0.5, 0.5);
     // Add offset of 4px to remove black frame
@@ -133,6 +154,7 @@ function loadHomePage()
 
 function Assignment(exerciseNr) 
 {
+    inExercise = true;
 	// Empty the canvas
    	game.world.removeAll();
     intro.destroy();
@@ -141,11 +163,47 @@ function Assignment(exerciseNr)
     {
         this.exerciseNr = 0;
     }
-  
+
+    console.log(this.startNr);
+    console.log(this.count);
 
    	// Load new background
     background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
     background.anchor.setTo(0.5, 0.5);
+
+    keyboard = game.add.image(0, 0, 'keyboard');
+    aKey = game.add.sprite(241, game.world.centerY + 49, 'asdf', 0);
+    sKey = game.add.sprite(285, game.world.centerY + 49, 'asdf', 2);
+    dKey = game.add.sprite(328, game.world.centerY + 49, 'asdf', 4);
+    fKey = game.add.sprite(371, game.world.centerY + 49, 'asdf', 6);
+    fKey.animations.add('blink', [6, 7, 6, 7, 6], 2, false);
+    gKey = game.add.sprite(416, game.world.centerY + 49, 'asdf', 8);
+    hKey = game.add.sprite(460, game.world.centerY + 49, 'asdf', 10);
+    jKey = game.add.sprite(504, game.world.centerY + 49, 'asdf', 12);
+    //a_g = game.add.image(0, 0, 'a-g');
+    //a_g.scale.setTo(1.25);
+
+    /*
+    //Create the keyboard
+    keyboard = game.add.image(game.world.centerX, game.world.centerY - 25, 'keyboard');
+    keyboard.anchor.setTo(0.5);
+    keyboard.scale.setTo(0.75);
+    setup1 = game.add.image(game.world.centerX - 50, game.world.centerY - 82, 'qwerty');
+    setup1.anchor.setTo(0.5);
+    setup1.scale.setTo(1.073);
+    setup1.frame = 6;
+    */
+    //setup2 = game.add.image(game.world.centerX + 9, game.world.centerY + 71, 'asdfgh');
+    //setup2.anchor.setTo(0.5);
+
+    //a_g = game.add.image(0, 0, 'a-g');
+    //a_g2 = game.add.image(40, 0, 'a-g2');
+    //setup2.scale.setTo(0.755);
+    /*
+    spacebar = game.add.image(game.world.centerX - 24, game.world.centerY + 76, 'spaceBar');
+    spacebar.anchor.setTo(0.5);
+    spacebar.scale.setTo(0.75);
+    */
 
     // Create the textArea
     text = this.exercise[this.exerciseNr];
@@ -159,6 +217,7 @@ function Assignment(exerciseNr)
     exitBtn.events.onInputOver.add(overExit);
     exitBtn.events.onInputOut.add(outExit);
     exitBtn.events.onInputDown.add(loadHomePage);
+    exitBtn.events.onInputDown.add(quitExercise);
 
 
     addMuteButton();
@@ -188,62 +247,80 @@ function Assignment(exerciseNr)
         addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75);
     }
 
+    //exerciseBtnArray[this.startNr][this.count].frame = 1;
+    //console.log(exerciseBtnArray);
+
 }
 
 function keyPress(char) 
 {
-    var wrongSound = game.add.audio('wrongSound');
-
-    if(incorrPos != -1)
+    if(inExercise)
     {
-        if(char == text.charAt(incorrPos))
+        var wrongSound = game.add.audio('wrongSound');
+
+        if(incorrPos != -1)
         {
-            incorrPos = -1;
-            corrCount = corrCount + 1;
+            if(char == text.charAt(incorrPos))
+            {
+                incorrPos = -1;
+                corrCount = corrCount + 1;
+            }
+            else
+            {
+                wrongSound.play();
+                fKey.play('blink');
+            }
         }
         else
         {
-            wrongSound.play();
+            if(char == text.charAt(textPos))
+            {
+                corrCount = corrCount + 1;
+            }
+            else
+            {
+                incorrPos = textPos;
+                wrongSound.play();
+                fKey.play('blink');
+
+            }
+            textPos = textPos + 1;
         }
-    }
-    else
-    {
-        if(char == text.charAt(textPos))
+        // Clear the textArea
+        textArea.destroy();
+        textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
+        textArea.anchor.set(0.5);
+
+        textArea.addColor('#00ff00',0);
+        if(incorrPos != -1)
         {
-            corrCount = corrCount + 1;
+            textArea.addColor('#ffa500',incorrPos);
         }
-        else
+        
+        textArea.addColor('#ffffff', textPos);
+
+        if(textPos >= text.length && incorrPos == -1)
         {
-            incorrPos = textPos;
-            wrongSound.play();
+            alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
 
+            quitExercise();
+            exercisesFinished[currentExecBtn[0]][currentExecBtn[1]] = true;
+            //exerciseBtnArray[currentExecBtn[0]][currentExecBtn[1]].frame = 1;
+
+            return;
         }
-        textPos = textPos + 1;
+
+        console.log(currentExecBtn);
+        
     }
-    // Clear the textArea
-    textArea.destroy();
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
-    textArea.anchor.set(0.5);
+}
 
-    textArea.addColor('#00ff00',0);
-    if(incorrPos != -1)
-    {
-        textArea.addColor('#ffa500',incorrPos);
-    }
-    
-    textArea.addColor('#ffffff', textPos);
-
-    if(textPos >= text.length && incorrPos == -1)
-    {
-        alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
-
-        text = "";
-        corrCount = 0;
-        incorrPos = -1;
-        textPos = 0;
-
-        return;
-    }
+function quitExercise()
+{
+    text = "";
+    corrCount = 0;
+    incorrPos = -1;
+    textPos = 0;
 }
 
 function overExit()
@@ -313,9 +390,25 @@ function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset)
     for(i = 0; i < count; i++)
     {
         var img = game.add.button(x, y + yOffset * 25, image);
+        if(exercisesFinished[startNr][i] === true)
+        {
+            img.frame = 1;
+        }
+        exerciseBtnArray[startNr][i] = img;
         img.scale.setTo(0.8);
-        img.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
+        img.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc, startNr: startNr, count: i});
+        img.events.onInputDown.add(transportBtn, {x: startNr, y: i});
+        //console.log('startNr: ' + startNr);1
+        //console.log('exerc: ' + exerc);
+        //exerciseBtnArray[startNr][exerc] = image;
+        //console.log(image);
         x = x + xOffset;
         yOffset = yOffset * (-1);
     }
+}
+
+function transportBtn()
+{
+    currentExecBtn[0] = this.x;
+    currentExecBtn[1] = this.y;
 }
