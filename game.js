@@ -117,6 +117,7 @@ function update()
 // Load the home page
 function loadHomePage() 
 {
+   
     var homePage = game.add.image(game.world.centerX, game.world.centerY, 'homePage');
     homePage.anchor.setTo(0.5, 0.5);
     // Add offset of 4px to remove black frame
@@ -159,6 +160,15 @@ function loadHomePage()
     var btnHastafir = game.add.button(30, 520, 'hastafir');
     btnHastafir.events.onInputDown.add(Assignment, {exercise: hastafir});
 
+    // stop event listener for keyboard
+    game.input.keyboard.stop();
+    
+    // Initialize variables for assignments
+    text = "";
+    corrCount = 0;
+    incorrPos = -1;
+    textPos = 0;
+
     addMuteButton();
 }
 
@@ -167,6 +177,7 @@ function Assignment1(exerciseNr)
 	// Empty the canvas
    	game.world.removeAll();
     intro.destroy();
+    game.input.keyboard.start();
 
     if(!this.exerciseNr)
     {
@@ -211,6 +222,7 @@ function Assignment2(exerciseNr)
     // Empty the canvas
     game.world.removeAll();
     intro.destroy();
+    game.input.keyboard.start();
 
     if(!this.exerciseNr)
     {
@@ -245,6 +257,7 @@ function Assignment3(exerciseNr)
     // Empty the canvas
     game.world.removeAll();
     intro.destroy();
+    game.input.keyboard.start();
 
     if(!this.exerciseNr)
     {
@@ -279,6 +292,7 @@ function Assignment4(exerciseNr)
     // Empty the canvas
     game.world.removeAll();
     intro.destroy();
+    game.input.keyboard.start();
 
     if(!this.exerciseNr)
     {
@@ -313,6 +327,7 @@ function Assignment5(exerciseNr)
     // Empty the canvas
     game.world.removeAll();
     intro.destroy();
+    game.input.keyboard.start();
 
     if(!this.exerciseNr)
     {
@@ -349,6 +364,7 @@ function Assignment(exerciseNr)
     // Empty the canvas
     game.world.removeAll();
     intro.destroy();
+    game.input.keyboard.start();
 
     if(!this.exerciseNr)
     {
