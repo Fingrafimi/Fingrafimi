@@ -1,3 +1,5 @@
+/*jshint sub:true*/
+
 // Create instance of the game
 var width = 900;
 var height = 600;
@@ -32,6 +34,7 @@ var firstLoad = true;
 
 var fKey;
 var currentExecBtn = [0, 0];
+var keyboardMap = new Map();
 
 // Load the resources needed
 function preload()
@@ -115,45 +118,59 @@ function loadHomePage()
 
     var btnFj = game.add.button(30, 35, 'fj');
     btnFj.events.onInputDown.add(Assignment, {exercise: fj});
+    btnFj.events.onInputDown.add(function(){ currentExecBtn[0] = 0; });
 
     var btnDk = game.add.button(30, 75, 'dk');
     btnDk.events.onInputDown.add(Assignment, {exercise: dk});
+    btnDk.events.onInputDown.add(function(){ currentExecBtn[0] = 1; });
 
     var btnSl = game.add.button(30, 115, 'sl');
     btnSl.events.onInputDown.add(Assignment, {exercise: sl});
+    btnSl.events.onInputDown.add(function(){ currentExecBtn[0] = 2; });
 
     var btnAae = game.add.button(30, 155, 'aae');
     btnAae.events.onInputDown.add(Assignment, {exercise: aae});
+    btnAae.events.onInputDown.add(function(){ currentExecBtn[0] = 3; });
 
     var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
     btnHome1.events.onInputDown.add(Assignment, {exercise: heimalyklar1});
+    btnHome1.events.onInputDown.add(function(){ currentExecBtn[0] = 4; });
 
     var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
     btnHome2.events.onInputDown.add(Assignment, {exercise: heimalyklar2});
+    btnHome2.events.onInputDown.add(function(){ currentExecBtn[0] = 5; });
 
     var btnEh = game.add.button(30, 305, 'eh');
     btnEh.events.onInputDown.add(Assignment, {exercise: eh});
+    btnEh.events.onInputDown.add(function(){ currentExecBtn[0] = 6; });
 
     var btnIg = game.add.button(30, 345, 'ig');
     btnIg.events.onInputDown.add(Assignment, {exercise: ig});
+    btnIg.events.onInputDown.add(function(){ currentExecBtn[0] = 7; });
 
     var btnBn = game.add.button(30, 385, 'bn');
     btnBn.events.onInputDown.add(Assignment, {exercise: bn});
+    btnBn.events.onInputDown.add(function(){ currentExecBtn[0] = 8; });
 
     var btnRo = game.add.button(30, 425, 'ro');
     btnRo.events.onInputDown.add(Assignment, {exercise: ro});
+    btnRo.events.onInputDown.add(function(){ currentExecBtn[0] = 9; });
 
     var btnBrodd = game.add.button(30, 465, 'broddstafir');
     btnBrodd.events.onInputDown.add(Assignment, {exercise: broddstafir});
+    btnBrodd.events.onInputDown.add(function(){ currentExecBtn[0] = 10; });
 
     var btnHastafir = game.add.button(30, 520, 'hastafir');
     btnHastafir.events.onInputDown.add(Assignment, {exercise: hastafir});
+    btnHastafir.events.onInputDown.add(function(){ currentExecBtn[0] = 11; });
 
     addMuteButton();
 }
 
 function Assignment(exerciseNr) 
 {
+    console.log(currentExecBtn);
+
     inExercise = true;
 	// Empty the canvas
    	game.world.removeAll();
@@ -164,8 +181,8 @@ function Assignment(exerciseNr)
         this.exerciseNr = 0;
     }
 
-    console.log(this.startNr);
-    console.log(this.count);
+    //console.log(this.startNr);
+    //console.log(this.count);
 
    	// Load new background
     background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
@@ -173,13 +190,31 @@ function Assignment(exerciseNr)
 
     keyboard = game.add.image(0, 0, 'keyboard');
     aKey = game.add.sprite(241, game.world.centerY + 49, 'asdf', 0);
+    aKey.animations.add('blink', [0, 1, 0, 1, 0], 2, false);
+
     sKey = game.add.sprite(285, game.world.centerY + 49, 'asdf', 2);
+    sKey.animations.add('blink', [2, 3, 2, 3, 2], 2, false);
+
     dKey = game.add.sprite(328, game.world.centerY + 49, 'asdf', 4);
+    dKey.animations.add('blink', [4, 5, 4, 5, 4], 2, false);
+
     fKey = game.add.sprite(371, game.world.centerY + 49, 'asdf', 6);
     fKey.animations.add('blink', [6, 7, 6, 7, 6], 2, false);
+
     gKey = game.add.sprite(416, game.world.centerY + 49, 'asdf', 8);
+    gKey.animations.add('blink', [8, 9, 8, 9, 8], 2, false);
+
     hKey = game.add.sprite(460, game.world.centerY + 49, 'asdf', 10);
+    hKey.animations.add('blink', [10, 11, 10, 11, 10], 2, false);
+
+    /*jKey = game.add.sprite(504, game.world.centerY + 49, 'asdf', 12);
+    jKey.animations.add('blink', [12, 13, 12, 13, 12], 2, false);
+    keyboardMap['j'] =jKey;*/
+
     jKey = game.add.sprite(504, game.world.centerY + 49, 'asdf', 12);
+    //keyboardMap.set('j', jKey);
+    //keyboardMap.get('j').animations.add('blink', [12, 13, 12, 13, 12], 2, false);
+
     //a_g = game.add.image(0, 0, 'a-g');
     //a_g.scale.setTo(1.25);
 
@@ -221,7 +256,30 @@ function Assignment(exerciseNr)
 
 
     addMuteButton();
-    if(this.exercise == fj || this.exercise == dk || this.exercise == sl || this.exercise == aae)
+
+    if(this.exercise == fj)
+    {
+        addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100, 0, 0);
+        addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100, 0, 3);
+    }
+    else if(this.exercise == dk)
+    {
+        addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100, 1, 0);
+        addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100, 1, 3);
+    }
+    else if(this.exercise == sl)
+    {
+        addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100, 2, 0);
+        addAssignmentImages('robot', this.exercise, 500, 450, 3, 4, 100, 2, 3);
+    }
+    else if(this.exercise == aae)
+    {
+        addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100, 3, 0);
+        addAssignmentImages('robot', this.exercise, 350, 450, 3, 3, 100, 3, 3);
+        addAssignmentImages('mus', this.exercise, 600, 475, 6, 3, 100, 3, 6);
+    }
+
+    /*if(this.exercise == fj || this.exercise == dk || this.exercise == sl || this.exercise == aae)
     {
         addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100);
         if(this.exercise == sl  )
@@ -238,7 +296,7 @@ function Assignment(exerciseNr)
         {
             addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100);
         }
-    }
+    }*/ 
 
     if(this.exercise == heimalyklar1 || this.exercise == heimalyklar2 )
     {
@@ -306,14 +364,15 @@ function keyPress(char)
             quitExercise();
             exercisesFinished[currentExecBtn[0]][currentExecBtn[1]] = true;
             //exerciseBtnArray[currentExecBtn[0]][currentExecBtn[1]].frame = 1;
-
+            console.log(exercisesFinished);
             return;
         }
 
-        console.log(currentExecBtn);
+        //console.log(currentExecBtn);
         
     }
 }
+
 
 function quitExercise()
 {
@@ -384,20 +443,20 @@ function addRobot(exerc, pos, startNr, count)
 }
 
 
-function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset)
+function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset, arrayIndex, iteration)
 {
     var yOffset = -1;
     for(i = 0; i < count; i++)
     {
         var img = game.add.button(x, y + yOffset * 25, image);
-        if(exercisesFinished[startNr][i] === true)
+        if(exercisesFinished[arrayIndex][iteration + i] === true)
         {
             img.frame = 1;
         }
         exerciseBtnArray[startNr][i] = img;
         img.scale.setTo(0.8);
         img.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc, startNr: startNr, count: i});
-        img.events.onInputDown.add(transportBtn, {x: startNr, y: i});
+        img.events.onInputDown.add(transportBtn, {x: arrayIndex, y: iteration + i});
         //console.log('startNr: ' + startNr);1
         //console.log('exerc: ' + exerc);
         //exerciseBtnArray[startNr][exerc] = image;
