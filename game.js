@@ -155,10 +155,10 @@ function loadHomePage()
     btnRo.events.onInputDown.add(Assignment1, {exercise: ro, assignmentNr: 9}); // 4
 
     var btnBrodd = game.add.button(30, 465, 'broddstafir');
-    btnBrodd.events.onInputDown.add(Assignment5, {exercise: broddstafir}); 
+    btnBrodd.events.onInputDown.add(Assignment1, {exercise: broddstafir, assignmentNr: 10}); //5
 
     var btnHastafir = game.add.button(30, 520, 'hastafir');
-    btnHastafir.events.onInputDown.add(Assignment, {exercise: hastafir});
+    btnHastafir.events.onInputDown.add(Assignment1, {exercise: hastafir, assignmentNr: 11});//5
 
     // stop event listener for keyboard
     game.input.keyboard.stop();
@@ -186,8 +186,9 @@ function Assignment1(assignmentNr, exerciseNr)
   
 
    	// Load new background
-    background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
-    background.anchor.setTo(0.5, 0.5);
+   // background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
+    //background.anchor.setTo(0.5, 0.5);
+    loadBackground(this.assignmentNr);
 
     // Create the textArea
     text = this.exercise[this.exerciseNr];
@@ -582,13 +583,55 @@ function addExercises(assignmentNr, exercise)
         addExerciseImages('jellyfish', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
         addExerciseImages('seahorse', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
     }
-    else if(assignmentNr === 8 || 9)
+    else if(assignmentNr === 8 || assignmentNr === 9)
     {
         addExerciseImages('saxafonn',exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
         addExerciseImages('tromma', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
         addExerciseImages('piano', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
         addExerciseImages('gitar', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
         addExerciseImages('nota', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+    }
+    else if(assignmentNr === 10 || assignmentNr === 11)
+    {
+        addExerciseImages('korfubolti',exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('blakbolti', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('rubbybolti', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('fotbolti', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
+        addExerciseImages('tennisbolti', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+    }
+}
+
+function loadBackground(assignmentNr)
+{
+    
+    if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
+    {
+        background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
+        background.anchor.setTo(0.5, 0.5);
+    }
+    else if(assignmentNr === 4 || assignmentNr === 5)
+    {
+        background = game.add.image(game.world.centerX, 204, 'blueBackground');
+        game.add.image(0, 10,'clouds');
+        game.add.image(0, 0,'farm');
+        background.anchor.setTo(0.5, 0.5);
+    }
+    else if(assignmentNr === 6 || assignmentNr === 7)
+    {
+        background = game.add.image(game.world.centerX, game.world.centerY, 'ocean');
+        background.anchor.setTo(0.5, 0.5);
+    }
+    else if(assignmentNr === 8 || assignmentNr === 9)
+    {
+        background = game.add.image(game.world.centerX, game.world.centerY, 'stage');
+        background.anchor.setTo(0.5, 0.5);
+    }
+    else if(assignmentNr === 10 || assignmentNr === 11)
+    {
+        background = game.add.image(game.world.centerX, game.world.centerY, 'blueBackground2');
+        game.add.image(0, 103,'box');
+        background.anchor.setTo(0.5, 0.5);
+       
     }
 }
 
