@@ -305,26 +305,6 @@ function addExitButton()
     exitBtn.events.onInputDown.add(loadHomePage);
 }
 
-function addMouse(exerc, pos, startIndex, count)
-{
-     for(i = 0; i < count; i++)
-    {
-        var mus = game.add.button(pos, 475, 'mus');
-        mus.events.onInputDown.add(Assignment, {exerciseNr: startIndex + i, exercise: exerc});
-        pos = pos + 100;
-    }
-}
-
-function addRobot(exerc, pos, startNr, count)
-{
-    for(i = 0; i < count; i++)
-    {
-        var robot = game.add.button(pos, 450, 'robot');
-        robot.events.onInputDown.add(Assignment, {exerciseNr: startNr + i, exercise: exerc});
-        pos = pos + 100;
-    }
-}
-
 function addExercises(assignmentNr, exercise)
 {
     
@@ -412,7 +392,6 @@ function loadBackground(assignmentNr)
         background = game.add.image(game.world.centerX, game.world.centerY, 'blueBackground2');
         game.add.image(0, 103,'box');
         background.anchor.setTo(0.5, 0.5);
-       
     }
 }
 
