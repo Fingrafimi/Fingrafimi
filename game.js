@@ -201,86 +201,6 @@ function Assignment(assignmentNr, exerciseNr)
     addExercises(this.assignmentNr, this.exercise);
 }
 
-function keyPress(char) 
-{
-    var wrongSound = game.add.audio('wrongSound');
-
-    if(incorrPos != -1)
-    {
-        if(char === text.charAt(incorrPos))
-        {
-            incorrPos = -1;
-            corrCount = corrCount + 1;
-        }
-        else
-        {
-            wrongSound.play();
-        }
-    }
-    else
-    {
-        if(char === text.charAt(textPos))
-        {
-            corrCount = corrCount + 1;
-        }
-        else
-        {
-            incorrPos = textPos;
-            wrongSound.play();
-
-        }
-        textPos = textPos + 1;
-    }
-    // Clear the textArea
-    textArea.destroy();
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
-    textArea.anchor.set(0.5);
-
-    textArea.addColor('#00ff00',0);
-    if(incorrPos != -1)
-    {
-        textArea.addColor('#ffa500',incorrPos);
-    }
-    
-    textArea.addColor('#ffffff', textPos);
-
-    if(textPos >= text.length && incorrPos === -1)
-    {
-        alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
-
-        text = "";
-        corrCount = 0;
-        incorrPos = -1;
-        textPos = 0;
-
-        return;
-    }
-}
-
-function overExit()
-{
-    exitBtn.frame = 1;
-}
-
-function outExit()
-{
-    exitBtn.frame = 0;
-}
-
-function muteSound()
-{
-    if(game.sound.mute)
-    {
-        game.sound.mute = false;
-        muteBtn.frame = 0;
-    }
-    else
-    {
-        game.sound.mute = true;
-        muteBtn.frame = 1;
-    }
-}
-
 function addMuteButton()
 {
     muteBtn = game.add.button(815, 20, 'sound');
@@ -409,3 +329,84 @@ function addExerciseImages(image, exerc, posArr, count, assignmentNr, exerciseNr
         exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(Assignment, {exerciseNr: exerciseNr + i, exercise: exerc, assignmentNr: assignmentNr});
     }
 }
+
+function keyPress(char) 
+{
+    var wrongSound = game.add.audio('wrongSound');
+
+    if(incorrPos != -1)
+    {
+        if(char === text.charAt(incorrPos))
+        {
+            incorrPos = -1;
+            corrCount = corrCount + 1;
+        }
+        else
+        {
+            wrongSound.play();
+        }
+    }
+    else
+    {
+        if(char === text.charAt(textPos))
+        {
+            corrCount = corrCount + 1;
+        }
+        else
+        {
+            incorrPos = textPos;
+            wrongSound.play();
+
+        }
+        textPos = textPos + 1;
+    }
+    // Clear the textArea
+    textArea.destroy();
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
+    textArea.anchor.set(0.5);
+
+    textArea.addColor('#00ff00',0);
+    if(incorrPos != -1)
+    {
+        textArea.addColor('#ffa500',incorrPos);
+    }
+    
+    textArea.addColor('#ffffff', textPos);
+
+    if(textPos >= text.length && incorrPos === -1)
+    {
+        alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
+
+        text = "";
+        corrCount = 0;
+        incorrPos = -1;
+        textPos = 0;
+
+        return;
+    }
+}
+
+function overExit()
+{
+    exitBtn.frame = 1;
+}
+
+function outExit()
+{
+    exitBtn.frame = 0;
+}
+
+function muteSound()
+{
+    if(game.sound.mute)
+    {
+        game.sound.mute = false;
+        muteBtn.frame = 0;
+    }
+    else
+    {
+        game.sound.mute = true;
+        muteBtn.frame = 1;
+    }
+}
+
