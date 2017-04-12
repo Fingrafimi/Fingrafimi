@@ -125,40 +125,40 @@ function loadHomePage()
     homePage.height = height;
 
     var btnFj = game.add.button(30, 35, 'fj');
-    btnFj.events.onInputDown.add(Assignment1, {exercise: fj, assignmentNr: 0});
+    btnFj.events.onInputDown.add(Assignment, {exercise: fj, assignmentNr: 0});
 
     var btnDk = game.add.button(30, 75, 'dk');
-    btnDk.events.onInputDown.add(Assignment1, {exercise: dk, assignmentNr: 1});
+    btnDk.events.onInputDown.add(Assignment, {exercise: dk, assignmentNr: 1});
 
     var btnSl = game.add.button(30, 115, 'sl');
-    btnSl.events.onInputDown.add(Assignment1, {exercise: sl, assignmentNr: 2});
+    btnSl.events.onInputDown.add(Assignment, {exercise: sl, assignmentNr: 2});
 
     var btnAae = game.add.button(30, 155, 'aae');
-    btnAae.events.onInputDown.add(Assignment1, {exercise: aae, assignmentNr: 3});
+    btnAae.events.onInputDown.add(Assignment, {exercise: aae, assignmentNr: 3});
 
     var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(Assignment1, {exercise: heimalyklar1, assignmentNr: 4}); //assignment 2
+    btnHome1.events.onInputDown.add(Assignment, {exercise: heimalyklar1, assignmentNr: 4}); //assignment 2
 
     var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(Assignment1, {exercise: heimalyklar2, assignmentNr: 5}); // assignment 2
+    btnHome2.events.onInputDown.add(Assignment, {exercise: heimalyklar2, assignmentNr: 5}); // assignment 2
 
     var btnEh = game.add.button(30, 305, 'eh');
-    btnEh.events.onInputDown.add(Assignment1, {exercise: eh, assignmentNr: 6}); //3
+    btnEh.events.onInputDown.add(Assignment, {exercise: eh, assignmentNr: 6}); //3
 
     var btnIg = game.add.button(30, 345, 'ig');
-    btnIg.events.onInputDown.add(Assignment1, {exercise: ig, assignmentNr: 7}); // 3
+    btnIg.events.onInputDown.add(Assignment, {exercise: ig, assignmentNr: 7}); // 3
 
     var btnBn = game.add.button(30, 385, 'bn');
-    btnBn.events.onInputDown.add(Assignment1, {exercise: bn, assignmentNr: 8}); // 4
+    btnBn.events.onInputDown.add(Assignment, {exercise: bn, assignmentNr: 8}); // 4
 
     var btnRo = game.add.button(30, 425, 'ro'); 
-    btnRo.events.onInputDown.add(Assignment1, {exercise: ro, assignmentNr: 9}); // 4
+    btnRo.events.onInputDown.add(Assignment, {exercise: ro, assignmentNr: 9}); // 4
 
     var btnBrodd = game.add.button(30, 465, 'broddstafir');
-    btnBrodd.events.onInputDown.add(Assignment1, {exercise: broddstafir, assignmentNr: 10}); //5
+    btnBrodd.events.onInputDown.add(Assignment, {exercise: broddstafir, assignmentNr: 10}); //5
 
     var btnHastafir = game.add.button(30, 520, 'hastafir');
-    btnHastafir.events.onInputDown.add(Assignment1, {exercise: hastafir, assignmentNr: 11});//5
+    btnHastafir.events.onInputDown.add(Assignment, {exercise: hastafir, assignmentNr: 11});//5
 
     // stop event listener for keyboard
     game.input.keyboard.stop();
@@ -172,7 +172,7 @@ function loadHomePage()
     addMuteButton();
 }
 
-function Assignment1(assignmentNr, exerciseNr) 
+function Assignment(assignmentNr, exerciseNr) 
 {
 	// Empty the canvas
    	game.world.removeAll();
@@ -183,11 +183,8 @@ function Assignment1(assignmentNr, exerciseNr)
     {
         this.exerciseNr = 0;
     }
-  
 
    	// Load new background
-   // background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
-    //background.anchor.setTo(0.5, 0.5);
     loadBackground(this.assignmentNr);
 
     // Create the textArea
@@ -200,224 +197,8 @@ function Assignment1(assignmentNr, exerciseNr)
     
     addExitButton();
     addMuteButton();
+
     addExercises(this.assignmentNr, this.exercise);
-
-  //  addAssignmentImages('mus',this.exercise, exerciseBtnPosArray[0], 3, 0, 0);
-  //  addAssignmentImages('robot', this.exercise, exerciseBtnPosArray[0], 3, 0, 3);
-/*
-    
-    if(this.exercise === sl  )
-    {
-        // add 4 robots in postition (500,450) with start index 3.
-        addAssignmentImages('robot', this.exercise, 500, 450, 3, 4, 100, Assignment1);
-    }
-    else if(this.exercise === aae)
-    {
-        addAssignmentImages('robot', this.exercise, 350, 450, 3, 3, 100, Assignment1);
-        addAssignmentImages('mus', this.exercise, 600, 475, 6, 3, 100, Assignment1);
-    }
-    else
-    {
-        addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100, Assignment1);
-    }*/
-}
-
-function Assignment2(exerciseNr) 
-{
-    // Empty the canvas
-    game.world.removeAll();
-    intro.destroy();
-    game.input.keyboard.start();
-
-    if(!this.exerciseNr)
-    {
-        this.exerciseNr = 0;
-    }
-
-    // Load new background
-    background = game.add.image(game.world.centerX, 204, 'blueBackground');
-    game.add.image(0, 10,'clouds');
-    game.add.image(0, 0,'farm');
-    background.anchor.setTo(0.5, 0.5);
-
-    // Create the textArea
-    text = this.exercise[this.exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
-    textArea.anchor.set(0.5);
-
-    // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, keyPress);
-
-    addExitButton();
-    addMuteButton();
-
-  /*  addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100, Assignment2);
-    addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60, Assignment2);
-    addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75, Assignment2);*/
-
-}
-
-function Assignment3(exerciseNr) 
-{
-    // Empty the canvas
-    game.world.removeAll();
-    intro.destroy();
-    game.input.keyboard.start();
-
-    if(!this.exerciseNr)
-    {
-        this.exerciseNr = 0;
-    }
-
-    // Load new background
-    background = game.add.image(game.world.centerX, game.world.centerY, 'ocean');
-    background.anchor.setTo(0.5, 0.5);
-
-    // Create the textArea
-    text = this.exercise[this.exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
-    textArea.anchor.set(0.5);
-
-    // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, keyPress);
-
-    addExitButton();
-    addMuteButton();
-
-   /* addAssignmentImages('shell', this.exercise, 25, 500, 0, 3, 60, Assignment3);
-    addAssignmentImages('starfish', this.exercise, 205, 500, 3, 3, 60, Assignment3);
-    addAssignmentImages('shrimp', this.exercise, 385, 500, 6, 3, 60, Assignment3);
-    addAssignmentImages('jellyfish', this.exercise, 565, 500, 9, 3, 60, Assignment3);
-    addAssignmentImages('seahorse', this.exercise, 750, 500, 12, 3, 50, Assignment3);*/
-}
-
-
-function Assignment4(exerciseNr) 
-{
-    // Empty the canvas
-    game.world.removeAll();
-    intro.destroy();
-    game.input.keyboard.start();
-
-    if(!this.exerciseNr)
-    {
-        this.exerciseNr = 0;
-    }
-
-    // Load new background
-    background = game.add.image(game.world.centerX, game.world.centerY, 'stage');
-    background.anchor.setTo(0.5, 0.5);
-
-    // Create the textArea
-    text = this.exercise[this.exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
-    textArea.anchor.set(0.5);
-
-    // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, keyPress);
-
-    addExitButton();
-    addMuteButton();
-
-   /* addAssignmentImages('saxafonn', this.exercise, 25, 500, 0, 3, 60, Assignment4);
-    addAssignmentImages('tromma', this.exercise, 205, 500, 3, 3, 60, Assignment4);
-    addAssignmentImages('piano', this.exercise, 385, 500, 6, 3, 60, Assignment4);
-    addAssignmentImages('gitar', this.exercise, 565, 500, 9, 3, 60, Assignment4);
-    addAssignmentImages('nota', this.exercise, 750, 500, 12, 3, 50, Assignment4);*/
-
-}
-
-function Assignment5(exerciseNr) 
-{
-    // Empty the canvas
-    game.world.removeAll();
-    intro.destroy();
-    game.input.keyboard.start();
-
-    if(!this.exerciseNr)
-    {
-        this.exerciseNr = 0;
-    }
-
-    // Load new background
-    background = game.add.image(game.world.centerX, game.world.centerY, 'blueBackground2');
-    game.add.image(0, 103,'box');
-    background.anchor.setTo(0.5, 0.5);
-
-    // Create the textArea
-    text = this.exercise[this.exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 + 50 , text, style);
-    textArea.anchor.set(0.5);
-
-    // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, keyPress);
-
-    addExitButton();
-    addMuteButton();
-
-   /* addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 3, 60, Assignment5);
-    addAssignmentImages('fotbolti', this.exercise, 205, 475, 3, 3, 60, Assignment5);
-    addAssignmentImages('korfubolti', this.exercise, 385, 475, 6, 3, 60, Assignment5);
-    addAssignmentImages('rubbybolti', this.exercise, 565, 475, 9, 3, 60, Assignment5);
-    addAssignmentImages('tennisbolti', this.exercise, 750, 475, 12, 3, 60, Assignment5);*/
-
-}
-
-
-function Assignment(exerciseNr) 
-{
-    // Empty the canvas
-    game.world.removeAll();
-    intro.destroy();
-    game.input.keyboard.start();
-
-    if(!this.exerciseNr)
-    {
-        this.exerciseNr = 0;
-    }
-  
-
-    // Load new background
-    background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
-    background.anchor.setTo(0.5, 0.5);
-
-    // Create the textArea
-    text = this.exercise[this.exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
-    textArea.anchor.set(0.5);
-
-    // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, keyPress);
-    
-    
-
-    addExitButton();
-    addMuteButton();
-    
-  /*  if(this.exercise === fj || this.exercise === dk || this.exercise === sl || this.exercise === aae)
-    {
-        addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100);
-        if(this.exercise === sl  )
-        {
-            // add 4 robots in postition (500,450) with start index 3.
-            addAssignmentImages('robot', this.exercise, 500, 450, 3, 4, 100);
-        }
-        else if(this.exercise === aae)
-        {
-            addAssignmentImages('robot', this.exercise, 350, 450, 3, 3, 100);
-            addAssignmentImages('mus', this.exercise, 600, 475, 6, 3, 100);
-        }
-        else
-        {
-            addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100);
-        }
-    }
-    else if(this.exercise === heimalyklar1 || this.exercise === heimalyklar2 )
-    {
-        addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100);
-        addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60);
-        addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75);
-    }*/
 }
 
 function keyPress(char) 
@@ -646,6 +427,6 @@ function addExerciseImages(image, exerc, posArr, count, assignmentNr, exerciseNr
         {
             exerciseBtnArray[assignmentNr][exerciseNr+i].frame = 1;
         }
-        exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(Assignment1, {exerciseNr: exerciseNr + i, exercise: exerc, assignmentNr: assignmentNr});
+        exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(Assignment, {exerciseNr: exerciseNr + i, exercise: exerc, assignmentNr: assignmentNr});
     }
 }
