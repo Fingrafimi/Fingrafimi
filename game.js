@@ -369,5 +369,5 @@ function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset, arrayI
         //img.events.onInputDown.add(transportBtn, {x: arrayIndex, y: iteration + i});
         x = x + xOffset;
         yOffset = yOffset * (-1);
-    };
-};
+    }
+}
