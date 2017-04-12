@@ -187,6 +187,22 @@ hastafir =
 'Ís og sósa'
 ];
 
+exerciseBtnPosArray =
+[
+    [[25,475],[150,475],[275,475],[525,475],[650,475],[775,475]],
+    [[25,475],[150,475],[275,475],[525,475],[650,475],[775,475]],
+    [[25,475],[150,475],[275,475],[400,475],[525,475],[650,475],[775,475]],
+    [[5,450],[75,525],[185,500],[305,475],[405,475],[505,475],[605,460],[705,475],[805,450]],
+    [[5,450],[75,525],[145,460],[215,515],[305,450],[355,475],[425,475],[495,475],[565,475],[665,450],[775,475]],
+    [[5,450],[75,525],[145,460],[215,515],[305,450],[355,475],[425,475],[495,475],[565,500],[625,450],[685,500],[745,450]],
+    [[5,500],[65,500],[120,500],[180,500],[240,500],[300,500],[360,500],[420,500],[480,500],[540,500],[600,500],[660,500],[720,475],[780,475], [840,475]],
+    [[5,500],[65,500],[120,500],[180,500],[240,500],[300,500],[360,500],[420,500],[480,500],[540,500],[600,500],[660,500],[720,475],[780,475], [840,475]],
+    [[5,500],[65,500],[120,500],[180,500],[240,500],[300,500],[360,500],[420,500],[480,500],[540,500],[600,500],[660,500],[720,475],[780,475], [840,475]],
+    [[5,500],[65,500],[120,500],[180,500],[240,500],[300,500],[360,500],[420,500],[480,500],[540,500],[600,500],[660,500],[720,475],[780,475], [840,475]],
+    [,,,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,]
+];
+
 exerciseBtnArray =
 [
     [,,,,,],
@@ -201,4 +217,20 @@ exerciseBtnArray =
     [,,,,,,,,,,,,,,,,],
     [,,,,,,,,,,,,,,,,],
     [,,,,,,,,,,,,,,,,]
+];
+
+exercisesFinished =
+[
+    [false,false,false,false,false,false],
+    [false,false,false,false,false,false],
+    [false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
 ];

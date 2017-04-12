@@ -125,34 +125,34 @@ function loadHomePage()
     homePage.height = height;
 
     var btnFj = game.add.button(30, 35, 'fj');
-    btnFj.events.onInputDown.add(Assignment1, {exercise: fj});
+    btnFj.events.onInputDown.add(Assignment1, {exercise: fj, assignmentNr: 0});
 
     var btnDk = game.add.button(30, 75, 'dk');
-    btnDk.events.onInputDown.add(Assignment1, {exercise: dk});
+    btnDk.events.onInputDown.add(Assignment1, {exercise: dk, assignmentNr: 1});
 
     var btnSl = game.add.button(30, 115, 'sl');
-    btnSl.events.onInputDown.add(Assignment1, {exercise: sl});
+    btnSl.events.onInputDown.add(Assignment1, {exercise: sl, assignmentNr: 2});
 
     var btnAae = game.add.button(30, 155, 'aae');
-    btnAae.events.onInputDown.add(Assignment1, {exercise: aae});
+    btnAae.events.onInputDown.add(Assignment1, {exercise: aae, assignmentNr: 3});
 
     var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(Assignment2, {exercise: heimalyklar1});
+    btnHome1.events.onInputDown.add(Assignment1, {exercise: heimalyklar1, assignmentNr: 4}); //assignment 2
 
     var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(Assignment2, {exercise: heimalyklar2});
+    btnHome2.events.onInputDown.add(Assignment1, {exercise: heimalyklar2, assignmentNr: 5}); // assignment 2
 
     var btnEh = game.add.button(30, 305, 'eh');
-    btnEh.events.onInputDown.add(Assignment3, {exercise: eh}); //3
+    btnEh.events.onInputDown.add(Assignment1, {exercise: eh, assignmentNr: 6}); //3
 
     var btnIg = game.add.button(30, 345, 'ig');
-    btnIg.events.onInputDown.add(Assignment3, {exercise: ig}); // 3
+    btnIg.events.onInputDown.add(Assignment1, {exercise: ig, assignmentNr: 7}); // 3
 
     var btnBn = game.add.button(30, 385, 'bn');
-    btnBn.events.onInputDown.add(Assignment4, {exercise: bn}); // 4
+    btnBn.events.onInputDown.add(Assignment1, {exercise: bn, assignmentNr: 8}); // 4
 
     var btnRo = game.add.button(30, 425, 'ro'); 
-    btnRo.events.onInputDown.add(Assignment4, {exercise: ro}); // 4
+    btnRo.events.onInputDown.add(Assignment1, {exercise: ro, assignmentNr: 9}); // 4
 
     var btnBrodd = game.add.button(30, 465, 'broddstafir');
     btnBrodd.events.onInputDown.add(Assignment5, {exercise: broddstafir}); 
@@ -172,7 +172,7 @@ function loadHomePage()
     addMuteButton();
 }
 
-function Assignment1(exerciseNr) 
+function Assignment1(assignmentNr, exerciseNr) 
 {
 	// Empty the canvas
    	game.world.removeAll();
@@ -199,8 +199,12 @@ function Assignment1(exerciseNr)
     
     addExitButton();
     addMuteButton();
+    addExercises(this.assignmentNr, this.exercise);
 
-    addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100, Assignment1);
+  //  addAssignmentImages('mus',this.exercise, exerciseBtnPosArray[0], 3, 0, 0);
+  //  addAssignmentImages('robot', this.exercise, exerciseBtnPosArray[0], 3, 0, 3);
+/*
+    
     if(this.exercise === sl  )
     {
         // add 4 robots in postition (500,450) with start index 3.
@@ -214,7 +218,7 @@ function Assignment1(exerciseNr)
     else
     {
         addAssignmentImages('robot', this.exercise, 500, 450, 3, 3, 100, Assignment1);
-    }
+    }*/
 }
 
 function Assignment2(exerciseNr) 
@@ -246,9 +250,9 @@ function Assignment2(exerciseNr)
     addExitButton();
     addMuteButton();
 
-    addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100, Assignment2);
+  /*  addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100, Assignment2);
     addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60, Assignment2);
-    addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75, Assignment2);
+    addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75, Assignment2);*/
 
 }
 
@@ -279,11 +283,11 @@ function Assignment3(exerciseNr)
     addExitButton();
     addMuteButton();
 
-    addAssignmentImages('shell', this.exercise, 25, 500, 0, 3, 60, Assignment3);
+   /* addAssignmentImages('shell', this.exercise, 25, 500, 0, 3, 60, Assignment3);
     addAssignmentImages('starfish', this.exercise, 205, 500, 3, 3, 60, Assignment3);
     addAssignmentImages('shrimp', this.exercise, 385, 500, 6, 3, 60, Assignment3);
     addAssignmentImages('jellyfish', this.exercise, 565, 500, 9, 3, 60, Assignment3);
-    addAssignmentImages('seahorse', this.exercise, 750, 500, 12, 3, 50, Assignment3);
+    addAssignmentImages('seahorse', this.exercise, 750, 500, 12, 3, 50, Assignment3);*/
 }
 
 
@@ -314,11 +318,11 @@ function Assignment4(exerciseNr)
     addExitButton();
     addMuteButton();
 
-    addAssignmentImages('saxafonn', this.exercise, 25, 500, 0, 3, 60, Assignment4);
+   /* addAssignmentImages('saxafonn', this.exercise, 25, 500, 0, 3, 60, Assignment4);
     addAssignmentImages('tromma', this.exercise, 205, 500, 3, 3, 60, Assignment4);
     addAssignmentImages('piano', this.exercise, 385, 500, 6, 3, 60, Assignment4);
     addAssignmentImages('gitar', this.exercise, 565, 500, 9, 3, 60, Assignment4);
-    addAssignmentImages('nota', this.exercise, 750, 500, 12, 3, 50, Assignment4);
+    addAssignmentImages('nota', this.exercise, 750, 500, 12, 3, 50, Assignment4);*/
 
 }
 
@@ -350,11 +354,11 @@ function Assignment5(exerciseNr)
     addExitButton();
     addMuteButton();
 
-    addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 3, 60, Assignment5);
+   /* addAssignmentImages('blakbolti', this.exercise, 25, 475, 0, 3, 60, Assignment5);
     addAssignmentImages('fotbolti', this.exercise, 205, 475, 3, 3, 60, Assignment5);
     addAssignmentImages('korfubolti', this.exercise, 385, 475, 6, 3, 60, Assignment5);
     addAssignmentImages('rubbybolti', this.exercise, 565, 475, 9, 3, 60, Assignment5);
-    addAssignmentImages('tennisbolti', this.exercise, 750, 475, 12, 3, 60, Assignment5);
+    addAssignmentImages('tennisbolti', this.exercise, 750, 475, 12, 3, 60, Assignment5);*/
 
 }
 
@@ -388,7 +392,8 @@ function Assignment(exerciseNr)
 
     addExitButton();
     addMuteButton();
-    if(this.exercise === fj || this.exercise === dk || this.exercise === sl || this.exercise === aae)
+    
+  /*  if(this.exercise === fj || this.exercise === dk || this.exercise === sl || this.exercise === aae)
     {
         addAssignmentImages('mus',this.exercise, 25, 475, 0, 3, 100);
         if(this.exercise === sl  )
@@ -411,7 +416,7 @@ function Assignment(exerciseNr)
         addAssignmentImages('heyBaggi', this.exercise, 25, 475, 0, 4, 100);
         addAssignmentImages('blom', this.exercise, 430, 475, 4, 4, 60);
         addAssignmentImages('mus2', this.exercise, 650, 475, 8, 3, 75);
-    }
+    }*/
 }
 
 function keyPress(char) 
@@ -538,16 +543,66 @@ function addRobot(exerc, pos, startNr, count)
     }
 }
 
-
-function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset,func)
+function addExercises(assignmentNr, exercise)
 {
-    var yOffset = -1;
+    
+    if(assignmentNr === 0 || assignmentNr === 1)
+    {
+        addExerciseImages('mus',exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('robot', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+    }
+    else if(assignmentNr === 2)
+    {
+         addExerciseImages('mus',exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+         addExerciseImages('robot', exercise, exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 3);
+    }
+    else if(assignmentNr === 3)
+    {
+        addExerciseImages('mus',exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('robot', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('mus', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+    }
+    else if(assignmentNr === 4)
+    {
+        addExerciseImages('heyBaggi',exercise, exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 0);
+        addExerciseImages('blom', exercise, exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 4);
+        addExerciseImages('mus2', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 8);
+    }
+    else if(assignmentNr === 5)
+    {
+        addExerciseImages('heyBaggi',exercise, exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 0);
+        addExerciseImages('blom', exercise, exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 4);
+        addExerciseImages('mus2', exercise, exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 8);
+    }
+    else if(assignmentNr === 6 || assignmentNr === 7)
+    {
+        addExerciseImages('shell',exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('starfish', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('shrimp', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('jellyfish', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
+        addExerciseImages('seahorse', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+    }
+    else if(assignmentNr === 8 || 9)
+    {
+        addExerciseImages('saxafonn',exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('tromma', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('piano', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('gitar', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
+        addExerciseImages('nota', exercise, exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+    }
+}
+
+// Breyta nefninu í addExerciseImages
+function addExerciseImages(image, exerc, posArr, count, assignmentNr, exerciseNr)
+{
     for(i = 0; i < count; i++)
     {
-        var img = game.add.button(x, y + yOffset * 25, image);
-        img.scale.setTo(0.8);
-        img.events.onInputDown.add(func, {exerciseNr: startNr + i, exercise: exerc});
-        x = x + xOffset;
-        yOffset = yOffset * (-1);
+        exerciseBtnArray[assignmentNr][exerciseNr+i]= game.add.button(posArr[i+exerciseNr][0], posArr[i+exerciseNr][1], image);
+        //img.scale.setTo(0.8);
+        if(exercisesFinished[assignmentNr][exerciseNr+i] === true)
+        {
+            exerciseBtnArray[assignmentNr][exerciseNr+i].frame = 1;
+        }
+        exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(Assignment1, {exerciseNr: exerciseNr + i, exercise: exerc, assignmentNr: assignmentNr});
     }
 }
