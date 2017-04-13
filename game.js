@@ -119,40 +119,40 @@ function loadHomePage()
     homePage.height = height;
 
     var btnFj = game.add.button(30, 35, 'fj');
-    btnFj.events.onInputDown.add(Assignment, {exercise: exercisesArray[0], assignmentNr: 0});
+    btnFj.events.onInputDown.add(Assignment, {exercise: exercisesArray[0], assignmentNr: 0, exerciseNr: 0});
 
     var btnDk = game.add.button(30, 75, 'dk');
-    btnDk.events.onInputDown.add(Assignment, {exercise: exercisesArray[1], assignmentNr: 1});
+    btnDk.events.onInputDown.add(Assignment, {exercise: exercisesArray[1], assignmentNr: 1, exerciseNr: 0});
 
     var btnSl = game.add.button(30, 115, 'sl');
-    btnSl.events.onInputDown.add(Assignment, {exercise: exercisesArray[2], assignmentNr: 2});
+    btnSl.events.onInputDown.add(Assignment, {exercise: exercisesArray[2], assignmentNr: 2, exerciseNr: 0});
 
     var btnAae = game.add.button(30, 155, 'aae');
-    btnAae.events.onInputDown.add(Assignment, {exercise: exercisesArray[3], assignmentNr: 3});
+    btnAae.events.onInputDown.add(Assignment, {exercise: exercisesArray[3], assignmentNr: 3, exerciseNr: 0});
 
     var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(Assignment, {exercise: exercisesArray[4], assignmentNr: 4}); //assignment 2
+    btnHome1.events.onInputDown.add(Assignment, {exercise: exercisesArray[4], assignmentNr: 4, exerciseNr: 0}); //assignment 2
 
     var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(Assignment, {exercise: exercisesArray[5], assignmentNr: 5}); // assignment 2
+    btnHome2.events.onInputDown.add(Assignment, {exercise: exercisesArray[5], assignmentNr: 5, exerciseNr: 0}); // assignment 2
 
     var btnEh = game.add.button(30, 305, 'eh');
-    btnEh.events.onInputDown.add(Assignment, {exercise: exercisesArray[6], assignmentNr: 6}); //3
+    btnEh.events.onInputDown.add(Assignment, {exercise: exercisesArray[6], assignmentNr: 6, exerciseNr: 0}); //3
 
     var btnIg = game.add.button(30, 345, 'ig');
-    btnIg.events.onInputDown.add(Assignment, {exercise: exercisesArray[7], assignmentNr: 7}); // 3
+    btnIg.events.onInputDown.add(Assignment, {exercise: exercisesArray[7], assignmentNr: 7, exerciseNr: 0}); // 3
 
     var btnBn = game.add.button(30, 385, 'bn');
-    btnBn.events.onInputDown.add(Assignment, {exercise: exercisesArray[8], assignmentNr: 8}); // 4
+    btnBn.events.onInputDown.add(Assignment, {exercise: exercisesArray[8], assignmentNr: 8, exerciseNr: 0}); // 4
 
     var btnRo = game.add.button(30, 425, 'ro'); 
-    btnRo.events.onInputDown.add(Assignment, {exercise: exercisesArray[9], assignmentNr: 9}); // 4
+    btnRo.events.onInputDown.add(Assignment, {exercise: exercisesArray[9], assignmentNr: 9, exerciseNr: 0}); // 4
 
     var btnBrodd = game.add.button(30, 465, 'broddstafir');
-    btnBrodd.events.onInputDown.add(Assignment, {exercise: exercisesArray[10], assignmentNr: 10}); //5
+    btnBrodd.events.onInputDown.add(Assignment, {exercise: exercisesArray[10], assignmentNr: 10, exerciseNr: 0}); //5
 
     var btnHastafir = game.add.button(30, 520, 'hastafir');
-    btnHastafir.events.onInputDown.add(Assignment, {exercise: exercisesArray[11], assignmentNr: 11});//5
+    btnHastafir.events.onInputDown.add(Assignment, {exercise: exercisesArray[11], assignmentNr: 11, exerciseNr: 0});//5
 
     // stop event listener for keyboard
     game.input.keyboard.stop();
@@ -241,6 +241,8 @@ function keyPress(char)
     if(textPos >= text.length && incorrPos === -1)
     {
         quitExercise();
+        exercisesFinished[this.assignmentNr][this.exerciseNr] = true;
+        exercisesBtnArray[this.assignmentNr][this.exerciseNr].frame = 1;
         // TODO: breyta í true
         return;
     }
