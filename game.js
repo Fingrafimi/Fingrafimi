@@ -68,7 +68,7 @@ function preload()
     // Images for Assigments
     game.load.spritesheet('mus', 'Assets/Images/Buttons/Assignments/mus.png', 110, 70);
     game.load.spritesheet('robot', 'Assets/Images/Buttons/Assignments/robot.png', 105, 127);
-    game.load.spritesheet('heyBaggi', 'Assets/Images/Buttons/Assignments/hey.png', 122, 95);
+    game.load.spritesheet('heyBaggi', 'Assets/Images/Buttons/Assignments/hey.png', 80, 62);
     game.load.spritesheet('blom', 'Assets/Images/Buttons/Assignments/blom.png', 73, 95);
     game.load.spritesheet('mus2', 'Assets/Images/Buttons/Assignments/mus2.png', 91, 84);
     game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 57, 65);
