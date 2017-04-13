@@ -179,10 +179,7 @@ function Assignment(assignmentNr, exerciseNr)
     {
         this.assignmentNr = assignmentNr;
     }
-  //  alert(this.assignmentNr);
-    alert(exerciseNr);
-
-
+    
    	// Load new background
     loadBackground(assignmentNr);
 
