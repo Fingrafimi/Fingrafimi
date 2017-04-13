@@ -109,7 +109,7 @@ function update()
 }
 
 // Load the home page
-function loadHomePage() 
+/*function loadHomePage() 
 {
    
     var homePage = game.add.image(game.world.centerX, game.world.centerY, 'homePage');
@@ -164,9 +164,99 @@ function loadHomePage()
     textPos = 0;
 
     addMuteButton();
+}*/
+function loadHomePage() 
+{
+   
+    var homePage = game.add.image(game.world.centerX, game.world.centerY, 'homePage');
+    homePage.anchor.setTo(0.5, 0.5);
+    // Add offset of 4px to remove black frame
+    homePage.width = width;
+    homePage.height = height;
+
+    var btnFj = game.add.button(30, 35, 'fj');
+    //btnFj.events.onInputDown.add(Assignment, {exercise: exercisesArray[0], assignmentNr: 0, exerciseNr: 0});
+    btnFj.events.onInputDown.add(function(){
+        Assignment(0,0);
+    });
+
+    var btnDk = game.add.button(30, 75, 'dk');
+   // btnDk.events.onInputDown.add(Assignment, {exercise: exercisesArray[1], assignmentNr: 1, exerciseNr: 0});
+    btnDk.events.onInputDown.add(function(){
+        Assignment(1,0);
+    });
+
+    var btnSl = game.add.button(30, 115, 'sl');
+    //btnSl.events.onInputDown.add(Assignment, {exercise: exercisesArray[2], assignmentNr: 2, exerciseNr: 0});
+    btnSl.events.onInputDown.add(function(){
+        Assignment(2,0);
+    });
+    var btnAae = game.add.button(30, 155, 'aae');
+   // btnAae.events.onInputDown.add(Assignment, {exercise: exercisesArray[3], assignmentNr: 3, exerciseNr: 0});
+    btnAae.events.onInputDown.add(function(){
+        Assignment(3,0);
+    });
+
+    var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
+    //btnHome1.events.onInputDown.add(Assignment, {exercise: exercisesArray[4], assignmentNr: 4, exerciseNr: 0}); //assignment 2
+    btnHome1.events.onInputDown.add(function(){
+        Assignment(4,0);
+    });
+
+    var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
+    //btnHome2.events.onInputDown.add(Assignment, {exercise: exercisesArray[5], assignmentNr: 5, exerciseNr: 0}); // assignment 2
+    btnHome2.events.onInputDown.add(function(){
+        Assignment(5,0);
+    });
+
+    var btnEh = game.add.button(30, 305, 'eh');
+   // btnEh.events.onInputDown.add(Assignment, {exercise: exercisesArray[6], assignmentNr: 6, exerciseNr: 0}); //3
+    btnEh.events.onInputDown.add(function(){
+        Assignment(6,0);
+    });
+
+    var btnIg = game.add.button(30, 345, 'ig');
+    //btnIg.events.onInputDown.add(Assignment, {exercise: exercisesArray[7], assignmentNr: 7, exerciseNr: 0}); // 3
+    btnIg.events.onInputDown.add(function(){
+        Assignment(7,0);
+    });
+
+    var btnBn = game.add.button(30, 385, 'bn');
+   // btnBn.events.onInputDown.add(Assignment, {exercise: exercisesArray[8], assignmentNr: 8, exerciseNr: 0}); // 4
+    btnBn.events.onInputDown.add(function(){
+        Assignment(8,0);
+    });
+    
+    var btnRo = game.add.button(30, 425, 'ro'); 
+   // btnRo.events.onInputDown.add(Assignment, {exercise: exercisesArray[9], assignmentNr: 9, exerciseNr: 0}); // 4
+    btnRo.events.onInputDown.add(function(){
+        Assignment(9,0);
+    });
+
+    var btnBrodd = game.add.button(30, 465, 'broddstafir');
+    //btnBrodd.events.onInputDown.add(Assignment, {exercise: exercisesArray[10], assignmentNr: 10, exerciseNr: 0}); //5
+    btnBrodd.events.onInputDown.add(function(){
+        Assignment(10,0);
+    });
+    
+    var btnHastafir = game.add.button(30, 520, 'hastafir');
+   // btnHastafir.events.onInputDown.add(Assignment, {exercise: exercisesArray[11], assignmentNr: 11, exerciseNr: 0});//5
+    btnHastafir.events.onInputDown.add(function(){
+        Assignment(11,0);
+    });
+    // stop event listener for keyboard
+    game.input.keyboard.stop();
+    
+    // Initialize variables for assignments
+    text = "";
+    corrCount = 0;
+    incorrPos = -1;
+    textPos = 0;
+
+    addMuteButton();
 }
 
-function Assignment(assignmentNr, exerciseNr, exercise) 
+function Assignment(assignmentNr, exerciseNr) 
 {
     // Empty the canvas
     game.world.removeAll();
@@ -181,29 +271,32 @@ function Assignment(assignmentNr, exerciseNr, exercise)
     {
         this.assignmentNr = assignmentNr;
     }
-    if(this.exercise === undefined)
-    {
-        this.exercise = exercise;
-    }
+  //  alert(this.assignmentNr);
+    alert(exerciseNr);
+
 
    	// Load new background
-    loadBackground(this.assignmentNr);
+    loadBackground(assignmentNr);
 
     // Create the textArea
-    text = this.exercise[this.exerciseNr];
+    text = exercisesArray[assignmentNr][exerciseNr];
     textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
     textArea.anchor.set(0.5);
 
     // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+    game.input.keyboard.addCallbacks(this, null, null, function(char){
+
+        keyPress(char, assignmentNr, exerciseNr);
+        
+    });
     
     addExitButton();
     addMuteButton();
 
-    addExercises(this.assignmentNr, this.exercise);
+    addExercises(assignmentNr, exercisesArray[assignmentNr]);
 }
 
-function keyPress(char) 
+function keyPress(char, assignmentNr, exerciseNr) 
 {
     var wrongSound = game.add.audio('wrongSound');
 
@@ -249,12 +342,15 @@ function keyPress(char)
     if(textPos >= text.length && incorrPos === -1)
     {
         quitExercise();
-        exercisesFinished[this.assignmentNr][this.exerciseNr] = true;
-        //exercisesBtnArray[this.assignmentNr][this.exerciseNr].frame = 1;
-        this.exerciseNr = this.exerciseNr+1;
-        Assignment(this.assignmentNr,this.exerciseNr, this.exercise); 
-        
-        // TODO: breyta í true
+        exercisesFinished[assignmentNr][exerciseNr] = true;
+        if(exerciseNr + 1 < exercisesArray[assignmentNr] )
+        {
+             Assignment(assignmentNr, exerciseNr + 1);  
+        }
+        else
+        {
+            loadHomePage();
+        }
         return;
     }
 }
@@ -409,7 +505,7 @@ function loadBackground(assignmentNr)
 // Breyta nefninu í addExerciseImages
 function addExerciseImages(image, exerc, posArr, count, assignmentNr, exerciseNr)
 {
-    for(i = 0; i < count; i++)
+    for(var i = 0; i < count; i++)
     {
         exerciseBtnArray[assignmentNr][exerciseNr+i]= game.add.button(posArr[i+exerciseNr][0], posArr[i+exerciseNr][1], image);
         //img.scale.setTo(0.8);
@@ -417,6 +513,14 @@ function addExerciseImages(image, exerc, posArr, count, assignmentNr, exerciseNr
         {
             exerciseBtnArray[assignmentNr][exerciseNr+i].frame = 1;
         }
-        exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(Assignment, {exerciseNr: exerciseNr + i, exercise: exerc, assignmentNr: assignmentNr});
+
+        (function() 
+        {
+            var exerciseNum = exerciseNr + i;
+            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function()
+            {
+                Assignment(assignmentNr, exerciseNum);
+            });
+        }()); // immediate invocation
     }
 }
