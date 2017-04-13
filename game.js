@@ -105,9 +105,8 @@ function create()
 
 function update()
 {
-    console.log('Update');
-}
 
+}
 // Load the home page
 function loadHomePage() 
 {
@@ -179,7 +178,7 @@ function Assignment(assignmentNr, exerciseNr)
     {
         this.assignmentNr = assignmentNr;
     }
-    
+
    	// Load new background
     loadBackground(assignmentNr);
 
