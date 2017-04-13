@@ -166,16 +166,24 @@ function loadHomePage()
     addMuteButton();
 }
 
-function Assignment(assignmentNr, exerciseNr) 
+function Assignment(assignmentNr, exerciseNr, exercise) 
 {
-	// Empty the canvas
-   	game.world.removeAll();
+    // Empty the canvas
+    game.world.removeAll();
     intro.destroy();
     game.input.keyboard.start();
-
-    if(!this.exerciseNr)
+	
+    if(this.exerciseNr === undefined)
     {
-        this.exerciseNr = 0;
+        this.exerciseNr = exerciseNr;
+    }
+    if(this.assignmentNr === undefined)
+    {
+        this.assignmentNr = assignmentNr;
+    }
+    if(this.exercise === undefined)
+    {
+        this.exercise = exercise;
     }
 
    	// Load new background
@@ -242,7 +250,10 @@ function keyPress(char)
     {
         quitExercise();
         exercisesFinished[this.assignmentNr][this.exerciseNr] = true;
-        exercisesBtnArray[this.assignmentNr][this.exerciseNr].frame = 1;
+        //exercisesBtnArray[this.assignmentNr][this.exerciseNr].frame = 1;
+        this.exerciseNr = this.exerciseNr+1;
+        Assignment(this.assignmentNr,this.exerciseNr, this.exercise); 
+        
         // TODO: breyta í true
         return;
     }
