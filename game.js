@@ -1,33 +1,39 @@
+/*jshint sub:true*/
+
 // Create instance of the game
-var width = 900;
-var height = 600;
+var width = 1000;
+var height = 700;
 var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update}, true);
 
 // Create a variable for bitMapData to display text, used in functions Assignment and KeyPress
 var textArea;
 // Define the size of the area
-var textAreaX = 900;
+var textAreaX = 1000;
 var textAreaY = 65;
+var inExercise = false;
 
 // Variables for the assignments text
 var style = { font: '44px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
-
 var text = "";
-
-var textX = 450;
+var textX = 500;
 var textY = 50;
 
+//Variables for text positions
 var corrCount = 0;
 var incorrPos = -1;
 var textPos = 0;
+
+// Variables for into sound
+var intro;
+var firstLoad = true;
 
 // Buttons
 var exitBtn;
 var muteBtn;
 
-// Variables for into sound
-var intro;
-var firstLoad = true;
+//Other variables
+var wrongSound;
+var currentExecBtn = [0, 0];
 
 // Load the resources needed
 function preload()
@@ -35,6 +41,15 @@ function preload()
     // ================ Background images ================ 
     game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
+    
+    //Images
+    game.load.image('keyboard', 'Assets/Images/keyboardSprite/v2/lyklabord700.png');
+    game.load.spritesheet('keys', 'Assets/Images/keyboardSprite/v2/keySprite.png', 49, 45);
+    game.load.spritesheet('spacebar', 'Assets/Images/keyboardSprite/v2/spacebarSprite.png', 259, 44);
+    game.load.spritesheet('lShift', 'Assets/Images/keyboardSprite/v2/leftShiftSprite.png', 59, 43);
+    game.load.spritesheet('rShift', 'Assets/Images/keyboardSprite/v2/rightShiftsprite.png', 118, 43);
+
+    // Small icons
     game.load.image('blueBackground', 'Assets/Images/Backgrounds/blueBackground.png');
     game.load.image('farm', 'Assets/Images/Backgrounds/sveit.png');
     game.load.image('clouds', 'Assets/Images/Backgrounds/sky.png');
@@ -45,21 +60,21 @@ function preload()
 
     // ================ Small icons ================ 
     game.load.spritesheet('exit', 'Assets/Images/Buttons/Global/x.png', 42, 42);
-    game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 100, 96);
+    game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 99, 95);
 
-    // ================ Assignments buttons ================ 
-    game.load.image('fj', 'Assets/Images/Buttons/Homescreen/fj.png');
-    game.load.image('dk', 'Assets/Images/Buttons/Homescreen/dk.png');
-    game.load.image('sl', 'Assets/Images/Buttons/Homescreen/sl.png');
-    game.load.image('aae', 'Assets/Images/Buttons/Homescreen/aae.png');
-    game.load.image('heimalyklar1', 'Assets/Images/Buttons/Homescreen/heimalyklar1.png');
-    game.load.image('heimalyklar2', 'Assets/Images/Buttons/Homescreen/heimalyklar2.png');
-    game.load.image('eh', 'Assets/Images/Buttons/Homescreen/eh.png');
-    game.load.image('ig', 'Assets/Images/Buttons/Homescreen/ig.png');
-    game.load.image('bn', 'Assets/Images/Buttons/Homescreen/bn.png');
-    game.load.image('ro', 'Assets/Images/Buttons/Homescreen/ro.png');
-    game.load.image('broddstafir', 'Assets/Images/Buttons/Homescreen/broddstafir.png');
-    game.load.image('hastafir', 'Assets/Images/Buttons/Homescreen/hastafir.png');
+    // Assignments buttons
+    game.load.image('fj', 'Assets/Images/Buttons/Homescreen/fogj.png');
+    game.load.image('dk', 'Assets/Images/Buttons/Homescreen/dogk.png');
+    game.load.image('sl', 'Assets/Images/Buttons/Homescreen/sogl.png');
+    game.load.image('aae', 'Assets/Images/Buttons/Homescreen/aogae.png');
+    game.load.image('heimalyklar1', 'Assets/Images/Buttons/Homescreen/allir1.png');
+    game.load.image('heimalyklar2', 'Assets/Images/Buttons/Homescreen/allir2.png');
+    game.load.image('eh', 'Assets/Images/Buttons/Homescreen/eogh.png');
+    game.load.image('ig', 'Assets/Images/Buttons/Homescreen/iogg.png');
+    game.load.image('bn', 'Assets/Images/Buttons/Homescreen/bogn.png');
+    game.load.image('ro', 'Assets/Images/Buttons/Homescreen/rogo.png');
+    game.load.image('broddstafir', 'Assets/Images/Buttons/Homescreen/btn11.png');
+    game.load.image('hastafir', 'Assets/Images/Buttons/Homescreen/btn12.png');
 
     // Audio files
     game.load.audio('wrongSound', 'Assets/Sounds/wrongSound.mp3');
@@ -97,7 +112,7 @@ function create()
     intro = game.add.audio('intro');
     if(firstLoad)
     {
-        intro.play();
+        //intro.play();
         firstLoad = false;
     }
     loadHomePage();
@@ -107,49 +122,52 @@ function update()
 {
 
 }
+
 // Load the home page
 function loadHomePage() 
 {
+    game.input.keyboard.stop();
+
     var homePage = game.add.image(game.world.centerX, game.world.centerY, 'homePage');
     homePage.anchor.setTo(0.5, 0.5);
     homePage.width = width;
     homePage.height = height;
 
-    var btnFj = game.add.button(30, 35, 'fj');
-    btnFj.events.onInputDown.add(function(){ Assignment(0,0); });
+    var btnFj = game.add.button(28, 20, 'fj');
+    btnFj.events.onInputDown.add(function(){ Assignment(0, 0); });
 
-    var btnDk = game.add.button(30, 75, 'dk');
-    btnDk.events.onInputDown.add(function(){ Assignment(1,0); });
+    var btnDk = game.add.button(28, 70, 'dk');
+    btnDk.events.onInputDown.add(function(){ Assignment(1, 0); });
 
-    var btnSl = game.add.button(30, 115, 'sl');
-    btnSl.events.onInputDown.add(function(){ Assignment(2,0); });
+    var btnSl = game.add.button(28, 120, 'sl');
+    btnSl.events.onInputDown.add(function(){ Assignment(2, 0); });
 
-    var btnAae = game.add.button(30, 155, 'aae');
-    btnAae.events.onInputDown.add(function(){ Assignment(3,0); });
+    var btnAae = game.add.button(28, 170, 'aae');
+    btnAae.events.onInputDown.add(function(){ Assignment(3, 0); });
 
-    var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(function(){ Assignment(4,0); });
+    var btnHome1 = game.add.button(28, 215, 'heimalyklar1');
+    btnHome1.events.onInputDown.add(function(){ Assignment(4, 0); });
 
-    var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(function(){ Assignment(5,0); });
+    var btnHome2 = game.add.button(23, 275, 'heimalyklar2');
+    btnHome2.events.onInputDown.add(function(){ Assignment(5, 0); });
 
-    var btnEh = game.add.button(30, 305, 'eh');
-    btnEh.events.onInputDown.add(function(){ Assignment(6,0); });
+    var btnEh = game.add.button(30, 340, 'eh');
+    btnEh.events.onInputDown.add(function(){ Assignment(6, 0); });
 
-    var btnIg = game.add.button(30, 345, 'ig');
-    btnIg.events.onInputDown.add(function(){ Assignment(7,0); });
+    var btnIg = game.add.button(30, 388, 'ig');
+    btnIg.events.onInputDown.add(function(){ Assignment(7, 0); });
 
-    var btnBn = game.add.button(30, 385, 'bn');
-    btnBn.events.onInputDown.add(function(){ Assignment(8,0); });
+    var btnBn = game.add.button(30, 437, 'bn');
+    btnBn.events.onInputDown.add(function(){ Assignment(8, 0); });
     
-    var btnRo = game.add.button(30, 425, 'ro'); 
-    btnRo.events.onInputDown.add(function(){ Assignment(9,0); });
+    var btnRo = game.add.button(30, 485, 'ro'); 
+    btnRo.events.onInputDown.add(function(){ Assignment(9, 0); });
 
-    var btnBrodd = game.add.button(30, 465, 'broddstafir');
-    btnBrodd.events.onInputDown.add(function(){ Assignment(10,0); });
+    var btnBrodd = game.add.button(30, 535, 'broddstafir');
+    btnBrodd.events.onInputDown.add(function(){ Assignment(10, 0); });
     
-    var btnHastafir = game.add.button(30, 520, 'hastafir');
-    btnHastafir.events.onInputDown.add(function(){ Assignment(11,0); });
+    var btnHastafir = game.add.button(30, 605, 'hastafir');
+    btnHastafir.events.onInputDown.add(function(){ Assignment(11, 0); });
     
     // stop event listener for keyboard
     game.input.keyboard.stop();
@@ -161,6 +179,7 @@ function loadHomePage()
     textPos = 0;
 
     addMuteButton();
+
 }
 
 function Assignment(assignmentNr, exerciseNr) 
@@ -169,18 +188,12 @@ function Assignment(assignmentNr, exerciseNr)
     game.world.removeAll();
     intro.destroy();
     game.input.keyboard.start();
-	
-    if(this.exerciseNr === undefined)
-    {
-        this.exerciseNr = exerciseNr;
-    }
-    if(this.assignmentNr === undefined)
-    {
-        this.assignmentNr = assignmentNr;
-    }
 
    	// Load new background
     loadBackground(assignmentNr);
+
+    // Load keyboard
+    loadKeyboard(this.exerciseRow, this.exerciseIndex);
 
     // Create the textArea
     text = exercisesArray[assignmentNr][exerciseNr];
@@ -200,8 +213,7 @@ function Assignment(assignmentNr, exerciseNr)
 
 function keyPress(char, assignmentNr, exerciseNr) 
 {
-    var wrongSound = game.add.audio('wrongSound');
-
+    wrongSound = game.add.audio('wrongSound');
     if(incorrPos != -1)
     {
         if(char === text.charAt(incorrPos))
@@ -211,6 +223,15 @@ function keyPress(char, assignmentNr, exerciseNr)
         }
         else
         {
+            if(text.charAt(incorrPos) == text.charAt(incorrPos).toUpperCase())
+            {
+                keyboardKeysMap.get('shift').callAll('animations.play', 'animations', 'blink');
+                keyboardKeysMap.get(text.charAt(incorrPos).toLowerCase()).play('blink');
+            }
+            else
+            {
+                keyboardKeysMap.get(text.charAt(incorrPos)).play('blink');
+            }
             wrongSound.play();
         }
     }
@@ -223,6 +244,15 @@ function keyPress(char, assignmentNr, exerciseNr)
         else
         {
             incorrPos = textPos;
+            if(text.charAt(incorrPos) == text.charAt(incorrPos).toUpperCase())
+            {
+                keyboardKeysMap.get('shift').callAll('animations.play', 'animations', 'blink');
+                keyboardKeysMap.get(text.charAt(incorrPos).toLowerCase()).play('blink');
+            }
+            else
+            {
+                keyboardKeysMap.get(text.charAt(incorrPos)).play('blink');
+            }
             wrongSound.play();
 
         }
@@ -230,7 +260,7 @@ function keyPress(char, assignmentNr, exerciseNr)
     }
     // Clear the textArea
     textArea.destroy();
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2, text, style);
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
     textArea.anchor.set(0.5);
 
     textArea.addColor('#00ff00',0);
@@ -257,14 +287,21 @@ function keyPress(char, assignmentNr, exerciseNr)
     }
 }
 
-function overExit()
-{
-    exitBtn.frame = 1;
-}
 
-function outExit()
+function addMuteButton()
 {
-    exitBtn.frame = 0;
+    muteBtn = game.add.button(890, 20, 'sound');
+    muteBtn.scale.setTo(0.35);
+    muteBtn.events.onInputDown.add(muteSound);
+
+    if(game.sound.mute)
+    {
+        muteBtn.frame = 1;
+    }
+    else
+    {
+        muteBtn.frame = 0;
+    }
 }
 
 function muteSound()
@@ -281,20 +318,13 @@ function muteSound()
     }
 }
 
-function addMuteButton()
+function addExitButton()
 {
-    muteBtn = game.add.button(815, 20, 'sound');
-    muteBtn.scale.setTo(0.35);
-    muteBtn.events.onInputDown.add(muteSound);
-
-    if(game.sound.mute)
-    {
-        muteBtn.frame = 1;
-    }
-    else
-    {
-        muteBtn.frame = 0;
-    }
+    exitBtn = game.add.button(930, 15, 'exit');
+    exitBtn.events.onInputOver.add(overExit);
+    exitBtn.events.onInputOut.add(outExit);
+    exitBtn.events.onInputDown.add(loadHomePage);
+    exitBtn.events.onInputDown.add(quitExercise);
 }
 
 function addExitButton()
@@ -308,10 +338,21 @@ function addExitButton()
 
 function quitExercise()
 {
+    game.input.keyboard.stop();
     text = "";
     corrCount = 0;
     incorrPos = -1;
     textPos = 0;
+}
+
+function overExit()
+{
+    exitBtn.frame = 1;
+}
+
+function outExit()
+{
+    exitBtn.frame = 0;
 }
 
 function addExercises(assignmentNr)
@@ -372,8 +413,7 @@ function addExercises(assignmentNr)
 }
 
 function loadBackground(assignmentNr)
-{
-    
+{ 
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
     {
         background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
@@ -404,7 +444,6 @@ function loadBackground(assignmentNr)
     }
 }
 
-// Breyta nefninu í addExerciseImages
 function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
 {
     for(var i = 0; i < count; i++)
@@ -422,4 +461,114 @@ function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
             exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ Assignment(assignmentNr, exerciseNum); });
         }()); // immediate invocation
     }
+}
+
+function loadKeyboard(exerciseRow, exerciseIndex)
+{
+    keyboardKeysMap.set('a', game.add.sprite(241, 341, 'keys', 9));
+    keyboardKeysMap.get('a').animations.add('blink', [9, 10, 9, 10, 9], 2, false);
+
+    keyboardKeysMap.set('s', game.add.sprite(285, 341, 'keys', 27));   
+    keyboardKeysMap.get('s').animations.add('blink', [27, 34, 27, 34, 27], 2, false); 
+    
+    keyboardKeysMap.set('d', game.add.sprite(328, 341, 'keys', 15));
+    keyboardKeysMap.get('d').animations.add('blink', [15, 16, 15, 16, 15], 2, false);
+    
+    keyboardKeysMap.set('f', game.add.sprite(371, 341, 'keys', 21));
+    keyboardKeysMap.get('f').animations.add('blink', [21, 22, 21, 22, 21], 2, false);
+    
+    keyboardKeysMap.set('g', game.add.sprite(416, 341, 'keys', 23));
+    keyboardKeysMap.get('g').animations.add('blink', [23, 24, 23, 24, 23], 2, false);
+    
+    keyboardKeysMap.set('h', game.add.sprite(459, 340, 'keys', 25));
+    keyboardKeysMap.get('h').animations.add('blink', [25, 26, 25, 26, 25], 2, false);
+    
+    keyboardKeysMap.set('j', game.add.sprite(502, 340, 'keys', 31));
+    keyboardKeysMap.get('j').animations.add('blink', [31, 32, 31, 32, 31], 2, false);
+    
+    keyboardKeysMap.set('k', game.add.sprite(547, 340, 'keys', 33));
+    keyboardKeysMap.get('k').animations.add('blink', [33, 35, 33, 35, 33], 2, false);
+    
+    keyboardKeysMap.set('l', game.add.sprite(589, 340, 'keys', 39));
+    keyboardKeysMap.get('l').animations.add('blink', [39, 40, 39, 40, 39], 2, false);
+    
+    keyboardKeysMap.set('æ', game.add.sprite(636, 340, 'keys', 7));
+    keyboardKeysMap.get('æ').animations.add('blink', [7, 8, 7, 8, 7], 2, false);
+
+    keyboardKeysMap.set(' ', game.add.sprite(340, 429, 'spacebar', 0));
+    keyboardKeysMap.get(' ').width = 264;
+    keyboardKeysMap.get(' ').animations.add('blink', [0, 1, 0, 1, 0], 2, false);
+
+    if(exerciseRow > 5)
+    {
+        keyboardKeysMap.set('e', game.add.sprite(317, 298, 'keys', 17));
+        keyboardKeysMap.get('e').animations.add('blink', [17, 18, 17, 18, 17], 2, false);
+    }
+    else
+    {
+        keyboardKeysMap.set('e', game.add.sprite(317, 298, 'keys', 19));
+    }
+
+    if(exerciseRow > 6)
+    {
+        keyboardKeysMap.set('i', game.add.sprite(536, 296, 'keys', 28));
+        keyboardKeysMap.get('i').animations.add('blink', [28, 29, 28, 29, 28], 2, false);
+    }
+    else
+    {
+        keyboardKeysMap.set('i', game.add.sprite(536, 296, 'keys', 30));
+    }
+
+    if(exerciseRow > 7)
+    {
+        keyboardKeysMap.set('b', game.add.sprite(437, 384, 'keys', 11));
+        keyboardKeysMap.get('b').animations.add('blink', [11, 12, 11, 12, 11], 2, false);
+        
+        keyboardKeysMap.set('n', game.add.sprite(481, 384, 'keys', 6));
+        keyboardKeysMap.get('n').animations.add('blink', [6, 13, 6, 13, 6], 2, false);
+    }
+    else
+    {
+        keyboardKeysMap.set('b', game.add.sprite(437, 384, 'keys', 14));
+        keyboardKeysMap.set('n', game.add.sprite(481, 384, 'keys', 20));
+    }
+
+    if(exerciseRow > 8)
+    {
+        keyboardKeysMap.set('r', game.add.sprite(361, 298, 'keys', 3));
+        keyboardKeysMap.get('r').animations.add('blink', [3, 4, 3, 4, 3], 2, false);
+        
+        keyboardKeysMap.set('o', game.add.sprite(581, 297, 'keys', 0));
+        keyboardKeysMap.get('o').animations.add('blink', [0, 1, 0, 1, 0], 2, false);
+    }
+    else
+    {
+        keyboardKeysMap.set('r', game.add.sprite(361, 298, 'keys', 5));
+        keyboardKeysMap.set('o', game.add.sprite(581, 297, 'keys', 2));
+    }
+
+    if(exerciseRow > 9)
+    {
+        keyboardKeysMap.set('´', game.add.sprite(677, 340, 'keys', 36));
+        keyboardKeysMap.get('´').animations.add('blink', [36, 37, 36, 37, 36], 2, false);
+    }
+    else
+    {
+        keyboardKeysMap.set('´', game.add.sprite(677, 340, 'keys', 38));
+    }
+
+    keyboardKeysMap.set('shift', game.add.group());
+    if(exerciseRow > 10)
+    {
+        keyboardKeysMap.get('shift').add(game.add.sprite(166, 386, 'lShift', 1));
+        keyboardKeysMap.get('shift').add(game.add.sprite(702, 384, 'rShift', 1));
+        keyboardKeysMap.get('shift').callAll('animations.add', 'animations', 'blink', [1, 2, 1, 2, 1], 2, false);
+    }
+    else
+    {
+        keyboardKeysMap.get('shift').add(game.add.sprite(166, 386, 'lShift', 0));
+        keyboardKeysMap.get('shift').add(game.add.sprite(702, 384, 'rShift', 0));
+    }
+    
+    keyboard = game.add.image(150, 175, 'keyboard');
 }

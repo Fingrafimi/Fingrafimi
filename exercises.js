@@ -1,3 +1,5 @@
+  // jshint elision: true
+
 fj = 
 [
 'jjj fff ffff jjj fffff',
@@ -186,6 +188,8 @@ hastafir =
 'Ekki í dag Bara í dag',
 'Ís og sósa'
 ];
+
+keyboardKeysMap = new Map();
 
 exercisesArray = 
 [
@@ -376,5 +380,5 @@ exercisesFinished =
     [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
     [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
     [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
 ];
