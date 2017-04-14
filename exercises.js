@@ -188,6 +188,8 @@ hastafir =
 'Ís og sósa'
 ];
 
+keyboardKeysMap = new Map();
+
 exerciseBtnArray =
 [
     [,,,,,],
