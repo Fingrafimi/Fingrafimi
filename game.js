@@ -41,7 +41,7 @@ function preload()
     // ================ Background images ================ 
     game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
-    
+
     //Images
     game.load.image('keyboard', 'Assets/Images/keyboardSprite/v2/lyklabord700.png');
     game.load.spritesheet('keys', 'Assets/Images/keyboardSprite/v2/keySprite.png', 49, 45);
@@ -135,39 +135,51 @@ function loadHomePage()
 
     var btnFj = game.add.button(28, 20, 'fj');
     btnFj.events.onInputDown.add(function(){ Assignment(0, 0); });
+    btnFj.scale.setTo(0.85);
 
     var btnDk = game.add.button(28, 70, 'dk');
     btnDk.events.onInputDown.add(function(){ Assignment(1, 0); });
+    btnDk.scale.setTo(0.85);
 
     var btnSl = game.add.button(28, 120, 'sl');
     btnSl.events.onInputDown.add(function(){ Assignment(2, 0); });
-
+    btnSl.scale.setTo(0.85);
+    
     var btnAae = game.add.button(28, 170, 'aae');
     btnAae.events.onInputDown.add(function(){ Assignment(3, 0); });
+    btnAae.scale.setTo(0.85);
 
     var btnHome1 = game.add.button(28, 215, 'heimalyklar1');
     btnHome1.events.onInputDown.add(function(){ Assignment(4, 0); });
+    btnHome1.scale.setTo(0.85);
 
     var btnHome2 = game.add.button(23, 275, 'heimalyklar2');
     btnHome2.events.onInputDown.add(function(){ Assignment(5, 0); });
+    btnHome2.scale.setTo(0.85);
 
     var btnEh = game.add.button(30, 340, 'eh');
     btnEh.events.onInputDown.add(function(){ Assignment(6, 0); });
+    btnEh.scale.setTo(0.85);
 
     var btnIg = game.add.button(30, 388, 'ig');
     btnIg.events.onInputDown.add(function(){ Assignment(7, 0); });
+    btnIg.scale.setTo(0.85);
 
     var btnBn = game.add.button(30, 437, 'bn');
     btnBn.events.onInputDown.add(function(){ Assignment(8, 0); });
+    btnBn.scale.setTo(0.85);
     
     var btnRo = game.add.button(30, 485, 'ro'); 
     btnRo.events.onInputDown.add(function(){ Assignment(9, 0); });
+    btnRo.scale.setTo(0.85);
 
     var btnBrodd = game.add.button(30, 535, 'broddstafir');
     btnBrodd.events.onInputDown.add(function(){ Assignment(10, 0); });
+    btnBrodd.scale.setTo(0.85);
     
     var btnHastafir = game.add.button(30, 605, 'hastafir');
     btnHastafir.events.onInputDown.add(function(){ Assignment(11, 0); });
+    btnHastafir.scale.setTo(0.85);
     
     // stop event listener for keyboard
     game.input.keyboard.stop();
@@ -448,8 +460,7 @@ function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
 {
     for(var i = 0; i < count; i++)
     {
-        exerciseBtnArray[assignmentNr][exerciseNr+i]= game.add.button(posArr[i+exerciseNr][0], posArr[i+exerciseNr][1], image);
-        //img.scale.setTo(0.8);
+        exerciseBtnArray[assignmentNr][exerciseNr+i] = game.add.button(posArr[i+exerciseNr][0], posArr[i+exerciseNr][1], image);
         if(exercisesFinished[assignmentNr][exerciseNr+i] === true)
         {
             exerciseBtnArray[assignmentNr][exerciseNr+i].frame = 1;
