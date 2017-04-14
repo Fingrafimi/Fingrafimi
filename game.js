@@ -454,6 +454,8 @@ function loadBackground(assignmentNr)
         game.add.image(0, 103,'box');
         background.anchor.setTo(0.5, 0.5);
     }
+    background.width = width;
+    background.height = height;
 }
 
 function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
