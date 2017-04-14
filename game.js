@@ -71,24 +71,24 @@ function preload()
     game.load.spritesheet('heyBaggi', 'Assets/Images/Buttons/Assignments/hey.png', 80, 62);
     game.load.spritesheet('blom', 'Assets/Images/Buttons/Assignments/blom.png', 73, 95);
     game.load.spritesheet('mus2', 'Assets/Images/Buttons/Assignments/mus2.png', 91, 84);
-    game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 57, 65);
+    game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 44, 43);
 
-    game.load.spritesheet('blakbolti', 'Assets/Images/Buttons/Assignments/blakbolti.png', 61, 65);
-    game.load.spritesheet('fotbolti', 'Assets/Images/Buttons/Assignments/fotbolti.png', 61, 61);
-    game.load.spritesheet('korfubolti', 'Assets/Images/Buttons/Assignments/korfubolti.png', 60, 61);
-    game.load.spritesheet('rubbybolti', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 78, 53);
-    game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 28, 28);
+    game.load.spritesheet('blakbolti', 'Assets/Images/Buttons/Assignments/blakbolti.png', 39, 42);
+    game.load.spritesheet('fotbolti', 'Assets/Images/Buttons/Assignments/fotbolti.png', 39, 39);
+    game.load.spritesheet('korfubolti', 'Assets/Images/Buttons/Assignments/korfubolti.png', 39, 40);
+    game.load.spritesheet('rubbybolti', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 51, 35);
+    game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 18, 18);
 
-    game.load.spritesheet('gitar', 'Assets/Images/Buttons/Assignments/gitar.png', 69, 99);
-    game.load.spritesheet('tromma', 'Assets/Images/Buttons/Assignments/trommur.png', 47, 44);
-    game.load.spritesheet('nota', 'Assets/Images/Buttons/Assignments/nota.png', 54, 42);
-    game.load.spritesheet('piano', 'Assets/Images/Buttons/Assignments/piano.png', 101, 48);
-    game.load.spritesheet('saxafonn', 'Assets/Images/Buttons/Assignments/saxafonn.png', 48, 87);
+    game.load.spritesheet('gitar', 'Assets/Images/Buttons/Assignments/gitar.png', 51, 73);
+    game.load.spritesheet('tromma', 'Assets/Images/Buttons/Assignments/trommur.png', 37, 35);
+    game.load.spritesheet('nota', 'Assets/Images/Buttons/Assignments/nota.png', 50, 40);
+    game.load.spritesheet('piano', 'Assets/Images/Buttons/Assignments/piano.png', 81, 38);
+    game.load.spritesheet('saxafonn', 'Assets/Images/Buttons/Assignments/saxafonn.png', 57, 96);
 
-    game.load.spritesheet('jellyfish', 'Assets/Images/Buttons/Assignments/jellyfish.png', 60, 68);
-    game.load.spritesheet('starfish', 'Assets/Images/Buttons/Assignments/starfish.png', 77, 74);
-    game.load.spritesheet('shrimp', 'Assets/Images/Buttons/Assignments/shrimp.png', 77, 76);
-    game.load.spritesheet('seahorse', 'Assets/Images/Buttons/Assignments/seahorse.png', 54, 109);
+    game.load.spritesheet('jellyfish', 'Assets/Images/Buttons/Assignments/jellyfish.png', 39, 44);
+    game.load.spritesheet('starfish', 'Assets/Images/Buttons/Assignments/starfish.png', 50, 49);
+    game.load.spritesheet('shrimp', 'Assets/Images/Buttons/Assignments/shrimp.png', 50, 50);
+    game.load.spritesheet('seahorse', 'Assets/Images/Buttons/Assignments/seahorse.png', 35, 72);
     game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 67, 65);
 }
 
