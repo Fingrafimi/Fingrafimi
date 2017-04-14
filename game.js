@@ -445,8 +445,7 @@ function loadBackground(assignmentNr)
     }
     else if(assignmentNr === 10 || assignmentNr === 11)
     {
-        background = game.add.image(game.world.centerX, game.world.centerY, 'blueBackground2');
-        game.add.image(0, 103,'box');
+        background = game.add.image(game.world.centerX, game.world.centerY, 'box');
     }
     background.width = width;
     background.height = height;
