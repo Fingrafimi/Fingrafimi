@@ -310,8 +310,6 @@ function keyPress(char)
 
     if(textPos >= text.length && incorrPos == -1)
     {
-        alert("TIL HAMINGJU ÞÚ ERT BÚINN !");
-
         quitExercise();
         exercisesFinished[this.exerciseRow][this.exerciseIndex] = true;
         exerciseBtnArray[this.exerciseRow][this.exerciseIndex].frame = 1;
@@ -360,6 +358,7 @@ function addExitButton()
 
 function quitExercise()
 {
+    game.input.keyboard.stop();
     text = "";
     corrCount = 0;
     incorrPos = -1;
