@@ -73,11 +73,11 @@ function preload()
     game.load.spritesheet('mus2', 'Assets/Images/Buttons/Assignments/mus2.png', 91, 84);
     game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 44, 43);
 
-    game.load.spritesheet('blakbolti', 'Assets/Images/Buttons/Assignments/blakbolti.png', 39, 42);
-    game.load.spritesheet('fotbolti', 'Assets/Images/Buttons/Assignments/fotbolti.png', 39, 39);
-    game.load.spritesheet('korfubolti', 'Assets/Images/Buttons/Assignments/korfubolti.png', 39, 40);
-    game.load.spritesheet('rubbybolti', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 51, 35);
-    game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 18, 18);
+    game.load.spritesheet('blakbolti', 'Assets/Images/Buttons/Assignments/blakbolti.png', 48, 52);
+    game.load.spritesheet('fotbolti', 'Assets/Images/Buttons/Assignments/fotbolti.png', 45, 45);
+    game.load.spritesheet('korfubolti', 'Assets/Images/Buttons/Assignments/korfubolti.png', 50, 52);
+    game.load.spritesheet('rubbybolti', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 62, 42);
+    game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 26, 26);
 
     game.load.spritesheet('gitar', 'Assets/Images/Buttons/Assignments/gitar.png', 51, 73);
     game.load.spritesheet('tromma', 'Assets/Images/Buttons/Assignments/trommur.png', 37, 35);
