@@ -90,6 +90,7 @@ eh =
 'hæl hæl hæl efa efa efa sel',
 'hala hala hala fela fela fela',
 'lesa lesa seka seka seka hef',
+'haka haka dela dela dela hef',
 'halda halda halda elska elska',
 ];
 
@@ -189,40 +190,6 @@ hastafir =
 ];
 
 keyboardKeysMap = new Map();
-
-exerciseBtnArray =
-[
-    [,,,,,],
-    [,,,,,],
-    [,,,,,,],
-    [,,,,,,,,],
-    [,,,,,,,,,,],
-    [,,,,,,,,,,,],
-    [,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,]
-];
-
-exercisesFinished =
-[
-    [false,false,false,false,false,false],
-    [false,false,false,false,false,false],
-    [false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-];
-
-  // jshint elision: true
 
 exercisesArray = 
 [
@@ -366,4 +333,52 @@ exercisesArray =
     'Jens og Elín Sigga og Silja',
     'Ekki í dag Bara í dag',
     'Ís og sósa']
+];
+
+exerciseBtnPosArray =
+[
+    [[15,500],[130,525],[255,515],[525,450],[650,472],[775,450]],
+    [[15,500],[130,525],[255,515],[525,450],[650,472],[775,450]],
+    [[15,500],[130,525],[255,515],[470,460],[575,455],[680,465],[785,465]],
+    [[5,465],[70,525],[175,515],[295,470],[405,460],[515,472],[620,480],[705,525],[785,475]],
+    [[5,450],[65,510],[148,480],[215,530],[305,460],[370,490],[450,500],[530,490],[610,510],[710,470],[795,510]],
+    [[5,450],[65,510],[148,480],[215,530],[305,460],[370,490],[440,500],[520,490],[595,510],[655,470],[745,510],[810,470]],
+    [[5,520],[60,535],[115,550],[170,535],[225,535],[280,545],[350,540],[410,545],[470,535],[540,550],[595,545],[650,550],[720,520],[780,510],[840,475]],
+    [[5,520],[60,535],[115,550],[170,535],[225,535],[280,545],[350,540],[410,545],[470,535],[540,550],[595,545],[650,550],[720,520],[780,510],[840,475]],
+    [[5,480],[65,495],[120,500],[190,530],[240,535],[300,545],[350,535],[405,560],[480,535],[570,510],[620,500],[670,495],[720,545],[785,520],[840,550]],
+    [[5,480],[65,495],[120,500],[190,530],[240,535],[300,545],[350,535],[405,560],[480,535],[570,510],[620,500],[670,495],[720,545],[785,520],[840,550]],
+    [[5,480],[50,525],[110,520],[180,520],[240,520],[300,530],[365,510],[400,550],[475,525],[550,510],[610,500],[665,495],[730,540],[790,520],[850,540]],
+    [[5,480],[50,525],[110,520],[180,520],[240,520],[300,530],[365,510],[400,550],[475,525],[550,510],[610,500],[665,495],[730,540],[790,520],[850,540]]
+];
+
+exerciseBtnArray =
+[
+    [,,,,,],
+    [,,,,,],
+    [,,,,,,],
+    [,,,,,,,,],
+    [,,,,,,,,,,],
+    [,,,,,,,,,,,],
+    [,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,,,]
+];
+
+exercisesFinished =
+[
+    [false,false,false,false,false,false],
+    [false,false,false,false,false,false],
+    [false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
 ];

@@ -38,7 +38,7 @@ var currentExecBtn = [0, 0];
 // Load the resources needed
 function preload()
 {
-    // Background images
+    // ================ Background images ================ 
     game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
     
@@ -50,6 +50,15 @@ function preload()
     game.load.spritesheet('rShift', 'Assets/Images/keyboardSprite/v2/rightShiftsprite.png', 118, 43);
 
     // Small icons
+    game.load.image('blueBackground', 'Assets/Images/Backgrounds/blueBackground.png');
+    game.load.image('farm', 'Assets/Images/Backgrounds/sveit.png');
+    game.load.image('clouds', 'Assets/Images/Backgrounds/sky.png');
+    game.load.image('blueBackground2', 'Assets/Images/Backgrounds/blueBackground2.png');
+    game.load.image('box', 'Assets/Images/Backgrounds/box.png');
+    game.load.image('stage', 'Assets/Images/Backgrounds/svid.png');
+    game.load.image('ocean', 'Assets/Images/Backgrounds/sandur.png');
+
+    // ================ Small icons ================ 
     game.load.spritesheet('exit', 'Assets/Images/Buttons/Global/x.png', 42, 42);
     game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 99, 95);
 
@@ -66,19 +75,6 @@ function preload()
     game.load.image('ro', 'Assets/Images/Buttons/Homescreen/rogo.png');
     game.load.image('broddstafir', 'Assets/Images/Buttons/Homescreen/btn11.png');
     game.load.image('hastafir', 'Assets/Images/Buttons/Homescreen/btn12.png');
- /*   game.load.image('fj', 'Assets/Images/Buttons/Homescreen/fogj.png');
-    game.load.image('dk', 'Assets/Images/Buttons/Homescreen/dk.png');
-    game.load.image('sl', 'Assets/Images/Buttons/Homescreen/sl.png');
-    game.load.image('aae', 'Assets/Images/Buttons/Homescreen/aae.png');
-    game.load.image('heimalyklar1', 'Assets/Images/Buttons/Homescreen/heimalyklar1.png');
-    game.load.image('heimalyklar2', 'Assets/Images/Buttons/Homescreen/heimalyklar2.png');
-    game.load.image('eh', 'Assets/Images/Buttons/Homescreen/eh.png');
-    game.load.image('ig', 'Assets/Images/Buttons/Homescreen/ig.png');
-    game.load.image('bn', 'Assets/Images/Buttons/Homescreen/bn.png');
-    game.load.image('ro', 'Assets/Images/Buttons/Homescreen/ro.png');
-    game.load.image('broddstafir', 'Assets/Images/Buttons/Homescreen/broddstafir.png');
-    game.load.image('hastafir', 'Assets/Images/Buttons/Homescreen/hastafir.png');
-    game.load.image('hastafir2', 'Assets/Images/Buttons/Homescreen/btn12.png');*/
 
     // Audio files
     game.load.audio('wrongSound', 'Assets/Sounds/wrongSound.mp3');
@@ -87,10 +83,28 @@ function preload()
     // Images for Assigments
     game.load.spritesheet('mus', 'Assets/Images/Buttons/Assignments/mus.png', 110, 70);
     game.load.spritesheet('robot', 'Assets/Images/Buttons/Assignments/robot.png', 105, 127);
-    game.load.spritesheet('heyBaggi', 'Assets/Images/Buttons/Assignments/hey.png', 122, 95);
+    game.load.spritesheet('heyBaggi', 'Assets/Images/Buttons/Assignments/hey.png', 80, 62);
     game.load.spritesheet('blom', 'Assets/Images/Buttons/Assignments/blom.png', 73, 95);
     game.load.spritesheet('mus2', 'Assets/Images/Buttons/Assignments/mus2.png', 91, 84);
-    game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 57, 65);
+    game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 44, 43);
+
+    game.load.spritesheet('blakbolti', 'Assets/Images/Buttons/Assignments/blakbolti.png', 48, 52);
+    game.load.spritesheet('fotbolti', 'Assets/Images/Buttons/Assignments/fotbolti.png', 45, 45);
+    game.load.spritesheet('korfubolti', 'Assets/Images/Buttons/Assignments/korfubolti.png', 50, 52);
+    game.load.spritesheet('rubbybolti', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 62, 42);
+    game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 26, 26);
+
+    game.load.spritesheet('gitar', 'Assets/Images/Buttons/Assignments/gitar.png', 51, 73);
+    game.load.spritesheet('tromma', 'Assets/Images/Buttons/Assignments/trommur.png', 37, 35);
+    game.load.spritesheet('nota', 'Assets/Images/Buttons/Assignments/nota.png', 50, 40);
+    game.load.spritesheet('piano', 'Assets/Images/Buttons/Assignments/piano.png', 81, 38);
+    game.load.spritesheet('saxafonn', 'Assets/Images/Buttons/Assignments/saxafonn.png', 57, 96);
+
+    game.load.spritesheet('jellyfish', 'Assets/Images/Buttons/Assignments/jellyfish.png', 39, 44);
+    game.load.spritesheet('starfish', 'Assets/Images/Buttons/Assignments/starfish.png', 50, 49);
+    game.load.spritesheet('shrimp', 'Assets/Images/Buttons/Assignments/shrimp.png', 50, 50);
+    game.load.spritesheet('seahorse', 'Assets/Images/Buttons/Assignments/seahorse.png', 35, 72);
+    game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 67, 65);
 }
 
 function create() 
@@ -106,7 +120,7 @@ function create()
 
 function update()
 {
-    //console.log('Update');
+
 }
 
 // Load the home page
@@ -116,144 +130,93 @@ function loadHomePage()
 
     var homePage = game.add.image(game.world.centerX, game.world.centerY, 'homePage');
     homePage.anchor.setTo(0.5, 0.5);
-    // Add offset of 4px to remove black frame
     homePage.width = width;
     homePage.height = height;
 
     var btnFj = game.add.button(28, 20, 'fj');
-    btnFj.events.onInputDown.add(Assignment, {exerciseRow: 0, exerciseIndex: 0});
-    btnFj.scale.setTo(0.85);
+    btnFj.events.onInputDown.add(function(){ Assignment(0, 0); });
 
     var btnDk = game.add.button(28, 70, 'dk');
-    btnDk.events.onInputDown.add(Assignment, {exerciseRow: 1, exerciseIndex: 0});
-    btnDk.scale.setTo(0.85);
+    btnDk.events.onInputDown.add(function(){ Assignment(1, 0); });
 
     var btnSl = game.add.button(28, 120, 'sl');
-    btnSl.events.onInputDown.add(Assignment, {exerciseRow: 2, exerciseIndex: 0});
-    btnSl.scale.setTo(0.85);
+    btnSl.events.onInputDown.add(function(){ Assignment(2, 0); });
 
     var btnAae = game.add.button(28, 170, 'aae');
-    btnAae.events.onInputDown.add(Assignment, {exerciseRow: 3, exerciseIndex: 0});
-    btnAae.scale.setTo(0.85);
+    btnAae.events.onInputDown.add(function(){ Assignment(3, 0); });
 
     var btnHome1 = game.add.button(28, 215, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(Assignment, {exerciseRow: 4, exerciseIndex: 0});
-    btnHome1.scale.setTo(0.85);
+    btnHome1.events.onInputDown.add(function(){ Assignment(4, 0); });
 
     var btnHome2 = game.add.button(23, 275, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(Assignment, {exerciseRow: 5, exerciseIndex: 0});
-    btnHome2.scale.setTo(0.85);
+    btnHome2.events.onInputDown.add(function(){ Assignment(5, 0); });
 
     var btnEh = game.add.button(30, 340, 'eh');
-    btnEh.events.onInputDown.add(Assignment, {exerciseRow: 6, exerciseIndex: 0});
-    btnEh.scale.setTo(0.85);
+    btnEh.events.onInputDown.add(function(){ Assignment(6, 0); });
 
     var btnIg = game.add.button(30, 388, 'ig');
-    btnIg.events.onInputDown.add(Assignment, {exerciseRow: 7, exerciseIndex: 0});
-    btnIg.scale.setTo(0.85);
+    btnIg.events.onInputDown.add(function(){ Assignment(7, 0); });
 
     var btnBn = game.add.button(30, 437, 'bn');
-    btnBn.events.onInputDown.add(Assignment, {exerciseRow: 8, exerciseIndex: 0});
-    btnBn.scale.setTo(0.85);
-
-    var btnRo = game.add.button(30, 485, 'ro');
-    btnRo.events.onInputDown.add(Assignment, {exerciseRow: 9, exerciseIndex: 0});
-    btnRo.scale.setTo(0.85);
+    btnBn.events.onInputDown.add(function(){ Assignment(8, 0); });
+    
+    var btnRo = game.add.button(30, 485, 'ro'); 
+    btnRo.events.onInputDown.add(function(){ Assignment(9, 0); });
 
     var btnBrodd = game.add.button(30, 535, 'broddstafir');
-    btnBrodd.events.onInputDown.add(Assignment, {exerciseRow: 10, exerciseIndex: 0});
-    btnBrodd.scale.setTo(0.85);
-
+    btnBrodd.events.onInputDown.add(function(){ Assignment(10, 0); });
+    
     var btnHastafir = game.add.button(30, 605, 'hastafir');
-    btnHastafir.events.onInputDown.add(Assignment, {exerciseRow: 11, exerciseIndex: 0});
-    btnHastafir.scale.setTo(0.85);
-/*    var btnFj = game.add.button(30, 35, 'fj');
-    btnFj.events.onInputDown.add(Assignment, {exerciseRow: 0, exerciseIndex: 0});
+    btnHastafir.events.onInputDown.add(function(){ Assignment(11, 0); });
+    
+    // stop event listener for keyboard
+    game.input.keyboard.stop();
+    
+    // Initialize variables for assignments
+    text = "";
+    corrCount = 0;
+    incorrPos = -1;
+    textPos = 0;
 
-    var btnDk = game.add.button(30, 75, 'dk');
-    btnDk.events.onInputDown.add(Assignment, {exerciseRow: 1, exerciseIndex: 0});
-
-    var btnSl = game.add.button(30, 115, 'sl');
-    btnSl.events.onInputDown.add(Assignment, {exerciseRow: 2, exerciseIndex: 0});
-
-    var btnAae = game.add.button(30, 155, 'aae');
-    btnAae.events.onInputDown.add(Assignment, {exerciseRow: 3, exerciseIndex: 0});
-
-    var btnHome1 = game.add.button(25, 195, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(Assignment, {exerciseRow: 4, exerciseIndex: 0});
-
-    var btnHome2 = game.add.button(15, 245, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(Assignment, {exerciseRow: 5, exerciseIndex: 0});
-
-    var btnEh = game.add.button(30, 305, 'eh');
-    btnEh.events.onInputDown.add(Assignment, {exerciseRow: 6, exerciseIndex: 0});
-
-    var btnIg = game.add.button(30, 345, 'ig');
-    btnIg.events.onInputDown.add(Assignment, {exerciseRow: 7, exerciseIndex: 0});
-
-    var btnBn = game.add.button(30, 385, 'bn');
-    btnBn.events.onInputDown.add(Assignment, {exerciseRow: 8, exerciseIndex: 0});
-
-    var btnRo = game.add.button(30, 425, 'ro');
-    btnRo.events.onInputDown.add(Assignment, {exerciseRow: 9, exerciseIndex: 0});
-
-    var btnBrodd = game.add.button(30, 465, 'broddstafir');
-    btnBrodd.events.onInputDown.add(Assignment, {exerciseRow: 10, exerciseIndex: 0});
-
-    var btnHastafir = game.add.button(30, 520, 'hastafir');
-    btnHastafir.events.onInputDown.add(Assignment, {exerciseRow: 11, exerciseIndex: 0});*/
     addMuteButton();
 
 }
 
-function Assignment()
+function Assignment(assignmentNr, exerciseNr) 
 {
+    // Empty the canvas
     game.world.removeAll();
     intro.destroy();
     game.input.keyboard.start();
 
-    // Load new background
-    background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
-    background.anchor.setTo(0.5, 0.5);
-    background.width = width;
-    background.height = height;
+   	// Load new background
+    loadBackground(assignmentNr);
 
     // Load keyboard
     loadKeyboard(this.exerciseRow, this.exerciseIndex);
 
-    // Make the Shift button group blink
-    // keyboardKeysMap.get('shift').callAll('animations.play','animations','blink');
-
     // Create the textArea
-    text = exercisesArray[this.exerciseRow][this.exerciseIndex];
+    text = exercisesArray[assignmentNr][exerciseNr];
     textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
     textArea.anchor.set(0.5);
 
     // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, keyPress);
-
-    if(this.exerciseRow === 0)
-    {
-        addAssignmentImages('mus', exercisesArray[this.exerciseRow], 25, 575, 0, 3, 100, 0, 0);
-        addAssignmentImages('robot', exercisesArray[this.exerciseRow], 500, 550, 3, 3, 100, 0, 3);
-    }
-    else if(this.exerciseRow == 1)
-    {
-        addAssignmentImages('mus', exercisesArray[this.exerciseRow], 25, 575, 0, 3, 100, 1, 0);
-        addAssignmentImages('robot', exercisesArray[this.exerciseRow], 500, 550, 3, 3, 100, 1, 3);
-    }
-
+    game.input.keyboard.addCallbacks(this, null, null, function(char){
+        keyPress(char, assignmentNr, exerciseNr);
+    });
+    
+    addExitButton();
     addMuteButton();
 
-    addExitButton();
+    addExercises(assignmentNr);
 }
 
-function keyPress(char) 
+function keyPress(char, assignmentNr, exerciseNr) 
 {
     wrongSound = game.add.audio('wrongSound');
     if(incorrPos != -1)
     {
-        if(char == text.charAt(incorrPos))
+        if(char === text.charAt(incorrPos))
         {
             incorrPos = -1;
             corrCount = corrCount + 1;
@@ -274,7 +237,7 @@ function keyPress(char)
     }
     else
     {
-        if(char == text.charAt(textPos))
+        if(char === text.charAt(textPos))
         {
             corrCount = corrCount + 1;
         }
@@ -308,11 +271,19 @@ function keyPress(char)
     
     textArea.addColor('#ffffff', textPos);
 
-    if(textPos >= text.length && incorrPos == -1)
+    if(textPos >= text.length && incorrPos === -1)
     {
         quitExercise();
-        exercisesFinished[this.exerciseRow][this.exerciseIndex] = true;
-        exerciseBtnArray[this.exerciseRow][this.exerciseIndex].frame = 1;
+        exercisesFinished[assignmentNr][exerciseNr] = true;
+        if(exerciseNr + 1 < exercisesArray[assignmentNr].length)
+        {
+             Assignment(assignmentNr, exerciseNr + 1);  
+        }
+        else
+        {
+            loadHomePage();
+        }
+        return;
     }
 }
 
@@ -356,6 +327,15 @@ function addExitButton()
     exitBtn.events.onInputDown.add(quitExercise);
 }
 
+function addExitButton()
+{
+    exitBtn = game.add.button(850, 15, 'exit');
+    exitBtn.events.onInputOver.add(overExit);
+    exitBtn.events.onInputOut.add(outExit);
+    exitBtn.events.onInputDown.add(loadHomePage);
+    exitBtn.events.onInputDown.add(quitExercise);
+}
+
 function quitExercise()
 {
     game.input.keyboard.stop();
@@ -375,23 +355,111 @@ function outExit()
     exitBtn.frame = 0;
 }
 
-function addAssignmentImages(image, exerc, x, y, startNr, count, xOffset, arrayIndex, iteration)
+function addExercises(assignmentNr)
 {
-    var yOffset = -1;
-    for(i = 0; i < count; i++)
+    
+    if(assignmentNr === 0 || assignmentNr === 1)
     {
-        //var img = game.add.button(x, y + yOffset * 25, image);
-        exerciseBtnArray[arrayIndex][iteration + i] = game.add.button(x, y + yOffset * 25, image);
-        if(exercisesFinished[arrayIndex][iteration + i] === true)
+        addExerciseImages('mus', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('robot', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+    }
+    else if(assignmentNr === 2)
+    {
+         addExerciseImages('mus', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+         addExerciseImages('robot', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 3);
+    }
+    else if(assignmentNr === 3)
+    {
+        addExerciseImages('mus' , exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('robot', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('mus', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+    }
+    else if(assignmentNr === 4)
+    {
+        addExerciseImages('heyBaggi', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 0);
+        addExerciseImages('blom', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 4);
+        addExerciseImages('mus2', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 8);
+    }
+    else if(assignmentNr === 5)
+    {
+        addExerciseImages('heyBaggi', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 0);
+        addExerciseImages('blom', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 4);
+        addExerciseImages('mus2', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 8);
+    }
+    else if(assignmentNr === 6 || assignmentNr === 7)
+    {
+        addExerciseImages('shell', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('starfish', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('shrimp', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('jellyfish', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
+        addExerciseImages('seahorse', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+    }
+    else if(assignmentNr === 8 || assignmentNr === 9)
+    {
+        addExerciseImages('saxafonn', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('tromma', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('piano', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('gitar', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
+        addExerciseImages('nota', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+    }
+    else if(assignmentNr === 10 || assignmentNr === 11)
+    {
+        addExerciseImages('korfubolti', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('blakbolti', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('rubbybolti',  exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('fotbolti',  exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
+        addExerciseImages('tennisbolti',  exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+    }
+}
+
+function loadBackground(assignmentNr)
+{ 
+    if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
+    {
+        background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
+        background.anchor.setTo(0.5, 0.5);
+    }
+    else if(assignmentNr === 4 || assignmentNr === 5)
+    {
+        background = game.add.image(game.world.centerX, 204, 'blueBackground');
+        game.add.image(0, 10,'clouds');
+        game.add.image(0, 0,'farm');
+        background.anchor.setTo(0.5, 0.5);
+    }
+    else if(assignmentNr === 6 || assignmentNr === 7)
+    {
+        background = game.add.image(game.world.centerX, game.world.centerY, 'ocean');
+        background.anchor.setTo(0.5, 0.5);
+    }
+    else if(assignmentNr === 8 || assignmentNr === 9)
+    {
+        background = game.add.image(game.world.centerX, game.world.centerY, 'stage');
+        background.anchor.setTo(0.5, 0.5);
+    }
+    else if(assignmentNr === 10 || assignmentNr === 11)
+    {
+        background = game.add.image(game.world.centerX, game.world.centerY, 'blueBackground2');
+        game.add.image(0, 103,'box');
+        background.anchor.setTo(0.5, 0.5);
+    }
+}
+
+function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
+{
+    for(var i = 0; i < count; i++)
+    {
+        exerciseBtnArray[assignmentNr][exerciseNr+i]= game.add.button(posArr[i+exerciseNr][0], posArr[i+exerciseNr][1], image);
+        //img.scale.setTo(0.8);
+        if(exercisesFinished[assignmentNr][exerciseNr+i] === true)
         {
-            exerciseBtnArray[arrayIndex][iteration + i].frame = 1;
+            exerciseBtnArray[assignmentNr][exerciseNr+i].frame = 1;
         }
-        //exerciseBtnArray[arrayIndex][iteration + i] = img;
-        exerciseBtnArray[arrayIndex][iteration + i].scale.setTo(0.8);
-        exerciseBtnArray[arrayIndex][iteration + i].events.onInputDown.add(Assignment, { exerciseRow: arrayIndex, exerciseIndex: iteration + i});
-        //img.events.onInputDown.add(transportBtn, {x: arrayIndex, y: iteration + i});
-        x = x + xOffset;
-        yOffset = yOffset * (-1);
+
+        (function() 
+        {
+            var exerciseNum = exerciseNr + i;
+            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ Assignment(assignmentNr, exerciseNum); });
+        }()); // immediate invocation
     }
 }
 
