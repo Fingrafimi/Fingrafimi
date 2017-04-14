@@ -205,7 +205,7 @@ function Assignment(assignmentNr, exerciseNr)
     loadBackground(assignmentNr);
 
     // Load keyboard
-    loadKeyboard(this.exerciseRow, this.exerciseIndex);
+    loadKeyboard(assignmentNr, exerciseNr);
 
     // Create the textArea
     text = exercisesArray[assignmentNr][exerciseNr];
@@ -470,7 +470,7 @@ function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
     }
 }
 
-function loadKeyboard(exerciseRow, exerciseIndex)
+function loadKeyboard(assignmentNr, exerciseNr)
 {
     keyboardKeysMap.set('a', game.add.sprite(241, 341, 'keys', 9));
     keyboardKeysMap.get('a').animations.add('blink', [9, 10, 9, 10, 9], 2, false);
@@ -506,7 +506,7 @@ function loadKeyboard(exerciseRow, exerciseIndex)
     keyboardKeysMap.get(' ').width = 264;
     keyboardKeysMap.get(' ').animations.add('blink', [0, 1, 0, 1, 0], 2, false);
 
-    if(exerciseRow > 5)
+    if(assignmentNr > 5)
     {
         keyboardKeysMap.set('e', game.add.sprite(317, 298, 'keys', 17));
         keyboardKeysMap.get('e').animations.add('blink', [17, 18, 17, 18, 17], 2, false);
@@ -516,7 +516,7 @@ function loadKeyboard(exerciseRow, exerciseIndex)
         keyboardKeysMap.set('e', game.add.sprite(317, 298, 'keys', 19));
     }
 
-    if(exerciseRow > 6)
+    if(assignmentNr > 6)
     {
         keyboardKeysMap.set('i', game.add.sprite(536, 296, 'keys', 28));
         keyboardKeysMap.get('i').animations.add('blink', [28, 29, 28, 29, 28], 2, false);
@@ -526,7 +526,7 @@ function loadKeyboard(exerciseRow, exerciseIndex)
         keyboardKeysMap.set('i', game.add.sprite(536, 296, 'keys', 30));
     }
 
-    if(exerciseRow > 7)
+    if(assignmentNr > 7)
     {
         keyboardKeysMap.set('b', game.add.sprite(437, 384, 'keys', 11));
         keyboardKeysMap.get('b').animations.add('blink', [11, 12, 11, 12, 11], 2, false);
@@ -540,7 +540,7 @@ function loadKeyboard(exerciseRow, exerciseIndex)
         keyboardKeysMap.set('n', game.add.sprite(481, 384, 'keys', 20));
     }
 
-    if(exerciseRow > 8)
+    if(assignmentNr > 8)
     {
         keyboardKeysMap.set('r', game.add.sprite(361, 298, 'keys', 3));
         keyboardKeysMap.get('r').animations.add('blink', [3, 4, 3, 4, 3], 2, false);
@@ -554,7 +554,7 @@ function loadKeyboard(exerciseRow, exerciseIndex)
         keyboardKeysMap.set('o', game.add.sprite(581, 297, 'keys', 2));
     }
 
-    if(exerciseRow > 9)
+    if(assignmentNr > 9)
     {
         keyboardKeysMap.set('´', game.add.sprite(677, 340, 'keys', 36));
         keyboardKeysMap.get('´').animations.add('blink', [36, 37, 36, 37, 36], 2, false);
@@ -565,7 +565,7 @@ function loadKeyboard(exerciseRow, exerciseIndex)
     }
 
     keyboardKeysMap.set('shift', game.add.group());
-    if(exerciseRow > 10)
+    if(assignmentNr > 10)
     {
         keyboardKeysMap.get('shift').add(game.add.sprite(166, 386, 'lShift', 1));
         keyboardKeysMap.get('shift').add(game.add.sprite(702, 384, 'rShift', 1));
