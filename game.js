@@ -51,7 +51,7 @@ function preload()
 
     // Small icons
     game.load.image('blueBackground', 'Assets/Images/Backgrounds/blueBackground.png');
-    game.load.image('farm', 'Assets/Images/Backgrounds/sveit.png');
+    game.load.image('farm', 'Assets/Images/Backgrounds/farm.png');
     game.load.image('clouds', 'Assets/Images/Backgrounds/sky.png');
     game.load.image('blueBackground2', 'Assets/Images/Backgrounds/blueBackground2.png');
     game.load.image('box', 'Assets/Images/Backgrounds/box.png');
@@ -429,33 +429,28 @@ function loadBackground(assignmentNr)
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
     {
         background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
-        background.anchor.setTo(0.5, 0.5);
     }
     else if(assignmentNr === 4 || assignmentNr === 5)
     {
-        background = game.add.image(game.world.centerX, 204, 'blueBackground');
+        background = game.add.image(game.world.centerX, game.world.centerY, 'farm');
         game.add.image(0, 10,'clouds');
-        game.add.image(0, 0,'farm');
-        background.anchor.setTo(0.5, 0.5);
     }
     else if(assignmentNr === 6 || assignmentNr === 7)
     {
         background = game.add.image(game.world.centerX, game.world.centerY, 'ocean');
-        background.anchor.setTo(0.5, 0.5);
     }
     else if(assignmentNr === 8 || assignmentNr === 9)
     {
         background = game.add.image(game.world.centerX, game.world.centerY, 'stage');
-        background.anchor.setTo(0.5, 0.5);
     }
     else if(assignmentNr === 10 || assignmentNr === 11)
     {
         background = game.add.image(game.world.centerX, game.world.centerY, 'blueBackground2');
         game.add.image(0, 103,'box');
-        background.anchor.setTo(0.5, 0.5);
     }
     background.width = width;
     background.height = height;
+    background.anchor.setTo(0.5, 0.5);
 }
 
 function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
