@@ -39,72 +39,72 @@ var currentExecBtn = [0, 0];
 function preload()
 {
     // ================ Background images ================ 
-    game.load.image('homePage', 'Assets/Images/Backgrounds/homePage.png');
+    game.load.image('homePage',           'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
 
     //Images
-    game.load.image('keyboard', 'Assets/Images/keyboardSprite/v2/lyklabord700.png');
-    game.load.spritesheet('keys', 'Assets/Images/keyboardSprite/v2/keySprite.png', 49, 45);
-    game.load.spritesheet('spacebar', 'Assets/Images/keyboardSprite/v2/spacebarSprite.png', 259, 44);
-    game.load.spritesheet('lShift', 'Assets/Images/keyboardSprite/v2/leftShiftSprite.png', 59, 43);
-    game.load.spritesheet('rShift', 'Assets/Images/keyboardSprite/v2/rightShiftsprite.png', 118, 43);
+    game.load.image('keyboard',         'Assets/Images/keyboardSprite/v2/lyklabord700.png');
+    game.load.spritesheet('keys',       'Assets/Images/keyboardSprite/v2/keySprite.png', 49, 45);
+    game.load.spritesheet('spacebar',   'Assets/Images/keyboardSprite/v2/spacebarSprite.png', 259, 44);
+    game.load.spritesheet('lShift',     'Assets/Images/keyboardSprite/v2/leftShiftSprite.png', 59, 43);
+    game.load.spritesheet('rShift',     'Assets/Images/keyboardSprite/v2/rightShiftsprite.png', 118, 43);
 
     // Small icons
-    game.load.image('blueBackground', 'Assets/Images/Backgrounds/blueBackground.png');
-    game.load.image('farm', 'Assets/Images/Backgrounds/farm.png');
-    game.load.image('clouds', 'Assets/Images/Backgrounds/sky.png');
-    game.load.image('blueBackground2', 'Assets/Images/Backgrounds/blueBackground2.png');
-    game.load.image('box', 'Assets/Images/Backgrounds/box.png');
-    game.load.image('stage', 'Assets/Images/Backgrounds/svid.png');
-    game.load.image('ocean', 'Assets/Images/Backgrounds/sandur.png');
+    game.load.image('blueBackground',   'Assets/Images/Backgrounds/blueBackground.png');
+    game.load.image('farm',             'Assets/Images/Backgrounds/farm.png');
+    game.load.image('clouds',           'Assets/Images/Backgrounds/sky.png');
+    game.load.image('blueBackground2',  'Assets/Images/Backgrounds/blueBackground2.png');
+    game.load.image('box',              'Assets/Images/Backgrounds/box.png');
+    game.load.image('stage',            'Assets/Images/Backgrounds/svid.png');
+    game.load.image('ocean',            'Assets/Images/Backgrounds/sandur.png');
 
     // ================ Small icons ================ 
-    game.load.spritesheet('exit', 'Assets/Images/Buttons/Global/x.png', 42, 42);
-    game.load.spritesheet('sound', 'Assets/Images/Buttons/Global/sound.png', 99, 95);
+    game.load.spritesheet('exit',   'Assets/Images/Buttons/Global/x.png', 42, 42);
+    game.load.spritesheet('sound',  'Assets/Images/Buttons/Global/sound.png', 99, 95);
 
     // Assignments buttons
-    game.load.image('fj', 'Assets/Images/Buttons/Homescreen/fogj.png');
-    game.load.image('dk', 'Assets/Images/Buttons/Homescreen/dogk.png');
-    game.load.image('sl', 'Assets/Images/Buttons/Homescreen/sogl.png');
-    game.load.image('aae', 'Assets/Images/Buttons/Homescreen/aogae.png');
-    game.load.image('heimalyklar1', 'Assets/Images/Buttons/Homescreen/allir1.png');
-    game.load.image('heimalyklar2', 'Assets/Images/Buttons/Homescreen/allir2.png');
-    game.load.image('eh', 'Assets/Images/Buttons/Homescreen/eogh.png');
-    game.load.image('ig', 'Assets/Images/Buttons/Homescreen/iogg.png');
-    game.load.image('bn', 'Assets/Images/Buttons/Homescreen/bogn.png');
-    game.load.image('ro', 'Assets/Images/Buttons/Homescreen/rogo.png');
-    game.load.image('broddstafir', 'Assets/Images/Buttons/Homescreen/btn11.png');
-    game.load.image('hastafir', 'Assets/Images/Buttons/Homescreen/btn12.png');
+    game.load.image('fj',           'Assets/Images/Buttons/Assignments/fogj.png');
+    game.load.image('dk',           'Assets/Images/Buttons/Assignments/dogk.png');
+    game.load.image('sl',           'Assets/Images/Buttons/Assignments/sogl.png');
+    game.load.image('aae',          'Assets/Images/Buttons/Assignments/aogae.png');
+    game.load.image('heimalyklar1', 'Assets/Images/Buttons/Assignments/allir1.png');
+    game.load.image('heimalyklar2', 'Assets/Images/Buttons/Assignments/allir2.png');
+    game.load.image('eh',           'Assets/Images/Buttons/Assignments/eogh.png');
+    game.load.image('ig',           'Assets/Images/Buttons/Assignments/iogg.png');
+    game.load.image('bn',           'Assets/Images/Buttons/Assignments/bogn.png');
+    game.load.image('ro',           'Assets/Images/Buttons/Assignments/rogo.png');
+    game.load.image('broddstafir',  'Assets/Images/Buttons/Assignments/btn11.png');
+    game.load.image('hastafir',     'Assets/Images/Buttons/Assignments/btn12.png');
 
     // Audio files
-    game.load.audio('wrongSound', 'Assets/Sounds/wrongSound.mp3');
-    game.load.audio('intro', 'Assets/Sounds/Inngangur.mp3');
+    game.load.audio('wrongSound',   'Assets/Sounds/wrongSound.mp3');
+    game.load.audio('intro',        'Assets/Sounds/Inngangur.mp3');
 
     // Images for Assigments
-    game.load.spritesheet('mus', 'Assets/Images/Buttons/Assignments/mus.png', 110, 70);
-    game.load.spritesheet('robot', 'Assets/Images/Buttons/Assignments/robot.png', 105, 127);
-    game.load.spritesheet('heyBaggi', 'Assets/Images/Buttons/Assignments/hey.png', 80, 62);
-    game.load.spritesheet('blom', 'Assets/Images/Buttons/Assignments/blom.png', 73, 95);
-    game.load.spritesheet('mus2', 'Assets/Images/Buttons/Assignments/mus2.png', 91, 84);
-    game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 44, 43);
+    game.load.spritesheet('mus',        'Assets/Images/Buttons/Exercises/mus.png', 110, 70);
+    game.load.spritesheet('robot',      'Assets/Images/Buttons/Exercises/robot.png', 105, 127);
+    game.load.spritesheet('heyBaggi',   'Assets/Images/Buttons/Exercises/hey.png', 80, 62);
+    game.load.spritesheet('blom',       'Assets/Images/Buttons/Exercises/blom.png', 73, 95);
+    game.load.spritesheet('mus2',       'Assets/Images/Buttons/Exercises/mus2.png', 91, 84);
+    game.load.spritesheet('shell',      'Assets/Images/Buttons/Exercises/shell.png', 44, 43);
 
-    game.load.spritesheet('blakbolti', 'Assets/Images/Buttons/Assignments/blakbolti.png', 48, 52);
-    game.load.spritesheet('fotbolti', 'Assets/Images/Buttons/Assignments/fotbolti.png', 45, 45);
-    game.load.spritesheet('korfubolti', 'Assets/Images/Buttons/Assignments/korfubolti.png', 50, 52);
-    game.load.spritesheet('rubbybolti', 'Assets/Images/Buttons/Assignments/rubbybolti.png', 62, 42);
-    game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Assignments/tennisbolti.png', 26, 26);
+    game.load.spritesheet('blakbolti',   'Assets/Images/Buttons/Exercises/blakbolti.png', 48, 52);
+    game.load.spritesheet('fotbolti',    'Assets/Images/Buttons/Exercises/fotbolti.png', 45, 45);
+    game.load.spritesheet('korfubolti',  'Assets/Images/Buttons/Exercises/korfubolti.png', 50, 52);
+    game.load.spritesheet('rubbybolti',  'Assets/Images/Buttons/Exercises/rubbybolti.png', 62, 42);
+    game.load.spritesheet('tennisbolti', 'Assets/Images/Buttons/Exercises/tennisbolti.png', 26, 26);
 
-    game.load.spritesheet('gitar', 'Assets/Images/Buttons/Assignments/gitar.png', 51, 73);
-    game.load.spritesheet('tromma', 'Assets/Images/Buttons/Assignments/trommur.png', 37, 35);
-    game.load.spritesheet('nota', 'Assets/Images/Buttons/Assignments/nota.png', 50, 40);
-    game.load.spritesheet('piano', 'Assets/Images/Buttons/Assignments/piano.png', 81, 38);
-    game.load.spritesheet('saxafonn', 'Assets/Images/Buttons/Assignments/saxafonn.png', 57, 96);
+    game.load.spritesheet('gitar',      'Assets/Images/Buttons/Exercises/gitar.png', 51, 73);
+    game.load.spritesheet('tromma',     'Assets/Images/Buttons/Exercises/trommur.png', 37, 35);
+    game.load.spritesheet('nota',       'Assets/Images/Buttons/Exercises/nota.png', 50, 40);
+    game.load.spritesheet('piano',      'Assets/Images/Buttons/Exercises/piano.png', 81, 38);
+    game.load.spritesheet('saxafonn',   'Assets/Images/Buttons/Exercises/saxafonn.png', 57, 96);
 
-    game.load.spritesheet('jellyfish', 'Assets/Images/Buttons/Assignments/jellyfish.png', 39, 44);
-    game.load.spritesheet('starfish', 'Assets/Images/Buttons/Assignments/starfish.png', 50, 49);
-    game.load.spritesheet('shrimp', 'Assets/Images/Buttons/Assignments/shrimp.png', 50, 50);
-    game.load.spritesheet('seahorse', 'Assets/Images/Buttons/Assignments/seahorse.png', 35, 72);
-    game.load.spritesheet('shell', 'Assets/Images/Buttons/Assignments/shell.png', 67, 65);
+    game.load.spritesheet('jellyfish',  'Assets/Images/Buttons/Exercises/jellyfish.png', 39, 44);
+    game.load.spritesheet('starfish',   'Assets/Images/Buttons/Exercises/starfish.png', 50, 49);
+    game.load.spritesheet('shrimp',     'Assets/Images/Buttons/Exercises/shrimp.png', 50, 50);
+    game.load.spritesheet('seahorse',   'Assets/Images/Buttons/Exercises/seahorse.png', 35, 72);
+    game.load.spritesheet('shell',      'Assets/Images/Buttons/Exercises/shell.png', 67, 65);
 }
 
 function create() 
@@ -135,51 +135,51 @@ function loadHomePage()
 
     var btnFj = game.add.button(28, 20, 'fj');
     btnFj.events.onInputDown.add(function(){ Assignment(0, 0); });
-    btnFj.scale.setTo(0.85);
+    //btnFj.scale.setTo(0.85);
 
     var btnDk = game.add.button(28, 70, 'dk');
     btnDk.events.onInputDown.add(function(){ Assignment(1, 0); });
-    btnDk.scale.setTo(0.85);
+    //btnDk.scale.setTo(0.85);
 
     var btnSl = game.add.button(28, 120, 'sl');
     btnSl.events.onInputDown.add(function(){ Assignment(2, 0); });
-    btnSl.scale.setTo(0.85);
+    //btnSl.scale.setTo(0.85);
     
     var btnAae = game.add.button(28, 170, 'aae');
     btnAae.events.onInputDown.add(function(){ Assignment(3, 0); });
-    btnAae.scale.setTo(0.85);
+    //btnAae.scale.setTo(0.85);
 
     var btnHome1 = game.add.button(28, 215, 'heimalyklar1');
     btnHome1.events.onInputDown.add(function(){ Assignment(4, 0); });
-    btnHome1.scale.setTo(0.85);
+    //btnHome1.scale.setTo(0.85);
 
     var btnHome2 = game.add.button(23, 275, 'heimalyklar2');
     btnHome2.events.onInputDown.add(function(){ Assignment(5, 0); });
-    btnHome2.scale.setTo(0.85);
+    //btnHome2.scale.setTo(0.85);
 
     var btnEh = game.add.button(30, 340, 'eh');
     btnEh.events.onInputDown.add(function(){ Assignment(6, 0); });
-    btnEh.scale.setTo(0.85);
+    //btnEh.scale.setTo(0.85);
 
     var btnIg = game.add.button(30, 388, 'ig');
     btnIg.events.onInputDown.add(function(){ Assignment(7, 0); });
-    btnIg.scale.setTo(0.85);
+    //btnIg.scale.setTo(0.85);
 
     var btnBn = game.add.button(30, 437, 'bn');
     btnBn.events.onInputDown.add(function(){ Assignment(8, 0); });
-    btnBn.scale.setTo(0.85);
+    //btnBn.scale.setTo(0.85);
     
     var btnRo = game.add.button(30, 485, 'ro'); 
     btnRo.events.onInputDown.add(function(){ Assignment(9, 0); });
-    btnRo.scale.setTo(0.85);
+    //btnRo.scale.setTo(0.85);
 
     var btnBrodd = game.add.button(30, 535, 'broddstafir');
     btnBrodd.events.onInputDown.add(function(){ Assignment(10, 0); });
-    btnBrodd.scale.setTo(0.85);
+    //btnBrodd.scale.setTo(0.85);
     
     var btnHastafir = game.add.button(30, 605, 'hastafir');
     btnHastafir.events.onInputDown.add(function(){ Assignment(11, 0); });
-    btnHastafir.scale.setTo(0.85);
+    //btnHastafir.scale.setTo(0.85);
     
     // stop event listener for keyboard
     game.input.keyboard.stop();
@@ -333,15 +333,6 @@ function muteSound()
 function addExitButton()
 {
     exitBtn = game.add.button(930, 15, 'exit');
-    exitBtn.events.onInputOver.add(overExit);
-    exitBtn.events.onInputOut.add(outExit);
-    exitBtn.events.onInputDown.add(loadHomePage);
-    exitBtn.events.onInputDown.add(quitExercise);
-}
-
-function addExitButton()
-{
-    exitBtn = game.add.button(850, 15, 'exit');
     exitBtn.events.onInputOver.add(overExit);
     exitBtn.events.onInputOut.add(outExit);
     exitBtn.events.onInputDown.add(loadHomePage);
