@@ -256,7 +256,8 @@ exercisesArray =
     'hef hef hef les les les haf haf',
     'hæl hæl hæl efa efa efa sel',
     'hala hala hala fela fela fela',
-    'lesa lesa seka seka seka hef',
+    'lesa lesa seka seka seka hæf',
+    'haka haka dela dela dela hef',
     'halda halda halda elska elska',],
     ['ii iii i ii iiii ii iiii',
     'idliiiii iijii diiii iii',
@@ -364,7 +365,7 @@ exerciseBtnPosArray =
 	[[5, 533], [72, 550], [133, 555], [211, 588], [266, 594], [333, 605], [388, 594], [450, 622], [533, 594], [633, 566], [688, 555], [744, 550], [800, 605], [872, 577], [933, 611]],
 	[[5, 533], [55, 583], [122, 577], [200, 577], [266, 577], [333, 588], [405, 566], [444, 611], [527, 583], [611, 566], [677, 555], [738, 550], [811, 600], [877, 577], [944, 600]],
 	[[5, 533], [55, 583], [122, 577], [200, 577], [266, 577], [333, 588], [405, 566], [444, 611], [527, 583], [611, 566], [677, 555], [738, 550], [811, 600], [877, 577], [944, 600]]
-]
+];
 
 exerciseBtnArray =
 [
