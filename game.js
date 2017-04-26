@@ -144,7 +144,6 @@ function create()
     sounds['fogj1'] = game.add.audio('fogj1');
     sounds['fogj2'] = game.add.audio('fogj2');
     sounds['findFJ'] = game.add.audio('findFJ');
-    sounds['instructionFJ'] = game.add.audio('instructionFJ');
 
     inTutorial = false;
 
@@ -658,53 +657,78 @@ function InstructionFJ(assignmentNr, exerciseNr)
 {
     game.world.removeAll();
 
-    var homePage = game.add.image(game.world.centerX, game.world.centerY, 'instructionBg');
-    homePage.anchor.setTo(0.5, 0.5);
-    homePage.width = width;
-    homePage.height = height;
 
-    logo = game.add.image(25, 25, 'logoS');
+    //var homePage = game.add.image(game.world.centerX, game.world.centerY, 'instructionBg');
+    //homePage.anchor.setTo(0.5, 0.5);
+    //homePage.width = width;
+    //homePage.height = height;
+    loadBackground(assignmentNr);
+
+   /* logo = game.add.image(25, 25, 'logoS');
 
     assignmentBtn = game.add.button(25, 100, 'btnSprite');
     assignmentBtn.frame = 0;
-    assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr);sounds['fogj1'].stop();sounds['fogj2'].stop();balloon.visible = false;});
+    assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr); balloon.visible = false;});
 
     logo = game.add.image(30, 660, 'logo');
-    logo.scale.setTo(0.45);
+    logo.scale.setTo(0.45);*/
+    addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
     addMuteButton();
     addExitButton();
 
-    var arrowBtn = game.add.button(870, 630, 'arrow');
-    arrowBtn.frame = 0;
-    arrowBtn.events.onInputOver.add(function(){ arrowBtn.frame = 1; }, this);
-    arrowBtn.events.onInputOut.add(function(){ arrowBtn.frame = 0; }, this);
-    arrowBtn.events.onInputDown.add(function(){ sounds['instructionFJ'].stop(); WarmUpFJ(assignmentNr, exerciseNr);}, this);
+    addSkipButton(assignmentNr, exerciseNr,  WarmUpFJ);
 
     var instructorMaggi = game.add.sprite(game.world.centerX, game.world.centerY, 'instructorMaggi', 0);
     instructorMaggi.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
     instructorMaggi.anchor.setTo(0.5, 0.5);
 
-    sounds['instructionFJ'].onStop.add(function(){ instructorMaggi.animations.stop(); instructorMaggi.frame = 0; }, this);
-    sounds['instructionFJ'].play();
+    sounds['instruction'] = game.add.audio('instructionFJ');
+    sounds['instruction'].onStop.add(function(){ instructorMaggi.animations.stop(); instructorMaggi.frame = 0; }, this);
+    sounds['instruction'].play();
     instructorMaggi.play('talk');
+}
+
+function addLogoAndAssignmentID(assignmentNr, exerciseNr)
+{
+    logo = game.add.image(25, 25, 'logoS');
+
+    assignmentBtn = game.add.button(25, 100, 'btnSprite');
+    assignmentBtn.frame = 0;
+    assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
+
+    logo = game.add.image(30, 660, 'logo');
+    logo.scale.setTo(0.45);
+    
+}
+
+function addSkipButton(assignmentNr, exerciseNr,nextFunction)
+{
+    var arrowBtn = game.add.button(870, 630, 'arrow');
+    arrowBtn.frame = 0;
+    arrowBtn.events.onInputOver.add(function(){ arrowBtn.frame = 1; }, this);
+    arrowBtn.events.onInputOut.add(function(){ arrowBtn.frame = 0; }, this);
+    arrowBtn.events.onInputDown.add(function(){ sounds['instruction'].stop(); nextFunction(assignmentNr, exerciseNr);}, this);
 }
 
 function WarmUpFJ(assignmentNr, exerciseNr)
 {
+    sounds['instruction'].stop();
     inTutorial = true;
     game.world.removeAll();
 
     loadBackground(assignmentNr);
+    addSkipButton(assignmentNr, exerciseNr,  Assignment);
 
-    logo = game.add.image(25, 25, 'logoS');
+  /*  logo = game.add.image(25, 25, 'logoS');
 
     assignmentBtn = game.add.button(25, 100, 'btnSprite');
     assignmentBtn.frame = 0;
     assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr);sounds['fogj1'].stop();sounds['fogj2'].stop();balloon.visible = false;});
 
     logo = game.add.image(30, 660, 'logo');
-    logo.scale.setTo(0.45);
+    logo.scale.setTo(0.45);*/
+    addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
     warmupKeys = game.add.sprite(150, 310, 'warmupKeys', 0);
     warmupKeys.animations.add('leftBlink', [0, 12, 0, 12, 0, 12, 0, 12, 0, 12, 0], 2, false);
