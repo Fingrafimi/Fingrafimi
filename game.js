@@ -13,7 +13,7 @@ var textAreaY = 65;
 var inExercise = false;
 
 // Variables for the assignments text
-var style = { font: '44px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
+var style = { font: '44px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 900, backgroundColor: "rgba(0,0,0,0.4)", boundsAlignH: "center", boundsAlignV: "middle"};
 var text = "";
 var textX = 500;
 var textY = 50;
@@ -235,7 +235,7 @@ function Assignment(assignmentNr, exerciseNr)
 
     // Create the textArea
     text = exercisesArray[assignmentNr][exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
     textArea.anchor.set(0.5);
 
     // When key is pressed the function keyPress is called
@@ -299,7 +299,7 @@ function keyPress(char, assignmentNr, exerciseNr)
     }
     // Clear the textArea
     textArea.destroy();
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
     textArea.anchor.set(0.5);
 
     textArea.addColor('#00ff00',0);
