@@ -51,7 +51,7 @@ function preload()
     // ================ Background images ================ 
     game.load.image('homePage',           'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
-    game.load.image('instructionBg',      'Assets/Images/Backgrounds/instructionBackground');
+   // game.load.image('instructionBg',      'Assets/Images/Backgrounds/instructionBackground');
 
     //Images
     game.load.image('keyboard',                 'Assets/Images/keyboardSprite/v2/lyklabord700.png');
@@ -97,7 +97,7 @@ function preload()
     game.load.image('ro',               'Assets/Images/Buttons/Assignments/rogo.png');
     game.load.image('broddstafir',      'Assets/Images/Buttons/Assignments/btn11.png');
     game.load.image('hastafir',         'Assets/Images/Buttons/Assignments/btn12.png');
-    game.load.spritesheet('btnSprite',  'Assets/Images/Buttons/Assignments/btnSprite.png', 124, 81);
+    game.load.spritesheet('btnSprite',  'Assets/Images/Buttons/Assignments/buttons.png', 124, 81);
     
     // Audio files
     game.load.audio('wrongSound',       'Assets/Sounds/wrongSound.mp3');
@@ -214,7 +214,7 @@ function loadHomePage()
     //btnFj.scale.setTo(0.85);
 
     var btnDk = game.add.button(28, 70, 'dk');
-    btnDk.events.onInputDown.add(function(){ Assignment(1, 0); });
+    btnDk.events.onInputDown.add(function(){ Instructions(1, 0); });
     //btnDk.scale.setTo(0.85);
 
     var btnSl = game.add.button(28, 120, 'sl');
@@ -669,6 +669,24 @@ function addLogo()
     logo.scale.setTo(0.5);
 }
 
+function Instructions(assignmentNr, exerciseNr)
+{
+    game.world.removeAll();
+    game.sound.stopAll();
+
+    loadBackground(assignmentNr);
+
+    addLogoAndAssignmentID(assignmentNr, exerciseNr);
+
+    addExitButton();
+    addMuteButton();
+
+   // addSkipButton(assignmentNr, exerciseNr,  WarmUpFJ);
+    addSkipButton(assignmentNr, exerciseNr,  Assignment);
+
+
+}
+
 function InstructionFJ(assignmentNr, exerciseNr)
 {
     game.world.removeAll();
@@ -711,7 +729,7 @@ function addLogoAndAssignmentID(assignmentNr, exerciseNr)
     logo = game.add.image(25, 25, 'logoS');
 
     assignmentBtn = game.add.button(25, 100, 'btnSprite');
-    assignmentBtn.frame = 0;
+    assignmentBtn.frame = assignmentNr;
     assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
 
     logo = game.add.image(30, 660, 'logo');
@@ -725,14 +743,15 @@ function addSkipButton(assignmentNr, exerciseNr,nextFunction)
     arrowBtn.frame = 0;
     arrowBtn.events.onInputOver.add(function(){ arrowBtn.frame = 1; }, this);
     arrowBtn.events.onInputOut.add(function(){ arrowBtn.frame = 0; }, this);
-    arrowBtn.events.onInputDown.add(function(){ sounds['instruction'].stop(); nextFunction(assignmentNr, exerciseNr);}, this);
+    arrowBtn.events.onInputDown.add(function(){ nextFunction(assignmentNr, exerciseNr);}, this);
 }
 
 function WarmUpFJ(assignmentNr, exerciseNr)
 {
-    sounds['instruction'].stop();
+    //sounds['instruction'].stop();
     inTutorial = true;
     game.world.removeAll();
+    game.sound.stopAll();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
