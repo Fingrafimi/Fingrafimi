@@ -43,6 +43,7 @@ var rightHand;
 var sounds = {};
 var logoS;
 var inTutorial;
+var instructorMaggi;
 
 // Load the resources needed
 function preload()
@@ -61,8 +62,11 @@ function preload()
     game.load.image('lHand',                    'Assets/Images/New Folder/vinstri.png');
     game.load.image('rHand',                    'Assets/Images/New Folder/haegri.png');
     game.load.image('logoS',                    'Assets/Images/titill.png');
+    game.load.image('logoL',                    'Assets/Images/titillStaerri2.png');
     game.load.spritesheet('instructorMaggi',    'Assets/Images/Maggi/instructionMaggi.png', 524, 572);
     game.load.spritesheet('arrow',              'Assets/Images/Buttons/Global/arrowSprite.png', 93, 48);
+    game.load.image('aboutInfo',                'Assets/Images/New Folder/aboutInfo.png');
+    
 
     // Small icons
     game.load.image('blueBackground',   'Assets/Images/Backgrounds/blueBackground.png');
@@ -75,7 +79,7 @@ function preload()
     game.load.image('teacher',          'Assets/Images/Buttons/Global/teacher.png');
     game.load.image('mat',              'Assets/Images/Buttons/Global/mat.png');
     game.load.image('about',            'Assets/Images/Buttons/Global/about.png');
-
+    
     // ================ Small icons ================ 
     game.load.spritesheet('exit',   'Assets/Images/Buttons/Global/x.png', 42, 42);
     game.load.spritesheet('sound',  'Assets/Images/Buttons/Global/sound.png', 99, 95);
@@ -141,19 +145,16 @@ function create()
     balloon = game.add.sprite(100, 100, 'balloons', 0);
     leftHand = game.add.sprite(200, 700, 'lHand', 2);
     rightHand = game.add.sprite(200, 700, 'rHand', 0);
+    instructorMaggi = game.add.sprite(500, 150, 'instructorMaggi', 0);
+    //sounds['intro'] = game.add.audio('intro');
+    intro = game.add.audio('intro');
     sounds['fogj1'] = game.add.audio('fogj1');
     sounds['fogj2'] = game.add.audio('fogj2');
     sounds['findFJ'] = game.add.audio('findFJ');
     sounds['instructionFJ'] = game.add.audio('instructionFJ');
 
     inTutorial = false;
-
-    intro = game.add.audio('intro');
-    if(firstLoad)
-    {
-        //intro.play();
-        firstLoad = false;
-    }
+    
     loadHomePage();
 }
 
@@ -179,6 +180,7 @@ function update()
     {
         rightHand.y -= 5;
     }
+
 }
 
 // Load the home page
@@ -193,6 +195,20 @@ function loadHomePage()
     homePage.anchor.setTo(0.5, 0.5);
     homePage.width = width;
     homePage.height = height;
+
+    var logoL = game.add.image(200, 40, 'logoL');
+
+    var instructorMaggi = game.add.sprite(500, 150, 'instructorMaggi', 0);
+    instructorMaggi.scale.setTo(0.8);
+    instructorMaggi.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
+    
+    if(firstLoad)
+    {
+        intro.onStop.add(function(){ instructorMaggi.animations.stop(); instructorMaggi.frame = 0; }, this);
+        intro.play();
+        instructorMaggi.play('talk');
+        firstLoad = false;
+    }
 
     var btnFj = game.add.button(28, 20, 'fj');
     btnFj.events.onInputDown.add(function(){ InstructionFJ(0, 0); });
@@ -261,7 +277,7 @@ function loadHomePage()
     var btnmat = game.add.button(890, 610, 'mat', function() { window.open("http://vefir.nams.is/fingrafimi/fingrafimi_matsbl.pdf", "_blank");}, this);    
     btnmat.scale.setTo(0.8, 0.8);
 
-    var btnabout = game.add.button(950, 605, 'about');    
+    var btnabout = game.add.button(950, 605, 'about', function(){ loadAbout(); }, this);    
     btnabout.scale.setTo(0.8, 0.8);
 }
 
@@ -657,6 +673,7 @@ function addLogo()
 function InstructionFJ(assignmentNr, exerciseNr)
 {
     game.world.removeAll();
+    game.sound.stopAll();
 
     var homePage = game.add.image(game.world.centerX, game.world.centerY, 'instructionBg');
     homePage.anchor.setTo(0.5, 0.5);
@@ -672,8 +689,8 @@ function InstructionFJ(assignmentNr, exerciseNr)
     logo = game.add.image(30, 660, 'logo');
     logo.scale.setTo(0.45);
 
-    addMuteButton();
     addExitButton();
+    addMuteButton();
 
     var arrowBtn = game.add.button(870, 630, 'arrow');
     arrowBtn.frame = 0;
@@ -757,4 +774,14 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     sounds['fogj1'].play();
     warmupHead.play('talk');
     warmupKeys.play('leftBlink');
+}
+
+function loadAbout()
+{
+    var aboutWindow = game.add.image(200, 200, 'aboutInfo');
+
+    exitBtn = game.add.button(525, 200, 'exit');
+    exitBtn.events.onInputOver.add(overExit);
+    exitBtn.events.onInputOut.add(outExit);
+    exitBtn.events.onInputDown.add(loadHomePage);
 }
