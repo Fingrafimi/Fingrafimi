@@ -767,11 +767,11 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
     warmupKeys = game.add.sprite(150, 310, 'warmupKeys', 0);
-    warmupKeys.animations.add('leftBlink', [0, 12, 0, 12, 0, 12, 0, 12, 0, 12, 0], 2, false);
-    warmupKeys.animations.add('rightBlink', [0, 13, 0, 13, 0, 13, 0, 13, 0, 13, 0], 2, false);
-    warmupKeys.animations.add('fBlink', [0, 4, 0, 4, 0, 4, 0], 2, false);
-    warmupKeys.animations.add('jBlink', [0, 7, 0, 7, 0, 7, 0], 2, false);
-    warmupKeys.animations.add('bothBlink', [0, 11, 0, 11, 0, 11, 0, 11, 0, 11, 0], 2, false);
+    warmupKeys.animations.add('leftBlink', [0, 12, 0, 12, 0, 12, 0, 12, 0, 12, 0], 2, false, true);
+    warmupKeys.animations.add('rightBlink', [0, 13, 0, 13, 0, 13, 0, 13, 0, 13, 0], 2, false, true);
+    warmupKeys.animations.add('fBlink', [0, 4, 0, 4, 0, 4, 0], 2, false, true);
+    warmupKeys.animations.add('jBlink', [0, 7, 0, 7, 0, 7, 0], 2, false, true);
+    warmupKeys.animations.add('bothBlink', [0, 11, 0, 11, 0, 11, 0, 11, 0, 11, 0], 2, false, true);
 
     warmupHead = game.add.sprite(1096, 210, 'warmupHead', 0);
     warmupHead.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
