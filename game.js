@@ -787,15 +787,23 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     addExitButton();
 
     //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
-    sounds['fogj1'].onStop.add(function(){  
+    //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
+    sounds['fogj1'].onStop.add(function(){
+
+            //Make Maggi stop moving his mouth in the 2 second pause between animations 
             warmupHead.animations.stop(); 
             warmupHead.frame = 0;
+
+            //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
             sounds['fogj2'].onStop.add(function(){
+                            //Make Maggi stop moving his mouth in the 2 second pause between animations 
                             warmupHead.animations.stop(); 
                             warmupHead.frame = 0;
+                            //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
                             game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                                 if(inTutorial)
                                 {
+                                    //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
                                     warmupHead.play('talk');
                                     warmupKeys.play('bothBlink');
                                     balloon.frame = 4;
@@ -803,9 +811,12 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                                 } 
                             }, this).autoDestroy = true;  
                         }, this);
+            //Pause for 2 seconds after fogj1 soundclip, then play fogj2
             game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                     if(inTutorial)
                     {
+                        //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
+                        //and add the right hand into the game so it can start moving up towards the keys.
                         warmupHead.play('talk');
                         sounds['fogj2'].play();
                         warmupKeys.play('rightBlink');
@@ -815,6 +826,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                     }
             }, this).autoDestroy = true;  
     }, this);
+    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['fogj1'].play();
     warmupHead.play('talk');
     warmupKeys.play('leftBlink');
