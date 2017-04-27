@@ -746,7 +746,6 @@ function addInstructionAnimation(assignmentNr)
          instructor.scale.setTo(0.8);
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
          return instructor;
-         
     }
     else
     {
