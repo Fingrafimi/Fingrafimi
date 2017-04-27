@@ -770,19 +770,16 @@ function addInstructionSound(assignmentNr)
 {
     if(assignmentNr == 0)
     {
-            //sounds['instruction'] = game.add.audio('instructionFJ');
-            var instructionSound  = game.add.audio('instructionFJ');
+            return game.add.audio('instructionFJ');
     }
     else if(assignmentNr == 1)
     {
-            //sounds['instruction'] = game.add.audio('instructionDK');
-            var instructionSound  = game.add.audio('instructionDK');
+            return game.add.audio('instructionDK');
     }
     else if(assignmentNr == 2)
     {
-            var instructionSound  = game.add.audio('instructionSL');
+            return game.add.audio('instructionSL');
     }
-    return instructionSound;
 }
 
 function InstructionFJ(assignmentNr, exerciseNr)
