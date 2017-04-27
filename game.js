@@ -141,7 +141,9 @@ function preload()
     game.load.spritesheet('warmupHead', 'Assets/Images/Maggi/warmupHead2.png', 159, 155);
     game.load.spritesheet('pig','Assets/Images/Maggi/svin.png', 522, 756);
     game.load.spritesheet('fish','Assets/Images/Maggi/fish.png', 414, 503);
-    game.load.spritesheet('horse','Assets/Images/Maggi/horse.png', 372, 711);
+    game.load.spritesheet('horse','Assets/Images/Maggi/horse.png', 371, 672);
+    game.load.spritesheet('whale','Assets/Images/Maggi/whale.png', 372, 711);
+
 
 
 }
@@ -720,13 +722,52 @@ function Instructions(assignmentNr, exerciseNr)
    // addSkipButton(assignmentNr, exerciseNr,  WarmUpFJ);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
 
-    addAnimation(assignmentNr);
+    
+    var instructor = addInstructionAnimation(assignmentNr);
+    instructor.play('talk');
 
 
 }
 
-function addAnimation(assignmentNr)
+function addInstructionAnimation(assignmentNr)
 {
+    if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
+    {
+         instructor = game.add.sprite(500, 150, 'instructorMaggi', 0);
+         instructor.scale.setTo(0.8);
+         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
+         return instructor;
+    }
+    if(assignmentNr === 4 || assignmentNr === 5)
+    {
+         instructor = game.add.sprite(500, 150, 'pig', 0);
+         instructor.scale.setTo(0.8);
+         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+         return instructor;
+    }
+    if(assignmentNr === 6 || assignmentNr === 7)
+    {
+         instructor = game.add.sprite(500, 150, 'whale', 0);
+         instructor.scale.setTo(0.8);
+         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+         return instructor;
+    }
+    if(assignmentNr === 8 || assignmentNr === 9)
+    {
+         instructor = game.add.sprite(500, 150, 'fish', 0);
+         instructor.scale.setTo(0.8);
+         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+         return instructor;
+         
+    }
+    else
+    {
+         instructor = game.add.sprite(500, 150, 'horse', 0);
+         instructor.scale.setTo(0.8);
+         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+         return instructor;
+    }
+        
 
 }
 
@@ -822,12 +863,16 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                
                 //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
                 //and add the right hand into the game so it can start moving up towards the keys.
-                warmupHead.play('talk');
-                sounds['fogj2'].play();
-                warmupKeys.play('rightBlink');
-                balloon.frame = 2;
-                rightHand = game.add.sprite(535, 700, 'rHand', 0);
-                rightHand.scale.setTo(1.1);
+                if(inTutorial)
+                {
+                    warmupHead.play('talk');
+                    sounds['fogj2'].play();
+                    warmupKeys.play('rightBlink');
+                    balloon.frame = 2;
+                    rightHand = game.add.sprite(535, 700, 'rHand', 0);
+                    rightHand.scale.setTo(1.1);
+                }
+                
                   
             }, this).autoDestroy = true;  
     }, this);
@@ -841,10 +886,14 @@ function WarmUpFJ(assignmentNr, exerciseNr)
             game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-            warmupHead.play('talk');
-            warmupKeys.play('bothBlink');
-            balloon.frame = 4;
-            sounds['findFJ'].play();
+            if(inTutorial)
+            {
+                warmupHead.play('talk');
+                warmupKeys.play('bothBlink');
+                balloon.frame = 4;
+                sounds['findFJ'].play();
+            }
+            
                             
             }, this).autoDestroy = true;  
     }, this);
