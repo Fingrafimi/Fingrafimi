@@ -726,21 +726,21 @@ function addInstructionAnimation(assignmentNr)
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
          return instructor;
     }
-    if(assignmentNr === 4 || assignmentNr === 5)
+    else if(assignmentNr === 4 || assignmentNr === 5)
     {
          instructor = game.add.sprite(500, 150, 'pig', 0);
          instructor.scale.setTo(0.8);
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
          return instructor;
     }
-    if(assignmentNr === 6 || assignmentNr === 7)
+    else if(assignmentNr === 6 || assignmentNr === 7)
     {
          instructor = game.add.sprite(500, 150, 'whale', 0);
          instructor.scale.setTo(0.8);
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
          return instructor;
     }
-    if(assignmentNr === 8 || assignmentNr === 9)
+    else if(assignmentNr === 8 || assignmentNr === 9)
     {
          instructor = game.add.sprite(500, 150, 'fish', 0);
          instructor.scale.setTo(0.8);
