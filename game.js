@@ -106,6 +106,9 @@ function preload()
     game.load.audio('fogj2',            'Assets/Sounds/F_og_J_2.mp3');
     game.load.audio('findFJ',           'Assets/Sounds/F_OG_J_3.mp3');
     game.load.audio('instructionFJ',    'Assets/Sounds/instructionFJ.mp3');
+    game.load.audio('instructionDK',    'Assets/Sounds/DK_instruction.mp3');
+    game.load.audio('instructionSL',    'Assets/Sounds/SL_instruction.mp3');
+
 
     // Images for Assigments
     game.load.spritesheet('mus',        'Assets/Images/Buttons/Exercises/mus.png', 110, 70);
@@ -716,6 +719,9 @@ function Instructions(assignmentNr, exerciseNr)
 
     
     var instructor = addInstructionAnimation(assignmentNr);
+    var instructionSound = addInstructionSound(assignmentNr);
+    instructionSound.onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+    instructionSound.play();
     instructor.play('talk');
 
 
@@ -758,8 +764,25 @@ function addInstructionAnimation(assignmentNr)
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
          return instructor;
     }
-        
+}
 
+function addInstructionSound(assignmentNr)
+{
+    if(assignmentNr == 0)
+    {
+            //sounds['instruction'] = game.add.audio('instructionFJ');
+            var instructionSound  = game.add.audio('instructionFJ');
+    }
+    else if(assignmentNr == 1)
+    {
+            //sounds['instruction'] = game.add.audio('instructionDK');
+            var instructionSound  = game.add.audio('instructionDK');
+    }
+    else if(assignmentNr == 2)
+    {
+            var instructionSound  = game.add.audio('instructionSL');
+    }
+    return instructionSound;
 }
 
 function InstructionFJ(assignmentNr, exerciseNr)
