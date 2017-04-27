@@ -144,8 +144,6 @@ function preload()
     game.load.spritesheet('horse','Assets/Images/Maggi/horse.png', 371, 672);
     game.load.spritesheet('whale','Assets/Images/Maggi/whale.png', 372, 711);
 
-
-
 }
 
 function create() 
@@ -437,8 +435,8 @@ function muteSound()
 function addExitButton()
 {
     exitBtn = game.add.button(930, 15, 'exit');
-    exitBtn.events.onInputOver.add(overExit);
-    exitBtn.events.onInputOut.add(outExit);
+    exitBtn.events.onInputOver.add(function(){ exitBtn.frame = 1;});
+    exitBtn.events.onInputOut.add(function(){ exitBtn.frame = 0;});
     exitBtn.events.onInputDown.add(loadHomePage);
     exitBtn.events.onInputDown.add(quitExercise);
 
@@ -480,16 +478,6 @@ function quitExercise()
     corrCount = 0;
     incorrPos = -1;
     textPos = 0;
-}
-
-function overExit()
-{
-    exitBtn.frame = 1;
-}
-
-function outExit()
-{
-    exitBtn.frame = 0;
 }
 
 function addExercises(assignmentNr)
