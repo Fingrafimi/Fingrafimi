@@ -442,6 +442,35 @@ function addExitButton()
 
 }
 
+function addLogo()
+{
+    logo = game.add.image(170, 655, 'logo');
+    logo.scale.setTo(0.5);
+}
+
+function addLogoAndAssignmentID(assignmentNr, exerciseNr)
+{
+    logo = game.add.image(25, 25, 'logoS');
+    logo.events.onInputDown.add(function(){loadHomePage();});
+
+    assignmentBtn = game.add.button(25, 100, 'btnSprite');
+    assignmentBtn.frame = assignmentNr;
+    assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
+
+    logo = game.add.image(30, 660, 'logo');
+    logo.scale.setTo(0.45);
+    
+}
+
+function addSkipButton(assignmentNr, exerciseNr,nextFunction)
+{
+    var arrowBtn = game.add.button(870, 630, 'arrow');
+    arrowBtn.frame = 0;
+    arrowBtn.events.onInputOver.add(function(){ arrowBtn.frame = 1; }, this);
+    arrowBtn.events.onInputOut.add(function(){ arrowBtn.frame = 0; }, this);
+    arrowBtn.events.onInputDown.add(function(){ nextFunction(assignmentNr, exerciseNr);}, this);
+}
+
 function quitExercise()
 {
     game.input.keyboard.stop();
@@ -674,11 +703,7 @@ function loadKeyboard(assignmentNr, exerciseNr)
     keyboard = game.add.image(150, 175, 'keyboard');
 }
 
-function addLogo()
-{
-    logo = game.add.image(170, 655, 'logo');
-    logo.scale.setTo(0.5);
-}
+
 
 function Instructions(assignmentNr, exerciseNr)
 {
@@ -741,28 +766,7 @@ function InstructionFJ(assignmentNr, exerciseNr)
     instructorMaggi.play('talk');
 }
 
-function addLogoAndAssignmentID(assignmentNr, exerciseNr)
-{
-    logo = game.add.image(25, 25, 'logoS');
-    logo.events.onInputDown.add(function(){loadHomePage();});
 
-    assignmentBtn = game.add.button(25, 100, 'btnSprite');
-    assignmentBtn.frame = assignmentNr;
-    assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
-
-    logo = game.add.image(30, 660, 'logo');
-    logo.scale.setTo(0.45);
-    
-}
-
-function addSkipButton(assignmentNr, exerciseNr,nextFunction)
-{
-    var arrowBtn = game.add.button(870, 630, 'arrow');
-    arrowBtn.frame = 0;
-    arrowBtn.events.onInputOver.add(function(){ arrowBtn.frame = 1; }, this);
-    arrowBtn.events.onInputOut.add(function(){ arrowBtn.frame = 0; }, this);
-    arrowBtn.events.onInputDown.add(function(){ nextFunction(assignmentNr, exerciseNr);}, this);
-}
 
 function WarmUpFJ(assignmentNr, exerciseNr)
 {
