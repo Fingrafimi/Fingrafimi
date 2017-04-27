@@ -51,7 +51,7 @@ function preload()
     // ================ Background images ================ 
     game.load.image('homePage',           'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
-   // game.load.image('instructionBg',      'Assets/Images/Backgrounds/instructionBackground');
+   // game.load.image('instructionBg',      'Assets/Images/Backgrounds/instructionBackground.png');
 
     //Images
     game.load.image('keyboard',                 'Assets/Images/keyboardSprite/v2/lyklabord700.png');
@@ -692,7 +692,6 @@ function InstructionFJ(assignmentNr, exerciseNr)
     game.world.removeAll();
     game.sound.stopAll();
 
-
     //var homePage = game.add.image(game.world.centerX, game.world.centerY, 'instructionBg');
     //homePage.anchor.setTo(0.5, 0.5);
     //homePage.width = width;
@@ -787,6 +786,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     addMuteButton();
     addExitButton();
 
+    //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
     sounds['fogj1'].onStop.add(function(){  
             warmupHead.animations.stop(); 
             warmupHead.frame = 0;
