@@ -140,6 +140,10 @@ function preload()
     game.load.spritesheet('warmupKeys', 'Assets/Images/Keyboard/asdfgh.png', 699, 77);
     game.load.spritesheet('warmupHead', 'Assets/Images/Maggi/warmupHead2.png', 159, 155);
     game.load.spritesheet('pig','Assets/Images/Maggi/svin.png', 522, 756);
+    game.load.spritesheet('fish','Assets/Images/Maggi/fish.png', 414, 503);
+    game.load.spritesheet('horse','Assets/Images/Maggi/horse.png', 372, 711);
+
+
 }
 
 function create() 
@@ -691,6 +695,13 @@ function Instructions(assignmentNr, exerciseNr)
    // addSkipButton(assignmentNr, exerciseNr,  WarmUpFJ);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
 
+    addAnimation(assignmentNr);
+
+
+}
+
+function addAnimation(assignmentNr)
+{
 
 }
 
