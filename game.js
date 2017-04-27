@@ -115,6 +115,10 @@ function preload()
     game.load.audio('instructionIG',    'Assets/Sounds/Instructions/IG_instruction.mp3');
     game.load.audio('instructionBN',    'Assets/Sounds/Instructions/BN_instruction.mp3');
     game.load.audio('instructionRO',    'Assets/Sounds/Instructions/RO_instruction.mp3');
+    game.load.audio('instructionBRODD',    'Assets/Sounds/Instructions/Broddstafir_instruction.mp3');
+    game.load.audio('instructionHA',    'Assets/Sounds/Instructions/Hastafir_instruction.mp3');
+
+
 
 
 
@@ -817,6 +821,14 @@ function addInstructionSound(assignmentNr)
     else if(assignmentNr == 9)
     {
             return game.add.audio('instructionRO');
+    }
+    else if(assignmentNr == 10)
+    {
+            return game.add.audio('instructionBRODD');
+    }
+    else if(assignmentNr == 11)
+    {
+            return game.add.audio('instructionHA');
     }
 }
 
