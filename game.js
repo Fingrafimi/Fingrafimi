@@ -51,7 +51,7 @@ function preload()
     // ================ Background images ================ 
     game.load.image('homePage',           'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground', 'Assets/Images/Backgrounds/homeKeysBackground.png');
-   // game.load.image('instructionBg',      'Assets/Images/Backgrounds/instructionBackground.png');
+    game.load.image('instructionBg',      'Assets/Images/Backgrounds/instructionBackground.png');
 
     //Images
     game.load.image('keyboard',                 'Assets/Images/keyboardSprite/v2/lyklabord700.png');
@@ -701,6 +701,12 @@ function Instructions(assignmentNr, exerciseNr)
     game.sound.stopAll();
 
     loadBackground(assignmentNr);
+    if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
+    {
+        background = game.add.image(0, 0, 'instructionBg');
+         background.width = width;
+        background.height = height;
+    }
 
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
@@ -768,6 +774,7 @@ function InstructionFJ(assignmentNr, exerciseNr)
     //homePage.width = width;
     //homePage.height = height;
     loadBackground(assignmentNr);
+  
 
    /* logo = game.add.image(25, 25, 'logoS');
 
