@@ -81,8 +81,8 @@ function preload()
     game.load.image('about',            'Assets/Images/Buttons/Global/about.png');
     
     // ================ Small icons ================ 
-    game.load.spritesheet('exit',   'Assets/Images/Buttons/Global/x.png', 42, 42);
-    game.load.spritesheet('sound',  'Assets/Images/Buttons/Global/sound.png', 99, 95);
+    game.load.spritesheet('exit',   'Assets/Images/Buttons/Global/xSprite.png', 32, 32);
+    game.load.spritesheet('sound',  'Assets/Images/Buttons/Global/soundSprite.png', 100, 96);
 
     // Assignments buttons
     game.load.image('fj',               'Assets/Images/Buttons/Assignments/fogj.png');
@@ -404,6 +404,8 @@ function keyPress(char, assignmentNr, exerciseNr)
 function addMuteButton()
 {
     muteBtn = game.add.button(890, 20, 'sound');
+    muteBtn.events.onInputOver.add(function(){ if(game.sound.mute === false){ muteBtn.frame = 2; } });
+    muteBtn.events.onInputOut.add(function(){ if(game.sound.mute === false){ muteBtn.frame = 0; } });
     muteBtn.scale.setTo(0.35);
     muteBtn.events.onInputDown.add(muteSound);
     muteBtn.frame = 0;
@@ -434,7 +436,7 @@ function muteSound()
 
 function addExitButton()
 {
-    exitBtn = game.add.button(930, 15, 'exit');
+    exitBtn = game.add.button(930, 20, 'exit');
     exitBtn.events.onInputOver.add(function(){ exitBtn.frame = 1;});
     exitBtn.events.onInputOut.add(function(){ exitBtn.frame = 0;});
     exitBtn.events.onInputDown.add(loadHomePage);
@@ -904,8 +906,8 @@ function loadAbout()
 {
     var aboutWindow = game.add.image(200, 200, 'aboutInfo');
 
-    exitBtn = game.add.button(525, 200, 'exit');
-    exitBtn.events.onInputOver.add(overExit);
-    exitBtn.events.onInputOut.add(outExit);
-    exitBtn.events.onInputDown.add(loadHomePage);
+    exitBtn = game.add.button(520, 210, 'exit');
+    exitBtn.events.onInputOver.add(function(){ exitBtn.frame = 2;});
+    exitBtn.events.onInputOut.add(function(){ exitBtn.frame = 0;});
+    exitBtn.events.onInputDown.add(function(){ exitBtn.destroy(); aboutWindow.destroy(); });
 }
