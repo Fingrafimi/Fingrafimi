@@ -704,8 +704,6 @@ function Instructions(assignmentNr, exerciseNr)
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
     {
         background = game.add.image(0, 0, 'instructionBg');
-         background.width = width;
-        background.height = height;
     }
 
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
