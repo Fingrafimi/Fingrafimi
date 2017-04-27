@@ -134,9 +134,12 @@ function preload()
     game.load.spritesheet('shell',      'Assets/Images/Buttons/Exercises/shell.png', 67, 65);
 
     game.load.image('logo',             'Assets/Images/logo.png');
+    game.load.spritesheet('balloons',   'Assets/Images/Maggi/balloons.png', 346, 192);
+
+    // Animations
     game.load.spritesheet('warmupKeys', 'Assets/Images/Keyboard/asdfgh.png', 699, 77);
     game.load.spritesheet('warmupHead', 'Assets/Images/Maggi/warmupHead2.png', 159, 155);
-    game.load.spritesheet('balloons',   'Assets/Images/Maggi/balloons.png', 346, 192);
+    game.load.spritesheet('pig','Assets/Images/Maggi/svin.png', 522, 756);
 }
 
 function create() 
