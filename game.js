@@ -227,14 +227,6 @@ function loadHomePage()
     var instructorMaggi = game.add.sprite(500, 150, 'instructorMaggi', 0);
     instructorMaggi.scale.setTo(0.8);
     instructorMaggi.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
-    
-    if(firstLoad)
-    {
-        intro.onStop.add(function(){ instructorMaggi.animations.stop(); instructorMaggi.frame = 0; }, this);
-        intro.play();
-        instructorMaggi.play('talk');
-        firstLoad = false;
-    }
 
     var btnFj = game.add.button(28, 20, 'fj');
     btnFj.events.onInputDown.add(function(){ InstructionFJ(0, 0); });
@@ -305,6 +297,14 @@ function loadHomePage()
 
     var btnabout = game.add.button(950, 605, 'about', function(){ loadAbout(); }, this);    
     btnabout.scale.setTo(0.8, 0.8);
+
+    if(firstLoad)
+    {
+        intro.onStop.add(function(){ instructorMaggi.animations.stop(); instructorMaggi.frame = 0; }, this);
+        intro.play();
+        instructorMaggi.play('talk');
+        firstLoad = false;
+    }
 }
 
 function Assignment(assignmentNr, exerciseNr) 
