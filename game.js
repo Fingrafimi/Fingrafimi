@@ -105,9 +105,19 @@ function preload()
     game.load.audio('fogj1',            'Assets/Sounds/F_og_J_1.mp3');
     game.load.audio('fogj2',            'Assets/Sounds/F_og_J_2.mp3');
     game.load.audio('findFJ',           'Assets/Sounds/F_OG_J_3.mp3');
-    game.load.audio('instructionFJ',    'Assets/Sounds/instructionFJ.mp3');
-    game.load.audio('instructionDK',    'Assets/Sounds/DK_instruction.mp3');
-    game.load.audio('instructionSL',    'Assets/Sounds/SL_instruction.mp3');
+    game.load.audio('instructionFJ',    'Assets/Sounds/Instructions/instructionFJ.mp3');
+    game.load.audio('instructionDK',    'Assets/Sounds/Instructions/DK_instruction.mp3');
+    game.load.audio('instructionSL',    'Assets/Sounds/Instructions/SL_instruction.mp3');
+    game.load.audio('instructionAAE',    'Assets/Sounds/Instructions/AÆ_instruction.mp3');
+    game.load.audio('instructionALL1',    'Assets/Sounds/Instructions/Allir1_instruction.mp3');
+    game.load.audio('instructionALL2',    'Assets/Sounds/Instructions/Allir2_instruction.mp3');
+    game.load.audio('instructionEH',    'Assets/Sounds/Instructions/EH_instruction.mp3');
+    game.load.audio('instructionIG',    'Assets/Sounds/Instructions/IG_instruction.mp3');
+    game.load.audio('instructionBN',    'Assets/Sounds/Instructions/BN_instruction.mp3');
+    game.load.audio('instructionRO',    'Assets/Sounds/Instructions/RO_instruction.mp3');
+
+
+
 
 
     // Images for Assigments
@@ -779,6 +789,18 @@ function addInstructionSound(assignmentNr)
     else if(assignmentNr == 2)
     {
             return game.add.audio('instructionSL');
+    }
+    else if(assignmentNr == 3)
+    {
+            return game.add.audio('instructionAAE');
+    }
+    else if(assignmentNr == 4)
+    {
+            return game.add.audio('instructionALL1');
+    }
+    else if(assignmentNr == 5)
+    {
+            return game.add.audio('instructionALL2');
     }
 }
 
