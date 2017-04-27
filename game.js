@@ -105,7 +105,24 @@ function preload()
     game.load.audio('fogj1',            'Assets/Sounds/F_og_J_1.mp3');
     game.load.audio('fogj2',            'Assets/Sounds/F_og_J_2.mp3');
     game.load.audio('findFJ',           'Assets/Sounds/F_OG_J_3.mp3');
-    game.load.audio('instructionFJ',    'Assets/Sounds/instructionFJ.mp3');
+    game.load.audio('instructionFJ',    'Assets/Sounds/Instructions/instructionFJ.mp3');
+    game.load.audio('instructionDK',    'Assets/Sounds/Instructions/DK_instruction.mp3');
+    game.load.audio('instructionSL',    'Assets/Sounds/Instructions/SL_instruction.mp3');
+    game.load.audio('instructionAAE',    'Assets/Sounds/Instructions/AÆ_instruction.mp3');
+    game.load.audio('instructionALL1',    'Assets/Sounds/Instructions/Allir1_instruction.mp3');
+    game.load.audio('instructionALL2',    'Assets/Sounds/Instructions/Allir2_instruction.mp3');
+    game.load.audio('instructionEH',    'Assets/Sounds/Instructions/EH_instruction.mp3');
+    game.load.audio('instructionIG',    'Assets/Sounds/Instructions/IG_instruction.mp3');
+    game.load.audio('instructionBN',    'Assets/Sounds/Instructions/BN_instruction.mp3');
+    game.load.audio('instructionRO',    'Assets/Sounds/Instructions/RO_instruction.mp3');
+    game.load.audio('instructionBRODD',    'Assets/Sounds/Instructions/Broddstafir_instruction.mp3');
+    game.load.audio('instructionHA',    'Assets/Sounds/Instructions/Hastafir_instruction.mp3');
+
+
+
+
+
+
 
     // Images for Assigments
     game.load.spritesheet('mus',        'Assets/Images/Buttons/Exercises/mus.png', 110, 70);
@@ -210,14 +227,6 @@ function loadHomePage()
     var instructorMaggi = game.add.sprite(500, 150, 'instructorMaggi', 0);
     instructorMaggi.scale.setTo(0.8);
     instructorMaggi.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
-    
-    if(firstLoad)
-    {
-        intro.onStop.add(function(){ instructorMaggi.animations.stop(); instructorMaggi.frame = 0; }, this);
-        intro.play();
-        instructorMaggi.play('talk');
-        firstLoad = false;
-    }
 
     var btnFj = game.add.button(28, 20, 'fj');
     btnFj.events.onInputDown.add(function(){ InstructionFJ(0, 0); });
@@ -288,6 +297,14 @@ function loadHomePage()
 
     var btnabout = game.add.button(950, 605, 'about', function(){ loadAbout(); }, this);    
     btnabout.scale.setTo(0.8, 0.8);
+
+    if(firstLoad)
+    {
+        intro.onStop.add(function(){ instructorMaggi.animations.stop(); instructorMaggi.frame = 0; }, this);
+        intro.play();
+        instructorMaggi.play('talk');
+        firstLoad = false;
+    }
 }
 
 function Assignment(assignmentNr, exerciseNr) 
@@ -718,6 +735,9 @@ function Instructions(assignmentNr, exerciseNr)
 
     
     var instructor = addInstructionAnimation(assignmentNr);
+    var instructionSound = addInstructionSound(assignmentNr);
+    instructionSound.onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+    instructionSound.play();
     instructor.play('talk');
 
 
@@ -760,8 +780,58 @@ function addInstructionAnimation(assignmentNr)
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
          return instructor;
     }
-        
+}
 
+function addInstructionSound(assignmentNr)
+{
+    if(assignmentNr == 0)
+    {
+            return game.add.audio('instructionFJ');
+    }
+    else if(assignmentNr == 1)
+    {
+            return game.add.audio('instructionDK');
+    }
+    else if(assignmentNr == 2)
+    {
+            return game.add.audio('instructionSL');
+    }
+    else if(assignmentNr == 3)
+    {
+            return game.add.audio('instructionAAE');
+    }
+    else if(assignmentNr == 4)
+    {
+            return game.add.audio('instructionALL1');
+    }
+    else if(assignmentNr == 5)
+    {
+            return game.add.audio('instructionALL2');
+    }
+    else if(assignmentNr == 6)
+    {
+            return game.add.audio('instructionEH');
+    }
+    else if(assignmentNr == 7)
+    {
+            return game.add.audio('instructionIG');
+    }
+    else if(assignmentNr == 8)
+    {
+            return game.add.audio('instructionBN');
+    }
+    else if(assignmentNr == 9)
+    {
+            return game.add.audio('instructionRO');
+    }
+    else if(assignmentNr == 10)
+    {
+            return game.add.audio('instructionBRODD');
+    }
+    else if(assignmentNr == 11)
+    {
+            return game.add.audio('instructionHA');
+    }
 }
 
 function InstructionFJ(assignmentNr, exerciseNr)
