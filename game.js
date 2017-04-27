@@ -802,6 +802,22 @@ function addInstructionSound(assignmentNr)
     {
             return game.add.audio('instructionALL2');
     }
+    else if(assignmentNr == 6)
+    {
+            return game.add.audio('instructionEH');
+    }
+    else if(assignmentNr == 7)
+    {
+            return game.add.audio('instructionIG');
+    }
+    else if(assignmentNr == 8)
+    {
+            return game.add.audio('instructionBN');
+    }
+    else if(assignmentNr == 9)
+    {
+            return game.add.audio('instructionRO');
+    }
 }
 
 function InstructionFJ(assignmentNr, exerciseNr)
