@@ -838,7 +838,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
 
     //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
     //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
-    sounds['fogj1'].onStop.add(function(){
+    sounds['fogj1'].onStop.addOnce(function(){
 
             //Make Maggi stop moving his mouth in the 2 second pause between animations 
             warmupHead.animations.stop(); 
@@ -865,7 +865,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     }, this);
 
     //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
-     sounds['fogj2'].onStop.add(function(){
+     sounds['fogj2'].onStop.addOnce(function(){
             //Make Maggi stop moving his mouth in the 2 second pause between animations 
             warmupHead.animations.stop(); 
             warmupHead.frame = 0;
@@ -885,7 +885,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
             }, this).autoDestroy = true;  
     }, this);
 
-    sounds['findFJ'].onStop.add(function(){
+    sounds['findFJ'].onStop.addOnce(function(){
         warmupHead.animations.stop(); 
         warmupHead.frame = 0;
     })
