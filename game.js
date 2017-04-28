@@ -118,10 +118,18 @@ function preload()
     game.load.audio('instructionBRODD',    'Assets/Sounds/Instructions/Broddstafir_instruction.mp3');
     game.load.audio('instructionHA',    'Assets/Sounds/Instructions/Hastafir_instruction.mp3');
 
-
-
-
-
+    game.load.audio('complimentFJ',    'Assets/Sounds/Compliments/FJ_hros.mp3');
+    game.load.audio('complimentDK',    'Assets/Sounds/Compliments/DK_hros.mp3');
+    game.load.audio('complimentSL',    'Assets/Sounds/Compliments/SL_hros.mp3');
+    game.load.audio('complimentAAE',    'Assets/Sounds/Compliments/AAE_hros.mp3');
+    game.load.audio('complimentALL1',    'Assets/Sounds/Compliments/Allir1_hros.mp3');
+    game.load.audio('complimentALL2',    'Assets/Sounds/Compliments/Allir2_hros.mp3');
+    game.load.audio('complimentEH',    'Assets/Sounds/Compliments/EH_hros.mp3');
+    game.load.audio('complimentIG',    'Assets/Sounds/Compliments/IG_hros.mp3');
+    game.load.audio('complimentBN',    'Assets/Sounds/Compliments/BN_hros.mp3');
+    // RO
+    game.load.audio('complimentBRODD',    'Assets/Sounds/Compliments/Broddstafir_hros.mp3');
+    // Hástafir
 
 
     // Images for Assigments
@@ -829,6 +837,50 @@ function addInstructionSound(assignmentNr)
     else if(assignmentNr == 11)
     {
             return game.add.audio('instructionHA');
+    }
+}
+
+function addComplimentSound(assignmentNr)
+{
+    if(assignmentNr == 0)
+    {
+            return game.add.audio('complimentFJ');
+    }
+    else if(assignmentNr == 1)
+    {
+            return game.add.audio('complimentDK');
+    }
+    else if(assignmentNr == 2)
+    {
+            return game.add.audio('complimentSL');
+    }
+    else if(assignmentNr == 3)
+    {
+            return game.add.audio('complimentAAE');
+    }
+    else if(assignmentNr == 4)
+    {
+            return game.add.audio('complimentALL1');
+    }
+    else if(assignmentNr == 5)
+    {
+            return game.add.audio('complimentALL2');
+    }
+    else if(assignmentNr == 6)
+    {
+            return game.add.audio('complimentEH');
+    }
+    else if(assignmentNr == 7)
+    {
+            return game.add.audio('complimentIG');
+    }
+    else if(assignmentNr == 8 || assignmentNr == 9)
+    {
+            return game.add.audio('complimentBN');
+    }
+    else if(assignmentNr == 10 || assignmentNr == 11)
+    {
+            return game.add.audio('complimentBRODD');
     }
 }
 
