@@ -14,6 +14,7 @@ var inExercise = false;
 
 // Variables for the assignments text
 var style = { font: '44px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
+var instructionStyle = { font: '64px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
 var text = "";
 var textX = 500;
 var textY = 50;
@@ -418,8 +419,8 @@ function keyPress(char, assignmentNr, exerciseNr)
     textArea.destroy();
     textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
     textArea.anchor.set(0.5);
-
     textArea.addColor('#00ff00',0);
+
     if(incorrPos != -1)
     {
         textArea.addColor('#ffa500',incorrPos);
@@ -547,7 +548,6 @@ function addLogoAndAssignmentID(assignmentNr, exerciseNr)
 
     logo = game.add.image(30, 660, 'logo');
     logo.scale.setTo(0.45);
-    
 }
 
 function addSkipButton(assignmentNr, exerciseNr,nextFunction)
@@ -1132,6 +1132,9 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                 warmupKeys.play('fBlink');
                 balloon.frame = 1;
                 sounds['findF'].play();
+                textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'f', instructionStyle);
+                textArea.anchor.set(0.5);
+                textArea.addColor('#000000',0);
             }
             
                             
@@ -1141,6 +1144,48 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     sounds['findF'].onStop.addOnce(function(){ 
         warmupHead.animations.stop();
         warmupHead.frame = 0;
+        game.input.keyboard.start();
+        game.input.keyboard.addCallbacks(this, null, null, function(char){    
+            if(char === 'f')
+            {
+                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+                    game.input.keyboard.stop();
+                    warmupHead.play('talk');
+                    warmupKeys.play('jBlink');
+                    balloon.frame = 3;
+                    sounds['findJ'].play();
+                    textArea.destroy();
+                    textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'j', instructionStyle);
+                    textArea.anchor.set(0.5);
+                    textArea.addColor('#000000',0);
+                });
+            }
+        });
+
+        //game.time.events.add(Phaser.Timer.SECOND * 2, function(){});
+     });
+
+     sounds['findJ'].onStop.addOnce(function(){ 
+        warmupHead.animations.stop();
+        warmupHead.frame = 0;
+        game.input.keyboard.start();
+        game.input.keyboard.addCallbacks(this, null, null, function(char){
+            if(char === 'j')
+            {
+                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+                    game.input.keyboard.stop();
+                    leftHand.destroy();
+                    rightHand.destroy();
+                    warmupKeys.destroy();
+                    textArea.destroy();
+
+                    loadKeyboard(assignmentNr, exerciseNr);
+                    //warmupHead.play('talk');
+                    balloon.frame = 5;
+                    //sounds['findJ'].play();
+                });
+            }
+        });
 
         game.time.events.add(Phaser.Timer.SECOND * 2, function(){
             
