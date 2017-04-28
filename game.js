@@ -419,16 +419,55 @@ function keyPress(char, assignmentNr, exerciseNr)
     {
         quitExercise();
         exercisesFinished[assignmentNr][exerciseNr] = true;
-        if(exerciseNr + 1 < exercisesArray[assignmentNr].length)
+        if(finishedAssignment(assignmentNr))
         {
-             Assignment(assignmentNr, exerciseNr + 1);  
-        }
-        else
-        {
+            // Skipa að manneskjan sé búin með 
             loadHomePage();
+            return;
         }
+
+        exerciseNr = findNextExercise(assignmentNr, exerciseNr);
+    
+        var complimentSound = addComplimentSound(assignmentNr);
+        Assignment(assignmentNr, exerciseNr);  
+        complimentSound.play();
         return;
     }
+}
+
+
+function finishedAssignment(assignmentNr)
+{
+    for(i = 0 ; i  < exercisesFinished[assignmentNr].length ; i++)
+    {
+        // If at least one exercise is not finished, return false.
+        if(!exercisesFinished[assignmentNr][i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+function findNextExercise(assignmentNr, exerciseNr)
+{
+    for(i = exerciseNr; i < exercisesFinished[assignmentNr].length; i++)
+    {
+        if(!exercisesFinished[assignmentNr][i])
+        {
+            return i;
+        }
+
+    }
+    for(i = 0 ; i  < exerciseNr ; i++)
+    {
+        // If at least one exercise is not finished, return false.
+        if(!exercisesFinished[assignmentNr][i])
+        {
+            return i;
+        }
+    }
+    return 0;
 }
 
 
