@@ -105,6 +105,8 @@ function preload()
     game.load.audio('fogj1',            'Assets/Sounds/F_og_J_1.mp3');
     game.load.audio('fogj2',            'Assets/Sounds/F_og_J_2.mp3');
     game.load.audio('findFJ',           'Assets/Sounds/F_OG_J_3.mp3');
+    game.load.audio('findF',           'Assets/Sounds/F_OG_J_4.mp3');
+    game.load.audio('findJ',           'Assets/Sounds/F_OG_J_5.mp3');
     game.load.audio('instructionFJ',    'Assets/Sounds/Instructions/instructionFJ.mp3');
     game.load.audio('instructionDK',    'Assets/Sounds/Instructions/DK_instruction.mp3');
     game.load.audio('instructionSL',    'Assets/Sounds/Instructions/SL_instruction.mp3');
@@ -183,6 +185,9 @@ function create()
     sounds['fogj1'] = game.add.audio('fogj1');
     sounds['fogj2'] = game.add.audio('fogj2');
     sounds['findFJ'] = game.add.audio('findFJ');
+    sounds['findF'] = game.add.audio('findF');
+    sounds['findJ'] = game.add.audio('findJ');
+    
 
     inTutorial = false;
     
@@ -204,14 +209,14 @@ function update()
             balloon.visible = true;       
         }*/
 
-        if(leftHand.y > 320 && balloon.visible === true)
+        if(leftHand.y > 390 && balloon.visible === true)
         {
-            leftHand.y -= 5;
+            leftHand.y -= 4;
         }
 
-        if(rightHand.y > 320 && balloon.visible === true)
+        if(rightHand.y > 390 && balloon.visible === true)
         {
-            rightHand.y -= 5;
+            rightHand.y -= 4;
         }
     }
 
@@ -945,7 +950,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     logo.scale.setTo(0.45);*/
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
-    warmupKeys = game.add.sprite(150, 310, 'warmupKeys', 0);
+    warmupKeys = game.add.sprite(150, 380, 'warmupKeys', 0);
     warmupKeys.animations.add('leftBlink', [0, 12, 0, 12, 0, 12, 0, 12, 0, 12, 0], 2, false, true);
     warmupKeys.animations.add('rightBlink', [0, 13, 0, 13, 0, 13, 0, 13, 0, 13, 0], 2, false, true);
     warmupKeys.animations.add('fBlink', [0, 4, 0, 4, 0, 4, 0], 2, false, true);
@@ -959,7 +964,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     leftHand = game.add.sprite(155, 700, 'lHand', 2);
     leftHand.scale.setTo(1.1);  
 
-    balloon = game.add.sprite(500, 50, 'balloons', 0);
+    balloon = game.add.sprite(500, 25, 'balloons', 0);
     //balloon.visible = false;
 
     addMuteButton();
@@ -1017,7 +1022,32 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     sounds['findFJ'].onStop.addOnce(function(){
         warmupHead.animations.stop(); 
         warmupHead.frame = 0;
-    })
+
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+                          
+            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+            if(inTutorial)
+            {
+                warmupHead.play('talk');
+                warmupKeys.play('fBlink');
+                balloon.frame = 1;
+                sounds['findF'].play();
+            }
+            
+                            
+        }, this).autoDestroy = true;
+    });
+
+    sounds['findF'].onStop.addOnce(function(){ 
+        warmupHead.animations.stop();
+        warmupHead.frame = 0;
+
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+            
+        });
+     });
+
+
     //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['fogj1'].play();
     warmupHead.play('talk');
