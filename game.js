@@ -140,6 +140,19 @@ function preload()
     game.load.audio('complimentBRODD',    'Assets/Sounds/Compliments/Broddstafir_hros.mp3');
     // Hástafir
 
+    game.load.audio('finishFJ',    'Assets/Sounds/Finished/FJ_buin.mp3');
+    game.load.audio('finishDK',    'Assets/Sounds/Finished/DK_buin.mp3');
+    game.load.audio('finishSL',    'Assets/Sounds/Finished/SL_buin.mp3');
+    game.load.audio('finishAAE',    'Assets/Sounds/Finished/AAE_buin.mp3');
+    game.load.audio('finishALL1',    'Assets/Sounds/Finished/Allir1_buin.mp3');
+    game.load.audio('finishALL2',    'Assets/Sounds/Finished/Allir2_buin.mp3');
+    game.load.audio('finishEH',    'Assets/Sounds/Finished/EH_buin.mp3');
+    game.load.audio('finishIG',    'Assets/Sounds/Finished/IG_buin.mp3');
+    game.load.audio('finishBN',    'Assets/Sounds/Finished/BN_buin.mp3');
+    game.load.audio('finishRO',    'Assets/Sounds/Finished/RO_buin.mp3');
+    game.load.audio('finishBRODD',    'Assets/Sounds/Finished/Broddstafir_buin.mp3');
+    game.load.audio('finishHA',    'Assets/Sounds/Finished/Hastafir_buin.mp3');
+
 
     // Images for Assigments
     game.load.spritesheet('mus',        'Assets/Images/Buttons/Exercises/mus.png', 110, 70);
@@ -431,7 +444,10 @@ function keyPress(char, assignmentNr, exerciseNr)
         exercisesFinished[assignmentNr][exerciseNr] = true;
         if(finishedAssignment(assignmentNr))
         {
-            // Skipa að manneskjan sé búin með 
+            addExercises(assignmentNr);
+            var finishSound = addFinishSound(assignmentNr);
+            //finishSound.onStop.addOnce(function(){loadHomePage();});
+            finishSound.play();
             loadHomePage();
             return;
         }
@@ -439,6 +455,8 @@ function keyPress(char, assignmentNr, exerciseNr)
         exerciseNr = findNextExercise(assignmentNr, exerciseNr);
     
         var complimentSound = addComplimentSound(assignmentNr);
+       // complimentSound.onStop.addOnce(function(){Assignment(assignmentNr, exerciseNr); });
+
         Assignment(assignmentNr, exerciseNr);  
         complimentSound.play();
         return;
@@ -479,7 +497,6 @@ function findNextExercise(assignmentNr, exerciseNr)
     }
     return 0;
 }
-
 
 function addMuteButton()
 {
@@ -911,7 +928,7 @@ function addComplimentSound(assignmentNr)
 {
     if(assignmentNr == 0)
     {
-            return game.add.audio('complimentFJ');
+            return game.add.sound('complimentFJ');
     }
     else if(assignmentNr == 1)
     {
@@ -948,6 +965,50 @@ function addComplimentSound(assignmentNr)
     else if(assignmentNr == 10 || assignmentNr == 11)
     {
             return game.add.audio('complimentBRODD');
+    }
+}
+
+function addFinishSound(assignmentNr)
+{
+    if(assignmentNr == 0)
+    {
+            return game.add.audio('finishFJ');
+    }
+    else if(assignmentNr == 1)
+    {
+            return game.add.audio('finishDK');
+    }
+    else if(assignmentNr == 2)
+    {
+            return game.add.audio('finishSL');
+    }
+    else if(assignmentNr == 3)
+    {
+            return game.add.audio('finishAAE');
+    }
+    else if(assignmentNr == 4)
+    {
+            return game.add.audio('finishALL1');
+    }
+    else if(assignmentNr == 5)
+    {
+            return game.add.audio('finishALL2');
+    }
+    else if(assignmentNr == 6)
+    {
+            return game.add.audio('finishEH');
+    }
+    else if(assignmentNr == 7)
+    {
+            return game.add.audio('finishIG');
+    }
+    else if(assignmentNr == 8 || assignmentNr == 9)
+    {
+            return game.add.audio('finishBN');
+    }
+    else if(assignmentNr == 10 || assignmentNr == 11)
+    {
+            return game.add.audio('finishBRODD');
     }
 }
 
