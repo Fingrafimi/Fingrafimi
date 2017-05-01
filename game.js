@@ -47,6 +47,9 @@ var logoS;
 var inTutorial;
 var instructorMaggi;
 
+
+
+
 // Load the resources needed
 function preload()
 {
@@ -461,7 +464,6 @@ function keyPress(char, assignmentNr, exerciseNr)
     }
 }
 
-
 function finishedAssignment(assignmentNr)
 {
     for(i = 0 ; i  < exercisesFinished[assignmentNr].length ; i++)
@@ -810,11 +812,11 @@ function Instructions(assignmentNr, exerciseNr)
    // addSkipButton(assignmentNr, exerciseNr,  WarmUpFJ);
    if(assignmentNr === 0)
    {
-        addSkipButton(assignmentNr, exerciseNr,  WarmUpFJ);
+        addSkipButton(assignmentNr, exerciseNr,  warmUpFunctions[assignmentNr]);
    }
    else if(assignmentNr === 1)
    {
-        addSkipButton(assignmentNr, exerciseNr,  WarmUpDK);
+        addSkipButton(assignmentNr, exerciseNr,  warmUpFunctions[assignmentNr]);
    }
    else
    {
@@ -1372,10 +1374,6 @@ function WarmUpDK(assignmentNr, exerciseNr){
             {
                 game.input.keyboard.stop();
                 game.time.events.add(Phaser.Timer.SECOND * 1, function(){
-                    // leftHand.destroy();
-                    // rightHand.destroy();
-                    // warmupKeys.destroy();
-                    // textArea.destroy();
                     
                     sounds['finalDK'].play();
                     balloon.frame = 11;
@@ -1400,3 +1398,20 @@ function loadAbout()
     exitBtn.events.onInputOut.add(function(){ exitBtn.frame = 0;});
     exitBtn.events.onInputDown.add(function(){ exitBtn.destroy(); aboutWindow.destroy(); });
 }
+
+var warmUpFunctions =
+[
+    WarmUpFJ,
+    WarmUpDK,
+    WarmUpSL,
+    WarmUpAAE,
+    WarmUpALL1,
+    WarmUpALL2,
+    WarmUpEH,
+    WarmUpIG,
+    WarmUpBN,
+    WarmUpRO,
+    WarmUpBRODD,
+    WarmUpHA
+];
+
