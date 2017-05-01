@@ -44,7 +44,7 @@ var leftHand;
 var rightHand;
 var sounds = {};
 var logoS;
-var inTutorial;
+var warmUps = [ false, false ];
 var instructorMaggi;
 
 // Load the resources needed
@@ -212,15 +212,13 @@ function create()
     sounds['findD'] = game.add.audio('findD');
     sounds['findK'] = game.add.audio('findK');
     sounds['finalDK'] = game.add.audio('finalDK');
-
-    inTutorial = false;
     
     loadHomePage();
 }
 
 function update()
 {
-    if(inTutorial)
+    if(warmUps[0] === true || warmUps[1] === true)
     {
         if(warmupHead.angle > -46 && warmupHead.x > 1015)
         {
@@ -249,7 +247,8 @@ function update()
 // Load the home page
 function loadHomePage() 
 {
-    inTutorial = false;
+    warmUps[0] = false;
+    warmUps[1] = false;
     game.input.keyboard.stop();
     game.sound.stopAll();
     game.world.removeAll();
@@ -346,7 +345,8 @@ function loadHomePage()
 
 function Assignment(assignmentNr, exerciseNr) 
 {
-    inTutorial = false;
+    warmUps[0] = false;
+    warmUps[1] = false;
     // Empty the canvas
     game.world.removeAll();
     game.sound.stopAll();
@@ -552,7 +552,7 @@ function addLogoAndAssignmentID(assignmentNr, exerciseNr)
 
     assignmentBtn = game.add.button(25, 100, 'btnSprite');
     assignmentBtn.frame = assignmentNr;
-    assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
+    assignmentBtn.events.onInputDown.add(function(){warmUps[0] =false; warmUps[1] = false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
 
     logo = game.add.image(30, 660, 'logo');
     logo.scale.setTo(0.45);
@@ -1050,7 +1050,7 @@ function InstructionFJ(assignmentNr, exerciseNr)
 function WarmUpFJ(assignmentNr, exerciseNr)
 {
     //sounds['instruction'].stop();
-    inTutorial = true;
+    warmUps[0] = true;
     game.world.removeAll();
     game.sound.stopAll();
 
@@ -1101,7 +1101,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                
                 //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
                 //and add the right hand into the game so it can start moving up towards the keys.
-                if(inTutorial)
+                if(warmUps[0])
                 {
                     warmupHead.play('talk');
                     sounds['rightFJ'].play();
@@ -1124,7 +1124,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
             game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-            if(inTutorial)
+            if(warmUps[0])
             {
                 warmupHead.play('talk');
                 warmupKeys.play('bothBlink');
@@ -1143,7 +1143,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
         game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-            if(inTutorial)
+            if(warmUps[0])
             {
                 warmupHead.play('talk');
                 warmupKeys.play('fBlink');
@@ -1240,7 +1240,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
 }
 
 function WarmUpDK(assignmentNr, exerciseNr){
-    inTutorial = true;
+    warmUps[1] = true;
     game.world.removeAll();
     game.sound.stopAll();
 
@@ -1282,7 +1282,7 @@ function WarmUpDK(assignmentNr, exerciseNr){
                
                 //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
                 //and add the right hand into the game so it can start moving up towards the keys.
-                if(inTutorial)
+                if(warmUps[1])
                 {
                     warmupHead.play('talk');
                     sounds['rightFJ'].play();
@@ -1305,7 +1305,7 @@ function WarmUpDK(assignmentNr, exerciseNr){
             game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-            if(inTutorial)
+            if(warmUps[1])
             {
                 warmupHead.play('talk');
                 warmupKeys.play('bothBlink');
@@ -1324,7 +1324,7 @@ function WarmUpDK(assignmentNr, exerciseNr){
         game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-            if(inTutorial)
+            if(warmUps[1])
             {
                 warmupHead.play('talk');
                 warmupKeys.play('dBlink');
