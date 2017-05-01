@@ -791,8 +791,6 @@ function loadKeyboard(assignmentNr, exerciseNr)
     keyboard = game.add.image(150, 175, 'keyboard');
 }
 
-
-
 function Instructions(assignmentNr, exerciseNr)
 {
     game.world.removeAll();
@@ -1070,8 +1068,8 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
     warmupKeys = game.add.sprite(150, 380, 'warmupKeys', 0);
-    warmupKeys.animations.add('leftBlink', [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0], 2, false, true);
-    warmupKeys.animations.add('rightBlink', [0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0], 2, false, true);
+    warmupKeys.animations.add('asdfBlink', [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0], 2, false, true);
+    warmupKeys.animations.add('jklæBlink', [0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0], 2, false, true);
     warmupKeys.animations.add('fBlink', [0, 4, 0, 4, 0, 4, 0], 2, false, true);
     warmupKeys.animations.add('jBlink', [0, 7, 0, 7, 0, 7, 0], 2, false, true);
     warmupKeys.animations.add('bothBlink', [0, 11, 0, 11, 0, 11, 0, 11, 0, 11, 0], 2, false, true);
@@ -1107,7 +1105,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                 {
                     warmupHead.play('talk');
                     sounds['rightFJ'].play();
-                    warmupKeys.play('rightBlink');
+                    warmupKeys.play('jklæBlink');
                     balloon.frame = 1;
                     rightHand = game.add.sprite(535, 700, 'rHand', 0);
                     rightHand.scale.setTo(1.1);
@@ -1238,7 +1236,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['leftFJ'].play();
     warmupHead.play('talk');
-    warmupKeys.play('leftBlink');
+    warmupKeys.play('asdfBlink');
 }
 
 function WarmUpDK(assignmentNr, exerciseNr){
@@ -1251,8 +1249,8 @@ function WarmUpDK(assignmentNr, exerciseNr){
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
     warmupKeys = game.add.sprite(150, 380, 'warmupKeys', 0);
-    warmupKeys.animations.add('leftBlink', [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0], 2, false, true);
-    warmupKeys.animations.add('rightBlink', [0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0], 2, false, true);
+    warmupKeys.animations.add('asdfBlink', [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0], 2, false, true);
+    warmupKeys.animations.add('jklæBlink', [0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0], 2, false, true);
     warmupKeys.animations.add('dBlink', [0, 3, 0, 3, 0, 3, 0], 2, false, true);
     warmupKeys.animations.add('kBlink', [0, 8, 0, 8, 0, 8, 0], 2, false, true);
     warmupKeys.animations.add('bothBlink', [0, 12, 0, 12, 0, 12, 0, 12, 0, 12, 0], 2, false, true);
@@ -1288,7 +1286,7 @@ function WarmUpDK(assignmentNr, exerciseNr){
                 {
                     warmupHead.play('talk');
                     sounds['rightFJ'].play();
-                    warmupKeys.play('rightBlink');
+                    warmupKeys.play('jklæBlink');
                     balloon.frame = 1;
                     rightHand = game.add.sprite(535, 700, 'rHand', 0);
                     rightHand.scale.setTo(1.1);
@@ -1386,7 +1384,7 @@ function WarmUpDK(assignmentNr, exerciseNr){
     //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['leftFJ'].play();
     warmupHead.play('talk');
-    warmupKeys.play('leftBlink');
+    warmupKeys.play('asdfBlink');
 }
 
 function loadAbout()
