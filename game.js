@@ -446,7 +446,7 @@ function keyPress(char, assignmentNr, exerciseNr)
         {
             addExercises(assignmentNr);
             var finishSound = addFinishSound(assignmentNr);
-            finishSound.onStop.addOnce( function(){finishSound.stop();loadHomePage();}, this);
+          //  finishSound.onStop.addOnce( function(){finishSound.stop();loadHomePage();}, this);
             finishSound.play();
            // loadHomePage();
             return;
