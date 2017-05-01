@@ -436,19 +436,17 @@ function keyPress(char, assignmentNr, exerciseNr)
         {
             addExercises(assignmentNr);
             var finishSound = addFinishSound(assignmentNr);
-            //finishSound.onStop.addOnce(function(){loadHomePage();});
+            finishSound.onStop.addOnce( function(){finishSound.stop();loadHomePage();}, this);
             finishSound.play();
-            loadHomePage();
+           // loadHomePage();
             return;
         }
 
         exerciseNr = findNextExercise(assignmentNr, exerciseNr);
     
         var complimentSound = addComplimentSound(assignmentNr);
-       // complimentSound.onStop.addOnce(function(){Assignment(assignmentNr, exerciseNr); });
-
-        Assignment(assignmentNr, exerciseNr);  
         complimentSound.play();
+        Assignment(assignmentNr, exerciseNr);
         return;
     }
 }
@@ -907,7 +905,7 @@ function addComplimentSound(assignmentNr)
 {
     if(assignmentNr == 0)
     {
-            return game.add.sound('complimentFJ');
+            return this.game.add.sound('complimentFJ');
     }
     else if(assignmentNr == 1)
     {
@@ -1027,8 +1025,6 @@ function InstructionFJ(assignmentNr, exerciseNr)
     sounds['instruction'].play();
     instructorMaggi.play('talk');
 }
-
-
 
 function WarmUpFJ(assignmentNr, exerciseNr)
 {
