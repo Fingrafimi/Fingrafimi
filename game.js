@@ -112,10 +112,15 @@ function preload()
     game.load.audio('findF',            'Assets/Sounds/F_og_J_4.mp3');
     game.load.audio('findJ',            'Assets/Sounds/F_og_J_5.mp3');
     game.load.audio('spaceFJ',          'Assets/Sounds/F_og_J_6.mp3');
+    game.load.audio('finalFJ',          'Assets/Sounds/F_og_J_7.mp3');
     game.load.audio('findDK',           'Assets/Sounds/D_og_K_3.mp3');
     game.load.audio('findD',            'Assets/Sounds/D_og_K_4.mp3');
     game.load.audio('findK',            'Assets/Sounds/D_og_K_5.mp3');
     game.load.audio('finalDK',          'Assets/Sounds/D_og_K_6.mp3');
+    game.load.audio('findSL',           'Assets/Sounds/S_og_L_3.mp3');
+    game.load.audio('findS',            'Assets/Sounds/S_og_L_4.mp3');
+    game.load.audio('findL',            'Assets/Sounds/S_og_L_5.mp3');
+    game.load.audio('finalSL',          'Assets/Sounds/S_og_L_6.mp3');
     game.load.audio('instructionFJ',    'Assets/Sounds/Instructions/instructionFJ.mp3');
     game.load.audio('instructionDK',    'Assets/Sounds/Instructions/DK_instruction.mp3');
     game.load.audio('instructionSL',    'Assets/Sounds/Instructions/SL_instruction.mp3');
@@ -132,9 +137,9 @@ function preload()
     game.load.audio('complimentFJ',    'Assets/Sounds/Compliments/FJ_hros.mp3');
     game.load.audio('complimentDK',    'Assets/Sounds/Compliments/DK_hros.mp3');
     game.load.audio('complimentSL',    'Assets/Sounds/Compliments/SL_hros.mp3');
-    game.load.audio('complimentAAE',    'Assets/Sounds/Compliments/AAE_hros.mp3');
-    game.load.audio('complimentALL1',    'Assets/Sounds/Compliments/Allir1_hros.mp3');
-    game.load.audio('complimentALL2',    'Assets/Sounds/Compliments/Allir2_hros.mp3');
+    game.load.audio('complimentAAE',   'Assets/Sounds/Compliments/AAE_hros.mp3');
+    game.load.audio('complimentALL1',  'Assets/Sounds/Compliments/Allir1_hros.mp3');
+    game.load.audio('complimentALL2',  'Assets/Sounds/Compliments/Allir2_hros.mp3');
     game.load.audio('complimentEH',    'Assets/Sounds/Compliments/EH_hros.mp3');
     game.load.audio('complimentIG',    'Assets/Sounds/Compliments/IG_hros.mp3');
     game.load.audio('complimentBN',    'Assets/Sounds/Compliments/BN_hros.mp3');
@@ -145,14 +150,14 @@ function preload()
     game.load.audio('finishFJ',    'Assets/Sounds/Finished/FJ_buin.mp3');
     game.load.audio('finishDK',    'Assets/Sounds/Finished/DK_buin.mp3');
     game.load.audio('finishSL',    'Assets/Sounds/Finished/SL_buin.mp3');
-    game.load.audio('finishAAE',    'Assets/Sounds/Finished/AAE_buin.mp3');
-    game.load.audio('finishALL1',    'Assets/Sounds/Finished/Allir1_buin.mp3');
-    game.load.audio('finishALL2',    'Assets/Sounds/Finished/Allir2_buin.mp3');
+    game.load.audio('finishAAE',   'Assets/Sounds/Finished/AAE_buin.mp3');
+    game.load.audio('finishALL1',  'Assets/Sounds/Finished/Allir1_buin.mp3');
+    game.load.audio('finishALL2',  'Assets/Sounds/Finished/Allir2_buin.mp3');
     game.load.audio('finishEH',    'Assets/Sounds/Finished/EH_buin.mp3');
     game.load.audio('finishIG',    'Assets/Sounds/Finished/IG_buin.mp3');
     game.load.audio('finishBN',    'Assets/Sounds/Finished/BN_buin.mp3');
     game.load.audio('finishRO',    'Assets/Sounds/Finished/RO_buin.mp3');
-    game.load.audio('finishBRODD',    'Assets/Sounds/Finished/Broddstafir_buin.mp3');
+    game.load.audio('finishBRODD', 'Assets/Sounds/Finished/Broddstafir_buin.mp3');
     game.load.audio('finishHA',    'Assets/Sounds/Finished/Hastafir_buin.mp3');
 
 
@@ -214,10 +219,10 @@ function preload()
     // Animations
     game.load.spritesheet('warmupKeys', 'Assets/Images/Keyboard/asdfgh.png', 699, 77);
     game.load.spritesheet('warmupHead', 'Assets/Images/Maggi/warmupHead2.png', 159, 155);
-    game.load.spritesheet('pig','Assets/Images/Maggi/svin.png', 522, 756);
-    game.load.spritesheet('fish','Assets/Images/Maggi/fish.png', 414, 503);
-    game.load.spritesheet('horse','Assets/Images/Maggi/horse.png', 371, 672);
-    game.load.spritesheet('whale','Assets/Images/Maggi/whale.png', 372, 711);
+    game.load.spritesheet('pig',        'Assets/Images/Maggi/svin.png', 522, 756);
+    game.load.spritesheet('fish',       'Assets/Images/Maggi/fish.png', 414, 503);
+    game.load.spritesheet('horse',      'Assets/Images/Maggi/horse.png', 371, 672);
+    game.load.spritesheet('whale',      'Assets/Images/Maggi/whale.png', 372, 711);
 }
 
 function create() 
@@ -235,24 +240,29 @@ function create()
     sounds['findF'] = game.add.audio('findF');
     sounds['findJ'] = game.add.audio('findJ');
     sounds['spaceFJ'] = game.add.audio('spaceFJ');
+    sounds['finalFJ'] = game.add.audio('finalFJ');
     sounds['findDK'] = game.add.audio('findDK');
     sounds['findD'] = game.add.audio('findD');
     sounds['findK'] = game.add.audio('findK');
     sounds['finalDK'] = game.add.audio('finalDK');
+    sounds['findSL'] = game.add.audio('findSL');
+    sounds['findS'] = game.add.audio('findS');
+    sounds['findL'] = game.add.audio('findL');
+    sounds['finalSL'] = game.add.audio('finalSL');
     
     loadHomePage();
 }
 
 function update()
 {
-    if(warmUps[0] === true || warmUps[1] === true)
+    if(warmUps[0] === true || warmUps[1] === true || warmUps[2] === true)
     {
         if(warmupHead.angle > -46 && warmupHead.x > 1015)
         {
             warmupHead.x -= 2;
             warmupHead.angle -= 1;
-        }
 
+        }
         /*if(warmupHead.angle < -40)
         {
             balloon.visible = true;       
@@ -276,6 +286,7 @@ function loadHomePage()
 {
     warmUps[0] = false;
     warmUps[1] = false;
+    warmUps[2] = false;
     game.input.keyboard.stop();
     game.sound.stopAll();
     game.world.removeAll();
@@ -292,51 +303,51 @@ function loadHomePage()
     instructorMaggi.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
 
     var btnFj = game.add.button(28, 20, 'fj');
-    btnFj.events.onInputDown.add(function(){ Instructions(0, 0); });
+    btnFj.events.onInputDown.add(function(){ Instructions(0, -1); });
     //btnFj.scale.setTo(0.85);
 
     var btnDk = game.add.button(28, 70, 'dk');
-    btnDk.events.onInputDown.add(function(){ Instructions(1, 0); });
+    btnDk.events.onInputDown.add(function(){ Instructions(1, -1); });
     //btnDk.scale.setTo(0.85);
 
     var btnSl = game.add.button(28, 120, 'sl');
-    btnSl.events.onInputDown.add(function(){ Instructions(2, 0); });
+    btnSl.events.onInputDown.add(function(){ Instructions(2, -1); });
     //btnSl.scale.setTo(0.85);
     
     var btnAae = game.add.button(28, 170, 'aae');
-    btnAae.events.onInputDown.add(function(){ Instructions(3, 0); });
+    btnAae.events.onInputDown.add(function(){ Instructions(3, -1); });
     //btnAae.scale.setTo(0.85);
 
     var btnHome1 = game.add.button(28, 215, 'heimalyklar1');
-    btnHome1.events.onInputDown.add(function(){ Instructions(4, 0); });
+    btnHome1.events.onInputDown.add(function(){ Instructions(4, -1); });
     //btnHome1.scale.setTo(0.85);
 
     var btnHome2 = game.add.button(23, 275, 'heimalyklar2');
-    btnHome2.events.onInputDown.add(function(){ Instructions(5, 0); });
+    btnHome2.events.onInputDown.add(function(){ Instructions(5, -1); });
     //btnHome2.scale.setTo(0.85);
 
     var btnEh = game.add.button(30, 340, 'eh');
-    btnEh.events.onInputDown.add(function(){ Instructions(6, 0); });
+    btnEh.events.onInputDown.add(function(){ Instructions(6, -1); });
     //btnEh.scale.setTo(0.85);
 
     var btnIg = game.add.button(30, 388, 'ig');
-    btnIg.events.onInputDown.add(function(){ Instructions(7, 0); });
+    btnIg.events.onInputDown.add(function(){ Instructions(7, -1); });
     //btnIg.scale.setTo(0.85);
 
     var btnBn = game.add.button(30, 437, 'bn');
-    btnBn.events.onInputDown.add(function(){ Instructions(8, 0); });
+    btnBn.events.onInputDown.add(function(){ Instructions(8, -1); });
     //btnBn.scale.setTo(0.85);
     
     var btnRo = game.add.button(30, 485, 'ro'); 
-    btnRo.events.onInputDown.add(function(){ Instructions(9, 0); });
+    btnRo.events.onInputDown.add(function(){ Instructions(9, -1); });
     //btnRo.scale.setTo(0.85);
 
     var btnBrodd = game.add.button(30, 535, 'broddstafir');
-    btnBrodd.events.onInputDown.add(function(){ Instructions(10, 0); });
+    btnBrodd.events.onInputDown.add(function(){ Instructions(10, -1); });
     //btnBrodd.scale.setTo(0.85);
     
     var btnHastafir = game.add.button(30, 605, 'hastafir');
-    btnHastafir.events.onInputDown.add(function(){ Instructions(11, 0); });
+    btnHastafir.events.onInputDown.add(function(){ Instructions(11, -1); });
     //btnHastafir.scale.setTo(0.85);
     
     // stop event listener for keyboard
@@ -374,6 +385,7 @@ function Assignment(assignmentNr, exerciseNr)
 {
     warmUps[0] = false;
     warmUps[1] = false;
+    warmUps[2] = false;
     // Empty the canvas
     game.world.removeAll();
     game.sound.stopAll();
@@ -384,27 +396,39 @@ function Assignment(assignmentNr, exerciseNr)
 
    	// Load new background
     loadBackground(assignmentNr);
+    
+    addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
-    logo = game.add.image(370, 660, 'logo');
+    logo = game.add.image(30, 660, 'logo');
     logo.scale.setTo(0.45);
 
     // Load keyboard
     loadKeyboard(assignmentNr, exerciseNr);
 
-    // Create the textArea
-    text = exercisesArray[assignmentNr][exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
-    textArea.anchor.set(0.5);
+    var instructor = addAssignmentInstructor(assignmentNr);
 
-    // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, function(){
-        char = document.getElementById('assignment').value;
-        $("#assignment").val(""); 
-        if(char != '' && char != "´")
-        {
-            keyPress(char, assignmentNr, exerciseNr);
-        }
-    },null);
+    if(exerciseNr >= 0)
+    {
+        // Create the textArea
+        text = exercisesArray[assignmentNr][exerciseNr];
+        textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
+        textArea.anchor.set(0.5);
+
+        // When key is pressed the function keyPress is called
+        game.input.keyboard.addCallbacks(this, null, function(){
+            char = document.getElementById('assignment').value;
+            $("#assignment").val(""); 
+            if(char != '' && char != "´")
+            {
+                keyPress(char, assignmentNr, exerciseNr);
+            }
+        },null);
+    }
+    else
+    {
+        var balloon = game.add.sprite(500, 25, 'balloonSprite', addBalloon(assignmentNr));
+        addFinalSound(assignmentNr);
+    }
     
     addExitButton();
     addMuteButton();
@@ -595,7 +619,7 @@ function addLogoAndAssignmentID(assignmentNr, exerciseNr)
 
     assignmentBtn = game.add.button(25, 100, 'btnSprite');
     assignmentBtn.frame = assignmentNr;
-    assignmentBtn.events.onInputDown.add(function(){warmUps[0] =false; warmUps[1] = false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
+    assignmentBtn.events.onInputDown.add(function(){warmUps[0] =false; warmUps[1] = false; warmUps[2] = false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
 
     logo = game.add.image(30, 660, 'logo');
     logo.scale.setTo(0.45);
@@ -608,6 +632,80 @@ function addSkipButton(assignmentNr, exerciseNr, nextFunction)
     arrowBtn.events.onInputOver.add(function(){ arrowBtn.frame = 1; }, this);
     arrowBtn.events.onInputOut.add(function(){ arrowBtn.frame = 0; }, this);
     arrowBtn.events.onInputDown.add(function(){ nextFunction(assignmentNr, exerciseNr); }, this);
+}
+
+function addBalloon(assignmentNr)
+{
+    switch(assignmentNr)
+    {
+        case 0:
+            return 3;
+        case 1:
+            return 11;
+        case 2:
+            return 16;
+        case 3:
+            return 16;
+        case 4:
+            return 24;
+        case 5:
+            return 28;
+        case 6:
+            return 37;
+        case 7:
+            return 46;
+        case 8:
+            return 56;
+        case 9:
+            return 56;
+        case 10:
+            return 73;
+        case 11:
+            return 48;
+    }
+}
+
+function addFinalSound(assignmentNr)
+{
+    switch(assignmentNr)
+    {
+        case 0:
+            sounds['finalFJ'].play();
+            break;
+        case 1:
+            sounds['finalDK'].play();
+            break;
+        case 2:
+            sounds['finalSL'].play();
+            break;
+        case 3:
+            //sounds['finalFJ'].play();
+            break;
+        case 4:
+            //sounds['finalFJ'].play();
+            break;
+        case 5:
+            //sounds['finalFJ'].play();
+            break;
+        case 6:
+            //sounds['finalFJ'].play();
+            break;
+        case 7:
+            //sounds['finalFJ'].play();
+            break;
+        case 8:
+            //sounds['finalFJ'].play();
+            break;
+        case 9:
+            //sounds['finalFJ'].play();
+            break;
+        case 10:
+            //sounds['finalFJ'].play();
+            break;
+        case 11:
+            //sounds['finalFJ'].play();
+            break;
+    }
 }
 
 function quitExercise()
@@ -725,6 +823,7 @@ function addExerciseImages(image, imageGlow, posArr, count, assignmentNr, exerci
         (function() 
         {
             var exerciseNum = exerciseNr + i;
+
             var textNum = exerciseNum + 1;
             // Add number above every image
             game.add.text(textPosArr[i+exerciseNr][0], textPosArr[i+exerciseNr][1], textNum, { font: "bold 16px Arial"});
@@ -875,19 +974,20 @@ function Instructions(assignmentNr, exerciseNr)
    {
         addSkipButton(assignmentNr, exerciseNr,  WarmUpDK);
    }
+   else if(assignmentNr === 2)
+   {
+       addSkipButton(assignmentNr, exerciseNr, WarmUpSL);
+   }
    else
    {
         addSkipButton(assignmentNr, exerciseNr,  Assignment);
    }
 
-    
     var instructor = addInstructionAnimation(assignmentNr);
     var instructionSound = addInstructionSound(assignmentNr);
     instructionSound.onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
     instructionSound.play();
     instructor.play('talk');
-
-
 }
 
 function addInstructionAnimation(assignmentNr)
@@ -901,8 +1001,8 @@ function addInstructionAnimation(assignmentNr)
     }
     else if(assignmentNr === 4 || assignmentNr === 5)
     {
-         instructor = game.add.sprite(500, 150, 'pig', 0);
-         instructor.scale.setTo(0.8);
+         instructor = game.add.sprite(500, 100, 'pig', 0);
+         instructor.scale.setTo(0.75);
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
          return instructor;
     }
@@ -924,6 +1024,49 @@ function addInstructionAnimation(assignmentNr)
     {
          instructor = game.add.sprite(500, 150, 'horse', 0);
          instructor.scale.setTo(0.8);
+         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+         return instructor;
+    }
+}
+
+function addAssignmentInstructor(assignmentNr)
+{
+    if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
+    {
+        //  instructor = game.add.sprite(500, 150, 'instructorMaggi', 0);
+        //  instructor.scale.setTo(0.8);
+        //  instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
+        instructor = game.add.sprite(1015, 210, 'warmupHead', 0);
+        instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+        instructor.anchor.setTo(0.75, 1);
+        instructor.angle = -41;
+        return instructor;
+    }
+    else if(assignmentNr === 4 || assignmentNr === 5)
+    {
+         instructor = game.add.sprite(750, 100, 'pig', 0);
+         instructor.scale.setTo(0.5);
+         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+         return instructor;
+    }
+    else if(assignmentNr === 6 || assignmentNr === 7)
+    {
+         instructor = game.add.sprite(700, 150, 'whale', 0);
+         instructor.scale.setTo(0.5);
+         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+         return instructor;
+    }
+    else if(assignmentNr === 8 || assignmentNr === 9)
+    {
+         instructor = game.add.sprite(700, 150, 'fish', 0);
+         instructor.scale.setTo(0.5);
+         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+         return instructor;
+    }
+    else
+    {
+         instructor = game.add.sprite(700, 150, 'horse', 0);
+         instructor.scale.setTo(0.5);
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
          return instructor;
     }
@@ -1489,7 +1632,7 @@ function WarmUpSL(assignmentNr, exerciseNr){
                
                 //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
                 //and add the right hand into the game so it can start moving up towards the keys.
-                if(warmUps[1])
+                if(warmUps[2])
                 {
                     warmupHead.play('talk');
                     sounds['rightFJ'].play();
@@ -1498,8 +1641,6 @@ function WarmUpSL(assignmentNr, exerciseNr){
                     rightHand = game.add.sprite(535, 700, 'rHand', 0);
                     rightHand.scale.setTo(1.1);
                 }
-                
-                  
             }, this).autoDestroy = true;  
     }, this);
 
@@ -1512,31 +1653,31 @@ function WarmUpSL(assignmentNr, exerciseNr){
             game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-            if(warmUps[1])
+            if(warmUps[2])
             {
                 warmupHead.play('talk');
                 warmupKeys.play('bothBlink');
                 balloon.frame = 12;
-                sounds['findDK'].play();
+                sounds['findSL'].play();
             }
             
                             
             }, this).autoDestroy = true;  
     }, this);
 
-    sounds['findDK'].onStop.addOnce(function(){
+    sounds['findSL'].onStop.addOnce(function(){
         warmupHead.animations.stop(); 
         warmupHead.frame = 0;
 
         game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-            if(warmUps[1])
+            if(warmUps[2])
             {
                 warmupHead.play('talk');
                 warmupKeys.play('sBlink');
                 balloon.frame = 14;
-                sounds['findD'].play();
+                sounds['findS'].play();
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 's', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#000000',0);
@@ -1546,7 +1687,7 @@ function WarmUpSL(assignmentNr, exerciseNr){
         }, this).autoDestroy = true;
     });
 
-    sounds['findD'].onStop.addOnce(function(){ 
+    sounds['findS'].onStop.addOnce(function(){ 
         warmupHead.animations.stop();
         warmupHead.frame = 0;
         game.input.keyboard.start();
@@ -1558,7 +1699,7 @@ function WarmUpSL(assignmentNr, exerciseNr){
                     warmupHead.play('talk');
                     warmupKeys.play('lBlink');
                     balloon.frame = 15;
-                    sounds['findK'].play();
+                    sounds['findL'].play();
                     textArea.destroy();
                     textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'l', instructionStyle);
                     textArea.anchor.set(0.5);
@@ -1570,7 +1711,7 @@ function WarmUpSL(assignmentNr, exerciseNr){
         //game.time.events.add(Phaser.Timer.SECOND * 2, function(){});
      });
 
-     sounds['findK'].onStop.addOnce(function(){ 
+     sounds['findL'].onStop.addOnce(function(){ 
         warmupHead.animations.stop();
         warmupHead.frame = 0;
         game.input.keyboard.start();
@@ -1580,8 +1721,9 @@ function WarmUpSL(assignmentNr, exerciseNr){
                 game.input.keyboard.stop();
                 game.time.events.add(Phaser.Timer.SECOND * 1, function(){
                     
-                    sounds['finalDK'].play();
+                    sounds['finalSL'].play();
                     balloon.frame = 16;
+                    warmUps[2] = false;
                     Assignment(assignmentNr, exerciseNr);
                 });
             }
