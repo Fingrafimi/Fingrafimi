@@ -761,6 +761,7 @@ function loadBackground(assignmentNr)
 
 function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
 {
+    textPosArr = exerciseTextPosArray[assignmentNr];
     for(var i = 0; i < count; i++)
     {
         exerciseBtnArray[assignmentNr][exerciseNr+i] = game.add.button(posArr[i+exerciseNr][0], posArr[i+exerciseNr][1], image);
@@ -772,7 +773,11 @@ function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
         (function() 
         {
             var exerciseNum = exerciseNr + i;
-            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ quitExercise(); Assignment(assignmentNr, exerciseNum); });
+
+            var textNum = exerciseNum + 1;
+            // Add number above every image
+            game.add.text(textPosArr[i+exerciseNr][0], textPosArr[i+exerciseNr][1], textNum, { font: "bold 16px Arial"});
+            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ Assignment(assignmentNr, exerciseNum); });
         }()); // immediate invocation
     }
 }
