@@ -130,7 +130,6 @@ function preload()
     game.load.spritesheet('starfish',   'Assets/Images/Buttons/Exercises/starfish.png', 50, 49);
     game.load.spritesheet('shrimp',     'Assets/Images/Buttons/Exercises/shrimp.png', 50, 50);
     game.load.spritesheet('seahorse',   'Assets/Images/Buttons/Exercises/seahorse.png', 35, 72);
-<<<<<<< HEAD
     game.load.spritesheet('shell',      'Assets/Images/Buttons/Exercises/shell.png', 44, 43);
 
     game.load.image('musGlow',   'Assets/Images/Buttons/Exercises/mus-glow.png');
@@ -159,14 +158,10 @@ function preload()
     game.load.image('seahorseGlow',   'Assets/Images/Buttons/Exercises/seahorse-glow.png');
     game.load.image('shellGlow',   'Assets/Images/Buttons/Exercises/shell-glow.png');
 
-=======
-    game.load.spritesheet('shell',      'Assets/Images/Buttons/Exercises/shell.png', 67, 65);
-
     game.load.image('logo',             'Assets/Images/logo.png');
     game.load.spritesheet('warmupKeys', 'Assets/Images/Keyboard/asdfgh.png', 699, 77);
     game.load.spritesheet('warmupHead', 'Assets/Images/Maggi/warmupHead2.png', 159, 155);
     game.load.spritesheet('balloons',   'Assets/Images/Maggi/balloons.png', 346, 192);
->>>>>>> 0d02a58a147053a7ae487128ab5a6f8691f5cdbc
 }
 
 function create() 
@@ -701,8 +696,7 @@ function loadKeyboard(assignmentNr, exerciseNr)
     keyboard = game.add.image(150, 175, 'keyboard');
 }
 
-<<<<<<< HEAD
-=======
+
 function addLogo()
 {
     logo = game.add.image(170, 655, 'logo');
@@ -881,4 +875,3 @@ function loadAbout()
     exitBtn.events.onInputOut.add(outExit);
     exitBtn.events.onInputDown.add(loadHomePage);
 }
->>>>>>> 0d02a58a147053a7ae487128ab5a6f8691f5cdbc
