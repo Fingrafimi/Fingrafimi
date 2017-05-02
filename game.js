@@ -108,7 +108,7 @@ function preload()
     game.load.audio('intro',            'Assets/Sounds/Inngangur.mp3');
     game.load.audio('leftFJ',           'Assets/Sounds/F_og_J_1.mp3');
     game.load.audio('rightFJ',          'Assets/Sounds/F_og_J_2.mp3');
-    game.load.audio('findFJ',           'Assets/Sounds/F_OG_J_3.mp3');
+    game.load.audio('findFJ',           'Assets/Sounds/F_og_J_3.mp3');
     game.load.audio('findF',            'Assets/Sounds/F_og_J_4.mp3');
     game.load.audio('findJ',            'Assets/Sounds/F_og_J_5.mp3');
     game.load.audio('spaceFJ',          'Assets/Sounds/F_og_J_6.mp3');
