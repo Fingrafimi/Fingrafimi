@@ -63,13 +63,13 @@ function preload()
     game.load.spritesheet('spacebar',           'Assets/Images/keyboardSprite/v2/spacebarSprite.png', 259, 44);
     game.load.spritesheet('lShift',             'Assets/Images/keyboardSprite/v2/leftShiftSprite.png', 56, 43);
     game.load.spritesheet('rShift',             'Assets/Images/keyboardSprite/v2/rightShiftSprite.png', 125, 45);
-    game.load.image('lHand',                    'Assets/Images/New Folder/vinstri.png');
-    game.load.image('rHand',                    'Assets/Images/New Folder/haegri.png');
+    game.load.image('lHand',                    'Assets/Images/NewFolder/vinstri.png');
+    game.load.image('rHand',                    'Assets/Images/NewFolder/haegri.png');
     game.load.image('logoS',                    'Assets/Images/titill.png');
     game.load.image('logoL',                    'Assets/Images/titillStaerri2.png');
     game.load.spritesheet('instructorMaggi',    'Assets/Images/Maggi/instructionMaggi.png', 524, 572);
     game.load.spritesheet('arrow',              'Assets/Images/Buttons/Global/arrowSprite.png', 93, 48);
-    game.load.image('aboutInfo',                'Assets/Images/New Folder/aboutInfo.png');
+    game.load.image('aboutInfo',                'Assets/Images/NewFolder/aboutInfo.png');
     game.load.spritesheet('handsSprite',        'Assets/Images/Maggi/handSprite.png', 276, 450);
 
     // Small icons
