@@ -351,7 +351,15 @@ function Assignment(assignmentNr, exerciseNr)
 
 function keyPress(char, assignmentNr, exerciseNr) 
 {
-          
+    
+    keyboardKeysMap.forEach(function(key,value,map) 
+    {
+       if(keyboardKeysMap.get(`${value}`).animations)
+       {  
+            keyboardKeysMap.get(`${value}`).animations.stop(false,true);
+       }
+    });
+   
     wrongSound = game.add.audio('wrongSound');
     if(incorrPos != -1)
     {
