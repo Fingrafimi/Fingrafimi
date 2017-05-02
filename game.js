@@ -15,6 +15,7 @@ var inExercise = false;
 // Variables for the assignments text
 var style = { font: '44px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
 var instructionStyle = { font: '64px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 600 };
+
 var text = "";
 var textX = 500;
 var textY = 50;
@@ -161,7 +162,6 @@ function preload()
     game.load.spritesheet('heyBaggi',   'Assets/Images/Buttons/Exercises/hey.png', 80, 62);
     game.load.spritesheet('blom',       'Assets/Images/Buttons/Exercises/blom.png', 73, 95);
     game.load.spritesheet('mus2',       'Assets/Images/Buttons/Exercises/mus2.png', 91, 84);
-    game.load.spritesheet('shell',      'Assets/Images/Buttons/Exercises/shell.png', 44, 43);
 
     game.load.spritesheet('blakbolti',   'Assets/Images/Buttons/Exercises/blakbolti.png', 48, 52);
     game.load.spritesheet('fotbolti',    'Assets/Images/Buttons/Exercises/fotbolti.png', 45, 45);
@@ -179,7 +179,33 @@ function preload()
     game.load.spritesheet('starfish',   'Assets/Images/Buttons/Exercises/starfish.png', 50, 49);
     game.load.spritesheet('shrimp',     'Assets/Images/Buttons/Exercises/shrimp.png', 50, 50);
     game.load.spritesheet('seahorse',   'Assets/Images/Buttons/Exercises/seahorse.png', 35, 72);
-    game.load.spritesheet('shell',      'Assets/Images/Buttons/Exercises/shell.png', 67, 65);
+    game.load.spritesheet('shell',      'Assets/Images/Buttons/Exercises/shell.png', 44, 43);
+
+    game.load.image('musGlow',   'Assets/Images/Buttons/Exercises/mus-glow.png');
+    game.load.image('robotGlow',   'Assets/Images/Buttons/Exercises/robot-glow.png');
+    game.load.image('heyBaggiGlow',   'Assets/Images/Buttons/Exercises/hey-glow.png');
+    game.load.image('blomGlow',   'Assets/Images/Buttons/Exercises/blom-glow.png');
+    game.load.image('mus2Glow',   'Assets/Images/Buttons/Exercises/mus2-glow.png');
+
+
+    game.load.image('blakboltiGlow',   'Assets/Images/Buttons/Exercises/blakbolti-glow.png');
+    game.load.image('tennisboltiGlow',   'Assets/Images/Buttons/Exercises/tennisbolti-glow.png');
+    game.load.image('fotboltiGlow',   'Assets/Images/Buttons/Exercises/fotbolti-glow.png');
+    game.load.image('korfuboltiGlow',   'Assets/Images/Buttons/Exercises/korfubolti-glow.png');
+    game.load.image('rubbyboltiGlow',   'Assets/Images/Buttons/Exercises/rubbybolti-glow.png');
+
+    game.load.image('gitarGlow',   'Assets/Images/Buttons/Exercises/gitar-glow.png');
+    game.load.image('trommurGlow',   'Assets/Images/Buttons/Exercises/trommur-glow.png');
+    game.load.image('notaGlow',   'Assets/Images/Buttons/Exercises/nota-glow.png');
+    game.load.image('pianoGlow',   'Assets/Images/Buttons/Exercises/piano-glow.png');
+    game.load.image('saxafonnGlow',   'Assets/Images/Buttons/Exercises/saxafonn-glow.png');
+
+
+    game.load.image('jellyfishGlow',   'Assets/Images/Buttons/Exercises/jellyfish-glow.png');
+    game.load.image('starfishGlow',   'Assets/Images/Buttons/Exercises/starfish-glow.png');
+    game.load.image('shrimpGlow',   'Assets/Images/Buttons/Exercises/shrimp-glow.png');
+    game.load.image('seahorseGlow',   'Assets/Images/Buttons/Exercises/seahorse-glow.png');
+    game.load.image('shellGlow',   'Assets/Images/Buttons/Exercises/shell-glow.png');
 
     game.load.image('logo',                 'Assets/Images/logo.png');
     game.load.spritesheet('balloons',       'Assets/Images/Maggi/balloons.png', 346, 192);
@@ -352,7 +378,9 @@ function Assignment(assignmentNr, exerciseNr)
     game.world.removeAll();
     game.sound.stopAll();
     intro.destroy();
+  
     game.input.keyboard.start();
+    $("#assignment").val("");    
 
    	// Load new background
     loadBackground(assignmentNr);
@@ -365,22 +393,37 @@ function Assignment(assignmentNr, exerciseNr)
 
     // Create the textArea
     text = exercisesArray[assignmentNr][exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
     textArea.anchor.set(0.5);
 
     // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, function(char){
-        keyPress(char, assignmentNr, exerciseNr);
-    });
+    game.input.keyboard.addCallbacks(this, null, function(){
+        char = document.getElementById('assignment').value;
+        $("#assignment").val(""); 
+        if(char != '' && char != "´")
+        {
+            keyPress(char, assignmentNr, exerciseNr);
+        }
+    },null);
     
     addExitButton();
     addMuteButton();
 
     addExercises(assignmentNr);
+    exerciseBtnGlowArray[assignmentNr][exerciseNr].alpha = 0.8;
 }
 
 function keyPress(char, assignmentNr, exerciseNr) 
 {
+    
+    keyboardKeysMap.forEach(function(key,value,map) 
+    {
+       if(keyboardKeysMap.get(`${value}`).animations)
+       {  
+            keyboardKeysMap.get(`${value}`).animations.stop(false,true);
+       }
+    });
+   
     wrongSound = game.add.audio('wrongSound');
     if(incorrPos != -1)
     {
@@ -428,7 +471,7 @@ function keyPress(char, assignmentNr, exerciseNr)
     }
     // Clear the textArea
     textArea.destroy();
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 50, text, style);
+    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
     textArea.anchor.set(0.5);
     textArea.addColor('#00ff00',0);
 
@@ -581,55 +624,55 @@ function addExercises(assignmentNr)
     
     if(assignmentNr === 0 || assignmentNr === 1)
     {
-        addExerciseImages('mus', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
-        addExerciseImages('robot', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('mus', 'musGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('robot', 'robotGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
     }
     else if(assignmentNr === 2)
     {
-         addExerciseImages('mus', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
-         addExerciseImages('robot', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 3);
+         addExerciseImages('mus', 'musGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+         addExerciseImages('robot', 'robotGlow', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 3);
     }
     else if(assignmentNr === 3)
     {
-        addExerciseImages('mus' , exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
-        addExerciseImages('robot', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
-        addExerciseImages('mus', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('mus' , 'musGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('robot', 'robotGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('mus', 'musGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
     }
     else if(assignmentNr === 4)
     {
-        addExerciseImages('heyBaggi', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 0);
-        addExerciseImages('blom', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 4);
-        addExerciseImages('mus2', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 8);
+        addExerciseImages('heyBaggi','heyBaggiGlow', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 0);
+        addExerciseImages('blom','blomGlow', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 4);
+        addExerciseImages('mus2','mus2Glow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 8);
     }
     else if(assignmentNr === 5)
     {
-        addExerciseImages('heyBaggi', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 0);
-        addExerciseImages('blom', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 4);
-        addExerciseImages('mus2', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 8);
+        addExerciseImages('heyBaggi','heyBaggiGlow', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 0);
+        addExerciseImages('blom','blomGlow', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 4);
+        addExerciseImages('mus2','mus2Glow', exerciseBtnPosArray[assignmentNr], 4, assignmentNr, 8);
     }
     else if(assignmentNr === 6 || assignmentNr === 7)
     {
-        addExerciseImages('shell', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
-        addExerciseImages('starfish', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
-        addExerciseImages('shrimp', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
-        addExerciseImages('jellyfish', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
-        addExerciseImages('seahorse', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+        addExerciseImages('shell','shellGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('starfish','starfishGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('shrimp', 'shrimpGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('jellyfish', 'jellyfishGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
+        addExerciseImages('seahorse', 'seahorseGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
     }
     else if(assignmentNr === 8 || assignmentNr === 9)
     {
-        addExerciseImages('saxafonn', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
-        addExerciseImages('tromma', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
-        addExerciseImages('piano', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
-        addExerciseImages('gitar', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
-        addExerciseImages('nota', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+        addExerciseImages('saxafonn','saxafonnGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('tromma','trommurGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('piano','pianoGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('gitar','gitarGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
+        addExerciseImages('nota','notaGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
     }
     else if(assignmentNr === 10 || assignmentNr === 11)
     {
-        addExerciseImages('korfubolti', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
-        addExerciseImages('blakbolti', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
-        addExerciseImages('rubbybolti',  exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
-        addExerciseImages('fotbolti',  exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
-        addExerciseImages('tennisbolti',  exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
+        addExerciseImages('korfubolti','korfuboltiGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
+        addExerciseImages('blakbolti','blakboltiGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 3);
+        addExerciseImages('rubbybolti', 'rubbyboltiGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 6);
+        addExerciseImages('fotbolti', 'fotboltiGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 9);
+        addExerciseImages('tennisbolti', 'tennisboltiGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 12);
     }
 }
 
@@ -661,15 +704,22 @@ function loadBackground(assignmentNr)
     background.anchor.setTo(0.5, 0.5);
 }
 
-function addExerciseImages(image, posArr, count, assignmentNr, exerciseNr)
+function addExerciseImages(image, imageGlow, posArr, count, assignmentNr, exerciseNr)
 {
     textPosArr = exerciseTextPosArray[assignmentNr];
     for(var i = 0; i < count; i++)
     {
+        // Add the background image for glow
+        exerciseBtnGlowArray[assignmentNr][exerciseNr+i] = game.add.image(posArr[i+exerciseNr][0]-10, posArr[i+exerciseNr][1]-10, imageGlow);
+        // make the background image hidden.
+        exerciseBtnGlowArray[assignmentNr][exerciseNr+i].alpha = 0;
+
+
         exerciseBtnArray[assignmentNr][exerciseNr+i] = game.add.button(posArr[i+exerciseNr][0], posArr[i+exerciseNr][1], image);
         if(exercisesFinished[assignmentNr][exerciseNr+i] === true)
         {
             exerciseBtnArray[assignmentNr][exerciseNr+i].frame = 1;
+            
         }
 
         (function() 
@@ -791,6 +841,13 @@ function loadKeyboard(assignmentNr, exerciseNr)
     }
     
     keyboard = game.add.image(150, 175, 'keyboard');
+}
+
+
+function addLogo()
+{
+    logo = game.add.image(170, 655, 'logo');
+    logo.scale.setTo(0.5);
 }
 
 function Instructions(assignmentNr, exerciseNr)

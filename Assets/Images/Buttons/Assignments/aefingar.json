@@ -1,0 +1,108 @@
+{"frames": [
+
+{
+	"filename": "1-fogj.png",
+	"frame": {"x":124,"y":150,"w":121,"h":55},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":121,"h":55},
+	"sourceSize": {"w":124,"h":60}
+},
+{
+	"filename": "2-dogk.png",
+	"frame": {"x":1,"y":217,"w":120,"h":55},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":120,"h":55},
+	"sourceSize": {"w":124,"h":60}
+},
+{
+	"filename": "3-sogl.png",
+	"frame": {"x":123,"y":264,"w":120,"h":55},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":120,"h":55},
+	"sourceSize": {"w":124,"h":60}
+},
+{
+	"filename": "4-aogae.png",
+	"frame": {"x":1,"y":274,"w":120,"h":55},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":120,"h":55},
+	"sourceSize": {"w":124,"h":60}
+},
+{
+	"filename": "5-allir1.png",
+	"frame": {"x":124,"y":76,"w":124,"h":72},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":8,"y":1,"w":124,"h":72},
+	"sourceSize": {"w":134,"h":74}
+},
+{
+	"filename": "6-allir22.png",
+	"frame": {"x":124,"y":1,"w":127,"h":73},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":127,"h":73},
+	"sourceSize": {"w":129,"h":80}
+},
+{
+	"filename": "7-eogh.png",
+	"frame": {"x":1,"y":160,"w":121,"h":55},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":2,"w":121,"h":55},
+	"sourceSize": {"w":124,"h":60}
+},
+{
+	"filename": "8-iogg.png",
+	"frame": {"x":123,"y":321,"w":120,"h":55},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":120,"h":55},
+	"sourceSize": {"w":124,"h":60}
+},
+{
+	"filename": "9-bogn.png",
+	"frame": {"x":1,"y":331,"w":120,"h":55},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":120,"h":55},
+	"sourceSize": {"w":124,"h":60}
+},
+{
+	"filename": "10-rogo.png",
+	"frame": {"x":124,"y":207,"w":120,"h":55},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":120,"h":55},
+	"sourceSize": {"w":124,"h":60}
+},
+{
+	"filename": "11-broddstafir.png",
+	"frame": {"x":1,"y":86,"w":121,"h":72},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":2,"w":121,"h":72},
+	"sourceSize": {"w":134,"h":74}
+},
+{
+	"filename": "12-hastafir.png",
+	"frame": {"x":1,"y":1,"w":121,"h":83},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":121,"h":83},
+	"sourceSize": {"w":126,"h":86}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "aefingar.png",
+	"format": "RGBA8888",
+	"size": {"w":252,"h":387},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b98197739dfe7ba6e226a8e7e84a1d9c:b952d2932e8c9e5a8c0c9e75f3afd326:ee8df106b69b28fbf083cb6ec3ca8a3a$"
+}
+}
