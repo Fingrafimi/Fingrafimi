@@ -307,12 +307,16 @@ function loadHomePage()
 
 function Assignment(assignmentNr, exerciseNr) 
 {
+  
+   
     inTutorial = false;
     // Empty the canvas
     game.world.removeAll();
     game.sound.stopAll();
     intro.destroy();
+  
     game.input.keyboard.start();
+    $("#assignment").val("");    
 
    	// Load new background
     loadBackground(assignmentNr);
@@ -329,9 +333,14 @@ function Assignment(assignmentNr, exerciseNr)
     textArea.anchor.set(0.5);
 
     // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, null, function(char){
-        keyPress(char, assignmentNr, exerciseNr);
-    });
+    game.input.keyboard.addCallbacks(this, null, function(){
+        char = document.getElementById('assignment').value;
+        $("#assignment").val(""); 
+        if(char != '' && char != "´")
+        {
+            keyPress(char, assignmentNr, exerciseNr);
+        }
+    },null);
     
     addExitButton();
     addMuteButton();
@@ -342,6 +351,7 @@ function Assignment(assignmentNr, exerciseNr)
 
 function keyPress(char, assignmentNr, exerciseNr) 
 {
+          
     wrongSound = game.add.audio('wrongSound');
     if(incorrPos != -1)
     {
@@ -581,7 +591,7 @@ function addExerciseImages(image, imageGlow, posArr, count, assignmentNr, exerci
         (function() 
         {
             var exerciseNum = exerciseNr + i;
-            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ Assignment(assignmentNr, exerciseNum); });
+            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ quitExercise(); Assignment(assignmentNr, exerciseNum); });
         }()); // immediate invocation
     }
 }

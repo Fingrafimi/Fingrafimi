@@ -6,6 +6,7 @@
         <!--<script src="https://cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>-->
         <script type="text/javascript" src="phaser.min.js"></script>
         <script type="text/javascript" src="exercises.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="game.js"></script>
          <style>
         	canvas {
@@ -15,9 +16,19 @@
     			margin-right: auto;
     			display: block;
             }
+
+           #assignment {
+                opacity:0;
+            }
 		</style>
     </head>
-    <body id="body">      
+    <body id="body">  
+        <input type="text" id="assignment" autofocus="autofocus">   
     </body>
+    <script>
+           $( "body" ).mouseup(function() {
+                document.getElementById("assignment").focus();
+            });
+    </script> 
 </html>
 
