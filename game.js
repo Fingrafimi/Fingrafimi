@@ -615,11 +615,11 @@ function addLogo()
 function addLogoAndAssignmentID(assignmentNr, exerciseNr)
 {
     logo = game.add.image(25, 25, 'logoS');
-    logo.events.onInputDown.add(function(){loadHomePage();});
+    logo.events.onInputDown.add(function(){quitExercise(); loadHomePage();});
 
     assignmentBtn = game.add.button(25, 100, 'btnSprite');
     assignmentBtn.frame = assignmentNr;
-    assignmentBtn.events.onInputDown.add(function(){warmUps[0] =false; warmUps[1] = false; warmUps[2] = false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
+    assignmentBtn.events.onInputDown.add(function(){warmUps[0] =false; warmUps[1] = false; warmUps[2] = false; quitExercise(); Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
 
     logo = game.add.image(30, 660, 'logo');
     logo.scale.setTo(0.45);
@@ -827,7 +827,7 @@ function addExerciseImages(image, imageGlow, posArr, count, assignmentNr, exerci
             var textNum = exerciseNum + 1;
             // Add number above every image
             game.add.text(textPosArr[i+exerciseNr][0], textPosArr[i+exerciseNr][1], textNum, { font: "bold 16px Arial"});
-            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ Assignment(assignmentNr, exerciseNum); });
+            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ quitExercise(); Assignment(assignmentNr, exerciseNum); });
         }()); // immediate invocation
     }
 }
