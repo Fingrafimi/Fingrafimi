@@ -420,48 +420,33 @@ function Assignment(assignmentNr, exerciseNr)
     logo = game.add.image(30, 660, 'logo');
     logo.scale.setTo(0.45);
 
-    console.log(assignmentNr);
     var instructor = addAssignmentInstructor(assignmentNr);
 
     // Load keyboard
     loadKeyboard(assignmentNr, exerciseNr);
 
-    //Create the textArea
-    text = exercisesArray[assignmentNr][exerciseNr];
-    textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
-    textArea.anchor.set(0.5);
+    if(exerciseNr >= 0)
+    {
+        // Create the textArea
+        text = exercisesArray[assignmentNr][exerciseNr];
+        textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
+        textArea.anchor.set(0.5);
 
-    // When key is pressed the function keyPress is called
-    game.input.keyboard.addCallbacks(this, null, function(){
-        char = document.getElementById('assignment').value;
-        $("#assignment").val(""); 
-        if(char != '' && char != "´")
-        {
-            keyPress(char, assignmentNr, exerciseNr);
-        }
-    },null);
-    // if(exerciseNr >= 0)
-    // {
-    //     // Create the textArea
-    //     text = exercisesArray[assignmentNr][exerciseNr];
-    //     textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
-    //     textArea.anchor.set(0.5);
-
-    //     // When key is pressed the function keyPress is called
-    //     game.input.keyboard.addCallbacks(this, null, function(){
-    //         char = document.getElementById('assignment').value;
-    //         $("#assignment").val(""); 
-    //         if(char != '' && char != "´")
-    //         {
-    //             keyPress(char, assignmentNr, exerciseNr);
-    //         }
-    //     },null);
-    // }
-    // else
-    // {
-    //     var balloon = game.add.sprite(500, 25, 'balloonSprite', addBalloon(assignmentNr));
-    //     addFinalSound(assignmentNr);
-    // }
+        // When key is pressed the function keyPress is called
+        game.input.keyboard.addCallbacks(this, null, function(){
+            char = document.getElementById('assignment').value;
+            $("#assignment").val(""); 
+            if(char != '' && char != "´")
+            {
+                keyPress(char, assignmentNr, exerciseNr);
+            }
+        },null);
+    }
+    else
+    {
+        var balloon = game.add.sprite(500, 25, 'balloonSprite', addBalloon(assignmentNr));
+        addFinalSound(assignmentNr);
+    }
     
     addExitButton();
     addMuteButton();
@@ -650,11 +635,12 @@ function addLogo()
 function addLogoAndAssignmentID(assignmentNr, exerciseNr)
 {
     logo = game.add.image(25, 25, 'logoS');
-    logo.events.onInputDown.add(function(){loadHomePage();});
+    logo.events.onInputDown.add(function(){quitExercise(); loadHomePage();});
 
     assignmentBtn = game.add.button(25, 100, 'btnSprite');
     assignmentBtn.frame = assignmentNr;
-    assignmentBtn.events.onInputDown.add(function(){warmUps[0] =false; warmUps[1] = false; warmUps[2] = false;  warmUps[3] = false;  warmUps[4] = false;  warmUps[5] = false; Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
+
+    assignmentBtn.events.onInputDown.add(function(){warmUps[0] =false; warmUps[1] = false; warmUps[2] = false;  warmUps[3] = false;  warmUps[4] = false;  warmUps[5] = false; quitExercise(); Assignment(assignmentNr, exerciseNr);balloon.visible = false;});
 
     logo = game.add.image(30, 660, 'logo');
     logo.scale.setTo(0.45);
@@ -862,7 +848,7 @@ function addExerciseImages(image, imageGlow, posArr, count, assignmentNr, exerci
             var textNum = exerciseNum + 1;
             // Add number above every image
             game.add.text(textPosArr[i+exerciseNr][0], textPosArr[i+exerciseNr][1], textNum, { font: "bold 16px Arial"});
-            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ Assignment(assignmentNr, exerciseNum); });
+            exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ quitExercise(); Assignment(assignmentNr, exerciseNum); });
         }()); // immediate invocation
     }
 }
@@ -2168,13 +2154,13 @@ var warmUpFunctions =
     WarmUpDK,
     WarmUpSL,
     WarmUpAAE,
-    WarmUpALL1,
+    WarmUpALL1/*,
     WarmUpALL2,
     WarmUpEH,
     WarmUpIG,
     WarmUpBN,
     WarmUpRO,
     WarmUpBRODD,
-    WarmUpHA
+    WarmUpHA*/
 ];
 
