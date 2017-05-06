@@ -434,7 +434,11 @@ function Assignment(assignmentNr, exerciseNr)
     addMuteButton();
 
     addExercises(assignmentNr);
-    exerciseBtnGlowArray[assignmentNr][exerciseNr].alpha = 0.8;
+    if(exerciseNr >= 0)
+    {
+            exerciseBtnGlowArray[assignmentNr][exerciseNr].alpha = 0.8;
+
+    }
 }
 
 function keyPress(char, assignmentNr, exerciseNr) 
