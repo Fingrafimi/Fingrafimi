@@ -513,12 +513,18 @@ function loadHomePage()
     }
 }
 
-function Assignment(assignmentNr, exerciseNr) 
+function initWarmUps()
 {
     for(i = 0; i < 12; i++)
     {
         warmUps[i] = false;
     }
+
+}
+
+function Assignment(assignmentNr, exerciseNr) 
+{
+    initWarmUps();
 
     game.input.keyboard.onDownCallback = game.input.keyboard.onUpCallback = game.input.keyboard.onPressCallback = null;
 
