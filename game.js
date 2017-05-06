@@ -407,21 +407,9 @@ function update()
 // Load the home page
 function loadHomePage() 
 {
-    warmUps[0] = false;
-    warmUps[1] = false;
-    warmUps[2] = false;
-    warmUps[3] = false;
-    warmUps[4] = false;
-    warmUps[5] = false;
-    warmUps[6] = false;
-    warmUps[7] = false;
-    warmUps[8] = false;
-    warmUps[9] = false;
-    warmUps[10] = false;
-    warmUps[11] = false;
-    game.input.keyboard.stop();
-    game.sound.stopAll();
-    game.world.removeAll();
+    initWarmUps();
+    //game.input.keyboard.stop();
+    initGame();
 
     var homePage = game.add.image(game.world.centerX, game.world.centerY, 'homePage');
     homePage.anchor.setTo(0.5, 0.5);
@@ -522,16 +510,20 @@ function initWarmUps()
 
 }
 
+function initGame()
+{
+    game.input.keyboard.onDownCallback = game.input.keyboard.onUpCallback = game.input.keyboard.onPressCallback = null;
+    game.world.removeAll();
+    game.sound.stopAll();
+}
+
 function Assignment(assignmentNr, exerciseNr) 
 {
     initWarmUps();
 
-    game.input.keyboard.onDownCallback = game.input.keyboard.onUpCallback = game.input.keyboard.onPressCallback = null;
-
     // Empty the canvas
-    game.world.removeAll();
-    game.sound.stopAll();
-    intro.destroy();
+    initGame();
+    //intro.destroy();
   
     game.input.keyboard.start();
     $("#assignment").val("");    
@@ -1110,8 +1102,7 @@ function addLogo()
 
 function Instructions(assignmentNr, exerciseNr)
 {
-    game.world.removeAll();
-    game.sound.stopAll();
+    initGame();
 
     loadBackground(assignmentNr);
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
@@ -1409,8 +1400,7 @@ function addFinishSound(assignmentNr)
 
 function InstructionFJ(assignmentNr, exerciseNr)
 {
-    game.world.removeAll();
-    game.sound.stopAll();
+    initGame();
 
     //var homePage = game.add.image(game.world.centerX, game.world.centerY, 'instructionBg');
     //homePage.anchor.setTo(0.5, 0.5);
@@ -1448,8 +1438,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
 {
     //sounds['instruction'].stop();
     warmUps[0] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -1638,8 +1627,8 @@ function WarmUpFJ(assignmentNr, exerciseNr)
 
 function WarmUpDK(assignmentNr, exerciseNr){
     warmUps[1] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -1786,8 +1775,8 @@ function WarmUpDK(assignmentNr, exerciseNr){
 
 function WarmUpSL(assignmentNr, exerciseNr){
     warmUps[2] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -1934,8 +1923,8 @@ function WarmUpSL(assignmentNr, exerciseNr){
 //Set name
 function WarmUpAAE(assignmentNr, exerciseNr){
     warmUps[3] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+    
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -2081,8 +2070,8 @@ function WarmUpAAE(assignmentNr, exerciseNr){
 
 function WarmUpALL1(assignmentNr, exerciseNr){
     warmUps[4] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+    
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -2159,8 +2148,8 @@ function WarmUpALL1(assignmentNr, exerciseNr){
 //Set name
 function WarmUpALL2(assignmentNr, exerciseNr){
     warmUps[5] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+    
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -2238,8 +2227,8 @@ function WarmUpALL2(assignmentNr, exerciseNr){
 //Set name
 function WarmUpEH(assignmentNr, exerciseNr){
     warmUps[6] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -2400,8 +2389,8 @@ function WarmUpEH(assignmentNr, exerciseNr){
 //Set name
 function WarmUpIG(assignmentNr, exerciseNr){
     warmUps[7] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -2613,8 +2602,7 @@ function WarmUpIG(assignmentNr, exerciseNr){
 //Set name
 function WarmUpBN(assignmentNr, exerciseNr){
 //    warmUps[1] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -2762,8 +2750,7 @@ function WarmUpBN(assignmentNr, exerciseNr){
 //Set name
 function WarmUpRO(assignmentNr, exerciseNr){
 //    warmUps[1] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -2911,8 +2898,7 @@ function WarmUpRO(assignmentNr, exerciseNr){
 //Set name
 function WarmUpBRODD(assignmentNr, exerciseNr){
 //    warmUps[1] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
@@ -3060,8 +3046,7 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
 //Set name
 function WarmUpHA(assignmentNr, exerciseNr){
 //    warmUps[1] = true;
-    game.world.removeAll();
-    game.sound.stopAll();
+    initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
