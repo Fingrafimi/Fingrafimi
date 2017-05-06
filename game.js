@@ -454,12 +454,7 @@ function Assignment(assignmentNr, exerciseNr)
     addExercises(assignmentNr);
     if(exerciseNr >= 0)
     {
-<<<<<<< HEAD
-            exerciseBtnGlowArray[assignmentNr][exerciseNr].alpha = 0.8;
-
-=======
         exerciseBtnGlowArray[assignmentNr][exerciseNr].alpha = 0.8;
->>>>>>> d6ed4bc441fc6c1651d8fdb198f73f8e6ac16afd
     }
 }
 
