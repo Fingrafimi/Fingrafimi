@@ -512,18 +512,13 @@ function loadHomePage()
 
 function Assignment(assignmentNr, exerciseNr) 
 {
-    warmUps[0] = false;
-    warmUps[1] = false;
-    warmUps[2] = false;
-    warmUps[3] = false;
-    warmUps[4] = false;
-    warmUps[5] = false;
-    warmUps[6] = false;
-    warmUps[7] = false;
-    warmUps[8] = false;
-    warmUps[9] = false;
-    warmUps[10] = false;
-    warmUps[11] = false;
+    for(i = 0; i < 12; i++)
+    {
+        warmUps[i] = false;
+    }
+
+    game.input.keyboard.onDownCallback = game.input.keyboard.onUpCallback = game.input.keyboard.onPressCallback = null;
+
     // Empty the canvas
     game.world.removeAll();
     game.sound.stopAll();
@@ -777,7 +772,7 @@ function addSkipButton(assignmentNr, exerciseNr, nextFunction)
     arrowBtn.frame = 0;
     arrowBtn.events.onInputOver.add(function(){ arrowBtn.frame = 1; }, this);
     arrowBtn.events.onInputOut.add(function(){ arrowBtn.frame = 0; }, this);
-    arrowBtn.events.onInputDown.add(function(){ nextFunction(assignmentNr, exerciseNr); }, this);
+    arrowBtn.events.onInputDown.add(function(){nextFunction(assignmentNr, exerciseNr); }, this);
 }
 
 function addBalloon(assignmentNr)
