@@ -616,14 +616,6 @@ function stopKeyboardAnimations()
 function keyPress(char, assignmentNr, exerciseNr) 
 {
     stopKeyboardAnimations();
-    /*
-    keyboardKeysMap.forEach(function(key,value,map) 
-    {
-       if(keyboardKeysMap.get(`${value}`).animations)
-       {  
-            keyboardKeysMap.get(`${value}`).animations.stop(false,true);
-       }
-    });*/
    
     wrongSound = game.add.audio('wrongSound');
     if(incorrPos != -1)
@@ -693,7 +685,6 @@ function keyPress(char, assignmentNr, exerciseNr)
             var finishSound = addFinishSound(assignmentNr);
           //  finishSound.onStop.addOnce( function(){finishSound.stop();loadHomePage();}, this);
             finishSound.play();
-           // loadHomePage();
             return;
         }
 
@@ -742,8 +733,20 @@ function findNextExercise(assignmentNr, exerciseNr)
 function addMuteButton()
 {
     muteBtn = game.add.button(890, 20, 'sound');
-    muteBtn.events.onInputOver.add(function(){ if(game.sound.mute === false){ muteBtn.frame = 2; } });
-    muteBtn.events.onInputOut.add(function(){ if(game.sound.mute === false){ muteBtn.frame = 0; } });
+    // Add hover affect
+    muteBtn.events.onInputOver.add(function(){ 
+        if(game.sound.mute === false)
+        { 
+            muteBtn.frame = 2; 
+        } 
+    });
+    muteBtn.events.onInputOut.add(function(){ 
+        if(game.sound.mute === false)
+        { 
+            muteBtn.frame = 0; 
+        } 
+    });
+
     muteBtn.scale.setTo(0.35);
     muteBtn.events.onInputDown.add(muteSound);
     muteBtn.frame = 0;
@@ -775,8 +778,10 @@ function muteSound()
 function addExitButton()
 {
     exitBtn = game.add.button(930, 20, 'exit');
+    // Add hover affect
     exitBtn.events.onInputOver.add(function(){ exitBtn.frame = 1;});
     exitBtn.events.onInputOut.add(function(){ exitBtn.frame = 0;});
+
     exitBtn.events.onInputDown.add(loadHomePage);
     exitBtn.events.onInputDown.add(quitExercise);
 
@@ -797,8 +802,7 @@ function addLogoAndAssignmentID(assignmentNr, exerciseNr)
     assignmentBtn.frame = assignmentNr;
 
     assignmentBtn.events.onInputDown.add(function(){
-            warmUps[0] =false; warmUps[1] = false; warmUps[2] = false;  warmUps[3] = false;  warmUps[4] = false;  warmUps[5] = false;
-            warmUps[6] =false; warmUps[7] = false; warmUps[8] = false;  warmUps[9] = false;  warmUps[10] = false;  warmUps[11] = false;
+            initWarmUps();
             quitExercise(); 
             Assignment(assignmentNr, exerciseNr);
             balloon.visible = false;
@@ -903,10 +907,7 @@ function addFinalSound(assignmentNr)
 function quitExercise()
 {
     game.input.keyboard.stop();
-    text = "";
-    corrCount = 0;
-    incorrPos = -1;
-    textPos = 0;
+    initTextVariables();
 }
 
 function addExercises(assignmentNr)
@@ -1005,7 +1006,6 @@ function addExerciseImages(image, imageGlow, posArr, count, assignmentNr, exerci
         exerciseBtnGlowArray[assignmentNr][exerciseNr+i] = game.add.image(posArr[i+exerciseNr][0]-10, posArr[i+exerciseNr][1]-10, imageGlow);
         // make the background image hidden.
         exerciseBtnGlowArray[assignmentNr][exerciseNr+i].alpha = 0;
-
 
         exerciseBtnArray[assignmentNr][exerciseNr+i] = game.add.button(posArr[i+exerciseNr][0], posArr[i+exerciseNr][1], image);
         if(exercisesFinished[assignmentNr][exerciseNr+i] === true)
@@ -1157,55 +1157,10 @@ function Instructions(assignmentNr, exerciseNr)
 
     addExitButton();
     addMuteButton();
-
-   // addSkipButton(assignmentNr, exerciseNr,  WarmUpFJ);
-   if(assignmentNr === 0)
+    
+   if(assignmentNr < 12)
    {
-        addSkipButton(assignmentNr, exerciseNr,  WarmUpFJ);
-   }
-   else if(assignmentNr === 1)
-   {
-        addSkipButton(assignmentNr, exerciseNr,  WarmUpDK);
-   }
-   else if(assignmentNr === 2)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpSL);
-   }
-   else if(assignmentNr === 3)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpAAE);
-   }
-   else if(assignmentNr === 4)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpALL1);
-   }
-   else if(assignmentNr === 5)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpALL2);
-   }
-   else if(assignmentNr === 6)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpEH);
-   }
-   else if(assignmentNr === 7)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpIG);
-   }
-   else if(assignmentNr === 8)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpBN);
-   }
-   else if(assignmentNr === 9)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpRO);
-   }
-   else if(assignmentNr === 10)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpBRODD);
-   }
-   else if(assignmentNr === 11)
-   {
-       addSkipButton(assignmentNr, exerciseNr, WarmUpHA);
+       addSkipButton(assignmentNr, exerciseNr,  warmUpFunctions[assignmentNr]);
    }
    else
    {
