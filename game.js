@@ -155,6 +155,7 @@ function preload()
     game.load.audio('findB',            'Assets/Sounds/B_og_N_2.mp3');
     game.load.audio('typingB',          'Assets/Sounds/B_og_N_3.mp3');
     game.load.audio('typeB',            'Assets/Sounds/B_og_N_4.mp3');
+    game.load.audio('gjBN',             'Assets/Sounds/I_og_G_5_2.mp3');
     game.load.audio('findN',            'Assets/Sounds/B_og_N_5.mp3');
     game.load.audio('typingN',          'Assets/Sounds/B_og_N_6.mp3');
     game.load.audio('typeN',            'Assets/Sounds/B_og_N_7.mp3');
@@ -325,6 +326,8 @@ function create()
     sounds['findB'] =       game.add.audio('findB');
     sounds['typingB'] =     game.add.audio('typingB');
     sounds['typeB'] =       game.add.audio('typeB');
+    sounds['gjBN1'] =       game.add.audio('gjBN');
+    sounds['gjBN2'] =       game.add.audio('gjBN');
     sounds['findN'] =       game.add.audio('findN');
     sounds['typingN'] =     game.add.audio('typingN');
     sounds['typeN'] =       game.add.audio('typeN');
@@ -576,7 +579,8 @@ function Assignment(assignmentNr, exerciseNr)
     }
     else
     {
-        var balloon = game.add.sprite(500, 25, 'balloonSprite', addBalloon(assignmentNr));
+        var balloon = game.add.sprite(475, 5, 'balloonSprite', addBalloon(assignmentNr));
+        balloon.scale.setTo(0.9);
         addFinalSound(assignmentNr);
         instructor.play('talk');
     }
@@ -858,10 +862,12 @@ function addFinalSound(assignmentNr)
             sounds['finalEH'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
             break;
         case 7:
-            //sounds['finalFJ'].play();
+            sounds['finalIG'].play();
+            sounds['finalIG'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
             break;
         case 8:
-            //sounds['finalFJ'].play();
+            sounds['finalBN'].play();
+            sounds['finalBN'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
             break;
         case 9:
             //sounds['finalFJ'].play();
@@ -1237,9 +1243,6 @@ function addAssignmentInstructor(assignmentNr)
 {
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
     {
-        //  instructor = game.add.sprite(500, 150, 'instructorMaggi', 0);
-        //  instructor.scale.setTo(0.8);
-        //  instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
         instructor = game.add.sprite(1015, 210, 'warmupHead', 0);
         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
         instructor.anchor.setTo(0.75, 1);
@@ -1262,17 +1265,17 @@ function addAssignmentInstructor(assignmentNr)
     }
     else if(assignmentNr === 8 || assignmentNr === 9)
     {
-         instructor = game.add.sprite(700, 150, 'fish', 0);
-         instructor.scale.setTo(0.5);
-         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
-         return instructor;
+        instructor = game.add.sprite(785, 100, 'fish', 0);
+        instructor.scale.setTo(0.5);
+        instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+        return instructor;
     }
     else
     {
-         instructor = game.add.sprite(700, 150, 'horse', 0);
-         instructor.scale.setTo(0.5);
-         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
-         return instructor;
+        instructor = game.add.sprite(700, 150, 'horse', 0);
+        instructor.scale.setTo(0.5);
+        instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+        return instructor;
     }
 }
 
@@ -2636,7 +2639,7 @@ function WarmUpBN(assignmentNr, exerciseNr){
     leftHand.animations.add('type', [9, 10, 9, 10, 9, 10, 9], 2, false); 
     leftHand.scale.setTo(1.1);
 
-    rightHand = game.add.sprite(465, 700, 'hands', 0);
+    rightHand = game.add.sprite(470, 700, 'hands', 0);
     rightHand.animations.add('type', [0, 3, 0, 3, 0, 3, 0], 2, false);
     rightHand.scale.setTo(1.1);
 
@@ -2703,6 +2706,7 @@ function WarmUpBN(assignmentNr, exerciseNr){
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'b', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#000000',0);
+                keyboardKeysMap.get('b').play('blink');
             }            
         }, this).autoDestroy = true;
     });
@@ -2712,38 +2716,87 @@ function WarmUpBN(assignmentNr, exerciseNr){
         instructor.frame = 0;
         game.input.keyboard.start();
         game.input.keyboard.addCallbacks(this, null, null, function(char){    
-            if(char === 'b')
+            if(char === 'b' && warmUps[8])
             {
                 game.input.keyboard.stop();
                 game.time.events.add(Phaser.Timer.SECOND * 1, function(){
                     instructor.play('talk');
                     balloon.frame = 52;
-                    sounds['findK'].play();
+                    sounds['gjBN1'].play();
                     textArea.destroy();
-//                    textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'k', instructionStyle);
-                    textArea.anchor.set(0.5);
-                    textArea.addColor('#000000',0);
                 });
             }
         });
-
-        //game.time.events.add(Phaser.Timer.SECOND * 2, function(){});
      });
 
-     sounds['findK'].onStop.addOnce(function(){ 
-        warmupHead.animations.stop();
-        warmupHead.frame = 0;
+     sounds['gjBN1'].onStop.addOnce(function(){
+        instructor.animations.stop();
+        instructor.frame = 0;
+        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+            if(warmUps[8])
+            {
+                instructor.play('talk');
+                balloon.frame = 52;
+                sounds['findN'].play();
+                keyboardKeysMap.get('n').play('blink');
+            }
+        });
+     });
+
+     sounds['findN'].onStop.addOnce(function(){
+        instructor.animations.stop();
+        instructor.frame = 0;
+        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+            if(warmUps[8])
+            {
+                instructor.play('talk');
+                balloon.frame = 53;
+                sounds['typingN'].play();
+                rightHand.play('type');
+            }
+        });
+     });
+
+     sounds['typingN'].onStop.addOnce(function(){
+        instructor.animations.stop();
+        instructor.frame = 0;
+        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+            if(warmUps[8])
+            {
+                instructor.play('talk');
+                balloon.frame = 54;
+                sounds['typeN'].play();
+                keyboardKeysMap.get('n').play('blink');
+                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'n', instructionStyle);
+                textArea.anchor.set(0.5);
+                textArea.addColor('#000000',0);
+            }
+        });
+     });
+
+     sounds['typeN'].onStop.addOnce(function(){ 
+        instructor.animations.stop();
+        instructor.frame = 0;
         game.input.keyboard.start();
         game.input.keyboard.addCallbacks(this, null, null, function(char){
-//            if(char === 'k')
+            if(char === 'n' && warmUps[8])
             {
                 game.input.keyboard.stop();
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
-                    
-//                    sounds['finalDK'].play();
-//                    balloon.frame = 11;
-                    Assignment(assignmentNr, exerciseNr);
+                game.time.events.add(Phaser.Timer.SECOND * 1, function(){  
+                    instructor.play('talk');
+                    sounds['gjBN2'].play();
                 });
+            }
+        });
+     });
+
+     sounds['gjBN2'].onStop.addOnce(function(){
+        instructor.animations.stop();
+        instructor.frame = 0;
+        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+            if(warmUps[8])
+            {
+                Assignment(assignmentNr, exerciseNr);
             }
         });
      });
