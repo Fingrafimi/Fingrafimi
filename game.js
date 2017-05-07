@@ -151,6 +151,14 @@ function preload()
     game.load.audio('typingG',          'Assets/Sounds/I_og_G_7.mp3');
     game.load.audio('typeG',            'Assets/Sounds/I_og_G_8.mp3');
     game.load.audio('finalIG',          'Assets/Sounds/I_og_G_9.mp3');
+    game.load.audio('handsBN',          'Assets/Sounds/B_og_N_1.mp3');
+    game.load.audio('findB',            'Assets/Sounds/B_og_N_2.mp3');
+    game.load.audio('typingB',          'Assets/Sounds/B_og_N_3.mp3');
+    game.load.audio('typeB',            'Assets/Sounds/B_og_N_4.mp3');
+    game.load.audio('findN',            'Assets/Sounds/B_og_N_5.mp3');
+    game.load.audio('typingN',          'Assets/Sounds/B_og_N_6.mp3');
+    game.load.audio('typeN',            'Assets/Sounds/B_og_N_7.mp3');
+    game.load.audio('finalBN',          'Assets/Sounds/B_og_N_8.mp3');
     game.load.audio('instructionFJ',    'Assets/Sounds/Instructions/instructionFJ.mp3');
     game.load.audio('instructionDK',    'Assets/Sounds/Instructions/DK_instruction.mp3');
     game.load.audio('instructionSL',    'Assets/Sounds/Instructions/SL_instruction.mp3');
@@ -307,19 +315,27 @@ function create()
     sounds['findI'] =       game.add.audio('findI');
     sounds['typingI'] =     game.add.audio('typingI');
     sounds['typeI'] =       game.add.audio('typeI');
-    sounds['gjIG1'] =        game.add.audio('gjIG');
-    sounds['gjIG2'] =        game.add.audio('gjIG');
+    sounds['gjIG1'] =       game.add.audio('gjIG');
+    sounds['gjIG2'] =       game.add.audio('gjIG');
     sounds['findG'] =       game.add.audio('findG');
     sounds['typingG'] =     game.add.audio('typingG');
     sounds['typeG'] =       game.add.audio('typeG');
     sounds['finalIG'] =     game.add.audio('finalIG');
+    sounds['handsBN'] =     game.add.audio('handsBN');
+    sounds['findB'] =       game.add.audio('findB');
+    sounds['typingB'] =     game.add.audio('typingB');
+    sounds['typeB'] =       game.add.audio('typeB');
+    sounds['findN'] =       game.add.audio('findN');
+    sounds['typingN'] =     game.add.audio('typingN');
+    sounds['typeN'] =       game.add.audio('typeN');
+    sounds['finalBN'] =     game.add.audio('finalBN');
 
     loadHomePage();
 }
 
 function update()
 {
-    if(warmUps[0] === true || warmUps[1] === true || warmUps[2] === true || warmUps[3] === true || warmUps[4] === true || warmUps[5] === true ||  warmUps[8] === true || warmUps[9] === true || warmUps[10] === true || warmUps[11])
+    if(warmUps[0] === true || warmUps[1] === true || warmUps[2] === true || warmUps[3] === true || warmUps[4] === true || warmUps[5] === true || warmUps[10] === true || warmUps[11])
     {
         if(warmupHead.angle > -46 && warmupHead.x > 1015)
         {
@@ -343,7 +359,7 @@ function update()
         }
     }
 
-    if(warmUps[6] === true || warmUps[7] === true)
+    if(warmUps[6] === true || warmUps[7] === true  ||  warmUps[8] === true || warmUps[9] === true)
     {
         if(leftHand.y > 320 && balloon.visible === true)
         {
@@ -760,7 +776,9 @@ function addLogoAndAssignmentID(assignmentNr, exerciseNr)
     assignmentBtn.events.onInputDown.add(function(){
             warmUps[0] =false; warmUps[1] = false; warmUps[2] = false;  warmUps[3] = false;  warmUps[4] = false;  warmUps[5] = false;
             warmUps[6] =false; warmUps[7] = false; warmUps[8] = false;  warmUps[9] = false;  warmUps[10] = false;  warmUps[11] = false;
-            quitExercise(); Assignment(assignmentNr, exerciseNr);balloon.visible = false;
+            quitExercise(); 
+            Assignment(assignmentNr, exerciseNr);
+            balloon.visible = false;
     });
 
     logo = game.add.image(30, 660, 'logo');
@@ -2601,117 +2619,106 @@ function WarmUpIG(assignmentNr, exerciseNr){
 
 //Set name
 function WarmUpBN(assignmentNr, exerciseNr){
-//    warmUps[1] = true;
+    warmUps[8] = true;
     initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
-    warmupKeys = game.add.sprite(150, 380, 'warmupKeys', 0);
-    warmupKeys.animations.add('asdfBlink', [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0], 2, false, true);
-    warmupKeys.animations.add('jklæBlink', [0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0], 2, false, true);
-//    warmupKeys.animations.add('dBlink', [0, , 0, , 0, , 0], 2, false, true);
-//    warmupKeys.animations.add('kBlink', [0, , 0, , 0, , 0], 2, false, true);
-//    warmupKeys.animations.add('bothBlink', [0, , 0, , 0, , 0, , 0, , 0], 2, false, true);
+    instructor = game.add.sprite(785, 100, 'fish', 0);
+    instructor.scale.setTo(0.5);
+    instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
 
-    warmupHead = game.add.sprite(1096, 210, 'warmupHead', 0);
-    warmupHead.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
-    warmupHead.anchor.setTo(0.75, 1);
+    loadKeyboard(assignmentNr, exerciseNr);
 
-    leftHand = game.add.sprite(155, 700, 'lHand', 2);
-    leftHand.scale.setTo(1.1);  
+    leftHand = game.add.sprite(210, 700, 'hands', 9);
+    leftHand.animations.add('type', [9, 10, 9, 10, 9, 10, 9], 2, false); 
+    leftHand.scale.setTo(1.1);
 
-    balloon = game.add.sprite(500, 25, 'balloonSprite', 0);
-    //balloon.visible = false;
+    rightHand = game.add.sprite(465, 700, 'hands', 0);
+    rightHand.animations.add('type', [0, 3, 0, 3, 0, 3, 0], 2, false);
+    rightHand.scale.setTo(1.1);
+
+    balloon = game.add.sprite(475, 5, 'balloonSprite', 47);
+    balloon.scale.setTo(0.9);
 
     addMuteButton();
     addExitButton();
 
     //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
     //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
-    sounds['leftFJ'].onStop.addOnce(function(){
-
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            warmupHead.animations.stop(); 
-            warmupHead.frame = 0;
-
+    sounds['handsBN'].onStop.addOnce(function(){
+        //Make Maggi stop moving his mouth in the 2 second pause between animations 
+        instructor.animations.stop(); 
+        instructor.frame = 0;
+        
+        //Pause for 2 seconds after fogj1 soundclip, then play fogj2
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
             
-            //Pause for 2 seconds after fogj1 soundclip, then play fogj2
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-               
-                //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
-                //and add the right hand into the game so it can start moving up towards the keys.
-//                if(warmUps[1])
-                {
-                    warmupHead.play('talk');
-                    sounds['rightFJ'].play();
-                    warmupKeys.play('jklæBlink');
-                    //balloon.frame = 1;
-                    rightHand = game.add.sprite(535, 700, 'rHand', 0);
-                    rightHand.scale.setTo(1.1);
-                }
+            //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
+            //and add the right hand into the game so it can start moving up towards the keys.
+            if(warmUps[8])
+            {
+                instructor.play('talk');
+                keyboardKeysMap.get('b').play('blink');
+                sounds['findB'].play();
+                balloon.frame = 49;
+            }
+            
                 
-                  
-            }, this).autoDestroy = true;  
+        }, this).autoDestroy = true;  
     }, this);
 
     //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
-     sounds['rightFJ'].onStop.addOnce(function(){
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            warmupHead.animations.stop(); 
-            warmupHead.frame = 0;
-            //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
+     sounds['findB'].onStop.addOnce(function(){
+        //Make Maggi stop moving his mouth in the 2 second pause between animations 
+        instructor.animations.stop(); 
+        instructor.frame = 0;
+        //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){         
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-//            if(warmUps[1])
+            if(warmUps[8])
             {
-                warmupHead.play('talk');
-                warmupKeys.play('bothBlink');
-//                balloon.frame = 8;
-//                sounds['findDK'].play();
-            }
-            
-                            
-            }, this).autoDestroy = true;  
+                instructor.play('talk');
+                balloon.frame = 50;
+                sounds['typingB'].play();
+                leftHand.play('type');
+            }                        
+        }, this).autoDestroy = true;  
     }, this);
 
-    sounds['findDK'].onStop.addOnce(function(){
-        warmupHead.animations.stop(); 
-        warmupHead.frame = 0;
+    sounds['typingB'].onStop.addOnce(function(){
+        instructor.animations.stop(); 
+        instructor.frame = 0;
 
         game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-//            if(warmUps[1])
+            if(warmUps[8])
             {
-                warmupHead.play('talk');
-//                warmupKeys.play('dBlink');
-//                balloon.frame = 9;
-//                sounds['findD'].play();
-//                textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'd', instructionStyle);
+                instructor.play('talk');
+                balloon.frame = 51;
+                sounds['typeB'].play();
+                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'b', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#000000',0);
-            }
-            
-                            
+            }            
         }, this).autoDestroy = true;
     });
 
-    sounds['findD'].onStop.addOnce(function(){ 
-        warmupHead.animations.stop();
-        warmupHead.frame = 0;
+    sounds['typeB'].onStop.addOnce(function(){ 
+        instructor.animations.stop();
+        instructor.frame = 0;
         game.input.keyboard.start();
         game.input.keyboard.addCallbacks(this, null, null, function(char){    
- //           if(char === 'd')
+            if(char === 'b')
             {
                 game.input.keyboard.stop();
                 game.time.events.add(Phaser.Timer.SECOND * 1, function(){
-                    warmupHead.play('talk');
-//                    warmupKeys.play('kBlink');
-//                    balloon.frame = 10;
-//                    sounds['findK'].play();
+                    instructor.play('talk');
+                    balloon.frame = 52;
+                    sounds['findK'].play();
                     textArea.destroy();
 //                    textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'k', instructionStyle);
                     textArea.anchor.set(0.5);
@@ -2742,36 +2749,33 @@ function WarmUpBN(assignmentNr, exerciseNr){
      });
 
     //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
-    sounds['leftFJ'].play();
-    warmupHead.play('talk');
-    warmupKeys.play('asdfBlink');
+    sounds['handsBN'].play();
+    instructor.play('talk');
 }
 
 //Set name
 function WarmUpRO(assignmentNr, exerciseNr){
-//    warmUps[1] = true;
+    warmUps[9] = true;
     initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
-    warmupKeys = game.add.sprite(150, 380, 'warmupKeys', 0);
-    warmupKeys.animations.add('asdfBlink', [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0], 2, false, true);
-    warmupKeys.animations.add('jklæBlink', [0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0], 2, false, true);
-//    warmupKeys.animations.add('dBlink', [0, , 0, , 0, , 0], 2, false, true);
-//    warmupKeys.animations.add('kBlink', [0, , 0, , 0, , 0], 2, false, true);
-//    warmupKeys.animations.add('bothBlink', [0, , 0, , 0, , 0, , 0, , 0], 2, false, true);
+    instructor = game.add.sprite(785, 100, 'fish', 0);
+    instructor.scale.setTo(0.5);
+    instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
 
-    warmupHead = game.add.sprite(1096, 210, 'warmupHead', 0);
-    warmupHead.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
-    warmupHead.anchor.setTo(0.75, 1);
+    loadKeyboard(assignmentNr, exerciseNr);
 
-    leftHand = game.add.sprite(155, 700, 'lHand', 2);
-    leftHand.scale.setTo(1.1);  
+    leftHand = game.add.sprite(210, 700, 'hands', 9);
+    leftHand.animations.add('type', [9, 11, 9, 11, 9, 11, 9], 2, false); 
 
-    balloon = game.add.sprite(500, 25, 'balloonSprite', 0);
-    //balloon.visible = false;
+    rightHand = game.add.sprite(475, 700, 'hands', 0);
+    rightHand.animations.add('type', [0, 6, 0, 6, 0, 6, 0], 2, false);
+    
+    balloon = game.add.sprite(475, 5, 'balloonSprite', 47);
+    balloon.scale.setTo(0.9);
 
     addMuteButton();
     addExitButton();
