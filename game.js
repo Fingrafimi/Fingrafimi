@@ -493,10 +493,7 @@ function loadHomePage()
     game.input.keyboard.stop();
     
     // Initialize variables for assignments
-    text = "";
-    corrCount = 0;
-    incorrPos = -1;
-    textPos = 0;
+    initTextVariables();
 
     addLogo();
 
@@ -518,6 +515,15 @@ function loadHomePage()
         instructorMaggi.play('talk');
         firstLoad = false;
     }
+}
+
+function initTextVariables()
+{
+    text = "";
+    corrCount = 0;
+    incorrPos = -1;
+    textPos = 0;
+
 }
 
 function initWarmUps()
@@ -595,9 +601,8 @@ function Assignment(assignmentNr, exerciseNr)
     }
 }
 
-function keyPress(char, assignmentNr, exerciseNr) 
+function stopKeyboardAnimations()
 {
-    
     keyboardKeysMap.forEach(function(key,value,map) 
     {
        if(keyboardKeysMap.get(`${value}`).animations)
@@ -605,6 +610,20 @@ function keyPress(char, assignmentNr, exerciseNr)
             keyboardKeysMap.get(`${value}`).animations.stop(false,true);
        }
     });
+
+}
+
+function keyPress(char, assignmentNr, exerciseNr) 
+{
+    stopKeyboardAnimations();
+    /*
+    keyboardKeysMap.forEach(function(key,value,map) 
+    {
+       if(keyboardKeysMap.get(`${value}`).animations)
+       {  
+            keyboardKeysMap.get(`${value}`).animations.stop(false,true);
+       }
+    });*/
    
     wrongSound = game.add.audio('wrongSound');
     if(incorrPos != -1)
