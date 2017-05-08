@@ -1,6 +1,6 @@
-QUnit.test("First Test with Phaser", function( assert ) {
-    
-    assert.equal( value, "1", "Value should be one");
+QUnit.test("Test size of canvas", function( assert ) {
+    var value = game.width;
+    assert.equal(value, 1000, "Canvas should be 1000px wide");
 });
 
 // /*var jsdom = require('jsdom');
