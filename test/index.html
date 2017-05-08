@@ -8,11 +8,12 @@
         <script src="https://code.jquery.com/qunit/qunit-2.3.2.js"></script>
         <link rel = "stylesheet" href = "https://code.jquery.com/qunit/qunit-2.3.2.css">
         <script type="text/javascript" src="../phaser.min.js"></script>
-        <script type="text/javascript" src="../exercises.js"></script>
-        <script type="text/javascript" src="../game.js"></script>
+        <script type="text/javascript" src="../exercises.js" data-cover></script>
+        <script type="text/javascript" src="../game.js"  data-cover></script>
         <!--<script src="external_libs/jquery-3.1.1.min.js"></script>-->
         <!--<script src="https://code.jquery.com/qunit/qunit-1.23.1.js"></script>--> 
         <script type="text/javascript" src="game.test.js"></script>
+
          <style>
         	canvas {
  	   			padding-left: 0;
@@ -30,12 +31,6 @@
     <body id="body">  
         <div id = "qunit"></div> 
         <div id = "qunit-fixture"></div>
-        <script>
-            QUnit.test("First Test", function( assert ) {
-                var value = 1;
-                assert.equal( value, "1", "Value should be one");
-            });
-        </script>
         <!--<input type="text" id="assignment" autofocus="autofocus">   
     </body>
     <script>

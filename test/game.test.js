@@ -1,8 +1,68 @@
 QUnit.test("Test size of canvas", function( assert ) {
-    var value = game.width;
-    assert.equal(value, 1000, "Canvas should be 1000px wide");
+    var canvasWidth = game.width;
+    var canvasHeight = game.height;
+    assert.equal(canvasWidth, 1000, "Canvas should be 1000px wide");
+    assert.notEqual(canvasWidth, 1200, "Canvas should not be 1200px wide");
+    assert.equal(canvasHeight, 700, "Canvas should be 700px high");
+    assert.notEqual(canvasHeight, 800, "Canvas should not be 800px high");
 });
 
+QUnit.test("Test initWarmUps() function", function( assert ) {
+    var mockArray = warmUps;
+    for(i = 0; i < 12; i++)
+    {
+        warmUps[i] = true;
+    }
+    assert.deepEqual(mockArray, warmUps, "warmUps array is not equal to mockArray");
+    initWarmUps();
+    for(i = 0; i < 12; i++)
+    {
+        assert.ok(warmUps[i] === false, "warmUps[i] value is now set to false");
+    }
+});
+
+QUnit.test("Test initTextVariables() function", function( assert ) {
+    text = "Bla";
+    corrCount = 1;
+    incorrPos = 1;
+    textPos = 1;
+
+    assert.notEqual(text, "",       "text is not what InitTextVariables() sets it to");
+    assert.notEqual(corrCount, 0,   "text is not what InitTextVariables() sets it to");
+    assert.notEqual(incorrPos, -1,  "text is not what InitTextVariables() sets it to");
+    assert.notEqual(textPos, 0,     "text is not what InitTextVariables() sets it to");
+
+    initTextVariables();
+
+    assert.equal(text, "",          "text is now what InitTextVariables() sets it to");
+    assert.equal(corrCount, 0,      "text is now what InitTextVariables() sets it to");
+    assert.equal(incorrPos, -1,     "text is now what InitTextVariables() sets it to");
+    assert.equal(textPos, 0,        "text is now what InitTextVariables() sets it to");
+});
+
+//  QUnit.test("Test ", function( assert ) {
+
+//  });
+
+// QUnit.test("", function( assert ) {
+    
+// });
+
+// QUnit.test("", function( assert ) {
+    
+// });
+
+// QUnit.test("", function( assert ) {
+    
+// });
+
+// QUnit.test("", function( assert ) {
+    
+// });
+
+// QUnit.test("", function( assert ) {
+    
+// });
 // /*var jsdom = require('jsdom');
 // const { JSDOM } = jsdom;
 // const {jsdom2} = new JSDOM("<!DOCTYPE html>");

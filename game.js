@@ -629,7 +629,6 @@ function initTextVariables()
     corrCount = 0;
     incorrPos = -1;
     textPos = 0;
-
 }
 
 function initWarmUps()
@@ -668,6 +667,7 @@ function Assignment(assignmentNr, exerciseNr)
     logo.scale.setTo(0.45);
 
     var instructor = addAssignmentInstructor(assignmentNr);
+    console.log(instructor);
 
     // Load keyboard
     loadKeyboard(assignmentNr, exerciseNr);
@@ -724,7 +724,6 @@ function stopKeyboardAnimations()
             keyboardKeysMap.get(`${value}`).animations.stop(false,true);
        }
     });
-
 }
 
 function keyPress(char, assignmentNr, exerciseNr) 
@@ -890,7 +889,6 @@ function keyPress(char, assignmentNr, exerciseNr)
         {
             addExercises(assignmentNr);
             var finishSound = addFinishSound(assignmentNr);
-//            finishSound.onStop.addOnce( function(){finishSound.stop();loadHomePage();}, this);
             finishSound.play();
             return;
         }
