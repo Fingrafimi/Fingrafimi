@@ -1372,18 +1372,23 @@ function Instructions(assignmentNr, exerciseNr)
     addExitButton();
     addMuteButton();
     
-   if(assignmentNr < 12)
-   {
-       addSkipButton(assignmentNr, exerciseNr,  warmUpFunctions[assignmentNr]);
-   }
-   else
-   {
-       addSkipButton(assignmentNr, exerciseNr,  Assignment);
-   }
+    addSkipButton(assignmentNr, exerciseNr,  warmUpFunctions[assignmentNr]);
+ 
 
     var instructor = addInstructionAnimation(assignmentNr);
     var instructionSound = addInstructionSound(assignmentNr);
-    instructionSound.onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+    instructionSound.onStop.addOnce(function(){ 
+    	instructor.animations.stop(); 
+    	instructor.frame = 0; 
+    	/* game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+               
+              warmUpFunctions[assignmentNr](assignmentNr,exerciseNr); 
+                
+                  
+            }, this).autoDestroy = true;  */
+     	
+    }, this);
+
     instructionSound.play();
     instructor.play('talk');
 }
@@ -1638,7 +1643,13 @@ function InstructionFJ(assignmentNr, exerciseNr)
     instructorMaggi.anchor.setTo(0.5, 0.5);
 
     sounds['instruction'] = game.add.audio('instructionFJ');
-    sounds['instruction'].onStop.addOnce(function(){ instructorMaggi.animations.stop(); instructorMaggi.frame = 0; }, this);
+    sounds['instruction'].onStop.addOnce(function(){ 
+    	instructorMaggi.animations.stop(); 
+    	instructorMaggi.frame = 0; 
+    	game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+    		warmUpFunctions[assignmentNr]; 
+    	}) 
+    }, this);
     sounds['instruction'].play();
     instructorMaggi.play('talk');
 }
@@ -3343,7 +3354,9 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
         instructor.animations.stop();
         instructor.frame = 0;
         game.input.keyboard.start();
-        game.input.keyboard.addCallbacks(this, null, null, function(char){    
+        game.input.keyboard.addCallbacks(this, null, function(){
+        	char = document.getElementById('assignment').value;
+            $("#assignment").val(""); 
             if(char === 'é' && warmUps[10])
             {
                 game.input.keyboard.stop();
@@ -3355,7 +3368,7 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
                     Assignment(assignmentNr, exerciseNr);
                 });
             }
-        });
+        },null);
      });
 
     //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
