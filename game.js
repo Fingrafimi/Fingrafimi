@@ -16,7 +16,6 @@ var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, c
 var textArea;
 var textAreaX = 1000;
 var textAreaY = 65;
-var inExercise = false;
 
 // Variables for the assignments texts and its stylings
 var style = { font: '44px Arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 900, backgroundColor: "rgba(0,0,0,0.4)", boundsAlignH: "center", boundsAlignV: "middle"};
@@ -33,21 +32,20 @@ var textPos = 0;
 // Variables for intro sound
 var intro;
 var firstLoad = true;
-var firstFJLoad = true;
 
-// Buttons that need to be initialized at beginning
+// Exit button, mute button and logo
 var exitBtn;
 var logo;
+var logoS;
 var muteBtn;
 
-//Sprite and Image variables
+// Buttons that need to be initialized at beginning
 var balloon;
 var clouds;
 var fish1;
 var fish2;
 var instructorMaggi;
 var leftHand;
-var logoS;
 var rightHand;
 var warmupHead;
 
@@ -713,11 +711,15 @@ function Assignment(assignmentNr, exerciseNr)
     //Add logo 
     addLogo(30, 0.45);
 
+    // Add the correct instructor with a talking animation
     var instructor = addAssignmentInstructor(assignmentNr);
 
-    // Load keyboard
+    // Load keyboard and animations which make the keys blink
     loadKeyboard(assignmentNr, exerciseNr);
 
+    //If exercise number is greater or equal than 0 when the Assignment function is called then we are in an exercise, thus
+    //we must display the exercise text, empty the hidden HTML input textbox and call keyPress which will turn on the
+    //keyboard event listeners and process the input of keys  
     if(exerciseNr >= 0)
     {
         // Create the textArea
@@ -735,6 +737,8 @@ function Assignment(assignmentNr, exerciseNr)
             }
         },null);
     }
+    //If exercise number is less than 0, then we are calling the Assignment function from the WarmUp function, thus
+    //we must add the speech bubble for the instructor, play the correct audio and make the instructor talk
     else
     {
         var balloon = game.add.sprite(475, 5, 'balloonSprite', addBalloon(assignmentNr));
@@ -743,20 +747,25 @@ function Assignment(assignmentNr, exerciseNr)
         instructor.play('talk');
     }
     
+    //Add the exit button to the canvas so we can return to the home page
     addExitButton();
+    //Add the mute button to the canvas so we can mute the in-game sound if we want
     addMuteButton();
-
+    //Add the exercise buttons which will activate 
     addExercises(assignmentNr);
     if(exerciseNr >= 0)
     {
         exerciseBtnGlowArray[assignmentNr][exerciseNr].alpha = 0.8;
     }
 
+    //Simple boolean variable comingFromExercise tells us if we are calling the Assignment function from another Assignment function, this
+    //means that we have come from completing an exercise and so we must play the audio that compliments the user when he finishes an exercise
     if(comingFromExercise)
     {
         var complimentSound = addComplimentSound(assignmentNr);
+        instructor.play('talk');
+        complimentSound.onStop.addOnce(function(){instructor.animations.stop();instructor.frame = 0;});
         complimentSound.play();
-        complimentSound.onStop.addOnce(function(){instructor.animations.stop();instructor.frame = 1;});
         comingFromExercise = false;
     }
 }
@@ -767,12 +776,11 @@ function stopKeyboardAnimations()
 {
     keyboardKeysMap.forEach(function(key,value,map) 
     {
-       if(keyboardKeysMap.get(`${value}`).animations)
+       if(keyboardKeysMap.get($('#assignment')).animations)
        {  
-            keyboardKeysMap.get(`${value}`).animations.stop(false,true);
+            keyboardKeysMap.get($('#assignment').val()).animations.stop(false,true);
        }
     });
-
 }
 
 function keyPress(char, assignmentNr, exerciseNr) 
@@ -832,6 +840,14 @@ function keyPress(char, assignmentNr, exerciseNr)
 
                 keyboardKeysMap.get('o').play('blink');
                 keyboardKeysMap.get('´').play('blink');
+            }
+            else if(text.charAt(incorrPos).toLowerCase() === ' ')
+            {
+                if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
+                {                      
+                    keyboardKeysMap.get(' ').play('blink');
+                    keyboardKeysMap.get(' ').play('blink');
+                }
             }
             else if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
             {                     
@@ -901,6 +917,14 @@ function keyPress(char, assignmentNr, exerciseNr)
                 keyboardKeysMap.get('o').play('blink');
                 keyboardKeysMap.get('´').play('blink');
             }
+            else if(text.charAt(incorrPos).toLowerCase() === ' ')
+            {
+                if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
+                {                      
+                    keyboardKeysMap.get(' ').play('blink');
+                    keyboardKeysMap.get(' ').play('blink');
+                }
+            }
             else if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
             {
                 keyboardKeysMap.get('lShift').play('blink');
@@ -936,18 +960,21 @@ function keyPress(char, assignmentNr, exerciseNr)
         {
             addExercises(assignmentNr);
             var finishSound = addFinishSound(assignmentNr);
+            finishSound.onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this)
+            instructor.play('talk');
             finishSound.play();
             return;
         }
 
         exerciseNr = findNextExercise(assignmentNr, exerciseNr);
-    
+        
         comingFromExercise = true;
         Assignment(assignmentNr, exerciseNr);
         return;
     }
 }
 
+//Check if all exercises are complete in a certain assignment
 function finishedAssignment(assignmentNr)
 {
     for(i = 0 ; i  < exercisesFinished[assignmentNr].length ; i++)
@@ -961,8 +988,11 @@ function finishedAssignment(assignmentNr)
     return true;
 }
 
+//Find the next exercise in the assignment which is not complete, returns the index for said exercise
 function findNextExercise(assignmentNr, exerciseNr)
 {
+    //Iterate through exercisesFinished[assignmentNr] and return the first index which is not complete, said index is then used 
+    //in exercisesArray to load the correct next unfinished exercise
     for(i = exerciseNr; i < exercisesFinished[assignmentNr].length; i++)
     {
         if(!exercisesFinished[assignmentNr][i])
@@ -980,7 +1010,6 @@ function findNextExercise(assignmentNr, exerciseNr)
     }
     return 0;
 }
-
 
 function addMuteButton()
 {
@@ -1042,14 +1071,21 @@ function addExitButton()
     exitBtn.events.onInputDown.add(loadHomePage);
 }
 
+//Add the Fingrafimi logo and the assignment for the current assignment, clicking on the assignment button calls the Assignment function and skips through both through
+//the Instruction and WarmUp animations. Clicking on the Fingrafimi logo takes the user back to the home page.
 function addLogoAndAssignmentID(assignmentNr, exerciseNr)
 {
-    logo = game.add.image(25, 25, 'logoS');
-    logo.events.onInputDown.add(function(){quitExercise(); loadHomePage();});
+    //Add the Fingrafimi logo
+    logoS = game.add.button(25, 25, 'logoS');
+    //Add the click event that loads the home page
+    logoS.events.onInputDown.add(function(){quitExercise(); loadHomePage();});
 
+    //Add the assignment button
     assignmentBtn = game.add.button(25, 100, 'btnSprite');
+    //Set the frame of the button to the current 
     assignmentBtn.frame = assignmentNr;
 
+    //Add the click event that loads the home page
     assignmentBtn.events.onInputDown.add(function(){
             initWarmUps();
             quitExercise(); 
@@ -1057,6 +1093,7 @@ function addLogoAndAssignmentID(assignmentNr, exerciseNr)
             balloon.visible = false;
     });
 
+    //Add the logo of Menntamálastofnun
     addLogo(30, 0.45);
 }
 
@@ -1108,8 +1145,8 @@ function addBalloon(assignmentNr)
     }
 }
 
-//Depending on what assignment you are on, it will play the correct sound when you have finished all the exercises in said assignment, once
-//the sound is finished playing the instructor will stop its talking animation
+//Depending on what assignment you are on, it will play the correct sound when you are entering the Assignment page coming from the
+//warmUp animations
 function addFinalSound(assignmentNr)
 {
     switch(assignmentNr)
@@ -1172,9 +1209,11 @@ function quitExercise()
     initTextVariables();
 }
 
+//Load and display the exercise buttons in Assignment, they vary depending on the assignmentNr and addExerciseImage is called 
+//and it loads the correct button for each exercise
 function addExercises(assignmentNr)
 {
-    
+    //Same exercise images are used in the first two assignments
     if(assignmentNr === 0 || assignmentNr === 1)
     {
         addExerciseImages('mus', 'musGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
@@ -1229,32 +1268,41 @@ function addExercises(assignmentNr)
     }
 }
 
-//Load and display the correct background depending on which assignmentNr 
+//Load and display the correct background depending on what assignmentNr is
 function loadBackground(assignmentNr)
 { 
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
     {
+        //Add blue background
         background = game.add.image(game.world.centerX, game.world.centerY, 'homeKeysBackground');
     }
     else if(assignmentNr === 4 || assignmentNr === 5)
     {
+        //Add farm background
         background = game.add.image(game.world.centerX, game.world.centerY, 'farm');
+        //Add clouds which will be constantly moving to the right
         clouds = game.add.image(-1000, 10,'clouds');
     }
     else if(assignmentNr === 6 || assignmentNr === 7)
     {
+        //Load ocean floor background
         background = game.add.image(game.world.centerX, game.world.centerY, 'ocean');
+        //Add orange fish which will move from end to end then turn around repeatedly
         fish1 = game.add.sprite(800, 35, 'fishes', 2);
+        //Add green fish which will move from end to end then turn around repeatedly
         fish2 = game.add.sprite(25, 175, 'fishes', 1);
     }
     else if(assignmentNr === 8 || assignmentNr === 9)
     {
+        //Add stage background
         background = game.add.image(game.world.centerX, game.world.centerY, 'stage');
     }
     else if(assignmentNr === 10 || assignmentNr === 11)
     {
+        //Add boxing ring background
         background = game.add.image(game.world.centerX, game.world.centerY, 'box');
     }
+    //Set the width and height of the background to match the witdh and height of the canvas
     background.width = width;
     background.height = height;
     background.anchor.setTo(0.5, 0.5);
@@ -1679,21 +1727,11 @@ function addFinishSound(assignmentNr)
 
 function WarmUpFJ(assignmentNr, exerciseNr)
 {
-    //sounds['instruction'].stop();
     warmUps[0] = true;
     initGame();
 
     loadBackground(assignmentNr);
     addSkipButton(assignmentNr, exerciseNr,  Assignment);
-
-  /*  logo = game.add.image(25, 25, 'logoS');
-
-    assignmentBtn = game.add.button(25, 100, 'btnSprite');
-    assignmentBtn.frame = 0;
-    assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr);sounds['fogj1'].stop();sounds['fogj2'].stop();balloon.visible = false;});
-
-    logo = game.add.image(30, 660, 'logo');
-    logo.scale.setTo(0.45);*/
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
     warmupKeys = game.add.sprite(150, 380, 'warmupKeys', 0);
@@ -3075,11 +3113,11 @@ function WarmUpRO(assignmentNr, exerciseNr){
     loadKeyboard(assignmentNr, exerciseNr);
 
     leftHand = game.add.sprite(210, 700, 'hands', 9);
-    leftHand.animations.add('type', [9, 10, 9, 10, 9, 10, 9], 2, false); 
+    leftHand.animations.add('type', [9, 11, 9, 11, 9, 11, 9], 2, false); 
     leftHand.scale.setTo(1.1);
 
     rightHand = game.add.sprite(470, 700, 'hands', 0);
-    rightHand.animations.add('type', [0, 3, 0, 3, 0, 3, 0], 2, false);
+    rightHand.animations.add('type', [0, 6, 0, 6, 0, 6, 0], 2, false);
     rightHand.scale.setTo(1.1);
 
     balloon = game.add.sprite(475, 5, 'balloonSprite', 47);
