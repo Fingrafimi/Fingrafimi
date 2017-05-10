@@ -187,12 +187,12 @@ exerciseBtnArray =
     [,,,,,,,,],
     [,,,,,,,,,,],
     [,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,]
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,]
 ];
 
 exerciseBtnGlowArray =
@@ -203,12 +203,12 @@ exerciseBtnGlowArray =
     [,,,,,,,,],
     [,,,,,,,,,,],
     [,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,],
-    [,,,,,,,,,,,,,,,,]
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,],
+    [,,,,,,,,,,,,,,]
 ];
 
 exercisesFinished =
@@ -219,10 +219,10 @@ exercisesFinished =
     [false,false,false,false,false,false,false,false,false],
     [false,false,false,false,false,false,false,false,false,false,false],
     [false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+    [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
 ];

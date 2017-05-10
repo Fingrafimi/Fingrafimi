@@ -10,7 +10,7 @@
 // Create instance of the game
 var width = 1000;
 var height = 700;
-var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update}, true);
+var game = new Phaser.Game(width, height, Phaser.CANVAS, '', { preload: preload, create: create, update: update}, true);
 
 // Create a variable for bitMapData to display text, used in functions Assignment and KeyPress
 var textArea;
@@ -776,9 +776,9 @@ function stopKeyboardAnimations()
 {
     keyboardKeysMap.forEach(function(key,value,map) 
     {
-       if(keyboardKeysMap.get($('#assignment')).animations)
+       if(keyboardKeysMap.get(`${value}`).animations)
        {  
-            keyboardKeysMap.get($('#assignment').val()).animations.stop(false,true);
+            keyboardKeysMap.get(`${value}`).animations.stop(false,true);
        }
     });
 }
@@ -1011,6 +1011,7 @@ function findNextExercise(assignmentNr, exerciseNr)
     return 0;
 }
 
+// Add the mute button to the canvas, this is called upon on all functions, Home Page, Instructions, WarmUps and Assignment
 function addMuteButton()
 {
     muteBtn = game.add.button(890, 20, 'sound');
@@ -1213,7 +1214,6 @@ function quitExercise()
 //and it loads the correct button for each exercise
 function addExercises(assignmentNr)
 {
-    //Same exercise images are used in the first two assignments
     if(assignmentNr === 0 || assignmentNr === 1)
     {
         addExerciseImages('mus', 'musGlow', exerciseBtnPosArray[assignmentNr], 3, assignmentNr, 0);
@@ -1308,30 +1308,34 @@ function loadBackground(assignmentNr)
     background.anchor.setTo(0.5, 0.5);
 }
 
+//Add the exercise images as buttons
 function addExerciseImages(image, imageGlow, posArr, count, assignmentNr, exerciseNr)
 {
     textPosArr = exerciseTextPosArray[assignmentNr];
     for(var i = 0; i < count; i++)
     {
-        // Add the background image for glow
+        // Add the background image that makes the exercise buttons glow
         exerciseBtnGlowArray[assignmentNr][exerciseNr+i] = game.add.image(posArr[i+exerciseNr][0]-10, posArr[i+exerciseNr][1]-10, imageGlow);
-        // make the background image hidden.
+        // Make the background image hidden
         exerciseBtnGlowArray[assignmentNr][exerciseNr+i].alpha = 0;
 
+        //Add the exercise button for exercise in index exercisesArray[assignmentNr][exerciseNr]
         exerciseBtnArray[assignmentNr][exerciseNr+i] = game.add.button(posArr[i+exerciseNr][0], posArr[i+exerciseNr][1], image);
+        //Check if the exercise is finished, if it is we make the button green
         if(exercisesFinished[assignmentNr][exerciseNr+i] === true)
         {
+            //Make the button green
             exerciseBtnArray[assignmentNr][exerciseNr+i].frame = 1;
-            
         }
 
         (function() 
         {
             var exerciseNum = exerciseNr + i;
-
             var textNum = exerciseNum + 1;
+
             // Add number above every image
             game.add.text(textPosArr[i+exerciseNr][0], textPosArr[i+exerciseNr][1], textNum, { font: "bold 16px Arial"});
+            // Add the event of calling the function Assignment to the exercise
             exerciseBtnArray[assignmentNr][exerciseNr+i].events.onInputDown.add(function(){ quitExercise(); Assignment(assignmentNr, exerciseNum); });
         }()); // immediate invocation
     }
@@ -1463,24 +1467,31 @@ function addLogo(x, sc)
     logo.scale.setTo(sc);
 }
 
+//Load and display the Instruction for the Assignments, after Instructions the WarmUp is called
 function Instructions(assignmentNr, exerciseNr)
 {
+    //Remove all CallBack events, clears the canvas and stops all currently playing sounds in that order
     initGame();
 
+    //Load and display the correct background
     loadBackground(assignmentNr);
+    //If the assignmentNr is between 0 and 4, a part is added to the background
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
     {
         background = game.add.image(0, 0, 'instructionBg');
     }
 
+    //Add the Fingrafimi logo and Assignment buttons on the top left corner
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
+    //Add the Exit button
     addExitButton();
+    //Add the Mute button
     addMuteButton();
     
+    //Add the skip button to skip the Instructions and go to the correct warmUp
     addSkipButton(assignmentNr, exerciseNr,  warmUpFunctions[assignmentNr]);
  
-
     var instructor = addInstructionAnimation(assignmentNr);
     var instructionSound = addInstructionSound(assignmentNr);
     instructionSound.onStop.addOnce(function(){ 
@@ -1492,6 +1503,7 @@ function Instructions(assignmentNr, exerciseNr)
     instructor.play('talk');
 }
 
+//Load and display the correct instructor depending on which Instruction you are in
 function addInstructionAnimation(assignmentNr)
 {
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
@@ -1531,7 +1543,7 @@ function addInstructionAnimation(assignmentNr)
     }
 }
 
-//Load and display the correct instructor depending on which assignment you are in
+//Load and display the correct instructor depending on which Assignment you are in
 function addAssignmentInstructor(assignmentNr)
 {
     //Maggi minnkur is the assignment instructor in the first 4 assignments
