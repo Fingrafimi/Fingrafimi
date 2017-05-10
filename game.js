@@ -3,8 +3,9 @@
 // Entering each assignment ("F og J" or "D og K") is a sequence of functions which we have named the following:
 // Instruction: The first animation when you choose an assignment
 // WarmUp: The rest of the animations which happen when you press the arrow ("Skip button") after the first animation
-// Assignment: The main screen of an assignment, there you can choose different exercises, once an exercise is selected
+// Assignment: The main screen of an assignment. Here you can choose different exercises, once an exercise is selected
 // the keyboad input is activated and the exercise text is displayed above the displayed keyboard so the user can execute the exercise.
+// We reffer to the assignments by numbers from 0 (F og J) to 11 (Hástafir)
 
 // Create instance of the game
 var width = 1000;
@@ -344,7 +345,6 @@ function preload()
     }, this);
 }
 
-
 function create() 
 {
     //Objects that need to be created at first to be moved later by the Update() function
@@ -629,7 +629,7 @@ function loadHomePage()
     initTextVariables();
 
     //Displays the logo from Menntamálastofnun in the botton left corner
-    addLogo();
+    addLogo(170, 0.5);
 
     //Displays a button which can mute or unmute the sound for the game
     addMuteButton();
@@ -664,7 +664,6 @@ function loadHomePage()
 //Resets all variables regarding the exercise text
 function initTextVariables()
 {
-    //Text is where the exercise text of the current exercise is stored
     text = "";
     corrCount = 0;
     incorrPos = -1;
@@ -690,24 +689,29 @@ function initGame()
     game.sound.stopAll();
 }
 
-
+//The assignment function is where the exercises can be executed, all of its objects are initialized here and they are different
+//depending on which assignment we are on
 function Assignment(assignmentNr, exerciseNr) 
 {
+    //Sets all of the warmUps array to false
     initWarmUps();
 
-    // Empty the canvas
+    //Remove all CallBack events, clears the canvas and stops all currently playing sounds in that order
     initGame();
   
+    //Turn on keyboard event listeners
     game.input.keyboard.start();
+    //Empty the hidden text box in the HTML page
     $("#assignment").val("");    
 
-   	// Load new background
+   	// Load background depending on which assignment
     loadBackground(assignmentNr);
     
+
     addLogoAndAssignmentID(assignmentNr, exerciseNr);
 
-    logo = game.add.image(30, 660, 'logo');
-    logo.scale.setTo(0.45);
+    //Add logo 
+    addLogo(30, 0.45);
 
     var instructor = addAssignmentInstructor(assignmentNr);
 
@@ -757,6 +761,8 @@ function Assignment(assignmentNr, exerciseNr)
     }
 }
 
+//Iterate through the map for keyboardKeysMap which contains the keyboard and all the blinking animations for the keys and 
+//call an animation stop event on all keys
 function stopKeyboardAnimations()
 {
     keyboardKeysMap.forEach(function(key,value,map) 
@@ -835,7 +841,6 @@ function keyPress(char, assignmentNr, exerciseNr)
             }
             else
             {
-                console.log('charAt: ' + text.charAt(incorrPos));
                 keyboardKeysMap.get(text.charAt(incorrPos)).play('blink');
             }
 
@@ -931,7 +936,6 @@ function keyPress(char, assignmentNr, exerciseNr)
         {
             addExercises(assignmentNr);
             var finishSound = addFinishSound(assignmentNr);
-//            finishSound.onStop.addOnce( function(){finishSound.stop();loadHomePage();}, this);
             finishSound.play();
             return;
         }
@@ -977,6 +981,7 @@ function findNextExercise(assignmentNr, exerciseNr)
     return 0;
 }
 
+
 function addMuteButton()
 {
     muteBtn = game.add.button(890, 20, 'sound');
@@ -1008,6 +1013,7 @@ function addMuteButton()
     }
 }
 
+//Mutes or unmutes the sound for the game, it also changes the frame of the button to identify if it is muted or not
 function muteSound()
 {
     if(game.sound.mute)
@@ -1022,22 +1028,18 @@ function muteSound()
     }
 }
 
+//Adds to the canvas an exit button in three places which will take the user back to the home page: Instructions, WarmUps and Assignment
 function addExitButton()
 {
+    //Add the button
     exitBtn = game.add.button(930, 20, 'exit');
-    // Add hover affect
+    //Add hover affect which changes the button if the mouse is hovering over the button or not
     exitBtn.events.onInputOver.add(function(){ exitBtn.frame = 1;});
     exitBtn.events.onInputOut.add(function(){ exitBtn.frame = 0;});
 
-    exitBtn.events.onInputDown.add(loadHomePage);
+    //When the button is clicked, quitExercise() and loadHomePage() are called 
     exitBtn.events.onInputDown.add(quitExercise);
-
-}
-
-function addLogo()
-{
-    logo = game.add.image(170, 655, 'logo');
-    logo.scale.setTo(0.5);
+    exitBtn.events.onInputDown.add(loadHomePage);
 }
 
 function addLogoAndAssignmentID(assignmentNr, exerciseNr)
@@ -1055,19 +1057,26 @@ function addLogoAndAssignmentID(assignmentNr, exerciseNr)
             balloon.visible = false;
     });
 
-    logo = game.add.image(30, 660, 'logo');
-    logo.scale.setTo(0.45);
+    addLogo(30, 0.45);
 }
 
+//Adds a skip button in Instruction and WarmUps, where the user can skip the animations if he choses too, if the user skips in Instruction
+//the warmUp function is called, if the user skips in warmUp the Assignment function is called
 function addSkipButton(assignmentNr, exerciseNr, nextFunction)
 {
+    //Add the button
     var arrowBtn = game.add.button(870, 630, 'arrow');
+    //Frame 0 is a blue arrow
     arrowBtn.frame = 0;
+    //If mouse hovers over the arrow it will turn red
     arrowBtn.events.onInputOver.add(function(){ arrowBtn.frame = 1; }, this);
+    //If mouse hovers out of the arrow it will turn blue again
     arrowBtn.events.onInputOut.add(function(){ arrowBtn.frame = 0; }, this);
+    //If selected it will call nextFunction
     arrowBtn.events.onInputDown.add(function(){nextFunction(assignmentNr, exerciseNr); }, this);
 }
 
+//Returns the correct frame index needed for the speech bubble in the Assignment function
 function addBalloon(assignmentNr)
 {
     switch(assignmentNr)
@@ -1099,61 +1108,64 @@ function addBalloon(assignmentNr)
     }
 }
 
+//Depending on what assignment you are on, it will play the correct sound when you have finished all the exercises in said assignment, once
+//the sound is finished playing the instructor will stop its talking animation
 function addFinalSound(assignmentNr)
 {
     switch(assignmentNr)
     {
         case 0:
-            sounds['finalFJ'].play();
             sounds['finalFJ'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalFJ'].play();
             break;
         case 1:
-            sounds['finalDK'].play();
             sounds['finalDK'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalDK'].play();
             break;
         case 2:
-            sounds['finalSL'].play();
             sounds['finalSL'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalSL'].play();
             break;
         case 3:
-            sounds['finalAAE'].play();
             sounds['finalAAE'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalAAE'].play();
             break;
         case 4:
-            sounds['finalAll1'].play();
             sounds['finalAll1'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalAll1'].play();
             break;
         case 5:
-            sounds['finalAll2'].play();
             sounds['finalAll2'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalAll2'].play();
             break;
         case 6:
-            sounds['finalEH'].play();
             sounds['finalEH'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalEH'].play();
             break;
         case 7:
-            sounds['finalIG'].play();
             sounds['finalIG'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalIG'].play();
             break;
         case 8:
-            sounds['finalBN'].play();
             sounds['finalBN'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalBN'].play();
             break;
         case 9:
-            sounds['finalRO'].play();
             sounds['finalRO'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalRO'].play();
             break;
         case 10:
-            sounds['finalBRODD'].play();
             sounds['finalBRODD'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalBRODD'].play();
             break;
         case 11:
-            sounds['finalHA'].play();
             sounds['finalHA'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalHA'].play();
             break;
     }
 }
 
+//Quitting an exercise requires that we turn off the keyboard event listener and reset the variables for the exercise text
 function quitExercise()
 {
     game.input.keyboard.stop();
@@ -1217,6 +1229,7 @@ function addExercises(assignmentNr)
     }
 }
 
+//Load and display the correct background depending on which assignmentNr 
 function loadBackground(assignmentNr)
 { 
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
@@ -1276,6 +1289,8 @@ function addExerciseImages(image, imageGlow, posArr, count, assignmentNr, exerci
     }
 }
 
+//Displays the keyboard used in assignment, it is composed of many smaller pictures, all keys used in assignments are added to the canvas
+//along with a blinking animation, then a keyboard outline with some grey filled keys is drawn over the other single keys
 function loadKeyboard(assignmentNr, exerciseNr)
 {
     keyboardKeysMap.set('a', game.add.sprite(241, 341, 'keys', 9));
@@ -1312,6 +1327,7 @@ function loadKeyboard(assignmentNr, exerciseNr)
     keyboardKeysMap.get(' ').width = 264;
     keyboardKeysMap.get(' ').animations.add('blink', [0, 1, 0, 1, 0], 2, false);
 
+    //If We are in assignment 5 or higher, the e key will be colored and have a blinking animation, else it will just be grey
     if(assignmentNr > 5)
     {
         keyboardKeysMap.set('e', game.add.sprite(317, 298, 'keys', 17));
@@ -1322,6 +1338,7 @@ function loadKeyboard(assignmentNr, exerciseNr)
         keyboardKeysMap.set('e', game.add.sprite(317, 298, 'keys', 19));
     }
 
+    //If We are in assignment 6 or higher, the i key will be colored and have a blinking animation, else it will just be grey
     if(assignmentNr > 6)
     {
         keyboardKeysMap.set('i', game.add.sprite(536, 296, 'keys', 28));
@@ -1332,6 +1349,7 @@ function loadKeyboard(assignmentNr, exerciseNr)
         keyboardKeysMap.set('i', game.add.sprite(536, 296, 'keys', 30));
     }
 
+    //If We are in assignment 7 or higher, the b key will be colored and have a blinking animation, else it will just be grey
     if(assignmentNr > 7)
     {
         keyboardKeysMap.set('b', game.add.sprite(437, 384, 'keys', 11));
@@ -1346,6 +1364,7 @@ function loadKeyboard(assignmentNr, exerciseNr)
         keyboardKeysMap.set('n', game.add.sprite(481, 384, 'keys', 20));
     }
 
+    //If We are in assignment 8 or higher, the r key will be colored and have a blinking animation, else it will just be grey
     if(assignmentNr > 8)
     {
         keyboardKeysMap.set('r', game.add.sprite(361, 298, 'keys', 3));
@@ -1360,6 +1379,7 @@ function loadKeyboard(assignmentNr, exerciseNr)
         keyboardKeysMap.set('o', game.add.sprite(579, 297, 'keys', 2));
     }
 
+    //If We are in assignment 5 or higher, the ´ key will be colored and have a blinking animation, else it will just be grey
     if(assignmentNr > 9)
     {
         keyboardKeysMap.set('´', game.add.sprite(678, 340, 'keys', 36));
@@ -1370,12 +1390,9 @@ function loadKeyboard(assignmentNr, exerciseNr)
         keyboardKeysMap.set('´', game.add.sprite(678, 340, 'keys', 38));
     }
 
-    keyboardKeysMap.set('shift', game.add.group());
+    ////If We are in assignment 10 or higher, the shift keys will be colored and both will have a blinking animation, else they will just be grey
     if(assignmentNr > 10)
     {
-        // keyboardKeysMap.get('shift').add(game.add.sprite(165, 386, 'lShift', 1));
-        // keyboardKeysMap.get('shift').add(game.add.sprite(700, 384, 'rShift', 1));
-        // keyboardKeysMap.get('shift').callAll('animations.add', 'animations', 'blink', [1, 2, 1, 2, 1], 2, false);
         keyboardKeysMap.set('lShift', game.add.sprite(165, 386, 'lShift', 1));
         keyboardKeysMap.get('lShift').animations.add('blink', [1, 2, 1, 2, 1], 2, false);
         keyboardKeysMap.set('rShift', game.add.sprite(700, 384, 'rShift', 1));
@@ -1387,15 +1404,15 @@ function loadKeyboard(assignmentNr, exerciseNr)
         keyboardKeysMap.set('rShift', game.add.sprite(700, 384, 'rShift', 0));
     }
     
-    
+    //The keyboard outline that is over the single images is added in the end
     keyboard = game.add.image(150, 175, 'keyboard');
 }
 
-
-function addLogo()
+//Add the logo from Menntamálastofnun on the bottom left of the screen, x is the x coordinate on where to put the logo and sc is the scale we want
+function addLogo(x, sc)
 {
-    logo = game.add.image(170, 655, 'logo');
-    logo.scale.setTo(0.5);
+    logo = game.add.image(x, 660, 'logo');
+    logo.scale.setTo(sc);
 }
 
 function Instructions(assignmentNr, exerciseNr)
@@ -1420,14 +1437,7 @@ function Instructions(assignmentNr, exerciseNr)
     var instructionSound = addInstructionSound(assignmentNr);
     instructionSound.onStop.addOnce(function(){ 
     	instructor.animations.stop(); 
-    	instructor.frame = 0; 
-    	/* game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-               
-              warmUpFunctions[assignmentNr](assignmentNr,exerciseNr); 
-                
-                  
-            }, this).autoDestroy = true;  */
-     	
+    	instructor.frame = 0;     	
     }, this);
 
     instructionSound.play();
@@ -1473,16 +1483,24 @@ function addInstructionAnimation(assignmentNr)
     }
 }
 
+//Load and display the correct instructor depending on which assignment you are in
 function addAssignmentInstructor(assignmentNr)
 {
+    //Maggi minnkur is the assignment instructor in the first 4 assignments
     if(assignmentNr === 0 || assignmentNr === 1 || assignmentNr === 2 || assignmentNr === 3)
     {
+        //Load the image of the instructor
         instructor = game.add.sprite(1015, 210, 'warmupHead', 0);
+        //Add the animation that makes him talk
         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
+        //Move the anchor point of the image
         instructor.anchor.setTo(0.75, 1);
+        //Rotate the image
         instructor.angle = -41;
+        //Return the object
         return instructor;
     }
+    //The pig is the assignment instructor for Allir heimalyklar 1 and 2
     else if(assignmentNr === 4 || assignmentNr === 5)
     {
          instructor = game.add.sprite(750, 100, 'pig', 0);
@@ -1490,6 +1508,7 @@ function addAssignmentInstructor(assignmentNr)
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
          return instructor;
     }
+    //The horse is the assignment instructor for the E og H and I og G assignments
     else if(assignmentNr === 6 || assignmentNr === 7)
     {
          instructor = game.add.sprite(810, 125, 'whale', 0);
@@ -1497,6 +1516,7 @@ function addAssignmentInstructor(assignmentNr)
          instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
          return instructor;
     }
+    //The fish with sunglasses is the assignment instructor for the B og N and R og O assignments
     else if(assignmentNr === 8 || assignmentNr === 9)
     {
         instructor = game.add.sprite(785, 100, 'fish', 0);
@@ -1504,6 +1524,7 @@ function addAssignmentInstructor(assignmentNr)
         instructor.animations.add('talk', [0, 1, 0, 1, 1, 0], 4, true);
         return instructor;
     }
+    //The horse is the assignment instructor for the Broddstafir and Hástafir assignments
     else
     {
         instructor = game.add.sprite(785, 100, 'horse', 0);
@@ -1513,6 +1534,7 @@ function addAssignmentInstructor(assignmentNr)
     }
 }
 
+//Returns the correct audio to play for when you select an assignment in the home page
 function addInstructionSound(assignmentNr)
 {
     if(assignmentNr === 0)
@@ -1565,6 +1587,7 @@ function addInstructionSound(assignmentNr)
     }
 }
 
+//Returns the correct audio to play for when you have finished an exercises in an assignment
 function addComplimentSound(assignmentNr)
 {
     if(assignmentNr === 0)
@@ -1609,6 +1632,7 @@ function addComplimentSound(assignmentNr)
     }
 }
 
+//Returns the correct audio to play for when you have finished all the exercises in an assignment
 function addFinishSound(assignmentNr)
 {
     if(assignmentNr === 0)
@@ -1651,48 +1675,6 @@ function addFinishSound(assignmentNr)
     {
         return game.add.audio('finishBRODD');
     }
-}
-
-function InstructionFJ(assignmentNr, exerciseNr)
-{
-    initGame();
-
-    //var homePage = game.add.image(game.world.centerX, game.world.centerY, 'instructionBg');
-    //homePage.anchor.setTo(0.5, 0.5);
-    //homePage.width = width;
-    //homePage.height = height;
-    loadBackground(assignmentNr);
-  
-
-   /* logo = game.add.image(25, 25, 'logoS');
-
-    assignmentBtn = game.add.button(25, 100, 'btnSprite');
-    assignmentBtn.frame = 0;
-    assignmentBtn.events.onInputDown.add(function(){inTutorial =false; Assignment(assignmentNr, exerciseNr); balloon.visible = false;});
-
-    logo = game.add.image(30, 660, 'logo');
-    logo.scale.setTo(0.45);*/
-    addLogoAndAssignmentID(assignmentNr, exerciseNr);
-
-    addExitButton();
-    addMuteButton();
-
-    addSkipButton(assignmentNr, exerciseNr,  WarmUpFJ);
-
-    var instructorMaggi = game.add.sprite(game.world.centerX, game.world.centerY, 'instructorMaggi', 0);
-    instructorMaggi.animations.add('talk', [0, 1, 0, 1, 1, 0], 6, true);
-    instructorMaggi.anchor.setTo(0.5, 0.5);
-
-    sounds['instruction'] = game.add.audio('instructionFJ');
-    sounds['instruction'].onStop.addOnce(function(){ 
-    	instructorMaggi.animations.stop(); 
-    	instructorMaggi.frame = 0; 
-    	game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-    		warmUpFunctions[assignmentNr]; 
-    	}) 
-    }, this);
-    sounds['instruction'].play();
-    instructorMaggi.play('talk');
 }
 
 function WarmUpFJ(assignmentNr, exerciseNr)
@@ -1853,7 +1835,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                     textArea.destroy();
                     
                     loadKeyboard(assignmentNr, exerciseNr);
-//260 x 450
+
                     leftHand = game.add.sprite(210, 355, 'handsSprite', 2);
                     leftHand.scale.setTo(0.85);
                     leftHand.animations.add('lSpacePress', [2, 3, 2, 3, 2], 2, false);
@@ -2205,7 +2187,6 @@ function WarmUpSL(assignmentNr, exerciseNr){
     warmupKeys.play('asdfBlink');
 }
 
-//Set name
 function WarmUpAAE(assignmentNr, exerciseNr){
     warmUps[3] = true;
     
@@ -2360,7 +2341,6 @@ function WarmUpAAE(assignmentNr, exerciseNr){
     warmupKeys.play('asdfBlink');
 }
 
-
 function WarmUpALL1(assignmentNr, exerciseNr){
     warmUps[4] = true;
     
@@ -2438,7 +2418,6 @@ function WarmUpALL1(assignmentNr, exerciseNr){
     warmupKeys.play('asdfBlink');
 }
 
-//Set name
 function WarmUpALL2(assignmentNr, exerciseNr){
     warmUps[5] = true;
     
@@ -2517,7 +2496,6 @@ function WarmUpALL2(assignmentNr, exerciseNr){
     warmupKeys.play('asdfBlink');
 }
 
-//Set name
 function WarmUpEH(assignmentNr, exerciseNr){
     warmUps[6] = true;
 
@@ -2687,7 +2665,6 @@ function WarmUpEH(assignmentNr, exerciseNr){
     instructor.play('talk');
 }
 
-//Set name
 function WarmUpIG(assignmentNr, exerciseNr){
     warmUps[7] = true;
 
@@ -2890,7 +2867,6 @@ function WarmUpIG(assignmentNr, exerciseNr){
     instructor.play('talk');
 }
 
-//Set name
 function WarmUpBN(assignmentNr, exerciseNr){
     warmUps[8] = true;
     initGame();
@@ -3084,7 +3060,6 @@ function WarmUpBN(assignmentNr, exerciseNr){
     instructor.play('talk');
 }
 
-//Set name
 function WarmUpRO(assignmentNr, exerciseNr){
     warmUps[9] = true;
     initGame();
@@ -3253,7 +3228,6 @@ function WarmUpRO(assignmentNr, exerciseNr){
     instructor.play('talk');
 }
 
-//Set name
 function WarmUpBRODD(assignmentNr, exerciseNr){
     warmUps[10] = true;
     initGame();
@@ -3417,7 +3391,6 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
     instructor.play('talk');
 }
 
-//Set name
 function WarmUpHA(assignmentNr, exerciseNr){
     warmUps[11] = true;
     initGame();
@@ -3603,6 +3576,7 @@ function WarmUpHA(assignmentNr, exerciseNr){
     instructor.play('talk');
 }
 
+//Display the window with the game and its creators information
 function loadAbout()
 {
     var aboutWindow = game.add.image(200, 200, 'aboutInfo');
@@ -3613,6 +3587,7 @@ function loadAbout()
     exitBtn.events.onInputDown.add(function(){ exitBtn.destroy(); aboutWindow.destroy(); });
 }
 
+//Array which stores all the warmUp functions and are called from the Instructions function with the assignmentNr variable
 var warmUpFunctions =
 [
     WarmUpFJ,
