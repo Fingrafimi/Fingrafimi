@@ -1980,7 +1980,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     warmupKeys.play('asdfBlink');
 }
 
-//The soundclips are played in the following order: leftFJ, rightFJ, findFJ, findF, FindJ and spaceFJ
+//The soundclips are played in the following order: leftFJ, rightFJ, findDK, findD, findK and finalDK
 function WarmUpDK(assignmentNr, exerciseNr)
 {
     warmUps[1] = true;
@@ -2122,6 +2122,7 @@ function WarmUpDK(assignmentNr, exerciseNr)
     warmupKeys.play('asdfBlink');
 }
 
+//The soundclips are played in the following order: leftFJ, rightFJ, findSL, findS, FindL and finalSL
 function WarmUpSL(assignmentNr, exerciseNr)
 {
     warmUps[2] = true;
@@ -2263,6 +2264,7 @@ function WarmUpSL(assignmentNr, exerciseNr)
     warmupKeys.play('asdfBlink');
 }
 
+//The soundclips are played in the following order: leftFJ, rightFJ, findAAE, findA, findAE and finalAAE
 function WarmUpAAE(assignmentNr, exerciseNr){
     warmUps[3] = true;
     
@@ -2406,6 +2408,7 @@ function WarmUpAAE(assignmentNr, exerciseNr){
     warmupKeys.play('asdfBlink');
 }
 
+//The soundclips are played in the following order: leftAll1, rightAll1
 function WarmUpALL1(assignmentNr, exerciseNr)
 {
     warmUps[4] = true;
@@ -2469,6 +2472,7 @@ function WarmUpALL1(assignmentNr, exerciseNr)
     warmupKeys.play('asdfBlink');
 }
 
+//The soundclips are played in the following order: leftAll2, rightAll2
 function WarmUpALL2(assignmentNr, exerciseNr)
 {
     warmUps[5] = true;
@@ -2531,6 +2535,7 @@ function WarmUpALL2(assignmentNr, exerciseNr)
     warmupKeys.play('asdfBlink');
 }
 
+//The soundclips are played in the following order: handsEH, findE, typingE, typeE, findH, typingH, typeH
 function WarmUpEH(assignmentNr, exerciseNr)
 {
     warmUps[6] = true;
@@ -2700,6 +2705,7 @@ function WarmUpEH(assignmentNr, exerciseNr)
     instructor.play('talk');
 }
 
+//The soundclips are played in the following order: handsIG, findI, typingI, typeI, gjIG1, findG, typingG, typeG, gjIG2
 function WarmUpIG(assignmentNr, exerciseNr)
 {
     warmUps[7] = true;
@@ -2896,6 +2902,7 @@ function WarmUpIG(assignmentNr, exerciseNr)
     instructor.play('talk');
 }
 
+//The soundclips are played in the following order: handsBN, findB, typingB, typeB, gjBN1, findN, typingN, typeN, gjBN2
 function WarmUpBN(assignmentNr, exerciseNr){
     warmUps[8] = true;
     initGame();
@@ -3087,6 +3094,7 @@ function WarmUpBN(assignmentNr, exerciseNr){
     instructor.play('talk');
 }
 
+//The soundclips are played in the following order: handsRO, findR, typingR, typeR, findO, typingO, typeO
 function WarmUpRO(assignmentNr, exerciseNr)
 {
     warmUps[9] = true;
@@ -3250,6 +3258,7 @@ function WarmUpRO(assignmentNr, exerciseNr)
     instructor.play('talk');
 }
 
+//The soundclips are played in the following order: handsBRODD, findComma, typingComma, typingComma2, typingComma3, typeCommaE
 function WarmUpBRODD(assignmentNr, exerciseNr)
 {
     warmUps[10] = true;
@@ -3395,6 +3404,7 @@ function WarmUpBRODD(assignmentNr, exerciseNr)
     instructor.play('talk');
 }
 
+//The soundclips are played in the following order: handsHA, findLShift, typingLShift, findRShift, typingRShift, typingOHA, typingOHA2, typeOHA 
 function WarmUpHA(assignmentNr, exerciseNr)
 {
     warmUps[11] = true;
