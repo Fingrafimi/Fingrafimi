@@ -167,7 +167,7 @@ function preload()
     game.load.image('shellGlow',                'Assets/Images/Buttons/Exercises/shell-glow.png');
 
     // Images related to WarmUp animations
-    game.load.spritesheet('balloonSprite',      'Assets/Images/Instructors/bubbleSprite.png', 346, 191);
+    game.load.spritesheet('balloonSprite',      'Assets/Images/Instructors/bubbleSprite.png', 345.2, 191);
     game.load.spritesheet('warmupHead',         'Assets/Images/Instructors/warmupHead2.png', 159, 155);
     game.load.spritesheet('instructorMaggi',    'Assets/Images/Instructors/instructionMaggi.png', 524, 572);
     game.load.spritesheet('pig',                'Assets/Images/Instructors/svin.png', 522, 756);
@@ -729,10 +729,10 @@ function Assignment(assignmentNr, exerciseNr)
         textArea.anchor.set(0.5);
 
         // When key is pressed the function keyPress is called
-        game.input.keyboard.addCallbacks(this, null, function(){
-            char = document.getElementById('assignment').value;
+        game.input.keyboard.addCallbacks(this, null, function(e){
+            char = document.getElementById('assignment').value[0];
             $("#assignment").val(""); 
-            if(char !== '' && char != "´")
+            if(char !== '' && char !== "´")
             {
                 keyPress(char, assignmentNr, exerciseNr);
             }
