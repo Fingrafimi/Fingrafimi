@@ -231,7 +231,7 @@ function preload()
     game.load.audio('finalEH',          'Assets/Sounds/E_og_H_9.mp3');
     
     //Audio files related to WarmUp animation for "I og G"
-    game.load.audio('handsIG',          'Assets/Sounds/I_og_G_2.mp3');
+    game.load.audio('handsIG',          'Assets/Sounds/I_og_G_2.mp3');    
     game.load.audio('findI',            'Assets/Sounds/I_og_G_3.mp3');
     game.load.audio('typingI',          'Assets/Sounds/I_og_G_4.mp3');
     game.load.audio('typeI',            'Assets/Sounds/I_og_G_5_1.mp3');
@@ -327,7 +327,7 @@ function preload()
     loadingText.anchor.setTo(0.5);
     var progressDisplay = 0;
 
-    var timerEvt = game.time.events.loop(1, function ()
+    var timerEvt = game.time.events.loop(10, function ()
     {
         if(game.load.progress < 100)
         {
@@ -777,9 +777,9 @@ function stopKeyboardAnimations()
 {
     keyboardKeysMap.forEach(function(key,value,map) 
     {
-       if(keyboardKeysMap.get(`${value}`).animations)
+       if(keyboardKeysMap.get(value).animations)
        {  
-            keyboardKeysMap.get(`${value}`).animations.stop(false,true);
+            keyboardKeysMap.get(value).animations.stop(false,true);
        }
     });
 }
@@ -1906,7 +1906,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                     sounds['findJ'].play();
                     textArea.destroy();
                     // Display the letter in the textArea
-                    addWarmUpTextArea('f', 50, '#000000');
+                    addWarmUpTextArea('j', 50, '#000000');
                 });
             }
         });
