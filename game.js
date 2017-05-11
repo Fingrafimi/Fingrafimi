@@ -91,7 +91,7 @@ function preload()
     game.load.image('lHand',                    'Assets/Images/Maggi/vinstri.png');
     game.load.image('rHand',                    'Assets/Images/Maggi/haegri.png');
     game.load.spritesheet('handsSprite',        'Assets/Images/Maggi/handSprite.png', 276, 450);
-    game.load.spritesheet('hands',              'Assets/Images/Maggi/handSpriteBigger.png', 240, 450);
+    game.load.spritesheet('hands',              'Assets/Images/Maggi/handSpriteBigger1.png', 240, 450);
 
     // Various images
     game.load.image('logo',                     'Assets/Images/logo.png');
