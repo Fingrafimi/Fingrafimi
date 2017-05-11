@@ -26,7 +26,7 @@ localhost:8888
 Til að loka forritinu lokaðu þá glugganum/tab-inu sem forritið var opnað á.
 Æskilegt er að slökkva á servernum þegar vinnsla í forritinu er hætt.
 
-## Gera nýja útgfu
+## Gera nýja útgáfu
 Ný útgáfa verður til um leið og push-að er á master branch.
 
 Til að vista breytingar
