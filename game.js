@@ -283,7 +283,7 @@ function preload()
     game.load.audio('finalHA',          'Assets/Sounds/Hastafir_10.mp3');
 
     //Audio files for the Instructions
-    game.load.audio('instructionFJ',    'Assets/Sounds/Instructions/instructionFJ.mp3');
+    game.load.audio('instructionFJ',   'Assets/Sounds/Instructions/instructionFJ.mp3');
     game.load.audio('instructionDK',    'Assets/Sounds/Instructions/DK_instruction.mp3');
     game.load.audio('instructionSL',    'Assets/Sounds/Instructions/SL_instruction.mp3');
     game.load.audio('instructionAAE',   'Assets/Sounds/Instructions/AÆ_instruction.mp3');
@@ -787,9 +787,6 @@ function stopKeyboardAnimations()
 function keyPress(char, assignmentNr, exerciseNr) 
 {
     stopKeyboardAnimations();
-
-    console.log('stopped');
-    console.log('char');
    
     wrongSound = game.add.audio('wrongSound');
     if(incorrPos != -1)
