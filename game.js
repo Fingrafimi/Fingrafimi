@@ -764,7 +764,7 @@ function Assignment(assignmentNr, exerciseNr)
     {
         var complimentSound = addComplimentSound(assignmentNr);
         instructor.play('talk');
-        complimentSound.onStop.addOnce(function(){instructor.animations.stop();instructor.frame = 0;});
+        complimentSound.onStop.addOnce(function(){ stopInstructorTalk(); });
         complimentSound.play();
         comingFromExercise = false;
     }
@@ -960,7 +960,7 @@ function keyPress(char, assignmentNr, exerciseNr)
         {
             addExercises(assignmentNr);
             var finishSound = addFinishSound(assignmentNr);
-            finishSound.onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            finishSound.onStop.addOnce(function(){ stopInstructorTalk(); }, this);
             instructor.play('talk');
             finishSound.play();
             return;
@@ -1153,51 +1153,51 @@ function addFinalSound(assignmentNr)
     switch(assignmentNr)
     {
         case 0:
-            sounds['finalFJ'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalFJ'].onStop.addOnce(function(){ stopInstructorTalk(); }, this);
             sounds['finalFJ'].play();
             break;
         case 1:
-            sounds['finalDK'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalDK'].onStop.addOnce(function(){ stopInstructorTalk(); }, this);
             sounds['finalDK'].play();
             break;
         case 2:
-            sounds['finalSL'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalSL'].onStop.addOnce(function(){ stopInstructorTalk(); }, this);
             sounds['finalSL'].play();
             break;
         case 3:
-            sounds['finalAAE'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalAAE'].onStop.addOnce(function(){ stopInstructorTalk(); }, this);
             sounds['finalAAE'].play();
             break;
         case 4:
-            sounds['finalAll1'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
+            sounds['finalAll1'].onStop.addOnce(function(){ stopInstructorTalk(); }, this);
             sounds['finalAll1'].play();
             break;
         case 5:
-            sounds['finalAll2'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalAll2'].onStop.addOnce(function(){ stopInstructorTalk(); }, this);
             sounds['finalAll2'].play();
             break;
         case 6:
-            sounds['finalEH'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalEH'].onStop.addOnce(function(){  stopInstructorTalk(); }, this);
             sounds['finalEH'].play();
             break;
         case 7:
-            sounds['finalIG'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalIG'].onStop.addOnce(function(){  stopInstructorTalk(); }, this);
             sounds['finalIG'].play();
             break;
         case 8:
-            sounds['finalBN'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalBN'].onStop.addOnce(function(){  stopInstructorTalk(); }, this);
             sounds['finalBN'].play();
             break;
         case 9:
-            sounds['finalRO'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalRO'].onStop.addOnce(function(){  stopInstructorTalk(); }, this);
             sounds['finalRO'].play();
             break;
         case 10:
-            sounds['finalBRODD'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalBRODD'].onStop.addOnce(function(){  stopInstructorTalk(); }, this);
             sounds['finalBRODD'].play();
             break;
         case 11:
-            sounds['finalHA'].onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0;}, this);
+            sounds['finalHA'].onStop.addOnce(function(){  stopInstructorTalk(); }, this);
             sounds['finalHA'].play();
             break;
     }
@@ -1494,9 +1494,10 @@ function Instructions(assignmentNr, exerciseNr)
  
     var instructor = addInstructionAnimation(assignmentNr);
     var instructionSound = addInstructionSound(assignmentNr);
-    instructionSound.onStop.addOnce(function(){ 
-    	instructor.animations.stop(); 
-    	instructor.frame = 0;     	
+    instructionSound.onStop.addOnce(function()
+    {  
+        stopInstructorTalk();
+            	
     }, this);
 
     instructionSound.play();
@@ -1741,6 +1742,12 @@ function stopWarmupHeadTalk()
 {
     warmupHead.animations.stop(); 
     warmupHead.frame = 0;
+}
+
+function stopInstructorTalk()
+{
+    instructor.animations.stop(); 
+    instructor.frame = 0;
 }
 
 // Display the text in the letter variable in the textArea with the specified color centerd in the canvas, 
@@ -2079,8 +2086,6 @@ function WarmUpDK(assignmentNr, exerciseNr)
                 });
             }
         });
-
-        //game.time.events.add(Phaser.Timer.SECOND * 2, function(){});
      });
 
      sounds['findK'].onStop.addOnce(function(){ 
@@ -2106,8 +2111,6 @@ function WarmUpDK(assignmentNr, exerciseNr)
         });
      });
 
-    
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['leftFJ'].play();
     warmupHead.play('talk');
     warmupKeys.play('asdfBlink');
@@ -2147,7 +2150,6 @@ function WarmUpSL(assignmentNr, exerciseNr)
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
 
-        //Pause for 2 seconds after fogj1 soundclip, then play fogj2
         game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {
             if(warmUps[2])
@@ -2167,10 +2169,8 @@ function WarmUpSL(assignmentNr, exerciseNr)
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk();
 
-        //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
         game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {        
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[2])
             {
                 warmupHead.play('talk');
@@ -2188,7 +2188,6 @@ function WarmUpSL(assignmentNr, exerciseNr)
 
         game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {            
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[2])
             {
                 warmupHead.play('talk');
@@ -2253,7 +2252,6 @@ function WarmUpSL(assignmentNr, exerciseNr)
         });
      });
 
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['leftFJ'].play();
     warmupHead.play('talk');
     warmupKeys.play('asdfBlink');
@@ -2292,7 +2290,6 @@ function WarmUpAAE(assignmentNr, exerciseNr){
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
 
-        //Pause for 2 seconds after fogj1 soundclip, then play fogj2
         game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {
             if(warmUps[3])
@@ -2303,9 +2300,7 @@ function WarmUpAAE(assignmentNr, exerciseNr){
                 balloon.frame = 1;
                 rightHand = game.add.sprite(535, 700, 'rHand', 0);
                 rightHand.scale.setTo(1.1);
-            }
-            
-                
+            }  
         }, this).autoDestroy = true;  
     }, this);
 
@@ -2314,7 +2309,6 @@ function WarmUpAAE(assignmentNr, exerciseNr){
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
 
-        //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
         game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {
             if(warmUps[3])
@@ -2334,7 +2328,6 @@ function WarmUpAAE(assignmentNr, exerciseNr){
 
         game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {                  
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[3])
             {
                 warmupHead.play('talk');
@@ -2348,7 +2341,8 @@ function WarmUpAAE(assignmentNr, exerciseNr){
         }, this).autoDestroy = true;
     });
 
-    sounds['findA'].onStop.addOnce(function(){ 
+    sounds['findA'].onStop.addOnce(function()
+    { 
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
 
@@ -2401,13 +2395,13 @@ function WarmUpAAE(assignmentNr, exerciseNr){
         });
     });
 
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['leftFJ'].play();
     warmupHead.play('talk');
     warmupKeys.play('asdfBlink');
 }
 
-function WarmUpALL1(assignmentNr, exerciseNr){
+function WarmUpALL1(assignmentNr, exerciseNr)
+{
     warmUps[4] = true;
     
     initGame();
@@ -2429,62 +2423,48 @@ function WarmUpALL1(assignmentNr, exerciseNr){
     leftHand.scale.setTo(1.1);  
 
     balloon = game.add.sprite(500, 25, 'balloonSprite', 22);
-    //balloon.visible = false;
 
     addMuteButton();
     addExitButton();
 
-    //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
-    //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
-    sounds['leftAll1'].onStop.addOnce(function(){
-
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-
-            
-            //Pause for 2 seconds after fogj1 soundclip, then play fogj2
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-               
-                //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
-                //and add the right hand into the game so it can start moving up towards the keys.
-                if(warmUps[4])
-                {
-                    instructor.play('talk');
-                    sounds['rightAll1'].play();
-                    warmupKeys.play('jklæBlink');
-                    balloon.frame = 23;
-                    rightHand = game.add.sprite(535, 700, 'rHand', 0);
-                    rightHand.scale.setTo(1.1);
-                }
-                
-                  
-            }, this).autoDestroy = true;  
+    sounds['leftAll1'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
+            if(warmUps[4])
+            {
+                instructor.play('talk');
+                sounds['rightAll1'].play();
+                warmupKeys.play('jklæBlink');
+                balloon.frame = 23;
+                rightHand = game.add.sprite(535, 700, 'rHand', 0);
+                rightHand.scale.setTo(1.1);
+            }
+        }, this).autoDestroy = true;  
     }, this);
 
-    //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
-     sounds['rightAll1'].onStop.addOnce(function(){
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-            //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+     sounds['rightAll1'].onStop.addOnce(function()
+     { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {           
             if(warmUps[4])
             {
                 Assignment(assignmentNr, exerciseNr);
             }            
-            }, this).autoDestroy = true;  
+        }, this).autoDestroy = true;  
     }, this);
 
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['leftAll1'].play();
     instructor.play('talk');
     warmupKeys.play('asdfBlink');
 }
 
-function WarmUpALL2(assignmentNr, exerciseNr){
+function WarmUpALL2(assignmentNr, exerciseNr)
+{
     warmUps[5] = true;
     
     initGame();
@@ -2505,58 +2485,41 @@ function WarmUpALL2(assignmentNr, exerciseNr){
     leftHand.scale.setTo(1.1);  
 
     balloon = game.add.sprite(500, 25, 'balloonSprite', 25);
-    //balloon.visible = false;
 
     addMuteButton();
     addExitButton();
 
-    //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
-    //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
-    sounds['leftAll2'].onStop.addOnce(function(){
-
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-
-            
-            //Pause for 2 seconds after fogj1 soundclip, then play fogj2
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-               
-                //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
-                //and add the right hand into the game so it can start moving up towards the keys.
-                if(warmUps[5])
-                {
-                    instructor.play('talk');
-                    sounds['rightAll2'].play();
-                    warmupKeys.play('jklæBlink');
-                    balloon.frame = 26;
-                    rightHand = game.add.sprite(535, 700, 'rHand', 0);
-                    rightHand.scale.setTo(1.1);
-                }
-                
-                  
-            }, this).autoDestroy = true;  
+    sounds['leftAll2'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
+            if(warmUps[5])
+            {
+                instructor.play('talk');
+                sounds['rightAll2'].play();
+                warmupKeys.play('jklæBlink');
+                balloon.frame = 26;
+                rightHand = game.add.sprite(535, 700, 'rHand', 0);
+                rightHand.scale.setTo(1.1);
+            }
+        }, this).autoDestroy = true;  
     }, this);
 
-    //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
-     sounds['rightAll2'].onStop.addOnce(function(){
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-            //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+    sounds['rightAll2'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[5])
             {
                 Assignment(assignmentNr, exerciseNr);
             }
-            
-                            
-            }, this).autoDestroy = true;  
+        }, this).autoDestroy = true;  
     }, this);
 
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['leftAll2'].play();
     instructor.play('talk');
     warmupKeys.play('asdfBlink');
@@ -2591,12 +2554,9 @@ function WarmUpEH(assignmentNr, exerciseNr)
     addExitButton();
 
     sounds['handsEH'].onStop.addOnce(function()
-    {
-        //Make Maggi stop moving his mouth in the 2 second pause between animations 
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    { 
+        stopInstructorTalk();
         
-        //Pause for 2 seconds after fogj1 soundclip, then play fogj2
         game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {    
             if(warmUps[6])
@@ -2609,14 +2569,12 @@ function WarmUpEH(assignmentNr, exerciseNr)
         }, this).autoDestroy = true;  
     }, this);
 
-    sounds['findE'].onStop.addOnce(function(){
-        //Make Maggi stop moving his mouth in the 2 second pause between animations 
-        instructor.animations.stop(); 
-        instructor.frame = 0;
-        //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
+    sounds['findE'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+        
         game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {            
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[6])
             {
                 instructor.play('talk');
@@ -2648,9 +2606,9 @@ function WarmUpEH(assignmentNr, exerciseNr)
     });
 
     sounds['typeE'].onStop.addOnce(function()
-    {
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    { 
+        stopInstructorTalk();
+        
         game.input.keyboard.start();
         game.input.keyboard.addCallbacks(this, null, null, function(char)
         {    
@@ -2712,9 +2670,9 @@ function WarmUpEH(assignmentNr, exerciseNr)
     });
 
     sounds['typeH'].onStop.addOnce(function()
-    {
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    { 
+        stopInstructorTalk();
+        
         game.input.keyboard.start();
         game.input.keyboard.addCallbacks(this, null, null, function(char)
         {    
@@ -2732,12 +2690,12 @@ function WarmUpEH(assignmentNr, exerciseNr)
         });
     });     
 
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['handsEH'].play();
     instructor.play('talk');
 }
 
-function WarmUpIG(assignmentNr, exerciseNr){
+function WarmUpIG(assignmentNr, exerciseNr)
+{
     warmUps[7] = true;
 
     initGame();
@@ -2764,40 +2722,28 @@ function WarmUpIG(assignmentNr, exerciseNr){
     addMuteButton();
     addExitButton();
 
-    //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
-    //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
-    sounds['handsIG'].onStop.addOnce(function(){
-
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-
-            //Pause for 2 seconds after fogj1 soundclip, then play fogj2
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-               
-                //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
-                //and add the right hand into the game so it can start moving up towards the keys.
-                if(warmUps[7])
-                {
-                    instructor.play('talk');
-                    sounds['findI'].play();
-                    keyboardKeysMap.get('i').play('blink');
-                    balloon.frame = 39;
-                }
-                
-                  
-            }, this).autoDestroy = true;  
+    sounds['handsIG'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {   
+            if(warmUps[7])
+            {
+                instructor.play('talk');
+                sounds['findI'].play();
+                keyboardKeysMap.get('i').play('blink');
+                balloon.frame = 39;
+            }                
+        }, this).autoDestroy = true;  
     }, this);
 
-    //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
-     sounds['findI'].onStop.addOnce(function(){
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-            //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+    sounds['findI'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[7])
             {
                 instructor.play('talk');
@@ -2805,17 +2751,15 @@ function WarmUpIG(assignmentNr, exerciseNr){
                 sounds['typingI'].play();
                 rightHand.play('type');
             }
-            
-                            
-            }, this).autoDestroy = true;  
+        }, this).autoDestroy = true;  
     }, this);
 
-    sounds['typingI'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
-
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){        
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+    sounds['typingI'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {        
             if(warmUps[7])
             {
                 instructor.play('talk');
@@ -2829,19 +2773,21 @@ function WarmUpIG(assignmentNr, exerciseNr){
         }, this).autoDestroy = true;
     });
 
-    sounds['typeI'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+    sounds['typeI'].onStop.addOnce(function()
+    {  
+        stopInstructorTalk();
+        
         game.input.keyboard.start();
-        game.input.keyboard.addCallbacks(this, null, null, function(char){    
+        game.input.keyboard.addCallbacks(this, null, null, function(char)
+        {    
             if(char === 'i' && warmUps[7])
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'i', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+                // Display the letter in the textArea
+                addWarmUpTextArea('i', 150, '#00ff00');
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
+                {
                     textArea.destroy();
                     instructor.play('talk');
                     balloon.visible = false;
@@ -2849,13 +2795,14 @@ function WarmUpIG(assignmentNr, exerciseNr){
                 });
             }
         });
-     });
+    });
 
-     sounds['gjIG1'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+     sounds['gjIG1'].onStop.addOnce(function()
+     {  
+        stopInstructorTalk();
         
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[7])
             {
                 instructor.play('talk');
@@ -2867,11 +2814,12 @@ function WarmUpIG(assignmentNr, exerciseNr){
         });
      });
 
-     sounds['findG'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+     sounds['findG'].onStop.addOnce(function()
+     {  
+        stopInstructorTalk();
         
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[7])
             {
                 instructor.play('talk');
@@ -2883,37 +2831,39 @@ function WarmUpIG(assignmentNr, exerciseNr){
         });
      });
 
-     sounds['typingG'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+     sounds['typingG'].onStop.addOnce(function()
+     {  
+        stopInstructorTalk();
         
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[7])
             {
                 instructor.play('talk');
                 balloon.frame = 45;
                 sounds['typeG'].play();
                 keyboardKeysMap.get('g').play('blink');
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'g', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#000000',0);
+                // Display the letter in the textArea
+                addWarmUpTextArea('g', 150, '#000000');
             }
         });
      });
 
-     sounds['typeG'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+     sounds['typeG'].onStop.addOnce(function()
+     {  
+        stopInstructorTalk();
+        
         game.input.keyboard.start();
-        game.input.keyboard.addCallbacks(this, null, null, function(char){    
+        game.input.keyboard.addCallbacks(this, null, null, function(char)
+        {    
             if(char === 'g' && warmUps[7])
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'g', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+                // Display the letter in the textArea
+                addWarmUpTextArea('g', 150, '#00ff00');
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
+                {
                     textArea.destroy();
                     instructor.play('talk');
                     balloon.visible = false;
@@ -2923,18 +2873,19 @@ function WarmUpIG(assignmentNr, exerciseNr){
         });
      });
 
-    sounds['gjIG2'].onStop.addOnce(function(){
-        instructor.animations.stop();
-        instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
-        if(warmUps[7])
+    sounds['gjIG2'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 1, function()
+        {
+            if(warmUps[7])
             {
                 Assignment(assignmentNr, exerciseNr);
             }
-         });
+        });
      });
 
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['handsIG'].play();
     instructor.play('talk');
 }
@@ -2967,18 +2918,12 @@ function WarmUpBN(assignmentNr, exerciseNr){
     addMuteButton();
     addExitButton();
 
-    //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
-    //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
-    sounds['handsBN'].onStop.addOnce(function(){
-        //Make Maggi stop moving his mouth in the 2 second pause between animations 
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['handsBN'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
         
-        //Pause for 2 seconds after fogj1 soundclip, then play fogj2
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-            
-            //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
-            //and add the right hand into the game so it can start moving up towards the keys.
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[8])
             {
                 instructor.play('talk');
@@ -2986,19 +2931,15 @@ function WarmUpBN(assignmentNr, exerciseNr){
                 sounds['findB'].play();
                 balloon.frame = 49;
             }
-            
-                
         }, this).autoDestroy = true;  
     }, this);
 
-    //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
-     sounds['findB'].onStop.addOnce(function(){
-        //Make Maggi stop moving his mouth in the 2 second pause between animations 
-        instructor.animations.stop(); 
-        instructor.frame = 0;
-        //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){         
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+    sounds['findB'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {         
             if(warmUps[8])
             {
                 instructor.play('talk');
@@ -3009,39 +2950,39 @@ function WarmUpBN(assignmentNr, exerciseNr){
         }, this).autoDestroy = true;  
     }, this);
 
-    sounds['typingB'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['typingB'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {                  
             if(warmUps[8])
             {
                 instructor.play('talk');
                 balloon.frame = 51;
                 sounds['typeB'].play();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'b', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#000000',0);
+                // Display the letter in the textArea
+                addWarmUpTextArea('b', 150, '#000000');
                 keyboardKeysMap.get('b').play('blink');
             }            
         }, this).autoDestroy = true;
     });
 
-    sounds['typeB'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+    sounds['typeB'].onStop.addOnce(function()
+    {  
+        stopInstructorTalk();
+        
         game.input.keyboard.start();
-        game.input.keyboard.addCallbacks(this, null, null, function(char){    
+        game.input.keyboard.addCallbacks(this, null, null, function(char)
+        {    
             if(char === 'b' && warmUps[8])
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'b', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+                // Display the letter in the textArea
+                addWarmUpTextArea('b', 150, '#00ff00');
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
+                {
                     instructor.play('talk');
                     balloon.frame = 52;
                     sounds['gjBN1'].play();
@@ -3049,12 +2990,14 @@ function WarmUpBN(assignmentNr, exerciseNr){
                 });
             }
         });
-     });
+    });
 
-     sounds['gjBN1'].onStop.addOnce(function(){
-        instructor.animations.stop();
-        instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+     sounds['gjBN1'].onStop.addOnce(function()
+     { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 1, function()
+        {
             if(warmUps[8])
             {
                 instructor.play('talk');
@@ -3065,10 +3008,12 @@ function WarmUpBN(assignmentNr, exerciseNr){
         });
      });
 
-     sounds['findN'].onStop.addOnce(function(){
-        instructor.animations.stop();
-        instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+     sounds['findN'].onStop.addOnce(function()
+     { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[8])
             {
                 instructor.play('talk');
@@ -3079,36 +3024,39 @@ function WarmUpBN(assignmentNr, exerciseNr){
         });
      });
 
-     sounds['typingN'].onStop.addOnce(function(){
-        instructor.animations.stop();
-        instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+     sounds['typingN'].onStop.addOnce(function()
+     { 
+        stopInstructorTalk();
+        
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[8])
             {
                 instructor.play('talk');
                 balloon.frame = 54;
                 sounds['typeN'].play();
                 keyboardKeysMap.get('n').play('blink');
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'n', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#000000',0);
+                // Display the letter in the textArea
+                addWarmUpTextArea('n', 150, '#000000');
             }
         });
      });
 
-     sounds['typeN'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+     sounds['typeN'].onStop.addOnce(function()
+     { 
+        stopInstructorTalk();
+
         game.input.keyboard.start();
-        game.input.keyboard.addCallbacks(this, null, null, function(char){
+        game.input.keyboard.addCallbacks(this, null, null, function(char)
+        {
             if(char === 'n' && warmUps[8])
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'n', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 2, function(){  
+                // Display the letter in the textArea
+                addWarmUpTextArea('n', 150, '#00ff00');
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
+                {  
                     instructor.play('talk');
                     sounds['gjBN2'].play();
                 });
@@ -3116,10 +3064,12 @@ function WarmUpBN(assignmentNr, exerciseNr){
         });
      });
 
-     sounds['gjBN2'].onStop.addOnce(function(){
-        instructor.animations.stop();
-        instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+     sounds['gjBN2'].onStop.addOnce(function()
+     { 
+        stopInstructorTalk();
+
+        game.time.events.add(Phaser.Timer.SECOND * 1, function()
+        {
             if(warmUps[8])
             {
                 Assignment(assignmentNr, exerciseNr);
@@ -3127,12 +3077,12 @@ function WarmUpBN(assignmentNr, exerciseNr){
         });
      });
 
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['handsBN'].play();
     instructor.play('talk');
 }
 
-function WarmUpRO(assignmentNr, exerciseNr){
+function WarmUpRO(assignmentNr, exerciseNr)
+{
     warmUps[9] = true;
     initGame();
 
@@ -3160,38 +3110,28 @@ function WarmUpRO(assignmentNr, exerciseNr){
     addMuteButton();
     addExitButton();
 
-    //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
-    //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
-    sounds['handsRO'].onStop.addOnce(function(){
-        //Make Maggi stop moving his mouth in the 2 second pause between animations 
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['handsRO'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
         
-        //Pause for 2 seconds after fogj1 soundclip, then play fogj2
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-            
-            //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
-            //and add the right hand into the game so it can start moving up towards the keys.
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[9])
             {
                 instructor.play('talk');
                 keyboardKeysMap.get('r').play('blink');
                 sounds['findR'].play();
                 balloon.frame = 58;
-            }
-            
-                
+            }  
         }, this).autoDestroy = true;  
     }, this);
 
-    //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
-     sounds['findR'].onStop.addOnce(function(){
-        //Make Maggi stop moving his mouth in the 2 second pause between animations 
-        instructor.animations.stop(); 
-        instructor.frame = 0;
-        //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){         
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+    sounds['findR'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {         
             if(warmUps[9])
             {
                 instructor.play('talk');
@@ -3202,13 +3142,12 @@ function WarmUpRO(assignmentNr, exerciseNr){
         }, this).autoDestroy = true;  
     }, this);
 
-    sounds['typingR'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['typingR'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {      
             if(warmUps[9])
             {
                 instructor.play('talk');
@@ -3222,19 +3161,21 @@ function WarmUpRO(assignmentNr, exerciseNr){
         }, this).autoDestroy = true;
     });
 
-    sounds['typeR'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+    sounds['typeR'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+
         game.input.keyboard.start();
-        game.input.keyboard.addCallbacks(this, null, null, function(char){    
+        game.input.keyboard.addCallbacks(this, null, null, function(char)
+        {    
             if(char === 'r' && warmUps[9])
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'r', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+                // Display the letter in the textArea
+                addWarmUpTextArea('r', 150, '#00ff00');
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
+                {
                     instructor.play('talk');
                     balloon.frame = 61;
                     sounds['findO'].play();
@@ -3245,10 +3186,11 @@ function WarmUpRO(assignmentNr, exerciseNr){
         });
      });
 
-     sounds['findO'].onStop.addOnce(function(){
-        instructor.animations.stop();
-        instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+     sounds['findO'].onStop.addOnce(function()
+     {
+        stopInstructorTalk();
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[9])
             {
                 instructor.play('talk');
@@ -3259,48 +3201,51 @@ function WarmUpRO(assignmentNr, exerciseNr){
         });
      });
 
-     sounds['typingO'].onStop.addOnce(function(){
-        instructor.animations.stop();
-        instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+     sounds['typingO'].onStop.addOnce(function()
+     {
+        stopInstructorTalk();
+
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[9])
             {
                 instructor.play('talk');
                 balloon.frame = 64;
                 sounds['typeO'].play();
                 keyboardKeysMap.get('o').play('blink');
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'o', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#000000',0);
+                // Display the letter in the textArea
+                addWarmUpTextArea('o', 150, '#000000');
             }
         });
      });
 
-     sounds['typeO'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+    sounds['typeO'].onStop.addOnce(function()
+    {  
+        stopInstructorTalk();
+
         game.input.keyboard.start();
-        game.input.keyboard.addCallbacks(this, null, null, function(char){
+        game.input.keyboard.addCallbacks(this, null, null, function(char)
+        {
             if(char === 'o' && warmUps[9])
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'o', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){  
+                // Display the letter in the textArea
+                addWarmUpTextArea('o', 150, '#00ff00');
+                game.time.events.add(Phaser.Timer.SECOND * 1, function()
+                {  
                     Assignment(assignmentNr, exerciseNr);
                 });
             }
         });
-     });
-
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
+    });
+    
     sounds['handsRO'].play();
     instructor.play('talk');
 }
 
-function WarmUpBRODD(assignmentNr, exerciseNr){
+function WarmUpBRODD(assignmentNr, exerciseNr)
+{
     warmUps[10] = true;
     initGame();
 
@@ -3328,55 +3273,44 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
     addMuteButton();
     addExitButton();
 
-    //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
-    //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
-    sounds['handsBRODD'].onStop.addOnce(function(){
+    sounds['handsBRODD'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-
-            
-            //Pause for 2 seconds after fogj1 soundclip, then play fogj2
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-               
-                //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
-                //and add the right hand into the game so it can start moving up towards the keys.
-                if(warmUps[10])
-                {
-                    instructor.play('talk');
-                    sounds['findComma'].play();
-                    balloon.frame = 67;
-                    keyboardKeysMap.get('´').play('blink');
-                }
-            }, this).autoDestroy = true;  
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
+            if(warmUps[10])
+            {
+                instructor.play('talk');
+                sounds['findComma'].play();
+                balloon.frame = 67;
+                keyboardKeysMap.get('´').play('blink');
+            }
+        }, this).autoDestroy = true;  
     }, this);
 
-    //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
-     sounds['findComma'].onStop.addOnce(function(){
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-            //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){       
-                //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-                if(warmUps[10])
-                {
-                    instructor.play('talk');
-                    balloon.frame = 68;
-                    sounds['typingComma'].play();
-                    rightHand.play('type');
-                }      
-            }, this).autoDestroy = true;  
+     sounds['findComma'].onStop.addOnce(function()
+     { 
+        stopInstructorTalk();
+
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {       
+            if(warmUps[10])
+            {
+                instructor.play('talk');
+                balloon.frame = 68;
+                sounds['typingComma'].play();
+                rightHand.play('type');
+            }      
+        }, this).autoDestroy = true;  
     }, this);
 
-    sounds['typingComma'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['typingComma'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {       
             if(warmUps[10])
             {
                 instructor.play('talk');
@@ -3384,19 +3318,16 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
                 sounds['typingComma2'].play();
                 rightHand.frame = 8;
                 keyboardKeysMap.get('´').frame = 37;
-            }
-            
-                            
+            }              
         }, this).autoDestroy = true;
     });
 
-    sounds['typingComma2'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['typingComma2'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[10])
             {
                 instructor.play('talk');
@@ -3404,19 +3335,16 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
                 sounds['typingComma3'].play();
                 leftHand.frame = 16;
                 keyboardKeysMap.get('e').frame = 18;
-            }
-            
-                            
+            }             
         }, this).autoDestroy = true;
     });
 
-    sounds['typingComma3'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['typingComma3'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[10])
             {
                 instructor.play('talk');
@@ -3428,42 +3356,41 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
                 keyboardKeysMap.get('´').frame = 36;
                 keyboardKeysMap.get('´').play('blink');
                 keyboardKeysMap.get('e').play('blink');
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'é', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#000000',0);
-            }
-            
-                            
+                // Display the letter in the textArea
+                addWarmUpTextArea('é', 150, '#000000');
+            }               
         }, this).autoDestroy = true;
     });
 
-    sounds['typeCommaE'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+    sounds['typeCommaE'].onStop.addOnce(function()
+    {  
+        stopInstructorTalk();
+
         game.input.keyboard.start();
-        game.input.keyboard.addCallbacks(this, null, function(){
+        game.input.keyboard.addCallbacks(this, null, function()
+        {
         	char = document.getElementById('assignment').value;
             $("#assignment").val(""); 
             if(char === 'é' && warmUps[10])
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'é', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+                // Display the letter in the textArea
+                addWarmUpTextArea('é', 150, '#00ff00');
+                game.time.events.add(Phaser.Timer.SECOND * 1, function()
+                {
                     Assignment(assignmentNr, exerciseNr);
                 });
             }
         },null);
      });
 
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['handsBRODD'].play();
     instructor.play('talk');
 }
 
-function WarmUpHA(assignmentNr, exerciseNr){
+function WarmUpHA(assignmentNr, exerciseNr)
+{
     warmUps[11] = true;
     initGame();
 
@@ -3491,54 +3418,44 @@ function WarmUpHA(assignmentNr, exerciseNr){
     addMuteButton();
     addExitButton();
 
-    //Each animation section of WarmUpFJ is divided into sections where one doesn't start until the previous one is complete
-    //fogj1 is the soundclip where he says "Finndu stafina A, S, D og F"
-    sounds['handsHA'].onStop.addOnce(function(){
+    sounds['handsHA'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-
-            //Pause for 2 seconds after fogj1 soundclip, then play fogj2
-            game.time.events.add(Phaser.Timer.SECOND * 2, function()
-            {   
-                //When fogj2 soundclip starts, make Maggi talk, put the correct text in speech bubble, make J, K, L and Æ blink 
-                //and add the right hand into the game so it can start moving up towards the keys.
-                if(warmUps[11])
-                {
-                    instructor.play('talk');
-                    sounds['findLShift'].play();
-                    balloon.frame = 75;
-                    keyboardKeysMap.get('lShift').play('blink');
-                }
-            }, this).autoDestroy = true;
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {   
+            if(warmUps[11])
+            {
+                instructor.play('talk');
+                sounds['findLShift'].play();
+                balloon.frame = 75;
+                keyboardKeysMap.get('lShift').play('blink');
+            }
+        }, this).autoDestroy = true;
     }, this);
 
-    //fogj2 is the soundclip where he says "Finndu stafina J, K, L og Æ"
-     sounds['findLShift'].onStop.addOnce(function(){
-            //Make Maggi stop moving his mouth in the 2 second pause between animations 
-            instructor.animations.stop(); 
-            instructor.frame = 0;
-            //Pause for 2 seconds, then play the soundclip "Finndu stafina F og J" and make both F and J blink
-            game.time.events.add(Phaser.Timer.SECOND * 2, function(){       
-                //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
-                if(warmUps[11])
-                {
-                    instructor.play('talk');
-                    balloon.frame = 6;
-                    sounds['typingLShift'].play();
-                    leftHand.play('type');
-                }      
-            }, this).autoDestroy = true;  
+    sounds['findLShift'].onStop.addOnce(function()
+    {
+        stopInstructorTalk();
+
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {       
+            if(warmUps[11])
+            {
+                instructor.play('talk');
+                balloon.frame = 6;
+                sounds['typingLShift'].play();
+                leftHand.play('type');
+            }      
+        }, this).autoDestroy = true;  
     }, this);
 
-    sounds['typingLShift'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['typingLShift'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[11])
             {
                 instructor.play('talk');
@@ -3549,13 +3466,12 @@ function WarmUpHA(assignmentNr, exerciseNr){
         }, this).autoDestroy = true;
     });
 
-    sounds['findRShift'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['findRShift'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[11])
             {
                 instructor.play('talk');
@@ -3566,13 +3482,12 @@ function WarmUpHA(assignmentNr, exerciseNr){
         }, this).autoDestroy = true;
     });
 
-    sounds['typingRShift'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['typingRShift'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[11])
             {
                 instructor.play('talk');
@@ -3580,18 +3495,16 @@ function WarmUpHA(assignmentNr, exerciseNr){
                 sounds['typingOHA'].play();
                 leftHand.frame = 12;
                 keyboardKeysMap.get('lShift').frame = 2;
-
             }    
         }, this).autoDestroy = true;
     });
 
-    sounds['typingOHA'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['typingOHA'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[11])
             {
                 instructor.play('talk');
@@ -3603,13 +3516,12 @@ function WarmUpHA(assignmentNr, exerciseNr){
         }, this).autoDestroy = true;
     });
 
-    sounds['typingOHA2'].onStop.addOnce(function(){
-        instructor.animations.stop(); 
-        instructor.frame = 0;
+    sounds['typingOHA2'].onStop.addOnce(function()
+    {
+        stopInstructorTalk();
 
-        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
-                          
-            //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
+        {
             if(warmUps[11])
             {
                 instructor.play('talk');
@@ -3617,33 +3529,33 @@ function WarmUpHA(assignmentNr, exerciseNr){
                 sounds['typeOHA'].play();
                 keyboardKeysMap.get('o').play('blink');
                 keyboardKeysMap.get('lShift').play('blink');
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'O', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#000000',0);
+                // Display the letter in the textArea
+                addWarmUpTextArea('O', 150, '#000000');
             }           
         }, this).autoDestroy = true;
     });
 
-    sounds['typeOHA'].onStop.addOnce(function(){ 
-        instructor.animations.stop();
-        instructor.frame = 0;
+    sounds['typeOHA'].onStop.addOnce(function()
+    { 
+        stopInstructorTalk();
+
         game.input.keyboard.start();
-        game.input.keyboard.addCallbacks(this, null, null, function(char){    
+        game.input.keyboard.addCallbacks(this, null, null, function(char)
+        {    
             if(char === 'O' && warmUps[11])
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'O', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+                // Display the letter in the textArea
+                addWarmUpTextArea('O', 150, '#00ff00');
+                game.time.events.add(Phaser.Timer.SECOND * 1, function()
+                {
                     Assignment(assignmentNr, exerciseNr);
                 });
             }
         });
-     });
+    });
 
-    //Play soundclip fogj1, make Maggi talk and make A, S, D and F blink.
     sounds['handsHA'].play();
     instructor.play('talk');
 }
