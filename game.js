@@ -10,7 +10,7 @@
 // Create instance of the game
 var width = 1000;
 var height = 700;
-var game = new Phaser.Game(width, height, Phaser.CANVAS, '', { preload: preload, create: create, update: update}, true);
+var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update}, true);
 
 // Create a variable for bitMapData to display text, used in functions Assignment and KeyPress
 var textArea;
@@ -91,6 +91,7 @@ function preload()
     game.load.image('lHand',                    'Assets/Images/Maggi/vinstri.png');
     game.load.image('rHand',                    'Assets/Images/Maggi/haegri.png');
     game.load.spritesheet('handsSprite',        'Assets/Images/Maggi/handSprite.png', 276, 450);
+    game.load.spritesheet('hands',              'Assets/Images/Maggi/handSpriteBigger.png', 240, 450);
 
     // Various images
     game.load.image('logo',                     'Assets/Images/logo.png');
@@ -173,7 +174,6 @@ function preload()
     game.load.spritesheet('horse',              'Assets/Images/Maggi/horse.png', 371, 672);
     game.load.spritesheet('whale',              'Assets/Images/Maggi/whale.png', 372, 711);
     game.load.spritesheet('fishes',             'Assets/Images/Maggi/fishes.png', 149, 94);
-    game.load.spritesheet('hands',              'Assets/Images/Maggi/handSprite2.png', 240, 381);
 
     // =================================== Audio ===================================
     //Audio for when entering game
