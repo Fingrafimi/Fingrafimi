@@ -729,10 +729,10 @@ function Assignment(assignmentNr, exerciseNr)
         textArea.anchor.set(0.5);
 
         // When key is pressed the function keyPress is called
-        game.input.keyboard.addCallbacks(this, null, function(){
-            char = document.getElementById('assignment').value;
+        game.input.keyboard.addCallbacks(this, null, function(e){
+            char = document.getElementById('assignment').value[0];
             $("#assignment").val(""); 
-            if(char !== '' && char != "´")
+            if(char !== '' && char !== "´")
             {
                 keyPress(char, assignmentNr, exerciseNr);
             }
