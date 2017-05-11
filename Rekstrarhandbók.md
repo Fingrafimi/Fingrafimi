@@ -49,5 +49,6 @@ Push-a breytingum á master branch
 git push origin master
 ```
 Ný útgáfa ætti að byrstast innan skamms [hér]
+
 (http://fingrafimi.herokuapp.com/)
 
