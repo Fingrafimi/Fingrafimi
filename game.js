@@ -477,11 +477,11 @@ function update()
         }
 
         //This will make the left and right hand move from below the visible part of the canvas to their correct positions above the keys
-        if(leftHand.y > 390 && balloon.visible === true)
+        if(leftHand.y > 400 && balloon.visible === true)
         {
             leftHand.y -= 4;
         }
-        if(rightHand.y > 390 && balloon.visible === true)
+        if(rightHand.y > 410 && balloon.visible === true)
         {
             rightHand.y -= 4;
         }
@@ -491,11 +491,11 @@ function update()
     if(warmUps[6] === true || warmUps[7] === true  ||  warmUps[8] === true || warmUps[9] === true || warmUps[10] === true || warmUps[11])
     {
         //This will make the left and right hand move from below the visible part of the canvas to their correct positions above the keys
-        if(leftHand.y > 320 && balloon.visible === true)
+        if(leftHand.y > 340 && balloon.visible === true)
         {
             leftHand.y -= 4;
         }
-        if(rightHand.y > 295 && balloon.visible === true)
+        if(rightHand.y > 300 && balloon.visible === true)
         {
             rightHand.y -= 4;
         }
@@ -1793,7 +1793,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
     warmupHead.anchor.setTo(0.75, 1);
 
     //Add the left hand to the game so that it starts moving from below the visible canvas to the A, S, D and F keys.
-    leftHand = game.add.sprite(175, 700, 'lHand', 2);
+    leftHand = game.add.sprite(160, 700, 'lHand', 2);
     leftHand.scale.setTo(1.1);  
 
     //Add the speech bubble with the correct text
