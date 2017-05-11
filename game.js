@@ -165,7 +165,7 @@ function preload()
     game.load.image('shellGlow',                'Assets/Images/Buttons/Exercises/shell-glow.png');
 
     // Images related to WarmUp animations
-    game.load.spritesheet('balloonSprite',      'Assets/Images/Maggi/bubbleSprite.png', 344, 191);
+    game.load.spritesheet('balloonSprite',      'Assets/Images/Maggi/bubbleSprite.png', 346, 191);
     game.load.spritesheet('warmupKeys',         'Assets/Images/Keyboard/asdfgh.png', 699, 77);
     game.load.spritesheet('warmupHead',         'Assets/Images/Maggi/warmupHead2.png', 159, 155);
     game.load.spritesheet('instructorMaggi',    'Assets/Images/Maggi/instructionMaggi.png', 524, 572);
