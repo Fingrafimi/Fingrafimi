@@ -167,7 +167,7 @@ function preload()
     game.load.image('shellGlow',                'Assets/Images/Buttons/Exercises/shell-glow.png');
 
     // Images related to WarmUp animations
-    game.load.spritesheet('balloonSprite',      'Assets/Images/Instructors/bubbleSprite.png', 346, 191);
+    game.load.spritesheet('balloonSprite',      'Assets/Images/Instructors/bubbleSprite.png', 345.2, 191);
     game.load.spritesheet('warmupHead',         'Assets/Images/Instructors/warmupHead2.png', 159, 155);
     game.load.spritesheet('instructorMaggi',    'Assets/Images/Instructors/instructionMaggi.png', 524, 572);
     game.load.spritesheet('pig',                'Assets/Images/Instructors/svin.png', 522, 756);
