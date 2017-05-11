@@ -667,7 +667,6 @@ function Assignment(assignmentNr, exerciseNr)
     logo.scale.setTo(0.45);
 
     var instructor = addAssignmentInstructor(assignmentNr);
-    console.log(instructor);
 
     // Load keyboard
     loadKeyboard(assignmentNr, exerciseNr);
@@ -792,7 +791,6 @@ function keyPress(char, assignmentNr, exerciseNr)
             }
             else
             {
-                console.log('charAt: ' + text.charAt(incorrPos));
                 keyboardKeysMap.get(text.charAt(incorrPos)).play('blink');
             }
 

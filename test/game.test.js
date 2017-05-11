@@ -40,9 +40,81 @@ QUnit.test("Test initTextVariables() function", function( assert ) {
     assert.equal(textPos, 0,        "text is now what InitTextVariables() sets it to");
 });
 
-//  QUnit.test("Test ", function( assert ) {
+ QUnit.test("Test finishedAssignment() function", function( assert ) {
+    for(i = 0; i < exercisesFinished.length; i++)
+    {
+        for(j = 0; j < i.length; j++)
+        {
+            exercisesFinished[i][j] = false;
+        }
+    }
 
-//  });
+    assert.equal(finishedAssignment(1), false, "Assignment is not finished");
+
+    exercisesFinished[1][0] = true;
+
+    assert.equal(exercisesFinished[1][0], true, "exercisesFinished[1][2] is now set to true");
+
+    assert.equal(finishedAssignment(1), false, "Assignment is not finished");
+
+    exercisesFinished[1][1] = true;
+    exercisesFinished[1][2] = true;
+    exercisesFinished[1][3] = true;
+    exercisesFinished[1][4] = true;
+    exercisesFinished[1][5] = true;
+
+    assert.equal(finishedAssignment(1), true, "Assignment is now finished");
+ });
+
+ QUnit.test("Test findNextExercise() function", function( assert ) {
+    for(i = 0; i < exercisesFinished.length; i++)
+    {
+        for(j = 0; j < i.length; j++)
+        {
+            exercisesFinished[i][j] = false;
+        }
+    }
+    
+    exercisesFinished[0][3] = false;
+    exercisesFinished[1][2] = false;
+    exercisesFinished[1][3] = false;
+    exercisesFinished[3][5] = false;
+
+    assert.equal(exercisesFinished[0][3], false, "Variable set to false");
+    assert.equal(exercisesFinished[1][2], false, "Variable set to false");
+    assert.equal(exercisesFinished[1][3], false, "Variable set to false");
+    assert.equal(exercisesFinished[3][5], false, "Variable set to false");
+
+    exercisesFinished[0][3] = true;
+    exercisesFinished[1][2] = true;
+    exercisesFinished[1][3] = true;
+    exercisesFinished[3][5] = true;
+    
+    assert.equal(exercisesFinished[0][3], true, "Variable set to true");
+    assert.equal(exercisesFinished[1][2], true, "Variable set to true");
+    assert.equal(exercisesFinished[1][3], true, "Variable set to true");
+    assert.equal(exercisesFinished[3][5], true, "Variable set to true");
+
+    assert.equal(findNextExercise(0, 3), 4, "Next exercise is not 3 since that one is already finished");
+    assert.equal(findNextExercise(1, 2), 4, "Next exercise is not 3 since that one is already finished");
+    assert.equal(findNextExercise(3, 5), 6, "Next exercise is not 3 since that one is already finished");
+ });
+
+ QUnit.test("Test addBalloon() function", function( assert ) {
+    assert.equal(addBalloon(0), 3, "addBalloon returns correct index");
+    assert.equal(addBalloon(1), 11, "addBalloon returns correct index");
+    assert.equal(addBalloon(2), 16, "addBalloon returns correct index");
+    assert.equal(addBalloon(3), 16, "addBalloon returns correct index");
+    assert.equal(addBalloon(4), 24, "addBalloon returns correct index");
+    assert.equal(addBalloon(5), 28, "addBalloon returns correct index");
+    assert.equal(addBalloon(6), 37, "addBalloon returns correct index");
+    assert.equal(addBalloon(7), 46, "addBalloon returns correct index");
+    assert.equal(addBalloon(8), 56, "addBalloon returns correct index");
+    assert.equal(addBalloon(9), 56, "addBalloon returns correct index");
+    assert.equal(addBalloon(10), 73, "addBalloon returns correct index");
+    assert.equal(addBalloon(11), 48, "addBalloon returns correct index");
+ });
+
 
 // QUnit.test("", function( assert ) {
     
