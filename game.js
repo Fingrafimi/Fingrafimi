@@ -960,7 +960,7 @@ function keyPress(char, assignmentNr, exerciseNr)
         {
             addExercises(assignmentNr);
             var finishSound = addFinishSound(assignmentNr);
-            finishSound.onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this)
+            finishSound.onStop.addOnce(function(){ instructor.animations.stop(); instructor.frame = 0; }, this);
             instructor.play('talk');
             finishSound.play();
             return;
@@ -1887,7 +1887,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                 addWarmUpTextArea('f', 50, '#00ff00');
 
                 // 1 second pause
-                game.time.events.add(Phaser.Timer.SECOND * 1, function()
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
                 {
                     warmupHead.play('talk');
                     warmupKeys.play('jBlink');
@@ -1916,7 +1916,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'j', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                     game.input.keyboard.stop();
                     leftHand.destroy();
                     rightHand.destroy();
@@ -2063,11 +2063,11 @@ function WarmUpDK(assignmentNr, exerciseNr)
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                
+
                 // Display the letter in the textArea
                 addWarmUpTextArea('d', 50, '#00ff00');
 
-                game.time.events.add(Phaser.Timer.SECOND * 1, function()
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
                 {
                     warmupHead.play('talk');
                     warmupKeys.play('kBlink');
@@ -2214,7 +2214,7 @@ function WarmUpSL(assignmentNr, exerciseNr)
                 textArea.destroy();
                 // Display the letter in the textArea
                 addWarmUpTextArea('s', 50, '#00ff00');
-                game.time.events.add(Phaser.Timer.SECOND * 1, function()
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
                 {
                     warmupHead.play('talk');
                     warmupKeys.play('lBlink');
@@ -2359,10 +2359,11 @@ function WarmUpAAE(assignmentNr, exerciseNr){
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
+
                 // Display the letter in the textArea
                 addWarmUpTextArea('a', 50, '#00ff00');
 
-                game.time.events.add(Phaser.Timer.SECOND * 1, function()
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
                 {
                     warmupHead.play('talk');
                     warmupKeys.play('aeBlink');
@@ -2631,7 +2632,7 @@ function WarmUpEH(assignmentNr, exerciseNr)
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
 
-        game.time.events.add(Phaser.Timer.SECOND * 1, function()
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {
             if(warmUps[6])
             {
@@ -2657,9 +2658,10 @@ function WarmUpEH(assignmentNr, exerciseNr)
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
+
                 // Display the letter in the textArea
                 addWarmUpTextArea('e', 150, '#00ff00');
-                game.time.events.add(Phaser.Timer.SECOND * 1, function()
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
                 {
                     sounds['findH'].play();
                     instructor.play('talk');
@@ -2676,7 +2678,7 @@ function WarmUpEH(assignmentNr, exerciseNr)
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
 
-        game.time.events.add(Phaser.Timer.SECOND * 1, function()
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {
             if(warmUps[6])
             {
@@ -2695,7 +2697,7 @@ function WarmUpEH(assignmentNr, exerciseNr)
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
 
-        game.time.events.add(Phaser.Timer.SECOND * 1, function()
+        game.time.events.add(Phaser.Timer.SECOND * 2, function()
         {
             if(warmUps[6])
                 {
@@ -2839,7 +2841,7 @@ function WarmUpIG(assignmentNr, exerciseNr){
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'i', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                     textArea.destroy();
                     instructor.play('talk');
                     balloon.visible = false;
@@ -2853,7 +2855,7 @@ function WarmUpIG(assignmentNr, exerciseNr){
         instructor.animations.stop();
         instructor.frame = 0;
         
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
             if(warmUps[7])
             {
                 instructor.play('talk');
@@ -2869,7 +2871,7 @@ function WarmUpIG(assignmentNr, exerciseNr){
         instructor.animations.stop();
         instructor.frame = 0;
         
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
             if(warmUps[7])
             {
                 instructor.play('talk');
@@ -2885,7 +2887,7 @@ function WarmUpIG(assignmentNr, exerciseNr){
         instructor.animations.stop();
         instructor.frame = 0;
         
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
             if(warmUps[7])
             {
                 instructor.play('talk');
@@ -2911,7 +2913,7 @@ function WarmUpIG(assignmentNr, exerciseNr){
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'g', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                     textArea.destroy();
                     instructor.play('talk');
                     balloon.visible = false;
@@ -3039,7 +3041,7 @@ function WarmUpBN(assignmentNr, exerciseNr){
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'b', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                     instructor.play('talk');
                     balloon.frame = 52;
                     sounds['gjBN1'].play();
@@ -3066,7 +3068,7 @@ function WarmUpBN(assignmentNr, exerciseNr){
      sounds['findN'].onStop.addOnce(function(){
         instructor.animations.stop();
         instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
             if(warmUps[8])
             {
                 instructor.play('talk');
@@ -3080,7 +3082,7 @@ function WarmUpBN(assignmentNr, exerciseNr){
      sounds['typingN'].onStop.addOnce(function(){
         instructor.animations.stop();
         instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
             if(warmUps[8])
             {
                 instructor.play('talk');
@@ -3106,7 +3108,7 @@ function WarmUpBN(assignmentNr, exerciseNr){
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'n', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){  
+                game.time.events.add(Phaser.Timer.SECOND * 2, function(){  
                     instructor.play('talk');
                     sounds['gjBN2'].play();
                 });
@@ -3232,7 +3234,7 @@ function WarmUpRO(assignmentNr, exerciseNr){
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'r', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                     instructor.play('talk');
                     balloon.frame = 61;
                     sounds['findO'].play();
@@ -3246,7 +3248,7 @@ function WarmUpRO(assignmentNr, exerciseNr){
      sounds['findO'].onStop.addOnce(function(){
         instructor.animations.stop();
         instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
             if(warmUps[9])
             {
                 instructor.play('talk');
@@ -3260,7 +3262,7 @@ function WarmUpRO(assignmentNr, exerciseNr){
      sounds['typingO'].onStop.addOnce(function(){
         instructor.animations.stop();
         instructor.frame = 0;
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
             if(warmUps[9])
             {
                 instructor.play('talk');
@@ -3392,7 +3394,7 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
         instructor.animations.stop(); 
         instructor.frame = 0;
 
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[10])
@@ -3412,7 +3414,7 @@ function WarmUpBRODD(assignmentNr, exerciseNr){
         instructor.animations.stop(); 
         instructor.frame = 0;
 
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[10])
@@ -3551,7 +3553,7 @@ function WarmUpHA(assignmentNr, exerciseNr){
         instructor.animations.stop(); 
         instructor.frame = 0;
 
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[11])
@@ -3568,7 +3570,7 @@ function WarmUpHA(assignmentNr, exerciseNr){
         instructor.animations.stop(); 
         instructor.frame = 0;
 
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[11])
@@ -3587,7 +3589,7 @@ function WarmUpHA(assignmentNr, exerciseNr){
         instructor.animations.stop(); 
         instructor.frame = 0;
 
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[11])
@@ -3605,7 +3607,7 @@ function WarmUpHA(assignmentNr, exerciseNr){
         instructor.animations.stop(); 
         instructor.frame = 0;
 
-        game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+        game.time.events.add(Phaser.Timer.SECOND * 2, function(){
                           
             //Make Maggi talk, blink both F and J, set correct text in speech bubble and play soundclip
             if(warmUps[11])
