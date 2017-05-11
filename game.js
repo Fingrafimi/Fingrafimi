@@ -1016,13 +1016,15 @@ function addMuteButton()
 {
     muteBtn = game.add.button(890, 20, 'sound');
     // Add hover affect
-    muteBtn.events.onInputOver.add(function(){ 
+    muteBtn.events.onInputOver.add(function()
+    { 
         if(game.sound.mute === false)
         { 
             muteBtn.frame = 2; 
         } 
     });
-    muteBtn.events.onInputOut.add(function(){ 
+    muteBtn.events.onInputOut.add(function()
+    { 
         if(game.sound.mute === false)
         { 
             muteBtn.frame = 0; 
@@ -1087,7 +1089,8 @@ function addLogoAndAssignmentID(assignmentNr, exerciseNr)
     assignmentBtn.frame = assignmentNr;
 
     //Add the click event that loads the home page
-    assignmentBtn.events.onInputDown.add(function(){
+    assignmentBtn.events.onInputDown.add(function()
+    {
             initWarmUps();
             quitExercise(); 
             Assignment(assignmentNr, exerciseNr);
@@ -1923,7 +1926,8 @@ function WarmUpFJ(assignmentNr, exerciseNr)
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'j', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 2, function(){
+                game.time.events.add(Phaser.Timer.SECOND * 2, function()
+                {
                     game.input.keyboard.stop();
                     leftHand.destroy();
                     rightHand.destroy();
@@ -1952,7 +1956,8 @@ function WarmUpFJ(assignmentNr, exerciseNr)
         });
      });
 
-     sounds['spaceFJ'].onStop.addOnce(function(){
+     sounds['spaceFJ'].onStop.addOnce(function()
+     {
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
 
@@ -2088,7 +2093,8 @@ function WarmUpDK(assignmentNr, exerciseNr)
         });
      });
 
-     sounds['findK'].onStop.addOnce(function(){ 
+     sounds['findK'].onStop.addOnce(function()
+     { 
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
 
@@ -2101,8 +2107,8 @@ function WarmUpDK(assignmentNr, exerciseNr)
                 textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'k', instructionStyle);
                 textArea.anchor.set(0.5);
                 textArea.addColor('#00ff00',0);
-                game.time.events.add(Phaser.Timer.SECOND * 1, function(){
-                    
+                game.time.events.add(Phaser.Timer.SECOND * 1, function()
+                {
                     sounds['finalDK'].play();
                     balloon.frame = 11;
                     Assignment(assignmentNr, exerciseNr);
