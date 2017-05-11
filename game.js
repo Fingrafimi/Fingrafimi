@@ -72,13 +72,14 @@ function preload()
     game.load.image('homePage',                 'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground',       'Assets/Images/Backgrounds/homeKeysBackground.png');
     game.load.image('instructionBg',            'Assets/Images/Backgrounds/instructionBackground.png');
-    game.load.image('blueBackground',           'Assets/Images/Backgrounds/blueBackground.png');
+    //game.load.image('blueBackground',           'Assets/Images/Backgrounds/blueBackground.png');
     game.load.image('farm',                     'Assets/Images/Backgrounds/farm.png');
     game.load.image('clouds',                   'Assets/Images/Backgrounds/clouds.png');
-    game.load.image('blueBackground2',          'Assets/Images/Backgrounds/blueBackground2.png');
+   // game.load.image('blueBackground2',          'Assets/Images/Backgrounds/blueBackground2.png');
     game.load.image('box',                      'Assets/Images/Backgrounds/box.png');
     game.load.image('stage',                    'Assets/Images/Backgrounds/svid.png');
     game.load.image('ocean',                    'Assets/Images/Backgrounds/sandur.png');
+    game.load.spritesheet('fishes',             'Assets/Images/Backgrounds/fishes.png', 149, 94);
 
     //Keyboard related images and sprites
     game.load.image('keyboard',                 'Assets/Images/Keyboard/lyklabord700.png');
@@ -86,12 +87,13 @@ function preload()
     game.load.spritesheet('spacebar',           'Assets/Images/Keyboard/spacebarSprite.png', 259, 44);
     game.load.spritesheet('lShift',             'Assets/Images/Keyboard/leftShiftSprite.png', 56, 43);
     game.load.spritesheet('rShift',             'Assets/Images/Keyboard/rightShiftSprite.png', 125, 45);
+    game.load.spritesheet('warmupKeys',         'Assets/Images/Keyboard/asdfgh.png', 699, 77);
 
     //Images of hands used in game
-    game.load.image('lHand',                    'Assets/Images/Maggi/vinstri.png');
-    game.load.image('rHand',                    'Assets/Images/Maggi/haegri.png');
-    game.load.spritesheet('handsSprite',        'Assets/Images/Maggi/handSprite.png', 276, 450);
-    game.load.spritesheet('hands',              'Assets/Images/Maggi/handSpriteBigger1.png', 240, 450);
+    game.load.image('lHand',                    'Assets/Images/Hands/vinstri.png');
+    game.load.image('rHand',                    'Assets/Images/Hands/haegri.png');
+    game.load.spritesheet('handsSprite',        'Assets/Images/Hands/handSprite.png', 276, 450);
+    game.load.spritesheet('hands',              'Assets/Images/Hands/handSpriteBigger1.png', 240, 450);
 
     // Various images
     game.load.image('logo',                     'Assets/Images/logo.png');
@@ -165,15 +167,14 @@ function preload()
     game.load.image('shellGlow',                'Assets/Images/Buttons/Exercises/shell-glow.png');
 
     // Images related to WarmUp animations
-    game.load.spritesheet('balloonSprite',      'Assets/Images/Maggi/bubbleSprite.png', 346, 191);
-    game.load.spritesheet('warmupKeys',         'Assets/Images/Keyboard/asdfgh.png', 699, 77);
-    game.load.spritesheet('warmupHead',         'Assets/Images/Maggi/warmupHead2.png', 159, 155);
-    game.load.spritesheet('instructorMaggi',    'Assets/Images/Maggi/instructionMaggi.png', 524, 572);
-    game.load.spritesheet('pig',                'Assets/Images/Maggi/svin.png', 522, 756);
-    game.load.spritesheet('fish',               'Assets/Images/Maggi/fish.png', 414, 503);
-    game.load.spritesheet('horse',              'Assets/Images/Maggi/horse.png', 371, 672);
-    game.load.spritesheet('whale',              'Assets/Images/Maggi/whale.png', 372, 711);
-    game.load.spritesheet('fishes',             'Assets/Images/Maggi/fishes.png', 149, 94);
+    game.load.spritesheet('balloonSprite',      'Assets/Images/Instructors/bubbleSprite.png', 346, 191);
+    game.load.spritesheet('warmupHead',         'Assets/Images/Instructors/warmupHead2.png', 159, 155);
+    game.load.spritesheet('instructorMaggi',    'Assets/Images/Instructors/instructionMaggi.png', 524, 572);
+    game.load.spritesheet('pig',                'Assets/Images/Instructors/svin.png', 522, 756);
+    game.load.spritesheet('fish',               'Assets/Images/Instructors/fish.png', 414, 503);
+    game.load.spritesheet('horse',              'Assets/Images/Instructors/horse.png', 371, 672);
+    game.load.spritesheet('whale',              'Assets/Images/Instructors/whale.png', 372, 711);
+    
 
     // =================================== Audio ===================================
     //Audio for when entering game
