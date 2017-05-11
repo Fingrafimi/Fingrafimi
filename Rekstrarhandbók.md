@@ -13,6 +13,7 @@ git clone https://github.com/Fingrafimi/Fingrafimi.git
 ## Local Server
 Settu í gang local server sem er tengdur við möppuna "Fingrafimi".
 Ef þú er ekki með local server á tölvunni þinni þá er hægt að forrit sem bjóða upp á þann stuðning hér:
+
 MAC - (https://www.mamp.info/en/)
 Windows - (http://wampserver.aviatechno.net)
 
