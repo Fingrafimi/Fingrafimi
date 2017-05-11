@@ -16,20 +16,36 @@ Ef þú er ekki með local server á tölvunni þinni þá er hægt að forrit s
 MAC - (https://www.mamp.info/en/)
 Windows - (http://wampserver.aviatechno.net)
 
-## Running the program
+## Keyra forritið
 Eftir að hafa kveikt á servernum finndu á hvaða port-i serverinn (dæmi 8888).
 Opnaðu vafra að eigin vali of farðu inn localhost:port
 ```shell
 localhost:8888
 ```
+## Loka forritinu
+Til að loka forritinu lokaðu þá glugganum/tab-inu sem forritið var opnað á.
+Æskilegt er að slökkva á servernum þegar vinnsla í forritinu er hætt.
 
-## Closing the program
-While the program is running, press Ctrl-C to close the program.
+## Gera nýja útgfu
+Ný útgáfa verður til um leið og push-að er á master branch.
 
-## Deploying the program
-Change to the project root directory and run the deploy script.
-
+Til að vista breytingar
 ```shell
-cd TicTacToe
-bash bin/deploy
+git add <file>
 ```
+eða til að vista allar breytingar
+```shell
+git add .
+```
+
+Commita breytingum
+```shell
+git commit -m "lýsing fyrir breytingarnar"
+```
+Push-a breytingum á master branch
+```shell
+git push origin master
+```
+Ný útgáfa ætti að byrstast innan skamms [hér]
+(http://fingrafimi.herokuapp.com/)
+
