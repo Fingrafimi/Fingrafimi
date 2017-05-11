@@ -81,11 +81,11 @@ function preload()
     game.load.image('ocean',                    'Assets/Images/Backgrounds/sandur.png');
 
     //Keyboard related images and sprites
-    game.load.image('keyboard',                 'Assets/Images/keyboardSprite/v2/lyklabord700.png');
-    game.load.spritesheet('keys',               'Assets/Images/keyboardSprite/v2/keySprite.png', 49, 45);
-    game.load.spritesheet('spacebar',           'Assets/Images/keyboardSprite/v2/spacebarSprite.png', 259, 44);
-    game.load.spritesheet('lShift',             'Assets/Images/keyboardSprite/v2/leftShiftSprite.png', 56, 43);
-    game.load.spritesheet('rShift',             'Assets/Images/keyboardSprite/v2/rightShiftSprite.png', 125, 45);
+    game.load.image('keyboard',                 'Assets/Images/Keyboard/lyklabord700.png');
+    game.load.spritesheet('keys',               'Assets/Images/Keyboard/keySprite.png', 49, 45);
+    game.load.spritesheet('spacebar',           'Assets/Images/Keyboard/spacebarSprite.png', 259, 44);
+    game.load.spritesheet('lShift',             'Assets/Images/Keyboard/leftShiftSprite.png', 56, 43);
+    game.load.spritesheet('rShift',             'Assets/Images/Keyboard/rightShiftSprite.png', 125, 45);
 
     //Images of hands used in game
     game.load.image('lHand',                    'Assets/Images/Maggi/vinstri.png');
