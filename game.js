@@ -729,8 +729,8 @@ function Assignment(assignmentNr, exerciseNr)
         textArea.anchor.set(0.5);
 
         // When key is pressed the function keyPress is called
-        game.input.keyboard.addCallbacks(this, null, function(e){
-            char = document.getElementById('assignment').value[0];
+        game.input.keyboard.addCallbacks(this, null, function(){
+            char = document.getElementById('assignment').value;
             $("#assignment").val(""); 
             if(char !== '' && char !== "´")
             {
@@ -787,6 +787,9 @@ function stopKeyboardAnimations()
 function keyPress(char, assignmentNr, exerciseNr) 
 {
     stopKeyboardAnimations();
+
+    console.log('stopped');
+    console.log('char');
    
     wrongSound = game.add.audio('wrongSound');
     if(incorrPos != -1)

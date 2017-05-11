@@ -10,15 +10,7 @@
         <script src="jquery.min.js"></script>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <script type="text/javascript" src="game.js"></script>
-        <script>
-           $( "body" ).mouseup(function() {
-                document.getElementById("assignment").focus();
-            });
-            $("#assignment").mouseover(function(){
-                document.getElementById("assignment").style.cursor = "default";
-            });
-        </script> 
-         <style>
+        <style>
         	canvas {
  	   			padding-left: 0;
     			padding-right: 0;
@@ -35,5 +27,13 @@
     <body id="body">  
         <input type="text" id="assignment"  name="assignment"  autofocus="autofocus" autocomplete="off" autocorrect="off" autocapitalize="none">   
     </body>
+    <script>
+           $( "body" ).mouseup(function() {
+                document.getElementById("assignment").focus();
+            });
+            $("#assignment").mouseover(function(){
+                document.getElementById("assignment").style.cursor = "default";
+            });
+        </script>
 </html>
 
