@@ -683,10 +683,21 @@ function initWarmUps()
 //Remove all CallBack events, clears the canvas and stops all currently playing sounds in that order
 function initGame()
 {
+    stopAllSounds();
     game.input.keyboard.onDownCallback = game.input.keyboard.onUpCallback = game.input.keyboard.onPressCallback = null;
     game.world.removeAll();
     game.sound.stopAll();
 }
+
+function stopAllSounds()
+{
+    for(var key in sounds)
+    {
+        sounds[key].onStop.removeAll();
+        
+    };
+}
+
 
 //The assignment function is where the exercises can be executed, all of its objects are initialized here and they are different
 //depending on which assignment we are on
@@ -1912,7 +1923,7 @@ function WarmUpFJ(assignmentNr, exerciseNr)
         });
      });
 
-     sounds['findJ'].onStop.addOnce(function()
+     sounds['findJ'].onStop.add(function()
      { 
         //Make Maggi stop moving his mouth in the 2 second pause between animations 
         stopWarmupHeadTalk(); 
