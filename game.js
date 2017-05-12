@@ -795,93 +795,111 @@ function stopKeyboardAnimations()
     });
 }
 
+//This function resolves the key that is pressed, here we play the wrongSound soundclip if the key pressed is not the correct one, we update the text area
+//and make the keys on the keyboard blink to show which key the game expects the user to press.
 function keyPress(char, assignmentNr, exerciseNr) 
 {
+    //Iterate through the keyboardKeysMap and call animations.stop() on all keys
     stopKeyboardAnimations();
    
+   //Add the wrongSound soundclip to play if incorrect key is pressed
     wrongSound = game.add.audio('wrongSound');
+
+    //if incorrPos is -1 then no incorrect key has been pressed, if its not -1 the variable is an index to the location of the incorrect character in the exercise that was pressed
     if(incorrPos != -1)
     {
+        //If the key pressed is the same as the one the game expects we continue having incorrPos as -1 to indicate that the key pressed was correct
         if(char === text.charAt(incorrPos))
         {
             incorrPos = -1;
-            corrCount = corrCount + 1;
         }
+        //If the key press is not the same we want to make the key that is expected to be pressed by the user to blink
         else
         {
+            //Á, É, Í and Ó are special cases to blink so we want to detect if the key we want to blink is one of them
             if(text.charAt(incorrPos).toLowerCase() === 'á')
             {
+                //We check if the letter is in Uppercase to make the shift keys blink as well
                 if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
                 {                     
                     keyboardKeysMap.get('lShift').play('blink');
                     keyboardKeysMap.get('rShift').play('blink');
                 }
 
+                //We make both a and ´ keys blink to indicate that we want the letter Á
                 keyboardKeysMap.get('a').play('blink');                
                 keyboardKeysMap.get('´').play('blink');
             }
+            //Á, É, Í and Ó are special cases to blink so we want to detect if the key we want to blink is one of them
             else if(text.charAt(incorrPos).toLowerCase() === 'é')
             {
+                //We check if the letter is in Uppercase to make the shift keys blink as well
                 if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
                 {                      
                     keyboardKeysMap.get('lShift').play('blink');
                     keyboardKeysMap.get('rShift').play('blink');
                 }
-
+                
+                //We make both e and ´ keys blink to indicate that we want the letter Á
                 keyboardKeysMap.get('e').play('blink');
                 keyboardKeysMap.get('´').play('blink');
             }
+            //Á, É, Í and Ó are special cases to blink so we want to detect if the key we want to blink is one of them
             else if(text.charAt(incorrPos).toLowerCase() === 'í')
             {
+                //We check if the letter is in Uppercase to make the shift keys blink as well
                 if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
                 {                      
                     keyboardKeysMap.get('lShift').play('blink');
                     keyboardKeysMap.get('rShift').play('blink');
                 }
 
+                //We make both i and ´ keys blink to indicate that we want the letter Á
                 keyboardKeysMap.get('i').play('blink');
                 keyboardKeysMap.get('´').play('blink');
             }
+            //Á, É, Í and Ó are special cases to blink so we want to detect if the key we want to blink is one of them
             else if(text.charAt(incorrPos).toLowerCase() === 'ó')
             {
+                //We check if the letter is in Uppercase to make the shift keys blink as well
                 if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
                 {                      
                     keyboardKeysMap.get('lShift').play('blink');
                     keyboardKeysMap.get('rShift').play('blink');
                 }
 
+                //We make both o and ´ keys blink to indicate that we want the letter Á
                 keyboardKeysMap.get('o').play('blink');
                 keyboardKeysMap.get('´').play('blink');
             }
-            else if(text.charAt(incorrPos).toLowerCase() === ' ')
-            {
-                if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
-                {                      
-                    keyboardKeysMap.get(' ').play('blink');
-                    keyboardKeysMap.get(' ').play('blink');
-                }
+            //Space is another special case to check
+            else if(text.charAt(incorrPos) === ' ')
+            {                    
+                //We make the spacebar key blink
+                keyboardKeysMap.get(' ').play('blink');
             }
+            //We check to see if the next expected character is in Uppercase, if so we want to make the shift keys blink along with the key of the expected character
             else if(text.charAt(incorrPos) === text.charAt(incorrPos).toUpperCase())
-            {                     
+            {
+                //Make the shift keys blink                     
                 keyboardKeysMap.get('lShift').play('blink');
                 keyboardKeysMap.get('rShift').play('blink');
+                //Since the map keys are all in lowercase, we turn the character to lowercase to get the sprite object and make it blink
                 keyboardKeysMap.get(text.charAt(incorrPos).toLowerCase()).play('blink');
             }
+            //If non of our special cases are caught, then we have an "ordinary" letter and we fetch it in our map tomake it blink
             else
             {
                 keyboardKeysMap.get(text.charAt(incorrPos)).play('blink');
             }
 
+            //Since the key pressed when we are in this else statement is wrong, we want to play the wrongSound soundclip we initialized
             wrongSound.play();
         }
     }
     else
     {
-        if(char === text.charAt(textPos))
-        {
-            corrCount = corrCount + 1;
-        }
-        else
+        if(char !== text.charAt(textPos))
         {
             incorrPos = textPos;
 
@@ -951,36 +969,56 @@ function keyPress(char, assignmentNr, exerciseNr)
         }
         textPos = textPos + 1;
     }
+
     // Clear the textArea
     textArea.destroy();
+    //Display the part of the exercise text that we have completed in green
     textArea = game.add.text(game.world.centerX, game.world.centerY/2 - 20, text, style);
     textArea.anchor.set(0.5);
-    textArea.addColor('#00ff00',0);
+    textArea.addColor('#00ff00', 0);
 
+    //If we pressed a wrong key, we want to color said key orange to identify that it was wrongly pressed
     if(incorrPos != -1)
     {
-        textArea.addColor('#ffa500',incorrPos);
+        textArea.addColor('#ffa500', incorrPos);
     }
     
+    //Color rest of exercise text white
     textArea.addColor('#ffffff', textPos);
 
+    //If we have reached the end of the exercise text and the previous key pressed was not incorrect
     if(textPos >= text.length && incorrPos === -1)
     {
+        //Quitting an exercise requires that we turn off the keyboard event listener and reset the variables for the exercise text
         quitExercise();
+        //The exercisesFinished array tells us which exercises are complete or not in all assignments, to get the current exercise we index it like below
         exercisesFinished[assignmentNr][exerciseNr] = true;
+        
+        //Check if all exercises are complete in the current assignment
         if(finishedAssignment(assignmentNr))
         {
-            addExercises(assignmentNr);
+            //Since this is the last exercise in the assignment, we will not be calling the Assignment function again so we need to manually color
+            //the button of the current exercise to green
+            exerciseBtnArray[assignmentNr][exerciseNr].frame = 1;
+
+            //We load the correct sound to play where the instructor compliments the user on finishing all the exercises in the current assignment
             var finishSound = addFinishSound(assignmentNr);
+            //Make the instructor stop talking when the soundclip was finished playing
             finishSound.onStop.addOnce(function(){ stopInstructorTalk(); }, this);
+            //Make the instructor talk
             instructor.play('talk');
+            //Play the soundclip that we loaded
             finishSound.play();
+            //Return so we do not continue in the function
             return;
         }
 
+        //We reach this point if all exercises have not been finished and we need to find the next exercise that is not finished
         exerciseNr = findNextExercise(assignmentNr, exerciseNr);
         
+        //We want to indicate that we are coming from another exercise so that Assignment plays the soundclip that compliments the user for finishing an exercise
         comingFromExercise = true;
+        //We call Assignment to go to the next exercise in line
         Assignment(assignmentNr, exerciseNr);
         return;
     }
@@ -1935,9 +1973,8 @@ function WarmUpFJ(assignmentNr, exerciseNr)
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'j', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
+                // Display the letter in the textArea
+                addWarmUpTextArea('j', 50, '#00ff00');
                 game.time.events.add(Phaser.Timer.SECOND * 2, function()
                 {
                     game.input.keyboard.stop();
@@ -2116,9 +2153,8 @@ function WarmUpDK(assignmentNr, exerciseNr)
             {
                 game.input.keyboard.stop();
                 textArea.destroy();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 50, 'k', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#00ff00',0);
+                // Display the letter in the textArea
+                addWarmUpTextArea('k', 50, '#00ff00');
                 game.time.events.add(Phaser.Timer.SECOND * 1, function()
                 {
                     sounds['finalDK'].play();
@@ -2790,9 +2826,8 @@ function WarmUpIG(assignmentNr, exerciseNr)
                 balloon.frame = 42;
                 sounds['typeI'].play();
                 keyboardKeysMap.get('i').play('blink');
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'i', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#000000',0);
+                // Display the letter in the textArea
+                addWarmUpTextArea('i', 150, '#000000');
             }          
         }, this).autoDestroy = true;
     });
@@ -3179,9 +3214,8 @@ function WarmUpRO(assignmentNr, exerciseNr)
                 instructor.play('talk');
                 balloon.frame = 60;
                 sounds['typeR'].play();
-                textArea = game.add.text(game.world.centerX, game.world.centerY - 150, 'r', instructionStyle);
-                textArea.anchor.set(0.5);
-                textArea.addColor('#000000',0);
+                // Display the letter in the textArea
+                addWarmUpTextArea('r', 150, '#000000');
                 keyboardKeysMap.get('r').play('blink');
             }            
         }, this).autoDestroy = true;
