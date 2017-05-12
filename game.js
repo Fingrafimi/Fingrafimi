@@ -72,10 +72,8 @@ function preload()
     game.load.image('homePage',                 'Assets/Images/Backgrounds/homePage.png');
     game.load.image('homeKeysBackground',       'Assets/Images/Backgrounds/homeKeysBackground.png');
     game.load.image('instructionBg',            'Assets/Images/Backgrounds/instructionBackground.png');
-    //game.load.image('blueBackground',           'Assets/Images/Backgrounds/blueBackground.png');
     game.load.image('farm',                     'Assets/Images/Backgrounds/farm.png');
     game.load.image('clouds',                   'Assets/Images/Backgrounds/clouds.png');
-   // game.load.image('blueBackground2',          'Assets/Images/Backgrounds/blueBackground2.png');
     game.load.image('box',                      'Assets/Images/Backgrounds/box.png');
     game.load.image('stage',                    'Assets/Images/Backgrounds/svid.png');
     game.load.image('ocean',                    'Assets/Images/Backgrounds/sandur.png');
@@ -693,9 +691,8 @@ function stopAllSounds()
 {
     for(var key in sounds)
     {
-        sounds[key].onStop.removeAll();
-        
-    };
+        sounds[key].onStop.removeAll();   
+    }
 }
 
 
