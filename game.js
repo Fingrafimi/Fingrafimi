@@ -693,9 +693,8 @@ function stopAllSounds()
 {
     for(var key in sounds)
     {
-        sounds[key].onStop.removeAll();
-        
-    };
+        sounds[key].onStop.removeAll();   
+    }
 }
 
 
